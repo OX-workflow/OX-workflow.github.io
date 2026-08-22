@@ -37,3 +37,16 @@
   button, a { -webkit-tap-highlight-color: transparent; }
   button:focus-visible, a:focus-visible { outline: 2px solid #2c73b9; outline-offset: 3px; }
 }
+
+[lang="fa"] {
+  font-family: Tahoma, Arial, "Noto Naskh Arabic", sans-serif;
+  letter-spacing: normal;
+}
+
+[lang="fa"] .tracking-tight,
+[lang="fa"] .tracking-\[0\.16em\],
+[lang="fa"] .tracking-\[0\.18em\],
+[lang="fa"] .tracking-\[0\.2em\],
+[lang="fa"] .tracking-\[0\.22em\] {
+  letter-spacing: normal;
+}
