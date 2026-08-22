@@ -25,3 +25,9 @@
 - [x] Refine the architecture and IFEM sections to make boundaries, responsibilities, and methodology positioning clearer.
 - [x] Review and improve technical-case-study metadata and structured data only where necessary.
 - [x] Validate light/dark responsive presentation and final source alignment.
+
+## SEO review
+
+- [x] Inspect the live sitemap.xml and robots.txt for canonical host, scope, and crawlability issues.
+- [x] Inspect live JSON-LD for validity, entity relationships, URLs, and consistency with visible ONYX content.
+- [x] Apply and validate any focused SEO corrections needed in the repository.
