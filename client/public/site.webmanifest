@@ -1,0 +1,21 @@
+{
+  "name": "ONYX Tectosilicate Framework",
+  "short_name": "ONYX",
+  "description": "Evidence-led systems architecture for local-first, authority-aware mission operations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07182F",
+  "theme_color": "#07182F",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
