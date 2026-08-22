@@ -41,4 +41,4 @@ for (const id of [
   }
 }
 
-console.log(`Valid JSON-LD: ${graph.length} connected entities (${[...types].join(", ")}).`);
+console.log(`Valid JSON-LD: ${graph.length} connected entities (${Array.from(types).join(", ")}).`);

@@ -1,7 +1,3 @@
-/**
- * ONYX Operational Documentation: evidence-first case-study page with a navy structural rail,
- * precise technical metadata, layered system motifs, and restrained editorial hierarchy.
- */
 import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
@@ -9,94 +5,52 @@ import {
   BookOpenText,
   CheckCircle2,
   ChevronRight,
-  CircleDot,
-  ExternalLink,
   FileCode2,
-  FolderOpen,
   Github,
   Menu,
   Moon,
-  Network,
   ShieldCheck,
   Sun,
   X,
 } from "lucide-react";
 
 const ASSETS = {
-  hero: "/manus-storage/onyx-hero-architecture_44510d66.png",
-  layers: "/manus-storage/onyx-layers-diagram_334467f9.png",
-  evidence: "/manus-storage/onyx-evidence-texture_7f7cb94b.png",
-  mark: "/manus-storage/onyx-mark_63214367.png",
-  wordmark: "/manus-storage/onyx-official-wordmark_082dbcd2.png",
   brandLogo: "/assets/onyx-logo.png",
   brandWordmark: "/assets/onyx-wordmark-wide.png",
+  secureAccess: "/assets/product/secure-browser-access.webp",
+  missions: "/assets/product/mission-operations.png",
+  overview: "/assets/product/operational-overview.png",
 };
 
 const navItems = [
   ["01", "Overview", "overview"],
-  ["02", "Architecture", "architecture"],
-  ["03", "IFEM", "ifem"],
-  ["04", "Evidence", "evidence"],
-  ["05", "Developer", "developer"],
+  ["02", "Capabilities", "capabilities"],
+  ["03", "Experience", "experience"],
+  ["04", "Architecture", "architecture"],
+  ["05", "IFEM", "ifem"],
+  ["06", "Evidence", "evidence"],
+  ["07", "Developer", "developer"],
 ] as const;
 
-const architectureLayers = [
-  {
-    index: "01",
-    title: "Kernel & contract boundary",
-    detail:
-      "Platform kernel and platform-contracts establish reusable primitives and explicit interaction boundaries before higher-level behavior is composed.",
-    tags: ["platform-kernel", "platform-contracts"],
-  },
-  {
-    index: "02",
-    title: "Mission domains",
-    detail:
-      "Dedicated domain crates organize mission, work, communication, file, policy, profile, todo, and notification responsibilities as distinct system concerns.",
-    tags: ["mission-domain", "work-domain", "todo-domain"],
-  },
-  {
-    index: "03",
-    title: "Applications & composition",
-    detail:
-      "Query, worker, security, audit, and client-composition applications provide a place to coordinate use cases without collapsing domain boundaries.",
-    tags: ["query-application", "audit-application", "client-composition"],
-  },
-  {
-    index: "04",
-    title: "Infrastructure & transport",
-    detail:
-      "Persistence, local blob storage, messaging, observability, background jobs, CRDT synchronization, and transport modules remain separate implementation concerns.",
-    tags: ["persistence-sqlite", "synchronization-domain", "sync-transport"],
-  },
+const capabilities = [
+  ["Secure Access", "Controlled browser access and authority-aware workflows for sensitive operational contexts."],
+  ["Mission Operations", "Coordinate missions, tasks, decisions, and states without losing responsibility boundaries."],
+  ["Decision Evidence", "Maintain reviewable records that connect actions, decisions, and operational outcomes."],
+  ["Extensible Architecture", "Expand capabilities through explicit contracts instead of collapsing system boundaries."],
 ];
 
+const architectureLayers = [
+  ["01", "Kernel & contract boundary", "Reusable primitives and interaction boundaries establish a stable foundation before higher-level behavior is composed.", ["platform-kernel", "platform-contracts"]],
+  ["02", "Mission domains", "Dedicated domains keep mission, work, communication, policy, profile, todo, and notification responsibilities distinct.", ["mission-domain", "work-domain", "todo-domain"]],
+  ["03", "Applications & composition", "Query, worker, security, audit, and client-composition applications coordinate use cases without becoming the domain model.", ["query-application", "audit-application", "client-composition"]],
+  ["04", "Infrastructure & transport", "Persistence, synchronization, observability, messaging, and delivery remain separated implementation concerns.", ["persistence-sqlite", "sync-transport", "observability"]],
+] as const;
+
 const evidenceItems = [
-  {
-    icon: Github,
-    label: "SOURCE REPOSITORY",
-    title: "ONYX workspace",
-    copy: "The public repository is the primary evidence surface: its workspace, client folders, deployment artifacts, documentation, and automation can be inspected directly.",
-    href: "https://github.com/SMozaff/Onyx-Framwork",
-    action: "Open repository",
-  },
-  {
-    icon: FileCode2,
-    label: "IMPLEMENTATION RECORD",
-    title: "Architecture & verification",
-    copy: "The project record describes a Rust-centric, multi-crate mission-operations architecture and names delivered scope alongside current limits rather than presenting a finished product claim.",
-    href: "https://SMozaff.github.io/",
-    action: "View project record",
-  },
-  {
-    icon: BookOpenText,
-    label: "METHODOLOGY",
-    title: "IFEM doctrine",
-    copy: "The supporting doctrine explains the interface-first approach: explicit boundaries, contracts, ownership, and verification evidence before large-scale parallel implementation.",
-    href: "https://IFEM-doctrine.github.io/",
-    action: "Read doctrine",
-  },
-];
+  [Github, "Source repository", "ONYX workspace", "Inspect the public workspace, client surfaces, documentation, and automation evidence.", "https://github.com/SMozaff/Onyx-Framwork", "Open repository"],
+  [FileCode2, "Implementation record", "Architecture & verification", "Review the published project record, delivered scope, and stated limitations.", "https://SMozaff.github.io/", "View project record"],
+  [BookOpenText, "Methodology", "IFEM doctrine", "Read the interface-first engineering principles that inform the ONYX architecture.", "https://IFEM-doctrine.github.io/", "Read doctrine"],
+] as const;
 
 export default function Home() {
   const [dark, setDark] = useState(false);
@@ -104,27 +58,30 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("overview");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("onyx-theme");
-    const initialDark = stored === "dark";
+    const initialDark = window.localStorage.getItem("onyx-theme") === "dark";
     setDark(initialDark);
     document.documentElement.classList.toggle("dark", initialDark);
 
     const sections = navItems
       .map(([, , id]) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
-
     const observer = new IntersectionObserver(
       (entries) => {
-        const topVisible = entries
+        const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (topVisible) setActiveSection(topVisible.target.id);
+        if (visible) setActiveSection(visible.target.id);
       },
-      { rootMargin: "-22% 0px -64% 0px", threshold: [0.01, 0.25, 0.5] },
+      { rootMargin: "-20% 0px -65% 0px", threshold: [0.1, 0.35, 0.65] },
     );
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMenuOpen(false);
+  };
 
   const toggleTheme = () => {
     const next = !dark;
@@ -133,395 +90,74 @@ export default function Home() {
     window.localStorage.setItem("onyx-theme", next ? "dark" : "light");
   };
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    setMenuOpen(false);
-  };
-
   return (
-    <div className="onyx-shell min-h-screen bg-[#edf3f8] text-[#112847] dark:bg-[#07182f] dark:text-[#edf5fb]">
-      <aside className="onyx-rail">
-        <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} className="brand-lockup" aria-label="ONYX Framework overview">
-          <span className="brand-logo-frame"><img src={ASSETS.brandLogo} alt="ONYX Tectosilicate Framework" /></span>
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#06172c] dark:text-slate-50">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col border-r border-white/10 bg-[#071f43] p-5 text-white lg:flex">
+        <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} aria-label="ONYX Framework overview" className="rounded-2xl bg-white p-3 shadow-sm">
+          <img src={ASSETS.brandLogo} alt="ONYX Tectosilicate Framework" className="h-28 w-full object-contain" />
         </a>
-
-        <div className="rail-divider" />
-        <nav className="rail-nav" aria-label="Case study sections">
+        <div className="my-6 h-px bg-white/15" />
+        <nav aria-label="Case study sections" className="space-y-1">
           {navItems.map(([number, label, id]) => (
-            <button key={id} className={activeSection === id ? "rail-link active" : "rail-link"} onClick={() => scrollTo(id)}>
-              <span>{number}</span>
-              <b>{label}</b>
-              <ChevronRight aria-hidden="true" />
+            <button key={id} onClick={() => scrollTo(id)} className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition ${activeSection === id ? "bg-white text-[#082348] shadow-sm" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}>
+              <span className="w-5 text-[10px] font-bold tracking-wider opacity-60">{number}</span>
+              <span className="flex-1 font-semibold">{label}</span>
+              <ChevronRight className="h-4 w-4 opacity-50 transition group-hover:translate-x-0.5" />
             </button>
           ))}
         </nav>
-
-        <div className="rail-foot">
-          <div className="live-stamp"><span /> CASE STUDY RECORD</div>
+        <div className="mt-auto rounded-2xl border border-white/15 bg-white/5 p-4 text-xs text-slate-300">
+          <p className="mb-2 font-semibold uppercase tracking-[0.18em] text-white">Case study record</p>
           <p>Local-first mission operations architecture.</p>
-          <a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer">View source <ArrowUpRight /></a>
+          <a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 font-semibold text-white hover:text-sky-200">View source <ArrowUpRight className="h-3.5 w-3.5" /></a>
         </div>
       </aside>
 
-      <header className="mobile-header">
-        <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} className="brand-lockup" aria-label="ONYX Framework overview">
-          <span className="brand-logo-frame"><img src={ASSETS.brandLogo} alt="ONYX Tectosilicate Framework" /></span>
+      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-[#07182f]/95 lg:hidden">
+        <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} aria-label="ONYX Framework overview" className="w-24 rounded-lg bg-white p-1.5">
+          <img src={ASSETS.brandLogo} alt="ONYX Tectosilicate Framework" className="h-12 w-full object-contain" />
         </a>
-        <div className="mobile-actions">
-          <button className="theme-button" onClick={toggleTheme} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button>
-          <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Open navigation">{menuOpen ? <X /> : <Menu />}</button>
+        <div className="flex items-center gap-2">
+          <button onClick={toggleTheme} aria-label="Toggle color theme" className="rounded-lg border border-slate-200 p-2 dark:border-white/15">{dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}</button>
+          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation" className="rounded-lg bg-[#082348] p-2 text-white">{menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
         </div>
-        {menuOpen && (
-          <nav className="mobile-nav" aria-label="Mobile case study sections">
-            {navItems.map(([number, label, id]) => (
-              <button key={id} onClick={() => scrollTo(id)}><span>{number}</span>{label}</button>
-            ))}
-          </nav>
-        )}
+        {menuOpen && <nav aria-label="Mobile case study sections" className="absolute inset-x-0 top-full border-b border-slate-200 bg-white p-3 shadow-lg dark:border-white/10 dark:bg-[#07182f]">{navItems.map(([number, label, id]) => <button key={id} onClick={() => scrollTo(id)} className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left font-medium hover:bg-slate-100 dark:hover:bg-white/10"><span className="text-xs text-slate-500">{number}</span>{label}</button>)}</nav>}
       </header>
 
-      <main className="onyx-content">
-        <header className="topbar">
-          <div className="topbar-brand"><img src={ASSETS.brandWordmark} alt="ONYX Tectosilicate Framework" /><span className="eyebrow">SYSTEMS ARCHITECTURE / CASE STUDY</span></div>
-          <div className="topbar-actions">
-            <a className="source-link" href="/assets"><FolderOpen /> Asset library</a>
-            <a className="source-link" href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer"><Github /> Source repository</a>
-            <button className="theme-button" onClick={toggleTheme} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button>
-          </div>
+      <main className="lg:ml-64">
+        <header className="hidden min-h-20 items-center justify-between border-b border-slate-200 bg-white px-8 dark:border-white/10 dark:bg-[#07182f] lg:flex">
+          <div className="flex items-center gap-5"><img src={ASSETS.brandWordmark} alt="ONYX Tectosilicate Framework" className="h-10 w-40 object-contain object-left" /><span className="border-l border-slate-200 pl-5 text-xs font-bold tracking-[0.2em] text-slate-500 dark:border-white/15 dark:text-slate-300">SYSTEMS ARCHITECTURE / CASE STUDY</span></div>
+          <div className="flex items-center gap-4"><a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-[#1467b8] dark:text-slate-100"><Github className="h-4 w-4" /> Source repository</a><button onClick={toggleTheme} aria-label="Toggle color theme" className="rounded-lg border border-slate-200 p-2 dark:border-white/15">{dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}</button></div>
         </header>
 
-        <section id="overview" className="hero-section section-anchor">
-          <img className="hero-image" src={ASSETS.hero} alt="Abstract ONYX architecture field" />
-          <img className="hero-brand-watermark" src={ASSETS.brandWordmark} alt="" aria-hidden="true" />
-          <div className="hero-grid" aria-hidden="true" />
-          <div className="hero-copy reveal">
-            <p className="eyebrow"><span className="signal-dot" /> ONYX FRAMEWORK</p>
-            <h1>Operational intelligence,<br /><i>for complex systems.</i></h1>
-            <p className="hero-intro">ONYX is an operational platform designed for organizations that require secure workflows, traceable decisions, controlled access, and architecture that remains understandable as systems grow.</p>
-            <div className="hero-actions">
-              <button className="primary-action" onClick={() => scrollTo("capabilities")}>Explore capabilities <ArrowDownRight /></button>
-              <a className="text-action" href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer">Trace the implementation <ArrowUpRight /></a>
-            </div>
-          </div>
-          <div className="hero-record reveal delay-1">
-            <div className="record-kicker">REPOSITORY RECORD</div>
-            <dl>
-              <div><dt>Implementation</dt><dd>Rust-centric workspace</dd></div>
-              <div><dt>Client surfaces</dt><dd>Web · Desktop · Mobile</dd></div>
-              <div><dt>Project stance</dt><dd>In progress; scope stated</dd></div>
-            </dl>
-          </div>
-          <div className="hero-caption">Interface-first development · explicit responsibility · verification-oriented work</div>
-        </section>
-
-        <section className="reading-band overview-band">
-          <div className="section-index"><span>01</span><p>FRAMEWORK<br />OVERVIEW</p></div>
-          <div className="overview-text">
-            <p className="eyebrow">THE ENGINEERING PROBLEM</p>
-            <h2>Coordination is not a reason to blur responsibility.</h2>
-            <p>ONYX addresses mission work that must operate locally, preserve authority-aware decisions, and synchronize across multiple environments. Its architecture keeps the responsibilities of kernels, domains, applications, infrastructure, transport, and clients inspectable instead of relying on one undifferentiated application layer.</p>
-          </div>
-          <div className="principles-list">
-            <div><span>01</span><b>Modular scope</b><p>Separated concerns make system change locatable.</p></div>
-            <div><span>02</span><b>Extensible surface</b><p>Composition and transport layers provide explicit places to connect behavior.</p></div>
-            <div><span>03</span><b>Traceable work</b><p>Automation, documentation, and deployment artifacts supply evidence alongside code.</p></div>
-          </div>
-        </section>
-
-        <section id="capabilities" className="capabilities-section section-anchor">
-          <div className="section-heading reveal">
-            <div className="section-index"><span>01A</span><p>PRODUCT<br />CAPABILITIES</p></div>
+        <section id="overview" className="scroll-mt-20 overflow-hidden bg-[#eff5fa] px-5 py-16 dark:bg-[#07182f] sm:px-8 lg:min-h-[720px] lg:px-14 lg:py-24">
+          <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
             <div>
-              <p className="eyebrow">OPERATIONAL PLATFORM</p>
-              <h2>Designed for complex<br />organizational operations.</h2>
+              <div className="mb-6 flex items-center gap-2 text-xs font-bold tracking-[0.22em] text-[#1269b8]"><span className="h-2 w-2 rounded-full bg-emerald-500" /> ONYX FRAMEWORK</div>
+              <h1 className="max-w-3xl text-5xl font-semibold tracking-tight text-[#082348] dark:text-white sm:text-6xl lg:text-7xl">Operational intelligence, <em className="font-normal text-[#287bc2]">for complex systems.</em></h1>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">A framework and operational environment for designing, coordinating, and verifying complex software systems.</p>
+              <p className="mt-4 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">ONYX brings secure workflows, traceable decisions, controlled access, and architecture that remains understandable as systems grow.</p>
+              <div className="mt-8 flex flex-wrap gap-3"><button onClick={() => scrollTo("experience")} className="inline-flex items-center gap-2 rounded-xl bg-[#082348] px-5 py-3 font-semibold text-white transition hover:bg-[#1467b8]">Explore the experience <ArrowDownRight className="h-4 w-4" /></button><a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-800 hover:border-[#1467b8] hover:text-[#1467b8] dark:border-white/20 dark:text-white">Trace the implementation <ArrowUpRight className="h-4 w-4" /></a></div>
             </div>
-          </div>
-          <div className="capability-grid">
-            {[
-              ["Secure Access", "Controlled browser-based access and authority-aware workflows."],
-              ["Mission Operations", "Coordinate tasks, decisions, and operational states through structured processes."],
-              ["Audit & Evidence", "Maintain traceable records of decisions, actions, and system behavior."],
-              ["Extensible Architecture", "Expand capabilities without collapsing system boundaries."],
-            ].map(([title, copy]) => (
-              <article className="capability-card reveal" key={title}>
-                <h3>{title}</h3>
-                <p>{copy}</p>
-              </article>
-            ))}
-          </div>
-          <div className="persian-product-panel reveal" dir="rtl">
-            <p className="eyebrow">نسخه فارسی / معرفی محصول</p>
-            <h2>ONYX؛ پلتفرم عملیاتی برای سازمان‌های پیچیده</h2>
-            <p>ONYX با هدف ایجاد یک محیط یکپارچه برای مدیریت عملیات، کنترل دسترسی، گردش فرآیندها و ثبت تصمیمات قابل ردیابی طراحی شده است.</p>
-            <ul>
-              <li>مدیریت عملیات و فرآیندهای سازمانی</li>
-              <li>معماری توسعه‌پذیر و ماژولار</li>
-              <li>کنترل دسترسی و مسئولیت‌های مشخص</li>
-              <li>ثبت شواهد و قابلیت ممیزی</li>
-            </ul>
+            <aside className="rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-none"><img src={ASSETS.brandWordmark} alt="ONYX Framework" className="mb-8 h-16 w-full object-contain" /><p className="text-xs font-bold tracking-[0.18em] text-slate-500 dark:text-slate-300">REPOSITORY RECORD</p><dl className="mt-5 space-y-4 text-sm"><div className="flex justify-between gap-4 border-b border-slate-100 pb-4 dark:border-white/10"><dt className="text-slate-500 dark:text-slate-300">Implementation</dt><dd className="font-semibold">Rust-centric workspace</dd></div><div className="flex justify-between gap-4 border-b border-slate-100 pb-4 dark:border-white/10"><dt className="text-slate-500 dark:text-slate-300">Client surfaces</dt><dd className="font-semibold">Web · Desktop · Mobile</dd></div><div className="flex justify-between gap-4"><dt className="text-slate-500 dark:text-slate-300">Project stance</dt><dd className="font-semibold">In progress; scope stated</dd></div></dl></aside>
           </div>
         </section>
 
-        <section id="solutions" className="reading-band overview-band section-anchor">
-          <div className="section-index"><span>01B</span><p>ENTERPRISE<br />SOLUTIONS</p></div>
-          <div className="overview-text">
-            <p className="eyebrow">COMMERCIAL APPLICATION</p>
-            <h2>Built for environments where reliability matters.</h2>
-            <p>ONYX can support organizations that require controlled operational workflows, accountable decisions, and a clear separation between responsibilities, interfaces, and execution layers.</p>
-          </div>
-          <div className="principles-list">
-            <div><span>01</span><b>Critical Operations</b><p>Support structured workflows for complex operational environments.</p></div>
-            <div><span>02</span><b>Secure Collaboration</b><p>Enable controlled access across distributed teams and systems.</p></div>
-            <div><span>03</span><b>Operational Evidence</b><p>Preserve traceability for actions, decisions, and reviews.</p></div>
-          </div>
+        <section id="capabilities" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-14 lg:py-24">
+          <div className="mx-auto max-w-6xl"><div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"><div><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">01 / CAPABILITIES</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Designed for operational environments where reliability matters.</h2></div><p className="max-w-xl self-end text-lg leading-8 text-slate-600 dark:text-slate-300">ONYX keeps operational work legible: each responsibility has a clear boundary, each decision can carry evidence, and each new capability has an intentional place to connect.</p></div><div className="mt-12 grid gap-4 sm:grid-cols-2">{capabilities.map(([title, copy], index) => <article key={title} className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5"><span className="text-xs font-bold text-[#1467b8]">0{index + 1}</span><h3 className="mt-4 text-xl font-semibold">{title}</h3><p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">{copy}</p></article>)}</div><div dir="rtl" className="mt-8 rounded-2xl border border-[#b8d6ef] bg-[#eaf4fc] p-6 text-right dark:border-[#1a5d94] dark:bg-[#0a2947]"><p className="text-sm font-bold text-[#1467b8]">معرفی محصول</p><h3 className="mt-2 text-2xl font-semibold">ONYX؛ پلتفرم عملیاتی برای سازمان‌های پیچیده</h3><p className="mt-3 max-w-3xl leading-8 text-slate-700 dark:text-slate-200">ONYX برای مدیریت عملیات، کنترل دسترسی، گردش فرآیندها و ثبت تصمیمات قابل ردیابی در محیط‌های پیچیده طراحی شده است.</p></div></div>
         </section>
 
-        <section id="product" className="reading-band product-showcase section-anchor">
-          <div className="section-index"><span>02</span><p>PRODUCT<br />EXPERIENCE</p></div>
-          <div className="product-showcase-content">
-            <p className="eyebrow">OPERATIONAL PLATFORM</p>
-            <h2>From architecture principles to operational capability.</h2>
-            <p>
-              ONYX transforms explicit system boundaries into practical operational workflows:
-              controlled access, mission coordination, traceable decisions, and evidence-driven execution.
-            </p>
-            <div className="product-panels">
-              <article className="product-panel reveal">
-                <b>Secure Operations</b>
-                <p>Provide controlled access paths for users, services, and operational workflows.</p>
-              </article>
-              <article className="product-panel reveal delay-1">
-                <b>Mission Coordination</b>
-                <p>Organize responsibilities, actions, and operational states without losing ownership boundaries.</p>
-              </article>
-              <article className="product-panel reveal delay-2">
-                <b>Decision Evidence</b>
-                <p>Maintain a clearer relationship between actions, decisions, and reviewable records.</p>
-              </article>
-            </div>
-          </div>
+        <section id="experience" className="scroll-mt-20 bg-slate-100 px-5 py-16 dark:bg-[#0a213c] sm:px-8 lg:px-14 lg:py-24">
+          <div className="mx-auto max-w-6xl"><div className="max-w-3xl"><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">02 / ONYX EXPERIENCE</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Operational interfaces for real work.</h2><p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">Product evidence anchors the case study in the surfaces teams use to access, coordinate, and review mission-critical work.</p></div><div className="mt-12 space-y-10">{[[ASSETS.secureAccess, "Secure Access Layer", "A focused browser sign-in surface designed for authorized operators and clear session expectations."], [ASSETS.missions, "Mission Operations", "Review purpose, ownership, lifecycle status, temporal constraints, and evidence as one coordinated mission picture."], [ASSETS.overview, "Operational Overview", "Bring alerts, approvals, active work, and the next operator actions into a single read-only projection."]].map(([image, title, copy], index) => <article key={title} className={`grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#07182f] lg:grid-cols-2 ${index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}><div className="bg-[#e9f0f6] p-3 dark:bg-[#0d2b4b]"><img src={image} alt={`${title} interface screenshot`} className="h-full w-full rounded-2xl border border-slate-200 object-cover shadow-sm dark:border-white/10" loading={index === 0 ? "eager" : "lazy"} /></div><div className="flex flex-col justify-center p-8 sm:p-12"><span className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">0{index + 1} / PRODUCT SCREEN</span><h3 className="mt-4 text-3xl font-semibold">{title}</h3><p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">{copy}</p><div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#1467b8]"><CheckCircle2 className="h-4 w-4" /> Interface evidence from ONYX</div></div></article>)}</div></div>
         </section>
 
+        <section id="architecture" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto max-w-6xl"><div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]"><div><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">03 / ARCHITECTURE</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Independent layers, shared system intent.</h2></div><p className="max-w-xl self-end text-lg leading-8 text-slate-600 dark:text-slate-300">The workspace groups modules by architectural role rather than one undifferentiated application layer. The question that follows is why those boundaries matter.</p></div><div className="mt-12 grid gap-4 md:grid-cols-2">{architectureLayers.map(([number, title, copy, tags]) => <article key={number} className="rounded-2xl border border-slate-200 p-6 dark:border-white/10"><span className="text-sm font-bold text-[#1467b8]">{number}</span><h3 className="mt-3 text-xl font-semibold">{title}</h3><p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">{copy}</p><div className="mt-5 flex flex-wrap gap-2">{tags.map((tag) => <span key={tag} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-white/10 dark:text-slate-200">{tag}</span>)}</div></article>)}</div></div></section>
 
-      <section id="experience" className="space-y-8">
-        <div className="space-y-3">
-          <p className="text-xs tracking-[0.25em] text-cyan-600">04 PRODUCT EXPERIENCE</p>
-          <h2 className="text-3xl font-semibold">
-            Operational visibility through a unified experience.
-          </h2>
-          <p className="max-w-3xl text-muted-foreground">
-            ONYX translates architectural discipline into operational capabilities:
-            controlled access, mission coordination, workflow visibility, and evidence-driven decisions.
-          </p>
-        </div>
+        <section id="ifem" className="scroll-mt-20 bg-[#082348] px-5 py-16 text-white sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.9fr]"><div><p className="text-xs font-bold tracking-[0.2em] text-sky-300">04 / WHY THIS ARCHITECTURE?</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">IFEM principles make the boundaries intentional.</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">ONYX demonstrates Interface-First Engineering Methodology in practice. IFEM informs the framework’s engineering discipline; it is not an ONYX runtime dependency, product layer, or replacement identity.</p><a href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-xl border border-sky-300/50 px-5 py-3 font-semibold text-white hover:bg-white/10">Read IFEM doctrine <ArrowUpRight className="h-4 w-4" /></a></div><div className="space-y-4">{[["01", "Boundary", "Make the responsibility line explicit."], ["02", "Contract", "Define shared rules before scale."], ["03", "Owner", "Keep accountability legible."], ["04", "Evidence", "Verify agreement in observable ways."]].map(([number, title, copy]) => <div key={number} className="flex gap-5 rounded-2xl border border-white/15 bg-white/5 p-5"><span className="font-bold text-sky-300">{number}</span><div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-6 text-slate-300">{copy}</p></div></div>)}</div></div></section>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {[
-            ["Secure Operations", "Controlled access and responsibility boundaries for sensitive workflows."],
-            ["Mission Coordination", "A structured environment for operational states, tasks, and decisions."],
-            ["Decision Evidence", "Traceable records that support review, accountability, and evolution."],
-          ].map(([title, copy]) => (
-            <div key={title} className="rounded-2xl border bg-card p-6 transition hover:-translate-y-1">
-              <h3 className="text-xl font-semibold">{title}</h3>
-              <p className="mt-3 text-muted-foreground">{copy}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+        <section id="evidence" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto max-w-6xl"><div className="max-w-3xl"><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">05 / TECHNICAL EVIDENCE</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Claims point back to the work.</h2><p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">The case study links to source material and published records instead of substituting narrative for technical evidence.</p></div><div className="mt-12 grid gap-5 md:grid-cols-3">{evidenceItems.map(([Icon, label, title, copy, href, action]) => <article key={title} className="rounded-2xl border border-slate-200 p-6 dark:border-white/10"><Icon className="h-6 w-6 text-[#1467b8]" /><p className="mt-5 text-xs font-bold tracking-[0.16em] text-slate-500 dark:text-slate-300">{label}</p><h3 className="mt-3 text-xl font-semibold">{title}</h3><p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">{copy}</p><a href={href} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 font-semibold text-[#1467b8]">{action} <ArrowUpRight className="h-4 w-4" /></a></article>)}</div><div className="mt-8 flex gap-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950 dark:border-emerald-700/40 dark:bg-emerald-900/20 dark:text-emerald-100"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" /><p><b>Scope note.</b> ONYX is presented as an in-progress architecture. Public records distinguish delivered components from incomplete or unverified areas.</p></div></div></section>
 
-      <section id="fa-product" dir="rtl" className="space-y-5 rounded-2xl border bg-card p-8">
-        <p className="text-xs tracking-[0.2em] text-cyan-600">معرفی محصول</p>
-        <h2 className="text-3xl font-semibold">
-          ONYX؛ پلتفرم عملیاتی برای سازمان‌های پیچیده
-        </h2>
-        <p className="leading-8 text-muted-foreground">
-          ONYX برای محیط‌هایی طراحی شده است که کنترل فرآیندها، دسترسی امن،
-          ثبت تصمیمات و قابلیت ردیابی عملیات اهمیت حیاتی دارد.
-        </p>
-        <div className="grid gap-4 md:grid-cols-2">
-          {[
-            "مدیریت عملیات و گردش کار",
-            "کنترل دسترسی و مسئولیت‌ها",
-            "ثبت رویداد و شواهد قابل بررسی",
-            "معماری ماژولار و توسعه‌پذیر",
-          ].map((x) => (
-            <div key={x} className="rounded-xl border p-4">{x}</div>
-          ))}
-        </div>
-      </section>
-
-
-        <section id="visual-showcase" className="reading-band product-showcase section-anchor">
-          <div className="section-heading">
-            <p className="eyebrow">ONYX EXPERIENCE</p>
-            <h2>Operational interfaces designed for complex workflows.</h2>
-            <p>
-              ONYX connects secure access, operational visibility, and evidence-driven
-              execution into one coherent experience.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {[
-              {
-                title: "Secure Access Layer",
-                text: "Controlled access patterns designed for environments where identity, permissions, and responsibility boundaries matter.",
-                image: ASSETS.evidence,
-              },
-              {
-                title: "Operational Visibility",
-                text: "A structured view of activities, states, and decisions instead of disconnected operational records.",
-                image: ASSETS.hero,
-              },
-              {
-                title: "Architecture Evidence",
-                text: "Layered architecture visualization showing explicit responsibilities and system boundaries.",
-                image: ASSETS.layers,
-              },
-              {
-                title: "Engineering Foundation",
-                text: "A product direction grounded in modular architecture and IFEM principles.",
-                image: ASSETS.brandWordmark,
-              },
-            ].map((item) => (
-              <article key={item.title} className="overflow-hidden rounded-2xl border bg-card">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className={item.image === ASSETS.brandWordmark ? "h-64 w-full object-contain bg-[#07182f] p-8" : "h-64 w-full object-cover"}
-                />
-                <div className="space-y-3 p-6">
-                  <h3 className="text-xl font-semibold">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="workflow" className="reading-band overview-band section-anchor">
-          <div className="section-heading">
-            <p className="eyebrow">OPERATIONAL FLOW</p>
-            <h2>From request to verified evidence.</h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-6">
-            {[
-              "Request",
-              "Authorization",
-              "Workflow",
-              "Execution",
-              "Decision",
-              "Audit",
-            ].map((step, index) => (
-              <div key={step} className="rounded-xl border bg-card p-4 text-center">
-                <span className="text-sm text-muted-foreground">0{index + 1}</span>
-                <div className="mt-2 font-medium">{step}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="architecture" className="architecture-section section-anchor">
-          <div className="section-heading reveal">
-            <div className="section-index"><span>02</span><p>VERIFIED<br />LAYERS</p></div>
-            <div>
-              <p className="eyebrow">ARCHITECTURE MAP</p>
-              <h2>Independent layers,<br />shared system intent.</h2>
-            </div>
-            <p className="heading-side-note">The repository’s workspace inventory groups modules by their architectural roles rather than a single feature-oriented package hierarchy.</p>
-          </div>
-          <div className="architecture-canvas">
-            <div className="layer-list">
-              {architectureLayers.map((layer, index) => (
-                <article className={`layer-card reveal delay-${index + 1}`} key={layer.index}>
-                  <span className="layer-no">{layer.index}</span>
-                  <div><h3>{layer.title}</h3><p>{layer.detail}</p><div className="tags">{layer.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
-                </article>
-              ))}
-            </div>
-            <div className="architecture-visual reveal delay-2">
-              <figure className="layers-figure">
-                <img src={ASSETS.layers} alt="Abstract stacked layers representing explicit system boundaries" />
-                <figcaption><CircleDot /> Illustration of separated but connected architectural concerns.</figcaption>
-              </figure>
-              <div className="boundary-map" aria-label="Architecture boundary route from platform contracts to domains, applications, and adapters">
-                <p>INTERFACE ROUTE</p>
-                <ol>
-                  <li><span>01</span><b>platform-contracts</b><small>shared primitives and contracts</small></li>
-                  <li><span>02</span><b>domain crates</b><small>owned mission and policy behavior</small></li>
-                  <li><span>03</span><b>applications</b><small>query, worker, audit, and composition</small></li>
-                  <li><span>04</span><b>adapters & transports</b><small>persistence, observability, sync, and delivery</small></li>
-                </ol>
-              </div>
-            </div>
-          </div>
-
-          <div className="inventory-strip">
-            <div><b>08</b><span>increments<br />noted in repository</span></div>
-            <div><b>27</b><span>crates<br />listed in overview</span></div>
-            <div><b>06</b><span>binaries<br />listed in overview</span></div>
-            <p>Repository-reported inventory; architecture and current work are inspectable in source.</p>
-          </div>
-        </section>
-
-        <section id="ifem" className="ifem-section section-anchor">
-          <div className="ifem-intro reveal">
-            <div className="section-index"><span>03</span><p>BUILT WITH<br />IFEM</p></div>
-            <p className="eyebrow">INTERFACE-FIRST ENGINEERING METHODOLOGY</p>
-            <h2>The method shapes the boundary.<br /><i>The framework carries it.</i></h2>
-            <p>ONYX is the mission-operations framework. IFEM is the engineering methodology behind its design discipline: treating interfaces, contracts, responsibility, and verification as first-class architectural objects.</p>
-            <p className="ifem-clarifier"><b>Positioning:</b> IFEM informs ONYX engineering practice. It is not an ONYX runtime dependency, product layer, or replacement identity.</p>
-            <a href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer" className="outlined-action">Read IFEM doctrine <ArrowUpRight /></a>
-          </div>
-          <div className="ifem-sequence reveal delay-1">
-            {[
-              ["01", "Boundary", "Make the responsibility line explicit."],
-              ["02", "Contract", "Define shared rules before scale."],
-              ["03", "Owner", "Keep accountability legible."],
-              ["04", "Evidence", "Verify agreement in observable ways."],
-            ].map(([number, title, copy]) => (
-              <div className="sequence-step" key={number}><span>{number}</span><div><b>{title}</b><p>{copy}</p></div></div>
-            ))}
-          </div>
-        </section>
-
-        <section id="evidence" className="evidence-section section-anchor">
-          <img className="evidence-bg" src={ASSETS.evidence} alt="" aria-hidden="true" />
-          <div className="section-heading evidence-heading reveal">
-            <div className="section-index"><span>04</span><p>TECHNICAL<br />EVIDENCE</p></div>
-            <div><p className="eyebrow">INSPECTABLE RECORD</p><h2>Claims point back<br />to the work.</h2></div>
-            <p className="heading-side-note">The case study links to source material and project records rather than substituting narrative for technical evidence.</p>
-          </div>
-          <div className="evidence-grid">
-            {evidenceItems.map((item, index) => {
-              const Icon = item.icon;
-              return <article className={`evidence-card reveal delay-${index + 1}`} key={item.title}>
-                <div className="evidence-icon"><Icon /></div>
-                <p className="eyebrow">{item.label}</p>
-                <h3>{item.title}</h3>
-                <p>{item.copy}</p>
-                <a href={item.href} target="_blank" rel="noreferrer">{item.action} <ArrowUpRight /></a>
-              </article>;
-            })}
-          </div>
-          <div className="scope-note reveal"><ShieldCheck /><div><b>Scope note</b><p>ONYX is presented as an in-progress architecture. Its public project record explicitly distinguishes delivered components from incomplete or unverified areas.</p></div></div>
-        </section>
-
-        <section id="developer" className="developer-section section-anchor">
-          <div className="developer-rule" />
-          <div className="final-cta reveal" dir="ltr">
-            <p className="eyebrow">ENTERPRISE DISCUSSION</p>
-            <h2>Build the next generation of operational systems.</h2>
-            <p>Explore ONYX architecture, implementation evidence, or connect through the engineering ecosystem.</p>
-            <div className="hero-actions">
-              <a className="primary-action" href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Personal Website <ArrowUpRight /></a>
-              <a className="text-action" href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer">IFEM Doctrine <ArrowUpRight /></a>
-            </div>
-          </div>
-          <div className="developer-grid">
-            <div className="developer-title reveal"><div className="section-index"><span>05</span><p>DEVELOPER<br />ATTRIBUTION</p></div><p className="eyebrow">DEVELOPED BY</p><h2>Suhail<br /><i>Mozaffari</i></h2></div>
-            <div className="developer-bio reveal delay-1"><p>Software Engineer · Systems Architect</p><p className="developer-copy">An independent systems and software practice focused on explicit boundaries, maintainable architectures, and verification paths that remain traceable as a system grows.</p><div className="developer-links"><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Personal website <ArrowUpRight /></a><a href="https://orcid.org/0009-0001-2428-1295" target="_blank" rel="noreferrer">ORCID 0009-0001-2428-1295 <ArrowUpRight /></a><a href="https://github.com/SMozaff" target="_blank" rel="noreferrer">GitHub SMozaff <ArrowUpRight /></a></div></div>
-          </div>
-          <footer className="footer"><span className="footer-brand"><img src={ASSETS.brandLogo} alt="ONYX Framework" />ONYX FRAMEWORK</span><span>CASE STUDY / 2026</span><a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }}>Back to top <ArrowUpRight /></a></footer>
+        <section id="developer" className="scroll-mt-20 bg-[#06172c] px-5 py-16 text-white sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto max-w-6xl"><div className="rounded-3xl border border-white/15 bg-white/5 p-8 sm:p-12"><img src={ASSETS.brandWordmark} alt="ONYX Framework" className="h-16 w-52 object-contain object-left" /><p className="mt-8 text-xs font-bold tracking-[0.2em] text-sky-300">ONYX FRAMEWORK</p><h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">A framework for building the next generation of operational systems.</h2><div className="mt-10 grid gap-8 border-t border-white/15 pt-8 md:grid-cols-2"><div><p className="text-xs font-bold tracking-[0.18em] text-slate-400">DEVELOPED BY</p><h3 className="mt-2 text-2xl font-semibold">Suhail Muzaffari</h3><p className="mt-2 text-slate-300">Software Engineer · Systems Architect</p></div><div><p className="text-xs font-bold tracking-[0.18em] text-slate-400">BUILT WITH</p><h3 className="mt-2 text-2xl font-semibold">IFEM Doctrine</h3><p className="mt-2 text-slate-300">Interface-first engineering for explicit, reviewable system boundaries.</p></div></div><div className="mt-10 flex flex-wrap gap-4"><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-[#082348] hover:bg-sky-100">SMozaff.github.io <ArrowUpRight className="h-4 w-4" /></a><a href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-3 font-semibold text-white hover:bg-white/10">IFEM-doctrine.github.io <ArrowUpRight className="h-4 w-4" /></a></div></div><footer className="mt-8 flex flex-col justify-between gap-4 border-t border-white/15 pt-6 text-sm text-slate-400 sm:flex-row"><span>ONYX FRAMEWORK · CASE STUDY / 2026</span><a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} className="inline-flex items-center gap-2 font-semibold text-white hover:text-sky-200">Back to top <ArrowUpRight className="h-4 w-4" /></a></footer></div>
         </section>
       </main>
     </div>
