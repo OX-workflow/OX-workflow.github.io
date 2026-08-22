@@ -1,0 +1,37 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="112" y1="64" x2="1480" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071B36"/>
+      <stop offset="0.52" stop-color="#0D3761"/>
+      <stop offset="1" stop-color="#123E69"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1110 332) rotate(120) scale(520 680)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#54B7F6" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#54B7F6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#A7DCFF" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#3A8CCC" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g opacity="0.36" stroke="url(#line)" stroke-width="2">
+    <path d="M-40 738L351 518L647 664L968 376L1285 506L1675 176"/>
+    <path d="M-20 838L371 618L667 764L988 476L1305 606L1695 276"/>
+    <path d="M-120 620L271 400L567 546L888 258L1205 388L1595 58"/>
+    <path d="M94 30L350 262L220 525L540 655L702 350L1035 244L1268 483L1503 390"/>
+  </g>
+  <g opacity="0.9">
+    <path d="M747 198L1092 115L1333 306L1236 604L887 677L657 490L747 198Z" fill="#092846" fill-opacity="0.72" stroke="#A7DCFF" stroke-opacity="0.48" stroke-width="2"/>
+    <path d="M794 253L1085 183L1275 332L1197 563L905 625L725 481L794 253Z" fill="#134F83" fill-opacity="0.48" stroke="#6FC7FF" stroke-opacity="0.48"/>
+    <path d="M837 307L1077 249L1218 360L1155 522L923 570L785 470L837 307Z" fill="#176AA6" fill-opacity="0.35"/>
+  </g>
+  <g fill="#C3ECFF">
+    <circle cx="747" cy="198" r="7"/><circle cx="1092" cy="115" r="7"/><circle cx="1333" cy="306" r="7"/><circle cx="1236" cy="604" r="7"/><circle cx="887" cy="677" r="7"/><circle cx="657" cy="490" r="7"/>
+  </g>
+  <g opacity="0.52" stroke="#83D2FF" stroke-width="1">
+    <path d="M85 143H498"/><path d="M85 171H412"/><path d="M85 199H468"/>
+    <path d="M95 736H488"/><path d="M95 764H430"/><path d="M95 792H518"/>
+  </g>
+</svg>
