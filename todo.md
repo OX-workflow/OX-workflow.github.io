@@ -31,4 +31,11 @@
 - [x] Inspect the live sitemap.xml and robots.txt for canonical host, scope, and crawlability issues.
 - [x] Inspect live JSON-LD for validity, entity relationships, URLs, and consistency with visible ONYX content.
 - [x] Apply and validate any focused SEO corrections needed in the repository.
-- [ ] Commit and push the SEO review changes on a separate branch without altering main.
+- [x] Commit and push the SEO review changes on a separate branch without altering main.
+
+## Branch merge
+
+- [ ] Inspect latest remote `main` and `seo/sitemap-structured-data` histories for divergence.
+- [ ] Commit and push any pending changes before merging.
+- [ ] Merge the SEO branch into `main` and push the merged branch.
+- [ ] Verify the merge, working-tree cleanliness, and deployment status.
