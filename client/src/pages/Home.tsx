@@ -28,6 +28,8 @@ const ASSETS = {
   evidence: "/manus-storage/onyx-evidence-texture_7f7cb94b.png",
   mark: "/manus-storage/onyx-mark_63214367.png",
   wordmark: "/manus-storage/onyx-official-wordmark_082dbcd2.png",
+  brandLogo: "/assets/onyx-logo.png",
+  brandWordmark: "/assets/onyx-wordmark-wide.png",
 };
 
 const navItems = [
@@ -140,7 +142,7 @@ export default function Home() {
     <div className="onyx-shell min-h-screen bg-[#edf3f8] text-[#112847] dark:bg-[#07182f] dark:text-[#edf5fb]">
       <aside className="onyx-rail">
         <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} className="brand-lockup" aria-label="ONYX Framework overview">
-          <span className="wordmark-frame"><img src={ASSETS.wordmark} alt="ONYX Tectosilicate Framework" /></span>
+          <span className="brand-wordmark-frame"><img src={ASSETS.brandWordmark} alt="ONYX Tectosilicate Framework" /></span>
         </a>
 
         <div className="rail-divider" />
@@ -163,7 +165,7 @@ export default function Home() {
 
       <header className="mobile-header">
         <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} className="brand-lockup" aria-label="ONYX Framework overview">
-          <span className="wordmark-frame"><img src={ASSETS.wordmark} alt="ONYX Tectosilicate Framework" /></span>
+          <span className="brand-wordmark-frame"><img src={ASSETS.brandWordmark} alt="ONYX Tectosilicate Framework" /></span>
         </a>
         <div className="mobile-actions">
           <button className="theme-button" onClick={toggleTheme} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button>
@@ -180,7 +182,7 @@ export default function Home() {
 
       <main className="onyx-content">
         <header className="topbar">
-          <div><span className="eyebrow">SYSTEMS ARCHITECTURE / CASE STUDY</span></div>
+          <div className="topbar-brand"><img src={ASSETS.brandLogo} alt="ONYX Framework" /><span className="eyebrow">SYSTEMS ARCHITECTURE / CASE STUDY</span></div>
           <div className="topbar-actions">
             <a className="source-link" href="/assets"><FolderOpen /> Asset library</a>
             <a className="source-link" href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer"><Github /> Source repository</a>
@@ -190,6 +192,7 @@ export default function Home() {
 
         <section id="overview" className="hero-section section-anchor">
           <img className="hero-image" src={ASSETS.hero} alt="Abstract ONYX architecture field" />
+          <img className="hero-brand-watermark" src={ASSETS.brandLogo} alt="" aria-hidden="true" />
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-copy reveal">
             <p className="eyebrow"><span className="signal-dot" /> ONYX FRAMEWORK</p>
@@ -377,14 +380,14 @@ export default function Home() {
               {
                 title: "Engineering Foundation",
                 text: "A product direction grounded in modular architecture and IFEM principles.",
-                image: ASSETS.mark,
+                image: ASSETS.brandLogo,
               },
             ].map((item) => (
               <article key={item.title} className="overflow-hidden rounded-2xl border bg-card">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-64 w-full object-cover"
+                  className={item.image === ASSETS.brandLogo ? "h-64 w-full object-contain bg-[#07182f] p-8" : "h-64 w-full object-cover"}
                 />
                 <div className="space-y-3 p-6">
                   <h3 className="text-xl font-semibold">{item.title}</h3>
@@ -518,7 +521,7 @@ export default function Home() {
             <div className="developer-title reveal"><div className="section-index"><span>05</span><p>DEVELOPER<br />ATTRIBUTION</p></div><p className="eyebrow">DEVELOPED BY</p><h2>Soheil<br /><i>Mozaffari</i></h2></div>
             <div className="developer-bio reveal delay-1"><p>Software Engineer · Systems Architect</p><p className="developer-copy">An independent systems and software practice focused on explicit boundaries, maintainable architectures, and verification paths that remain traceable as a system grows.</p><div className="developer-links"><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Personal website <ArrowUpRight /></a><a href="https://orcid.org/0009-0001-2428-1295" target="_blank" rel="noreferrer">ORCID 0009-0001-2428-1295 <ArrowUpRight /></a><a href="https://github.com/SMozaff" target="_blank" rel="noreferrer">GitHub SMozaff <ArrowUpRight /></a></div></div>
           </div>
-          <footer className="footer"><span>ONYX FRAMEWORK</span><span>CASE STUDY / 2026</span><a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }}>Back to top <ArrowUpRight /></a></footer>
+          <footer className="footer"><span className="footer-brand"><img src={ASSETS.brandWordmark} alt="ONYX Framework" />ONYX FRAMEWORK</span><span>CASE STUDY / 2026</span><a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }}>Back to top <ArrowUpRight /></a></footer>
         </section>
       </main>
     </div>
