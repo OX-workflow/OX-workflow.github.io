@@ -258,6 +258,18 @@ const text = {
   backToTop: { en: "Back to top", fa: "بازگشت به ابتدا" },
 };
 
+export function resolveLocaleFromLanguages(languages: readonly string[]): Locale {
+  const supportedLanguage = languages.find((language) => /^(fa|en)(-|$)/i.test(language));
+  return supportedLanguage?.toLowerCase().startsWith("fa") ? "fa" : "en";
+}
+
+function detectBrowserLocale(): Locale {
+  if (typeof navigator === "undefined") return "en";
+
+  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
+  return resolveLocaleFromLanguages(browserLanguages);
+}
+
 function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (next: Locale) => void }) {
   return (
     <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-1 dark:border-white/15 dark:bg-white/5" aria-label="Language selector">
@@ -281,8 +293,10 @@ export default function Home() {
   useEffect(() => {
     const initialDark = window.localStorage.getItem("onyx-theme") === "dark";
     const savedLocale = window.localStorage.getItem("onyx-locale");
+    const initialLocale: Locale = savedLocale === "fa" || savedLocale === "en" ? savedLocale : detectBrowserLocale();
+
     setDark(initialDark);
-    if (savedLocale === "fa") setLocale("fa");
+    setLocale(initialLocale);
     document.documentElement.classList.toggle("dark", initialDark);
   }, []);
 
@@ -316,6 +330,7 @@ export default function Home() {
 
   const selectLocale = (next: Locale) => {
     setLocale(next);
+    // A manual selection always takes precedence over future browser-language detection.
     window.localStorage.setItem("onyx-locale", next);
     setMenuOpen(false);
   };
