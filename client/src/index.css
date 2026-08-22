@@ -249,3 +249,12 @@
   .principles-list p,
   .scope-note p { font-size: 13px; line-height: 1.6; }
 }
+
+.capability-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin:2rem 0}
+.capability-card{padding:1.5rem;border:1px solid rgba(100,130,160,.25);background:rgba(255,255,255,.55);border-radius:1rem;transition:transform .25s ease,box-shadow .25s ease}
+.dark .capability-card{background:rgba(10,25,45,.7)}
+.capability-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.persian-product-panel{margin-top:2rem;padding:2rem;border-radius:1.2rem;background:linear-gradient(135deg,#07182f,#12345c);color:white}
+.persian-product-panel li{margin:.7rem 0}
+@media(max-width:900px){.capability-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.capability-grid{grid-template-columns:1fr}}

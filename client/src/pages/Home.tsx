@@ -23,11 +23,11 @@ import {
 } from "lucide-react";
 
 const ASSETS = {
-  hero: "/assets/onyx-hero-architecture.svg",
-  layers: "/assets/onyx-layers-diagram.svg",
-  evidence: "/assets/onyx-evidence-texture.svg",
-  mark: "/assets/onyx-mark.svg",
-  wordmark: "/assets/onyx-wordmark.svg",
+  hero: "/manus-storage/onyx-hero-architecture_44510d66.png",
+  layers: "/manus-storage/onyx-layers-diagram_334467f9.png",
+  evidence: "/manus-storage/onyx-evidence-texture_7f7cb94b.png",
+  mark: "/manus-storage/onyx-mark_63214367.png",
+  wordmark: "/manus-storage/onyx-official-wordmark_082dbcd2.png",
 };
 
 const navItems = [
@@ -182,7 +182,7 @@ export default function Home() {
         <header className="topbar">
           <div><span className="eyebrow">SYSTEMS ARCHITECTURE / CASE STUDY</span></div>
           <div className="topbar-actions">
-            <button className="source-link" onClick={() => scrollTo("evidence")}><FileCode2 /> Technical evidence</button>
+            <a className="source-link" href="/assets"><FolderOpen /> Asset library</a>
             <a className="source-link" href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer"><Github /> Source repository</a>
             <button className="theme-button" onClick={toggleTheme} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button>
           </div>
@@ -193,10 +193,10 @@ export default function Home() {
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-copy reveal">
             <p className="eyebrow"><span className="signal-dot" /> ONYX FRAMEWORK</p>
-            <h1>Mission operations,<br /><i>with boundaries</i> in view.</h1>
-            <p className="hero-intro">A local-first, authority-aware mission operations system structured as a Rust-centric workspace with separate domain, application, infrastructure, synchronization, transport, and client concerns.</p>
+            <h1>Operational intelligence,<br /><i>for complex systems.</i></h1>
+            <p className="hero-intro">ONYX is an operational platform designed for organizations that require secure workflows, traceable decisions, controlled access, and architecture that remains understandable as systems grow.</p>
             <div className="hero-actions">
-              <button className="primary-action" onClick={() => scrollTo("architecture")}>Inspect architecture <ArrowDownRight /></button>
+              <button className="primary-action" onClick={() => scrollTo("capabilities")}>Explore capabilities <ArrowDownRight /></button>
               <a className="text-action" href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer">Trace the implementation <ArrowUpRight /></a>
             </div>
           </div>
@@ -222,6 +222,198 @@ export default function Home() {
             <div><span>01</span><b>Modular scope</b><p>Separated concerns make system change locatable.</p></div>
             <div><span>02</span><b>Extensible surface</b><p>Composition and transport layers provide explicit places to connect behavior.</p></div>
             <div><span>03</span><b>Traceable work</b><p>Automation, documentation, and deployment artifacts supply evidence alongside code.</p></div>
+          </div>
+        </section>
+
+        <section id="capabilities" className="capabilities-section section-anchor">
+          <div className="section-heading reveal">
+            <div className="section-index"><span>01A</span><p>PRODUCT<br />CAPABILITIES</p></div>
+            <div>
+              <p className="eyebrow">OPERATIONAL PLATFORM</p>
+              <h2>Designed for complex<br />organizational operations.</h2>
+            </div>
+          </div>
+          <div className="capability-grid">
+            {[
+              ["Secure Access", "Controlled browser-based access and authority-aware workflows."],
+              ["Mission Operations", "Coordinate tasks, decisions, and operational states through structured processes."],
+              ["Audit & Evidence", "Maintain traceable records of decisions, actions, and system behavior."],
+              ["Extensible Architecture", "Expand capabilities without collapsing system boundaries."],
+            ].map(([title, copy]) => (
+              <article className="capability-card reveal" key={title}>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+          <div className="persian-product-panel reveal" dir="rtl">
+            <p className="eyebrow">نسخه فارسی / معرفی محصول</p>
+            <h2>ONYX؛ پلتفرم عملیاتی برای سازمان‌های پیچیده</h2>
+            <p>ONYX با هدف ایجاد یک محیط یکپارچه برای مدیریت عملیات، کنترل دسترسی، گردش فرآیندها و ثبت تصمیمات قابل ردیابی طراحی شده است.</p>
+            <ul>
+              <li>مدیریت عملیات و فرآیندهای سازمانی</li>
+              <li>معماری توسعه‌پذیر و ماژولار</li>
+              <li>کنترل دسترسی و مسئولیت‌های مشخص</li>
+              <li>ثبت شواهد و قابلیت ممیزی</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="solutions" className="reading-band overview-band section-anchor">
+          <div className="section-index"><span>01B</span><p>ENTERPRISE<br />SOLUTIONS</p></div>
+          <div className="overview-text">
+            <p className="eyebrow">COMMERCIAL APPLICATION</p>
+            <h2>Built for environments where reliability matters.</h2>
+            <p>ONYX can support organizations that require controlled operational workflows, accountable decisions, and a clear separation between responsibilities, interfaces, and execution layers.</p>
+          </div>
+          <div className="principles-list">
+            <div><span>01</span><b>Critical Operations</b><p>Support structured workflows for complex operational environments.</p></div>
+            <div><span>02</span><b>Secure Collaboration</b><p>Enable controlled access across distributed teams and systems.</p></div>
+            <div><span>03</span><b>Operational Evidence</b><p>Preserve traceability for actions, decisions, and reviews.</p></div>
+          </div>
+        </section>
+
+        <section id="product" className="reading-band product-showcase section-anchor">
+          <div className="section-index"><span>02</span><p>PRODUCT<br />EXPERIENCE</p></div>
+          <div className="product-showcase-content">
+            <p className="eyebrow">OPERATIONAL PLATFORM</p>
+            <h2>From architecture principles to operational capability.</h2>
+            <p>
+              ONYX transforms explicit system boundaries into practical operational workflows:
+              controlled access, mission coordination, traceable decisions, and evidence-driven execution.
+            </p>
+            <div className="product-panels">
+              <article className="product-panel reveal">
+                <b>Secure Operations</b>
+                <p>Provide controlled access paths for users, services, and operational workflows.</p>
+              </article>
+              <article className="product-panel reveal delay-1">
+                <b>Mission Coordination</b>
+                <p>Organize responsibilities, actions, and operational states without losing ownership boundaries.</p>
+              </article>
+              <article className="product-panel reveal delay-2">
+                <b>Decision Evidence</b>
+                <p>Maintain a clearer relationship between actions, decisions, and reviewable records.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+
+      <section id="experience" className="space-y-8">
+        <div className="space-y-3">
+          <p className="text-xs tracking-[0.25em] text-cyan-600">04 PRODUCT EXPERIENCE</p>
+          <h2 className="text-3xl font-semibold">
+            Operational visibility through a unified experience.
+          </h2>
+          <p className="max-w-3xl text-muted-foreground">
+            ONYX translates architectural discipline into operational capabilities:
+            controlled access, mission coordination, workflow visibility, and evidence-driven decisions.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            ["Secure Operations", "Controlled access and responsibility boundaries for sensitive workflows."],
+            ["Mission Coordination", "A structured environment for operational states, tasks, and decisions."],
+            ["Decision Evidence", "Traceable records that support review, accountability, and evolution."],
+          ].map(([title, copy]) => (
+            <div key={title} className="rounded-2xl border bg-card p-6 transition hover:-translate-y-1">
+              <h3 className="text-xl font-semibold">{title}</h3>
+              <p className="mt-3 text-muted-foreground">{copy}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="fa-product" dir="rtl" className="space-y-5 rounded-2xl border bg-card p-8">
+        <p className="text-xs tracking-[0.2em] text-cyan-600">معرفی محصول</p>
+        <h2 className="text-3xl font-semibold">
+          ONYX؛ پلتفرم عملیاتی برای سازمان‌های پیچیده
+        </h2>
+        <p className="leading-8 text-muted-foreground">
+          ONYX برای محیط‌هایی طراحی شده است که کنترل فرآیندها، دسترسی امن،
+          ثبت تصمیمات و قابلیت ردیابی عملیات اهمیت حیاتی دارد.
+        </p>
+        <div className="grid gap-4 md:grid-cols-2">
+          {[
+            "مدیریت عملیات و گردش کار",
+            "کنترل دسترسی و مسئولیت‌ها",
+            "ثبت رویداد و شواهد قابل بررسی",
+            "معماری ماژولار و توسعه‌پذیر",
+          ].map((x) => (
+            <div key={x} className="rounded-xl border p-4">{x}</div>
+          ))}
+        </div>
+      </section>
+
+
+        <section id="visual-showcase" className="reading-band product-showcase section-anchor">
+          <div className="section-heading">
+            <p className="eyebrow">ONYX EXPERIENCE</p>
+            <h2>Operational interfaces designed for complex workflows.</h2>
+            <p>
+              ONYX connects secure access, operational visibility, and evidence-driven
+              execution into one coherent experience.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {[
+              {
+                title: "Secure Access Layer",
+                text: "Controlled access patterns designed for environments where identity, permissions, and responsibility boundaries matter.",
+                image: ASSETS.evidence,
+              },
+              {
+                title: "Operational Visibility",
+                text: "A structured view of activities, states, and decisions instead of disconnected operational records.",
+                image: ASSETS.hero,
+              },
+              {
+                title: "Architecture Evidence",
+                text: "Layered architecture visualization showing explicit responsibilities and system boundaries.",
+                image: ASSETS.layers,
+              },
+              {
+                title: "Engineering Foundation",
+                text: "A product direction grounded in modular architecture and IFEM principles.",
+                image: ASSETS.mark,
+              },
+            ].map((item) => (
+              <article key={item.title} className="overflow-hidden rounded-2xl border bg-card">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-64 w-full object-cover"
+                />
+                <div className="space-y-3 p-6">
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="workflow" className="reading-band overview-band section-anchor">
+          <div className="section-heading">
+            <p className="eyebrow">OPERATIONAL FLOW</p>
+            <h2>From request to verified evidence.</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-6">
+            {[
+              "Request",
+              "Authorization",
+              "Workflow",
+              "Execution",
+              "Decision",
+              "Audit",
+            ].map((step, index) => (
+              <div key={step} className="rounded-xl border bg-card p-4 text-center">
+                <span className="text-sm text-muted-foreground">0{index + 1}</span>
+                <div className="mt-2 font-medium">{step}</div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -313,6 +505,15 @@ export default function Home() {
 
         <section id="developer" className="developer-section section-anchor">
           <div className="developer-rule" />
+          <div className="final-cta reveal" dir="ltr">
+            <p className="eyebrow">ENTERPRISE DISCUSSION</p>
+            <h2>Build the next generation of operational systems.</h2>
+            <p>Explore ONYX architecture, implementation evidence, or connect through the engineering ecosystem.</p>
+            <div className="hero-actions">
+              <a className="primary-action" href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Personal Website <ArrowUpRight /></a>
+              <a className="text-action" href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer">IFEM Doctrine <ArrowUpRight /></a>
+            </div>
+          </div>
           <div className="developer-grid">
             <div className="developer-title reveal"><div className="section-index"><span>05</span><p>DEVELOPER<br />ATTRIBUTION</p></div><p className="eyebrow">DEVELOPED BY</p><h2>Soheil<br /><i>Mozaffari</i></h2></div>
             <div className="developer-bio reveal delay-1"><p>Software Engineer · Systems Architect</p><p className="developer-copy">An independent systems and software practice focused on explicit boundaries, maintainable architectures, and verification paths that remain traceable as a system grows.</p><div className="developer-links"><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Personal website <ArrowUpRight /></a><a href="https://orcid.org/0009-0001-2428-1295" target="_blank" rel="noreferrer">ORCID 0009-0001-2428-1295 <ArrowUpRight /></a><a href="https://github.com/SMozaff" target="_blank" rel="noreferrer">GitHub SMozaff <ArrowUpRight /></a></div></div>
