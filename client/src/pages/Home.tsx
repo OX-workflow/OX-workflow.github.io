@@ -1,425 +1,286 @@
 import { useEffect, useState } from "react";
 import {
-  ArrowDownLeft,
-  ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
   ArrowUpLeft,
-  ArrowUpRight,
-  BookOpenText,
-  CheckCircle2,
+  BadgeCheck,
+  Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  FileCode2,
-  Github,
+  CircleDot,
+  Command,
+  GitBranch,
+  Layers3,
   Menu,
-  Moon,
+  Network,
+  Plus,
+  Radar,
   ShieldCheck,
-  Sun,
+  Target,
   X,
 } from "lucide-react";
 
 type Locale = "en" | "fa";
-type Localized = Record<Locale, string>;
 
-const ASSETS = {
-  brandLogo: "/assets/onyx-logo.png",
-  brandWordmark: "/assets/onyx-wordmark-wide.png",
-  secureAccess: "/assets/product/secure-browser-access.webp",
-  missions: "/assets/product/mission-operations.png",
-  overview: "/assets/product/operational-overview.png",
+type Localized = { en: string; fa: string };
+
+const assets = {
+  wideLogo: "/assets/onyx-wordmark-wide.png",
+  stackedLogo: "/assets/onyx-logo.png",
+  authority: "/assets/product/mission-operations.png",
+  execution: "/assets/product/operational-overview.png",
+  nexus: "/assets/product/secure-browser-access.webp",
+  signalMark: "/assets/onyx-logo.png",
 };
-
-const navItems: Array<{ number: string; id: string; label: Localized }> = [
-  { number: "01", id: "overview", label: { en: "Overview", fa: "مرور کلی" } },
-  { number: "02", id: "capabilities", label: { en: "Capabilities", fa: "قابلیت‌ها" } },
-  { number: "03", id: "experience", label: { en: "Experience", fa: "تجربه" } },
-  { number: "04", id: "architecture", label: { en: "Architecture", fa: "معماری" } },
-  { number: "05", id: "ifem", label: { en: "IFEM", fa: "IFEM" } },
-  { number: "06", id: "evidence", label: { en: "Evidence", fa: "شواهد" } },
-  { number: "07", id: "developer", label: { en: "Developer", fa: "توسعه‌دهنده" } },
-];
-
-const capabilities: Array<{ title: Localized; copy: Localized }> = [
-  {
-    title: { en: "Secure Access", fa: "دسترسی امن" },
-    copy: {
-      en: "Controlled browser access and authority-aware workflows for sensitive operational contexts.",
-      fa: "دسترسی کنترل‌شده از طریق مرورگر و جریان‌های کاری آگاه از سطح اختیار برای زمینه‌های عملیاتی حساس.",
-    },
-  },
-  {
-    title: { en: "Mission Operations", fa: "عملیات مأموریت" },
-    copy: {
-      en: "Coordinate missions, tasks, decisions, and states without losing responsibility boundaries.",
-      fa: "مأموریت‌ها، وظایف، تصمیم‌ها و وضعیت‌ها را بدون از دست دادن مرزهای مسئولیت هماهنگ کنید.",
-    },
-  },
-  {
-    title: { en: "Decision Evidence", fa: "شواهد تصمیم" },
-    copy: {
-      en: "Maintain reviewable records that connect actions, decisions, and operational outcomes.",
-      fa: "سوابقی قابل بازبینی نگه دارید که اقدام‌ها، تصمیم‌ها و نتایج عملیاتی را به هم متصل می‌کنند.",
-    },
-  },
-  {
-    title: { en: "Extensible Architecture", fa: "معماری توسعه‌پذیر" },
-    copy: {
-      en: "Expand capabilities through explicit contracts instead of collapsing system boundaries.",
-      fa: "قابلیت‌ها را از طریق قراردادهای صریح گسترش دهید، نه با درهم شکستن مرزهای سامانه.",
-    },
-  },
-];
-
-const productScreens: Array<{ image: string; width: number; height: number; title: Localized; copy: Localized }> = [
-  {
-    image: ASSETS.secureAccess,
-    width: 893,
-    height: 768,
-    title: { en: "Secure Access Layer", fa: "لایه دسترسی امن" },
-    copy: {
-      en: "A focused browser sign-in surface designed for authorized operators and clear session expectations.",
-      fa: "سطح ورود متمرکز در مرورگر که برای کاربران مجاز و انتظارهای روشن از نشست طراحی شده است.",
-    },
-  },
-  {
-    image: ASSETS.missions,
-    width: 1440,
-    height: 1000,
-    title: { en: "Mission Operations", fa: "عملیات مأموریت" },
-    copy: {
-      en: "Review purpose, ownership, lifecycle status, temporal constraints, and evidence as one coordinated mission picture.",
-      fa: "هدف، مالکیت، وضعیت چرخه عمر، محدودیت‌های زمانی و شواهد را به‌عنوان یک نمای هماهنگ از مأموریت بررسی کنید.",
-    },
-  },
-  {
-    image: ASSETS.overview,
-    width: 1440,
-    height: 1000,
-    title: { en: "Operational Overview", fa: "نمای عملیاتی" },
-    copy: {
-      en: "Bring alerts, approvals, active work, and the next operator actions into a single read-only projection.",
-      fa: "هشدارها، تأییدها، کارهای فعال و اقدام‌های بعدی کاربر را در یک نمای یکپارچه و فقط‌خواندنی گرد هم آورید.",
-    },
-  },
-];
-
-const architectureLayers: Array<{ number: string; title: Localized; copy: Localized; tags: string[] }> = [
-  {
-    number: "01",
-    title: { en: "Kernel & contract boundary", fa: "مرز هسته و قرارداد" },
-    copy: {
-      en: "Reusable primitives and interaction boundaries establish a stable foundation before higher-level behavior is composed.",
-      fa: "اجزای پایه قابل‌استفاده مجدد و مرزهای تعامل، پیش از ترکیب رفتارهای سطح بالاتر، بنیانی پایدار ایجاد می‌کنند.",
-    },
-    tags: ["platform-kernel", "platform-contracts"],
-  },
-  {
-    number: "02",
-    title: { en: "Mission domains", fa: "حوزه‌های مأموریت" },
-    copy: {
-      en: "Dedicated domains keep mission, work, communication, policy, profile, todo, and notification responsibilities distinct.",
-      fa: "حوزه‌های اختصاصی، مسئولیت‌های مأموریت، کار، ارتباطات، سیاست، پروفایل، وظیفه و اعلان را متمایز نگه می‌دارند.",
-    },
-    tags: ["mission-domain", "work-domain", "todo-domain"],
-  },
-  {
-    number: "03",
-    title: { en: "Applications & composition", fa: "برنامه‌ها و ترکیب" },
-    copy: {
-      en: "Query, worker, security, audit, and client-composition applications coordinate use cases without becoming the domain model.",
-      fa: "برنامه‌های پرس‌وجو، پردازشگر، امنیت، ممیزی و ترکیب کلاینت، موارد استفاده را هماهنگ می‌کنند بی‌آنکه خود به مدل حوزه تبدیل شوند.",
-    },
-    tags: ["query-application", "audit-application", "client-composition"],
-  },
-  {
-    number: "04",
-    title: { en: "Infrastructure & transport", fa: "زیرساخت و انتقال" },
-    copy: {
-      en: "Persistence, synchronization, observability, messaging, and delivery remain separated implementation concerns.",
-      fa: "ماندگاری، همگام‌سازی، مشاهده‌پذیری، پیام‌رسانی و تحویل، دغدغه‌های پیاده‌سازیِ جداگانه باقی می‌مانند.",
-    },
-    tags: ["persistence-sqlite", "sync-transport", "observability"],
-  },
-];
-
-const evidenceItems = [
-  {
-    Icon: Github,
-    label: { en: "Source repository", fa: "مخزن منبع" },
-    title: { en: "ONYX workspace", fa: "فضای کاری ONYX" },
-    copy: {
-      en: "Inspect the public workspace, client surfaces, documentation, and automation evidence.",
-      fa: "فضای کاری عمومی، سطح‌های کلاینت، مستندات و شواهد خودکارسازی را بررسی کنید.",
-    },
-    href: "https://github.com/SMozaff/Onyx-Framwork",
-    action: { en: "Open repository", fa: "باز کردن مخزن" },
-  },
-  {
-    Icon: FileCode2,
-    label: { en: "Implementation record", fa: "سابقه پیاده‌سازی" },
-    title: { en: "Architecture & verification", fa: "معماری و راستی‌آزمایی" },
-    copy: {
-      en: "Review the published project record, delivered scope, and stated limitations.",
-      fa: "سابقه منتشرشده پروژه، محدوده تحویل‌شده و محدودیت‌های اعلام‌شده را بررسی کنید.",
-    },
-    href: "https://SMozaff.github.io/",
-    action: { en: "View project record", fa: "مشاهده سابقه پروژه" },
-  },
-  {
-    Icon: BookOpenText,
-    label: { en: "Methodology", fa: "روش‌شناسی" },
-    title: { en: "IFEM doctrine", fa: "دکترین IFEM" },
-    copy: {
-      en: "Read the interface-first engineering principles that inform the ONYX architecture.",
-      fa: "اصول مهندسی مبتنی بر رابط را که معماری ONYX را شکل می‌دهند مطالعه کنید.",
-    },
-    href: "https://IFEM-doctrine.github.io/",
-    action: { en: "Read doctrine", fa: "مطالعه دکترین" },
-  },
-] as const;
 
 const text = {
-  pageTitle: {
-    en: "ONYX Tectosilicate Framework | Systems Architecture Case Study",
-    fa: "چارچوب تکتوسیلیکات ONYX | مطالعه موردی معماری سامانه‌ها",
+  nav: {
+    platform: { en: "Platform", fa: "پلتفرم" },
+    outcomes: { en: "Outcomes", fa: "نتایج" },
+    enterprise: { en: "Enterprise", fa: "سازمانی" },
+    demo: { en: "Request a demo", fa: "درخواست دمو" },
   },
-  caseStudySections: { en: "Case study sections", fa: "بخش‌های مطالعه موردی" },
-  overviewLink: { en: "ONYX Framework overview", fa: "مرور کلی چارچوب ONYX" },
-  caseStudyRecord: { en: "Case study record", fa: "پرونده مطالعه موردی" },
-  recordSummary: { en: "Local-first mission operations architecture.", fa: "معماری عملیات مأموریت با رویکرد محلی‌محور." },
-  viewSource: { en: "View source", fa: "مشاهده منبع" },
-  mobileSections: { en: "Mobile case study sections", fa: "بخش‌های مطالعه موردی در موبایل" },
-  toggleTheme: { en: "Toggle color theme", fa: "تغییر حالت رنگ" },
-  toggleNavigation: { en: "Toggle navigation", fa: "تغییر وضعیت ناوبری" },
-  systemsArchitecture: { en: "SYSTEMS ARCHITECTURE / CASE STUDY", fa: "معماری سامانه‌ها / مطالعه موردی" },
-  sourceRepository: { en: "Source repository", fa: "مخزن منبع" },
-  framework: { en: "ONYX FRAMEWORK", fa: "چارچوب ONYX" },
-  heroTitleStart: { en: "Operational intelligence,", fa: "هوشمندی عملیاتی،" },
-  heroTitleEmphasis: { en: "for complex systems.", fa: "برای سامانه‌های پیچیده." },
-  heroLead: {
-    en: "A framework and operational environment for designing, coordinating, and verifying complex software systems.",
-    fa: "چارچوب و محیطی عملیاتی برای طراحی، هماهنگی و راستی‌آزمایی سامانه‌های نرم‌افزاری پیچیده.",
+  hero: {
+    tag: { en: "Authority-aware operations", fa: "عملیات آگاه از اختیار" },
+    titleA: { en: "The architecture", fa: "معماری" },
+    titleB: { en: "of execution.", fa: "اجرا." },
+    lede: { en: "Organizations are built on invisible systems of authority, responsibility, and trust. ONYX transforms those systems into a living digital framework.", fa: "سازمان‌ها بر سامانه‌های نامرئیِ اختیار، مسئولیت و اعتماد بنا می‌شوند. ONYX این سامانه‌ها را به چارچوبی دیجیتال و زنده تبدیل می‌کند." },
+    framework: { en: "Explore the framework", fa: "بررسی چارچوب" },
+    enterprise: { en: "Enterprise solutions", fa: "راهکارهای سازمانی" },
+    condition: { en: "System condition", fa: "وضعیت سامانه" },
+    synchronized: { en: "Structure synchronized", fa: "ساختار همگام‌سازی شد" },
+    scroll: { en: "Scroll to examine", fa: "برای بررسی حرکت کنید" },
   },
-  heroBody: {
-    en: "ONYX brings secure workflows, traceable decisions, controlled access, and architecture that remains understandable as systems grow.",
-    fa: "ONYX جریان‌های کاری امن، تصمیم‌های قابل‌ردیابی، دسترسی کنترل‌شده و معماری‌ای را کنار هم می‌آورد که با رشد سامانه‌ها همچنان قابل‌فهم می‌ماند.",
+  bridge: { en: "Authority / responsibility / execution / verification", fa: "اختیار / مسئولیت / اجرا / راستی‌آزمایی" },
+  problem: {
+    tag: { en: "01 / The hidden problem", fa: "۰۱ / مسئله پنهان" },
+    titleA: { en: "Organizations break", fa: "سازمان‌ها پیش از آن‌که" },
+    titleB: { en: "before they scale.", fa: "رشد کنند، دچار گسست می‌شوند." },
+    body: { en: "Companies begin simply: communication is direct and responsibility is clear. Growth often leaves work scattered across systems that were never designed to carry organizational accountability.", fa: "شرکت‌ها ساده آغاز می‌شوند: ارتباط مستقیم و مسئولیت روشن است. رشد، کار را اغلب میان سامانه‌هایی پراکنده می‌کند که هرگز برای حمل پاسخ‌گویی سازمانی طراحی نشده‌اند." },
+    signal: { en: "Operational signal", fa: "سیگنال عملیاتی" },
+    fragmented: { en: "Fragmented", fa: "پراکنده" },
+    result: { en: "Responsibility becomes unclear. Decisions slow. Visibility dissolves.", fa: "مسئولیت مبهم می‌شود، تصمیم‌ها کند می‌شوند و دید عملیاتی از بین می‌رود." },
   },
-  exploreExperience: { en: "Explore the experience", fa: "مشاهده تجربه" },
-  traceImplementation: { en: "Trace the implementation", fa: "بررسی پیاده‌سازی" },
-  repositoryRecord: { en: "REPOSITORY RECORD", fa: "سابقه مخزن" },
-  implementation: { en: "Implementation", fa: "پیاده‌سازی" },
-  rustWorkspace: { en: "Rust-centric workspace", fa: "فضای کاری متمرکز بر Rust" },
-  clientSurfaces: { en: "Client surfaces", fa: "سطح‌های کلاینت" },
-  clientSurfaceValue: { en: "Web · Desktop · Mobile", fa: "وب · دسکتاپ · موبایل" },
-  projectStance: { en: "Project stance", fa: "وضعیت پروژه" },
-  projectStanceValue: { en: "In progress; scope stated", fa: "در حال توسعه؛ محدوده مشخص" },
-  capabilitiesKicker: { en: "01 / CAPABILITIES", fa: "۰۱ / قابلیت‌ها" },
-  capabilitiesTitle: { en: "Designed for operational environments where reliability matters.", fa: "برای محیط‌های عملیاتی که قابلیت اتکا در آن‌ها اهمیت دارد، طراحی شده است." },
-  capabilitiesBody: {
-    en: "ONYX keeps operational work legible: each responsibility has a clear boundary, each decision can carry evidence, and each new capability has an intentional place to connect.",
-    fa: "ONYX کار عملیاتی را شفاف نگه می‌دارد: هر مسئولیت مرزی روشن دارد، هر تصمیم می‌تواند شواهد همراه داشته باشد و هر قابلیت تازه جایگاهی هدفمند برای اتصال پیدا می‌کند.",
+  contrast: {
+    tag: { en: "02 / The ONYX difference", fa: "۰۲ / تفاوت ONYX" },
+    titleA: { en: "Beyond task", fa: "فراتر از" },
+    titleB: { en: "management.", fa: "مدیریت وظیفه." },
+    body: { en: "Traditional software records activity. ONYX gives operational activity a defined owner, authority path, and verified ending.", fa: "نرم‌افزار سنتی فعالیت را ثبت می‌کند. ONYX به فعالیت عملیاتی مالک مشخص، مسیر اختیار و پایانِ راستی‌آزمایی‌شده می‌دهد." },
+    traditional: { en: "Traditional software", fa: "نرم‌افزار سنتی" },
+    onyx: { en: "ONYX operating framework", fa: "چارچوب عملیاتی ONYX" },
+    rows: [
+      [{ en: "What needs to be done?", fa: "چه کاری باید انجام شود؟" }, { en: "Who is responsible?", fa: "چه کسی مسئول است؟" }],
+      [{ en: "Tasks are distributed.", fa: "وظایف توزیع می‌شوند." }, { en: "Who has authority?", fa: "چه کسی اختیار دارد؟" }],
+      [{ en: "Progress is reported.", fa: "پیشرفت گزارش می‌شود." }, { en: "How should execution move?", fa: "اجرا چگونه باید حرکت کند؟" }],
+      [{ en: "Completion is logged.", fa: "اتمام ثبت می‌شود." }, { en: "Who verifies the outcome?", fa: "چه کسی نتیجه را تأیید می‌کند؟" }],
+    ],
   },
-  experienceKicker: { en: "02 / ONYX EXPERIENCE", fa: "۰۲ / تجربه ONYX" },
-  experienceTitle: { en: "Operational interfaces for real work.", fa: "رابط‌های عملیاتی برای کار واقعی." },
-  experienceBody: {
-    en: "Product evidence anchors the case study in the surfaces teams use to access, coordinate, and review mission-critical work.",
-    fa: "شواهد محصول، مطالعه موردی را در رابط‌هایی ریشه می‌دهد که تیم‌ها برای دسترسی، هماهنگی و بازبینی کارهای حساس به مأموریت استفاده می‌کنند.",
+  philosophy: {
+    tag: { en: "03 / Operating philosophy", fa: "۰۳ / فلسفه عملیاتی" },
+    titleA: { en: "A digital operating", fa: "یک سامانه عامل دیجیتال" },
+    titleB: { en: "system for organizations.", fa: "برای سازمان‌ها." },
+    body: { en: "Operational intelligence begins when authority is not abstract, but designed into the route work must follow.", fa: "هوشمندی عملیاتی زمانی آغاز می‌شود که اختیار انتزاعی نباشد؛ بلکه در مسیری که کار باید بپیماید طراحی شده باشد." },
+    steps: [
+      { en: "Authority", fa: "اختیار" }, { en: "Responsibility", fa: "مسئولیت" }, { en: "Execution", fa: "اجرا" }, { en: "Verification", fa: "راستی‌آزمایی" }, { en: "Organizational intelligence", fa: "هوشمندی سازمانی" },
+    ],
   },
-  productScreen: { en: "PRODUCT SCREEN", fa: "نمای محصول" },
-  interfaceEvidence: { en: "Interface evidence from ONYX", fa: "شواهد رابط از ONYX" },
-  architectureKicker: { en: "03 / ARCHITECTURE", fa: "۰۳ / معماری" },
-  architectureTitle: { en: "Independent layers, shared system intent.", fa: "لایه‌های مستقل، با نیت مشترک برای سامانه." },
-  architectureBody: {
-    en: "The workspace groups modules by architectural role rather than one undifferentiated application layer. The question that follows is why those boundaries matter.",
-    fa: "فضای کاری، ماژول‌ها را بر اساس نقش معماری گروه‌بندی می‌کند، نه در یک لایه کاربردی نامتمایز. پرسش بعدی این است که چرا این مرزها اهمیت دارند.",
+  platform: {
+    tag: { en: "04 / The platform", fa: "۰۴ / پلتفرم" },
+    titleA: { en: "Your organization,", fa: "سازمان شما،" },
+    titleB: { en: "digitally defined.", fa: "دیجیتالی تعریف‌شده." },
+    body: { en: "ONYX makes the invisible architecture behind every organization legible, navigable, and ready for execution.", fa: "ONYX معماری نامرئی پشت هر سازمان را خوانا، قابل پیمایش و آماده اجرا می‌کند." },
+    label: { en: "Authority graph / live model", fa: "نقشه اختیار / مدل زنده" },
+    headline: { en: "Structure is no longer a static org chart.", fa: "ساختار دیگر یک چارت سازمانی ایستا نیست." },
+    copy: { en: "Roles, teams, departments, permissions, and decision paths are represented as a system that stays connected to the work it governs.", fa: "نقش‌ها، تیم‌ها، واحدها، مجوزها و مسیرهای تصمیم به‌عنوان سامانه‌ای نمایش داده می‌شوند که به کارِ تحت مدیریت خود متصل می‌ماند." },
+    checks: [{ en: "Roles and responsibilities", fa: "نقش‌ها و مسئولیت‌ها" }, { en: "Decision authority", fa: "اختیار تصمیم" }, { en: "Operational visibility", fa: "دید عملیاتی" }],
   },
-  ifemKicker: { en: "04 / WHY THIS ARCHITECTURE?", fa: "۰۴ / چرا این معماری؟" },
-  ifemTitle: { en: "IFEM principles make the boundaries intentional.", fa: "اصول IFEM مرزها را هدفمند می‌کنند." },
-  ifemBody: {
-    en: "ONYX demonstrates Interface-First Engineering Methodology in practice. IFEM informs the framework’s engineering discipline; it is not an ONYX runtime dependency, product layer, or replacement identity.",
-    fa: "ONYX روش‌شناسی مهندسی مبتنی بر رابط را در عمل نشان می‌دهد. IFEM به انضباط مهندسی چارچوب جهت می‌دهد؛ وابستگی زمان اجرا، لایه محصول یا هویت جایگزین ONYX نیست.",
+  execution: {
+    tag: { en: "05 / From objectives to outcomes", fa: "۰۵ / از اهداف تا نتایج" },
+    titleA: { en: "Execution becomes", fa: "اجرا به مسیری" },
+    titleB: { en: "a visible path.", fa: "قابل مشاهده تبدیل می‌شود." },
+    body: { en: "ONYX connects leadership objectives with day-to-day operations, making every transfer of responsibility visible and intentional.", fa: "ONYX اهداف رهبری را به عملیات روزانه متصل می‌کند و هر انتقال مسئولیت را قابل مشاهده و هدفمند می‌سازد." },
+    stages: [{ en: "Strategic goal", fa: "هدف راهبردی" }, { en: "Mission", fa: "مأموریت" }, { en: "Assignment", fa: "واگذاری" }, { en: "Execution", fa: "اجرا" }, { en: "Verification", fa: "راستی‌آزمایی" }, { en: "Result", fa: "نتیجه" }],
   },
-  readIfem: { en: "Read IFEM doctrine", fa: "مطالعه دکترین IFEM" },
-  ifemPrinciples: [
-    { number: "01", title: { en: "Boundary", fa: "مرز" }, copy: { en: "Make the responsibility line explicit.", fa: "خط مسئولیت را صریح کنید." } },
-    { number: "02", title: { en: "Contract", fa: "قرارداد" }, copy: { en: "Define shared rules before scale.", fa: "پیش از مقیاس‌پذیری، قواعد مشترک را تعریف کنید." } },
-    { number: "03", title: { en: "Owner", fa: "مالک" }, copy: { en: "Keep accountability legible.", fa: "پاسخ‌گویی را قابل‌فهم نگه دارید." } },
-    { number: "04", title: { en: "Evidence", fa: "شواهد" }, copy: { en: "Verify agreement in observable ways.", fa: "توافق را با روش‌های قابل مشاهده راستی‌آزمایی کنید." } },
-  ],
-  evidenceKicker: { en: "05 / TECHNICAL EVIDENCE", fa: "۰۵ / شواهد فنی" },
-  evidenceTitle: { en: "Claims point back to the work.", fa: "ادعاها به خودِ کار ارجاع می‌دهند." },
-  evidenceBody: {
-    en: "The case study links to source material and published records instead of substituting narrative for technical evidence.",
-    fa: "مطالعه موردی به‌جای جایگزین کردن شواهد فنی با روایت، به منبع‌ها و سابقه‌های منتشرشده پیوند می‌دهد.",
+  accountability: {
+    tag: { en: "06 / Accountability engine", fa: "۰۶ / موتور پاسخ‌گویی" },
+    titleA: { en: "Completion is", fa: "اتمام،" },
+    titleB: { en: "not enough.", fa: "کافی نیست." },
+    item: { en: "Work item / 042", fa: "آیتم کار / ۰۴۲" },
+    log: { en: "Verification log", fa: "ثبت راستی‌آزمایی" },
+    completed: { en: "Task completed", fa: "وظیفه تکمیل شد" },
+    verified: { en: "Verified", fa: "راستی‌آزمایی شد" },
+    accepted: { en: "Accepted", fa: "پذیرفته شد" },
+    recorded: { en: "Outcome recorded in operational memory.", fa: "نتیجه در حافظه عملیاتی ثبت شد." },
   },
-  scopeNote: { en: "Scope note.", fa: "یادداشت محدوده." },
-  scopeBody: {
-    en: "ONYX is presented as an in-progress architecture. Public records distinguish delivered components from incomplete or unverified areas.",
-    fa: "ONYX به‌عنوان معماری در حال توسعه ارائه شده است. سابقه‌های عمومی، اجزای تحویل‌شده را از حوزه‌های ناقص یا راستی‌آزمایی‌نشده متمایز می‌کنند.",
+  industries: {
+    tag: { en: "07 / Enterprise applications", fa: "۰۷ / کاربردهای سازمانی" },
+    titleA: { en: "Built for the", fa: "ساخته‌شده برای" },
+    titleB: { en: "complexity of work.", fa: "پیچیدگی کار." },
+    body: { en: "Whether operations happen across a factory floor, a job site, a global route, or a layered organization, ONYX keeps responsibility visible.", fa: "چه عملیات در کارخانه، کارگاه، مسیر جهانی یا سازمانی چندلایه رخ دهد، ONYX مسئولیت را قابل مشاهده نگه می‌دارد." },
+    cards: [
+      { en: "Manufacturing", fa: "تولید", copyEn: "Complex workflows, multiple departments, production accountability.", copyFa: "جریان‌های کاری پیچیده، واحدهای متعدد و پاسخ‌گویی تولید." },
+      { en: "Construction", fa: "ساخت‌وساز", copyEn: "Field operations, temporary resources, distributed teams.", copyFa: "عملیات میدانی، منابع موقت و تیم‌های توزیع‌شده." },
+      { en: "Logistics", fa: "لجستیک", copyEn: "Fast-moving operations, constant change, coordination under pressure.", copyFa: "عملیات پویا، تغییر مداوم و هماهنگی زیر فشار." },
+      { en: "Enterprise", fa: "سازمانی", copyEn: "Hierarchy complexity, decision bottlenecks, and limited visibility.", copyFa: "پیچیدگی سلسله‌مراتب، گلوگاه‌های تصمیم و دید محدود." },
+    ],
   },
-  developerTitle: { en: "A framework for building the next generation of operational systems.", fa: "چارچوبی برای ساخت نسل بعدی سامانه‌های عملیاتی." },
-  developedBy: { en: "DEVELOPED BY", fa: "توسعه‌یافته توسط" },
-  developerRole: { en: "Software Engineer · Systems Architect", fa: "مهندس نرم‌افزار · معمار سامانه‌ها" },
-  builtWith: { en: "BUILT WITH", fa: "ساخته‌شده با" },
-  doctrineBody: { en: "Interface-first engineering for explicit, reviewable system boundaries.", fa: "مهندسی مبتنی بر رابط برای مرزهای سامانه‌ای صریح و قابل بازبینی." },
-  backToTop: { en: "Back to top", fa: "بازگشت به ابتدا" },
+  outcomes: {
+    tag: { en: "08 / Business outcomes", fa: "۰۸ / نتایج کسب‌وکار" },
+    titleA: { en: "More than", fa: "فراتر از" },
+    titleB: { en: "productivity.", fa: "بهره‌وری." },
+    body: { en: "When responsibility is designed into execution, the organization gains a durable operating advantage.", fa: "وقتی مسئولیت در اجرا طراحی شود، سازمان به مزیتی عملیاتی و پایدار دست می‌یابد." },
+    list: [
+      { en: "Clarity", fa: "شفافیت", copyEn: "Everyone understands responsibility.", copyFa: "همه مسئولیت را درک می‌کنند." },
+      { en: "Control", fa: "کنترل", copyEn: "Managers understand operations.", copyFa: "مدیران عملیات را درک می‌کنند." },
+      { en: "Speed", fa: "سرعت", copyEn: "Decisions move faster.", copyFa: "تصمیم‌ها سریع‌تر حرکت می‌کنند." },
+      { en: "Accountability", fa: "پاسخ‌گویی", copyEn: "Actions have ownership.", copyFa: "اقدام‌ها مالک دارند." },
+      { en: "Intelligence", fa: "هوشمندی", copyEn: "Organizations learn continuously.", copyFa: "سازمان‌ها پیوسته یاد می‌گیرند." },
+    ],
+  },
+  enterprise: {
+    tag: { en: "09 / Technology foundation", fa: "۰۹ / بنیان فناوری" },
+    titleA: { en: "Built for", fa: "ساخته‌شده برای" },
+    titleB: { en: "mission-critical", fa: "عملیات حیاتی" },
+    titleC: { en: "operations.", fa: "مأموریت." },
+    specs: [{ en: "Distributed architecture", fa: "معماری توزیع‌شده" }, { en: "Secure synchronization", fa: "همگام‌سازی امن" }, { en: "Offline-first operation", fa: "عملیات آفلاین‌محور" }, { en: "Enterprise deployment", fa: "استقرار سازمانی" }],
+    annotations: [{ en: "Ownership mapped", fa: "مالکیت ترسیم شد" }, { en: "Authority routed", fa: "اختیار مسیر‌دهی شد" }, { en: "Outcome verified", fa: "نتیجه تأیید شد" }],
+  },
+  why: {
+    tag: { en: "10 / Why ONYX", fa: "۱۰ / چرا ONYX" },
+    titleA: { en: "Responsibility is", fa: "مسئولیت" },
+    titleB: { en: "the system.", fa: "خودِ سامانه است." },
+    labels: [
+      [{ en: "Traditional tools", fa: "ابزارهای سنتی" }, { en: "Manage tasks.", fa: "وظیفه‌ها را مدیریت می‌کنند." }],
+      [{ en: "ERP systems", fa: "سامانه‌های ERP" }, { en: "Manage resources.", fa: "منابع را مدیریت می‌کنند." }],
+      [{ en: "Communication tools", fa: "ابزارهای ارتباطی" }, { en: "Exchange information.", fa: "اطلاعات ردوبدل می‌کنند." }],
+      [{ en: "ONYX", fa: "ONYX" }, { en: "Manages operational responsibility.", fa: "مسئولیت عملیاتی را مدیریت می‌کند." }],
+    ],
+  },
+  cta: {
+    tag: { en: "Enterprise deployment", fa: "استقرار سازمانی" },
+    titleA: { en: "Build organizations that", fa: "سازمان‌هایی بسازید که" },
+    titleB: { en: "execute with intelligence.", fa: "هوشمندانه اجرا می‌کنند." },
+    body: { en: "ONYX provides the operational foundation for companies where responsibility matters.", fa: "ONYX بنیان عملیاتی شرکت‌هایی را فراهم می‌کند که مسئولیت در آن‌ها اهمیت دارد." },
+    demo: { en: "Request enterprise demo", fa: "درخواست دمو سازمانی" },
+    contact: { en: "Contact ONYX team", fa: "تماس با تیم ONYX" },
+  },
 };
 
-export function resolveLocaleFromLanguages(languages: readonly string[]): Locale {
-  const supportedLanguage = languages.find((language) => /^(fa|en)(-|$)/i.test(language));
-  return supportedLanguage?.toLowerCase().startsWith("fa") ? "fa" : "en";
-}
+const fracturePoints: Localized[] = [
+  { en: "Messages", fa: "پیام‌ها" }, { en: "Emails", fa: "ایمیل‌ها" }, { en: "Documents", fa: "اسناد" }, { en: "Spreadsheets", fa: "صفحه‌گسترده‌ها" }, { en: "Disconnected software", fa: "نرم‌افزارهای گسسته" },
+];
 
-function detectBrowserLocale(): Locale {
+const capabilityCards = [
+  { number: "01", icon: Network, title: { en: "Authority Graph", fa: "نقشه اختیار" }, copy: { en: "A living organizational model of roles, teams, permissions, and decision paths.", fa: "مدلی زنده از نقش‌ها، تیم‌ها، مجوزها و مسیرهای تصمیم." } },
+  { number: "02", icon: Target, title: { en: "Operational Execution", fa: "اجرای عملیاتی" }, copy: { en: "Leadership intent connected to the people and handoffs that deliver outcomes.", fa: "نیت رهبری متصل به افراد و تحویل‌هایی که نتیجه می‌سازند." } },
+  { number: "03", icon: BadgeCheck, title: { en: "Accountability Engine", fa: "موتور پاسخ‌گویی" }, copy: { en: "Completion becomes a verified, accepted, and historically visible result.", fa: "اتمام به نتیجه‌ای تأییدشده، پذیرفته‌شده و قابل مشاهده در تاریخ تبدیل می‌شود." } },
+  { number: "04", icon: GitBranch, title: { en: "Dynamic Teams", fa: "تیم‌های پویا" }, copy: { en: "Structured cross-team collaboration and controlled delegation without ambiguity.", fa: "همکاری ساخت‌یافته میان تیم‌ها و تفویض کنترل‌شده بدون ابهام." } },
+  { number: "05", icon: Radar, title: { en: "Escalation Network", fa: "شبکه تشدید" }, copy: { en: "Issues move through the correct authority path before visibility is lost.", fa: "مسائل پیش از از دست رفتن دید، در مسیر صحیح اختیار حرکت می‌کنند." } },
+  { number: "06", icon: Layers3, title: { en: "Operational Memory", fa: "حافظه عملیاتی" }, copy: { en: "Decisions, work, obstacles, and resolutions become institutional knowledge.", fa: "تصمیم‌ها، کار، موانع و راه‌حل‌ها به دانش سازمانی تبدیل می‌شوند." } },
+];
+
+function resolveBrowserLocale(): Locale {
   if (typeof navigator === "undefined") return "en";
-
-  const browserLanguages = navigator.languages?.length ? navigator.languages : [navigator.language];
-  return resolveLocaleFromLanguages(browserLanguages);
+  const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
+  return languages.some((language) => language.toLowerCase().startsWith("fa")) ? "fa" : "en";
 }
 
-function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (next: Locale) => void }) {
-  return (
-    <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-1 dark:border-white/15 dark:bg-white/5" aria-label="Language selector">
-      <a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")} className={`rounded-md px-2.5 py-1 text-xs font-bold transition ${locale === "en" ? "bg-[#082348] text-white shadow-sm" : "text-slate-600 hover:text-[#082348] dark:text-slate-300 dark:hover:text-white"}`}>EN</a>
-      <a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")} className={`rounded-md px-2.5 py-1 text-xs font-bold transition ${locale === "fa" ? "bg-[#082348] text-white shadow-sm" : "text-slate-600 hover:text-[#082348] dark:text-slate-300 dark:hover:text-white"}`}>فارسی</a>
-    </div>
-  );
+function SignalTag({ children }: { children: React.ReactNode }) {
+  return <div className="signal-tag"><span className="signal-tag__node" /><span>{children}</span></div>;
+}
+
+function Rule() {
+  return <div className="signal-rule" aria-hidden="true"><span /></div>;
+}
+
+function ArrowAction({ children, href, solid = false, rtl = false }: { children: React.ReactNode; href: string; solid?: boolean; rtl?: boolean }) {
+  const Arrow = rtl ? ArrowRight : ArrowLeft;
+  return <a className={`arrow-action ${solid ? "arrow-action--solid" : ""}`} href={href}><Arrow size={15} strokeWidth={1.8} /><span>{children}</span></a>;
+}
+
+function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (locale: Locale) => void }) {
+  return <div className="language-control" aria-label="Language selector"><a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")}>EN</a><a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")}>فارسی</a></div>;
 }
 
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
-  const [dark, setDark] = useState(false);
-  const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("overview");
+  const [scrolled, setScrolled] = useState(false);
+  const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
-  const ArrowDown = isRtl ? ArrowDownLeft : ArrowDownRight;
-  const ArrowUp = isRtl ? ArrowUpLeft : ArrowUpRight;
-  const Chevron = isRtl ? ChevronLeft : ChevronRight;
 
   useEffect(() => {
-    const initialDark = window.localStorage.getItem("onyx-theme") === "dark";
-    const savedLocale = window.localStorage.getItem("onyx-locale");
-    const preferredLocale: Locale = initialLocale
-      ?? (savedLocale === "fa" || savedLocale === "en" ? savedLocale : detectBrowserLocale());
-
-    setDark(initialDark);
-    setLocale(preferredLocale);
-    document.documentElement.classList.toggle("dark", initialDark);
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    const saved = window.localStorage.getItem("onyx-locale");
+    const preferred = initialLocale ?? (saved === "fa" || saved === "en" ? saved : resolveBrowserLocale());
+    setLocale(preferred);
+    document.documentElement.lang = preferred;
+    document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, [initialLocale]);
 
-  useEffect(() => {
-    document.documentElement.lang = locale;
-    document.documentElement.dir = isRtl ? "rtl" : "ltr";
-    document.title = t(text.pageTitle);
-  }, [isRtl, locale]);
-
-  useEffect(() => {
-    const sections = navItems
-      .map(({ id }) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActiveSection(visible.target.id);
-      },
-      { rootMargin: "-20% 0px -65% 0px", threshold: [0.1, 0.35, 0.65] },
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    setMenuOpen(false);
-  };
-
   const selectLocale = (next: Locale) => {
-    setLocale(next);
-    // A manual selection always takes precedence over future browser-language detection on the root URL.
     window.localStorage.setItem("onyx-locale", next);
+    setLocale(next);
     setMenuOpen(false);
   };
-
-  const toggleTheme = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    window.localStorage.setItem("onyx-theme", next ? "dark" : "light");
-  };
+  const closeMenu = () => setMenuOpen(false);
+  const Chevron = isRtl ? ChevronRight : ChevronLeft;
 
   return (
-    <div lang={locale} dir={isRtl ? "rtl" : "ltr"} className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#06172c] dark:text-slate-50">
-      <aside className={`fixed inset-y-0 z-30 hidden w-64 flex-col border-white/10 bg-[#071f43] p-5 text-white lg:flex ${isRtl ? "right-0 border-l" : "left-0 border-r"}`}>
-        <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} aria-label={t(text.overviewLink)} className="rounded-2xl bg-white p-3 shadow-sm">
-          <img width={512} height={512} src={ASSETS.brandLogo} alt="ONYX Tectosilicate Framework" className="h-28 w-full object-contain" />
-        </a>
-        <div className="my-6 h-px bg-white/15" />
-        <nav aria-label={t(text.caseStudySections)} className="space-y-1">
-          {navItems.map(({ number, label, id }) => (
-            <button key={id} type="button" onClick={() => scrollTo(id)} className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition ${isRtl ? "text-right" : "text-left"} ${activeSection === id ? "bg-white text-[#082348] shadow-sm" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}>
-              <span className="w-5 text-[10px] font-bold tracking-wider opacity-60" dir="ltr">{number}</span>
-              <span className="flex-1 font-semibold">{t(label)}</span>
-              <Chevron className="h-4 w-4 opacity-50 transition group-hover:translate-x-0.5" />
-            </button>
-          ))}
-        </nav>
-        <div className="mt-auto rounded-2xl border border-white/15 bg-white/5 p-4 text-xs text-slate-300">
-          <p className="mb-2 font-semibold uppercase tracking-[0.18em] text-white">{t(text.caseStudyRecord)}</p>
-          <p className="leading-6">{t(text.recordSummary)}</p>
-          <a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer" dir="ltr" className={`mt-3 inline-flex items-center gap-1 font-semibold text-white hover:text-sky-200 ${isRtl ? "flex-row-reverse" : ""}`}>{t(text.viewSource)} <ArrowUp className="h-3.5 w-3.5" /></a>
-        </div>
-      </aside>
-
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur dark:border-white/10 dark:bg-[#07182f]/95 lg:hidden">
-        <a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} aria-label={t(text.overviewLink)} className="w-24 rounded-lg bg-white p-1.5">
-          <img width={512} height={512} src={ASSETS.brandLogo} alt="ONYX Tectosilicate Framework" className="h-12 w-full object-contain" />
-        </a>
-        <div className="flex items-center gap-2" dir="ltr">
-          <LanguageControl locale={locale} onSelect={selectLocale} />
-          <button type="button" onClick={toggleTheme} aria-label={t(text.toggleTheme)} className="rounded-lg border border-slate-200 p-2 dark:border-white/15">{dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}</button>
-          <button type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label={t(text.toggleNavigation)} className="rounded-lg bg-[#082348] p-2 text-white">{menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
-        </div>
-        {menuOpen && <nav aria-label={t(text.mobileSections)} className="absolute inset-x-0 top-full border-b border-slate-200 bg-white p-3 shadow-lg dark:border-white/10 dark:bg-[#07182f]">{navItems.map(({ number, label, id }) => <button key={id} type="button" onClick={() => scrollTo(id)} className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 font-medium hover:bg-slate-100 dark:hover:bg-white/10 ${isRtl ? "text-right" : "text-left"}`}><span className="text-xs text-slate-500" dir="ltr">{number}</span><span>{t(label)}</span></button>)}</nav>}
+    <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
+      <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
+        <a href="#top" className="header-mark" aria-label="ONYX home"><img src={assets.wideLogo} alt="ONYX" /></a>
+        <nav className="desktop-nav" aria-label="Primary navigation"><a href="#platform">{t(text.nav.platform)}</a><a href="#outcomes">{t(text.nav.outcomes)}</a><a href="#enterprise">{t(text.nav.enterprise)}</a></nav>
+        <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
       </header>
 
-      <main className={isRtl ? "lg:mr-64" : "lg:ml-64"}>
-        <header className={`hidden min-h-20 items-center justify-between border-b border-slate-200 bg-white px-8 dark:border-white/10 dark:bg-[#07182f] lg:flex ${isRtl ? "flex-row-reverse" : ""}`}>
-          <div className={`flex items-center gap-5 ${isRtl ? "flex-row-reverse" : ""}`}><img width={1200} height={400} src={ASSETS.brandWordmark} alt="ONYX Tectosilicate Framework" className={`h-10 w-40 object-contain ${isRtl ? "object-right" : "object-left"}`} /><span className={`border-slate-200 text-xs font-bold tracking-[0.2em] text-slate-500 dark:border-white/15 dark:text-slate-300 ${isRtl ? "border-r pr-5" : "border-l pl-5"}`}>{t(text.systemsArchitecture)}</span></div>
-          <div className={`flex items-center gap-4 ${isRtl ? "flex-row-reverse" : ""}`}><a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer" dir="ltr" className={`inline-flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-[#1467b8] dark:text-slate-100 ${isRtl ? "flex-row-reverse" : ""}`}><Github className="h-4 w-4" /> {t(text.sourceRepository)}</a><LanguageControl locale={locale} onSelect={selectLocale} /><button type="button" onClick={toggleTheme} aria-label={t(text.toggleTheme)} className="rounded-lg border border-slate-200 p-2 dark:border-white/15">{dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}</button></div>
-        </header>
+      <div className={`mobile-nav ${menuOpen ? "mobile-nav--open" : ""}`}>
+        <LanguageControl locale={locale} onSelect={selectLocale} />
+        <a href="#platform" onClick={closeMenu}>{t(text.nav.platform)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href="#outcomes" onClick={closeMenu}>{t(text.nav.outcomes)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href="#enterprise" onClick={closeMenu}>{t(text.nav.enterprise)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href="#contact" onClick={closeMenu} className="mobile-nav__cta">{t(text.nav.demo)}</a>
+      </div>
 
-        <section id="overview" className="scroll-mt-20 overflow-hidden bg-[#eff5fa] px-5 py-16 dark:bg-[#07182f] sm:px-8 lg:min-h-[720px] lg:px-14 lg:py-24">
-          <div className={`mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-center ${isRtl ? "lg:[&>div:first-child]:order-2" : ""}`}>
-            <div className={isRtl ? "text-right" : "text-left"}>
-              <div className={`mb-6 flex items-center gap-2 text-xs font-bold tracking-[0.22em] text-[#1269b8] ${isRtl ? "justify-end" : ""}`}><span className="h-2 w-2 rounded-full bg-emerald-500" /> {t(text.framework)}</div>
-              <h1 className="max-w-3xl text-5xl font-semibold tracking-tight text-[#082348] dark:text-white sm:text-6xl lg:text-7xl">{t(text.heroTitleStart)} <em className="font-normal text-[#287bc2]">{t(text.heroTitleEmphasis)}</em></h1>
-              <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">{t(text.heroLead)}</p>
-              <p className="mt-4 max-w-2xl leading-7 text-slate-600 dark:text-slate-300">{t(text.heroBody)}</p>
-              <div className={`mt-8 flex flex-wrap gap-3 ${isRtl ? "justify-end" : ""}`}><button type="button" onClick={() => scrollTo("experience")} className={`inline-flex items-center gap-2 rounded-xl bg-[#082348] px-5 py-3 font-semibold text-white transition hover:bg-[#1467b8] ${isRtl ? "flex-row-reverse" : ""}`}>{t(text.exploreExperience)} <ArrowDown className="h-4 w-4" /></button><a href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer" className={`inline-flex items-center gap-2 rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-800 hover:border-[#1467b8] hover:text-[#1467b8] dark:border-white/20 dark:text-white ${isRtl ? "flex-row-reverse" : ""}`}>{t(text.traceImplementation)} <ArrowUp className="h-4 w-4" /></a></div>
-            </div>
-            <aside className={`rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/60 dark:border-white/10 dark:bg-white/5 dark:shadow-none ${isRtl ? "text-right" : "text-left"}`}><img width={1200} height={400} src={ASSETS.brandWordmark} alt="ONYX Framework" className="mb-8 h-16 w-full object-contain" /><p className="text-xs font-bold tracking-[0.18em] text-slate-500 dark:text-slate-300">{t(text.repositoryRecord)}</p><dl className="mt-5 space-y-4 text-sm"><div className="flex justify-between gap-4 border-b border-slate-100 pb-4 dark:border-white/10"><dt className="text-slate-500 dark:text-slate-300">{t(text.implementation)}</dt><dd className="font-semibold">{t(text.rustWorkspace)}</dd></div><div className="flex justify-between gap-4 border-b border-slate-100 pb-4 dark:border-white/10"><dt className="text-slate-500 dark:text-slate-300">{t(text.clientSurfaces)}</dt><dd className="font-semibold">{t(text.clientSurfaceValue)}</dd></div><div className="flex justify-between gap-4"><dt className="text-slate-500 dark:text-slate-300">{t(text.projectStance)}</dt><dd className="font-semibold">{t(text.projectStanceValue)}</dd></div></dl></aside>
-          </div>
+      <main id="top">
+        <section className="hero section-shell">
+          <div className="hero__veil" /><div className="hero__grid" aria-hidden="true" />
+          <div className="hero__content shell-content"><SignalTag>{t(text.hero.tag)}</SignalTag><h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1><p className="hero__lede">{t(text.hero.lede)}</p><div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div></div>
+          <div className="hero__telemetry" aria-label="System status"><div className="telemetry-orbit"><span /><span /><span /></div><div><span className="telemetry-label">{t(text.hero.condition)}</span><strong>{t(text.hero.synchronized)}</strong></div><span className="telemetry-state">ONLINE</span></div>
+          <a className="hero__scroll" href="#problem" aria-label={t(text.hero.scroll)}><span>{t(text.hero.scroll)}</span><ChevronDown size={16} /></a>
         </section>
 
-        <section id="capabilities" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-14 lg:py-24">
-          <div className="mx-auto max-w-6xl"><div className={`grid gap-8 lg:grid-cols-[0.72fr_1.28fr] ${isRtl ? "text-right" : "text-left"}`}><div><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">{t(text.capabilitiesKicker)}</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{t(text.capabilitiesTitle)}</h2></div><p className="max-w-xl self-end text-lg leading-8 text-slate-600 dark:text-slate-300">{t(text.capabilitiesBody)}</p></div><div className="mt-12 grid gap-4 sm:grid-cols-2">{capabilities.map(({ title, copy }, index) => <article key={title.en} className={`rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/5 ${isRtl ? "text-right" : "text-left"}`}><span className="text-xs font-bold text-[#1467b8]" dir="ltr">0{index + 1}</span><h3 className="mt-4 text-xl font-semibold">{t(title)}</h3><p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">{t(copy)}</p></article>)}</div></div>
-        </section>
+        <div className="brand-bridge" aria-hidden="true"><div className="shell-content brand-bridge__content"><span className="brand-bridge__line" /><div className="brand-bridge__mark"><img src={assets.signalMark} alt="" /><strong>ONYX</strong></div><span className="brand-bridge__statement">{t(text.bridge)}</span><span className="brand-bridge__line" /></div></div>
 
-        <section id="experience" className="scroll-mt-20 bg-slate-100 px-5 py-16 dark:bg-[#0a213c] sm:px-8 lg:px-14 lg:py-24">
-          <div className="mx-auto max-w-6xl"><div className={`max-w-3xl ${isRtl ? "text-right" : "text-left"}`}><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">{t(text.experienceKicker)}</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{t(text.experienceTitle)}</h2><p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">{t(text.experienceBody)}</p></div><div className="mt-12 space-y-10">{productScreens.map(({ image, width, height, title, copy }, index) => { const imageSecond = isRtl ? index % 2 === 0 : index % 2 === 1; return <article key={title.en} className={`grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-[#07182f] lg:grid-cols-2 ${imageSecond ? "lg:[&>div:first-child]:order-2" : ""}`}><div className="bg-[#e9f0f6] p-3 dark:bg-[#0d2b4b]"><img width={width} height={height} src={image} alt={`${t(title)} ${locale === "en" ? "interface screenshot" : "نمای رابط"}`} className="h-full w-full rounded-2xl border border-slate-200 object-cover shadow-sm dark:border-white/10" loading={index === 0 ? "eager" : "lazy"} /></div><div className={`flex flex-col justify-center p-8 sm:p-12 ${isRtl ? "text-right" : "text-left"}`}><span className="text-xs font-bold tracking-[0.2em] text-[#1467b8]"><span dir="ltr">0{index + 1}</span> / {t(text.productScreen)}</span><h3 className="mt-4 text-3xl font-semibold">{t(title)}</h3><p className="mt-5 leading-8 text-slate-600 dark:text-slate-300">{t(copy)}</p><div className={`mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#1467b8] ${isRtl ? "flex-row-reverse self-end" : ""}`}><CheckCircle2 className="h-4 w-4" /> {t(text.interfaceEvidence)}</div></div></article>; })}</div></div>
-        </section>
+        <section id="problem" className="problem section-shell"><div className="shell-content split-grid split-grid--problem"><div className="section-intro"><SignalTag>{t(text.problem.tag)}</SignalTag><h2>{t(text.problem.titleA)}<br /><em>{t(text.problem.titleB)}</em></h2><p>{t(text.problem.body)}</p></div><div className="fracture-board"><div className="fracture-board__caption"><span>{t(text.problem.signal)}</span><span>{t(text.problem.fragmented)}</span></div><div className="fracture-board__items">{fracturePoints.map((item, index) => <div className="fracture-row" key={item.en}><span className="fracture-row__index">{String(index + 1).padStart(2, "0")}</span><span className="fracture-row__line" /><span>{t(item)}</span><Plus size={14} /></div>)}</div><Rule /><div className="fracture-board__result"><CircleDot size={16} /><span>{t(text.problem.result)}</span></div></div></div></section>
 
-        <section id="architecture" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto max-w-6xl"><div className={`grid gap-8 lg:grid-cols-[0.72fr_1.28fr] ${isRtl ? "text-right" : "text-left"}`}><div><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">{t(text.architectureKicker)}</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{t(text.architectureTitle)}</h2></div><p className="max-w-xl self-end text-lg leading-8 text-slate-600 dark:text-slate-300">{t(text.architectureBody)}</p></div><div className="mt-12 grid gap-4 md:grid-cols-2">{architectureLayers.map(({ number, title, copy, tags }) => <article key={number} className={`rounded-2xl border border-slate-200 p-6 dark:border-white/10 ${isRtl ? "text-right" : "text-left"}`}><span className="text-sm font-bold text-[#1467b8]" dir="ltr">{number}</span><h3 className="mt-3 text-xl font-semibold">{t(title)}</h3><p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">{t(copy)}</p><div className={`mt-5 flex flex-wrap gap-2 ${isRtl ? "justify-end" : ""}`} dir="ltr">{tags.map((tag) => <span key={tag} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:bg-white/10 dark:text-slate-200">{tag}</span>)}</div></article>)}</div></div></section>
+        <section className="contrast section-shell"><div className="shell-content"><div className="section-heading section-heading--wide"><SignalTag>{t(text.contrast.tag)}</SignalTag><h2>{t(text.contrast.titleA)}<br /><em>{t(text.contrast.titleB)}</em></h2><p>{t(text.contrast.body)}</p></div><div className="contrast-table"><div className="contrast-table__head"><span>{t(text.contrast.traditional)}</span><span>{t(text.contrast.onyx)}</span></div>{text.contrast.rows.map(([first, second]) => <div className="contrast-table__row" key={first.en}><span>{t(first)}</span><strong>{t(second)}</strong></div>)}</div></div></section>
 
-        <section id="ifem" className="scroll-mt-20 bg-[#082348] px-5 py-16 text-white sm:px-8 lg:px-14 lg:py-24"><div className={`mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1fr_0.9fr] ${isRtl ? "lg:[&>div:first-child]:order-2" : ""}`}><div className={isRtl ? "text-right" : "text-left"}><p className="text-xs font-bold tracking-[0.2em] text-sky-300">{t(text.ifemKicker)}</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{t(text.ifemTitle)}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200">{t(text.ifemBody)}</p><a href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer" className={`mt-8 inline-flex items-center gap-2 rounded-xl border border-sky-300/50 px-5 py-3 font-semibold text-white hover:bg-white/10 ${isRtl ? "flex-row-reverse" : ""}`}>{t(text.readIfem)} <ArrowUp className="h-4 w-4" /></a></div><div className="space-y-4">{text.ifemPrinciples.map(({ number, title, copy }) => <div key={number} className={`flex gap-5 rounded-2xl border border-white/15 bg-white/5 p-5 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}><span className="font-bold text-sky-300" dir="ltr">{number}</span><div><h3 className="font-semibold">{t(title)}</h3><p className="mt-1 text-sm leading-6 text-slate-300">{t(copy)}</p></div></div>)}</div></div></section>
+        <section className="philosophy section-shell"><div className="shell-content"><div className="philosophy__top"><SignalTag>{t(text.philosophy.tag)}</SignalTag><div><h2>{t(text.philosophy.titleA)}<br /><em>{t(text.philosophy.titleB)}</em></h2><p>{t(text.philosophy.body)}</p></div></div><div className="logic-path" aria-label="Authority becomes organizational intelligence">{text.philosophy.steps.map((item, index) => <div className={`logic-path__step ${index === 4 ? "logic-path__step--final" : ""}`} key={item.en}><span className="logic-path__number">{String(index + 1).padStart(2, "0")}</span><span className="logic-path__dot" /><strong>{t(item)}</strong></div>)}</div></div></section>
 
-        <section id="evidence" className="scroll-mt-20 px-5 py-16 sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto max-w-6xl"><div className={`max-w-3xl ${isRtl ? "text-right" : "text-left"}`}><p className="text-xs font-bold tracking-[0.2em] text-[#1467b8]">{t(text.evidenceKicker)}</p><h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">{t(text.evidenceTitle)}</h2><p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">{t(text.evidenceBody)}</p></div><div className="mt-12 grid gap-5 md:grid-cols-3">{evidenceItems.map(({ Icon, label, title, copy, href, action }) => <article key={title.en} className={`rounded-2xl border border-slate-200 p-6 dark:border-white/10 ${isRtl ? "text-right" : "text-left"}`}><Icon className={`h-6 w-6 text-[#1467b8] ${isRtl ? "mr-auto" : ""}`} /><p className="mt-5 text-xs font-bold tracking-[0.16em] text-slate-500 dark:text-slate-300">{t(label)}</p><h3 className="mt-3 text-xl font-semibold">{t(title)}</h3><p className="mt-3 leading-7 text-slate-600 dark:text-slate-300">{t(copy)}</p><a href={href} target="_blank" rel="noreferrer" className={`mt-6 inline-flex items-center gap-2 font-semibold text-[#1467b8] ${isRtl ? "flex-row-reverse" : ""}`}>{t(action)} <ArrowUp className="h-4 w-4" /></a></article>)}</div><div className={`mt-8 flex gap-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950 dark:border-emerald-700/40 dark:bg-emerald-900/20 dark:text-emerald-100 ${isRtl ? "flex-row-reverse text-right" : "text-left"}`}><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" /><p><b>{t(text.scopeNote)}</b> {t(text.scopeBody)}</p></div></div></section>
+        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
 
-        <section id="developer" className="scroll-mt-20 bg-[#06172c] px-5 py-16 text-white sm:px-8 lg:px-14 lg:py-24"><div className="mx-auto max-w-6xl"><div className={`rounded-3xl border border-white/15 bg-white/5 p-8 sm:p-12 ${isRtl ? "text-right" : "text-left"}`}><img width={1200} height={400} src={ASSETS.brandWordmark} alt="ONYX Framework" className={`h-16 w-52 object-contain ${isRtl ? "object-right" : "object-left"}`} /><p className="mt-8 text-xs font-bold tracking-[0.2em] text-sky-300">{t(text.framework)}</p><h2 className="mt-3 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">{t(text.developerTitle)}</h2><div className="mt-10 grid gap-8 border-t border-white/15 pt-8 md:grid-cols-2"><div><p className="text-xs font-bold tracking-[0.18em] text-slate-400">{t(text.developedBy)}</p><h3 className="mt-2 text-2xl font-semibold">Suhail Muzaffari</h3><p className="mt-2 text-slate-300">{t(text.developerRole)}</p></div><div><p className="text-xs font-bold tracking-[0.18em] text-slate-400">{t(text.builtWith)}</p><h3 className="mt-2 text-2xl font-semibold">IFEM Doctrine</h3><p className="mt-2 text-slate-300">{t(text.doctrineBody)}</p></div></div><div className={`mt-10 flex flex-wrap gap-4 ${isRtl ? "justify-end" : ""}`}><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer" dir="ltr" className={`inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 font-semibold text-[#082348] hover:bg-sky-100 ${isRtl ? "flex-row-reverse" : ""}`}>SMozaff.github.io <ArrowUp className="h-4 w-4" /></a><a href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer" dir="ltr" className={`inline-flex items-center gap-2 rounded-xl border border-white/25 px-5 py-3 font-semibold text-white hover:bg-white/10 ${isRtl ? "flex-row-reverse" : ""}`}>IFEM-doctrine.github.io <ArrowUp className="h-4 w-4" /></a></div></div><footer className={`mt-8 flex flex-col justify-between gap-4 border-t border-white/15 pt-6 text-sm text-slate-400 sm:flex-row ${isRtl ? "sm:flex-row-reverse" : ""}`}><span>{t(text.framework)} · {t(text.caseStudyRecord)} / 2026</span><a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }} className={`inline-flex items-center gap-2 font-semibold text-white hover:text-sky-200 ${isRtl ? "flex-row-reverse" : ""}`}>{t(text.backToTop)} <ArrowUp className="h-4 w-4" /></a></footer></div>
-        </section>
+        <section className="execution section-shell"><div className="execution__image-wrap"><img src={assets.execution} alt="ONYX Operational Overview interface" /><div className="execution__image-fade" /></div><div className="shell-content execution__content"><div className="section-heading"><SignalTag>{t(text.execution.tag)}</SignalTag><h2>{t(text.execution.titleA)}<br /><em>{t(text.execution.titleB)}</em></h2><p>{t(text.execution.body)}</p></div><div className="execution-path">{text.execution.stages.map((stage, index) => <div className="execution-path__item" key={stage.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(stage)}</strong><i /></div>)}</div></div></section>
+
+        <section className="accountability section-shell"><div className="shell-content accountability__layout"><div className="accountability__statement"><SignalTag>{t(text.accountability.tag)}</SignalTag><h2>{t(text.accountability.titleA)}<br /><em>{t(text.accountability.titleB)}</em></h2></div><div className="verification-card"><div className="verification-card__meta"><span>{t(text.accountability.item)}</span><span>{t(text.accountability.log)}</span></div><div className="verification-card__route"><div className="route-node route-node--done"><Check size={14} /><span>{t(text.accountability.completed)}</span></div><span className="route-link" /><div className="route-node route-node--done"><ShieldCheck size={14} /><span>{t(text.accountability.verified)}</span></div><span className="route-link" /><div className="route-node route-node--active"><BadgeCheck size={14} /><span>{t(text.accountability.accepted)}</span></div></div><div className="verification-card__footer"><span>{t(text.accountability.recorded)}</span><span className="verified-stamp">COMPLETE</span></div></div></div></section>
+
+        <section className="industries section-shell"><div className="shell-content"><div className="industries__heading"><div><SignalTag>{t(text.industries.tag)}</SignalTag><h2>{t(text.industries.titleA)}<br /><em>{t(text.industries.titleB)}</em></h2></div><p>{t(text.industries.body)}</p></div><div className="industry-grid">{text.industries.cards.map((industry, index) => <article className="industry-card" key={industry.en}><span>{String(index + 1).padStart(2, "0")}</span><h3>{t({ en: industry.en, fa: industry.fa })}</h3><p>{locale === "en" ? industry.copyEn : industry.copyFa}</p>{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</article>)}</div></div></section>
+
+        <section id="outcomes" className="outcomes section-shell"><div className="shell-content"><div className="section-heading section-heading--wide"><SignalTag>{t(text.outcomes.tag)}</SignalTag><h2>{t(text.outcomes.titleA)}<br /><em>{t(text.outcomes.titleB)}</em></h2><p>{t(text.outcomes.body)}</p></div><div className="outcomes-list">{text.outcomes.list.map((outcome, index) => <article key={outcome.en} className="outcome-row"><span>{String(index + 1).padStart(2, "0")}</span><h3>{t({ en: outcome.en, fa: outcome.fa })}</h3><p>{locale === "en" ? outcome.copyEn : outcome.copyFa}</p><Chevron size={20} /></article>)}</div></div></section>
+
+        <section id="enterprise" className="enterprise section-shell"><img className="enterprise__visual" src={assets.nexus} alt="ONYX secure access interface" /><div className="enterprise__overlay" /><div className="shell-content enterprise__content"><SignalTag>{t(text.enterprise.tag)}</SignalTag><h2>{t(text.enterprise.titleA)}<br />{t(text.enterprise.titleB)}<br /><em>{t(text.enterprise.titleC)}</em></h2><div className="enterprise__specs">{text.enterprise.specs.map((spec) => <span key={spec.en}>{t(spec)}</span>)}</div></div><div className="enterprise__annotations" aria-hidden="true">{text.enterprise.annotations.map((item, index) => <div key={item.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(item)}</strong></div>)}</div><div className="enterprise__badge"><Command size={17} /><span>ONYX // CONTROLLED EXECUTION</span></div></section>
+
+        <section className="why-onyx section-shell"><div className="shell-content why-onyx__layout"><div><SignalTag>{t(text.why.tag)}</SignalTag><h2>{t(text.why.titleA)}<br /><em>{t(text.why.titleB)}</em></h2></div><div className="why-onyx__comparison">{text.why.labels.map(([label, copy], index) => <div className={index === 3 ? "why-onyx__answer" : ""} key={label.en}><span>{t(label)}</span><strong>{t(copy)}</strong></div>)}</div></div></section>
+
+        <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:so.muzaff@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:so.muzaff@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
+
+      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — tectosilicate framework" className="site-footer__wide-logo" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><a href="mailto:so.muzaff@gmail.com">Suhail Muzaffari · so.muzaff@gmail.com</a></div></div></footer>
     </div>
   );
 }
