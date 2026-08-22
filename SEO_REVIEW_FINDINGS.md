@@ -18,6 +18,10 @@ The homepage exposes one JSON-LD graph containing WebSite, WebPage, Article, Sof
 
 The graph is valid and coherent, but the Article entity can be strengthened with visible-content-aligned `datePublished`, `dateModified`, `image`, and `url` properties. The homepage metadata should also include a canonical link and richer Open Graph image dimensions/type where appropriate. Any date must reflect a real publication or substantial content-update date, not an arbitrary current date.
 
+## Final post-deployment verification
+
+The deployed homepage now serves a canonical link for `https://ox-workflow.github.io/`, Open Graph image type and dimensions for the 1200 × 400 PNG wordmark, and Article `image`, `datePublished`, `dateModified`, and `url` properties. The deployed sitemap and robots.txt remain reachable and consistent with the canonical host. The GitHub Pages workflow completed successfully for the SEO commit.
+
 ## External benchmark sources
 
 Google Search Central recommends absolute canonical URLs in sitemaps and says `<lastmod>` should reflect a significant, verifiable page update. Google recommends JSON-LD and requires structured data to describe visible page content. For Article markup, Google lists author, headline, image, datePublished, and dateModified as applicable recommended properties.
