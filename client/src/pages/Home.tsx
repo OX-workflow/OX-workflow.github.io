@@ -3,6 +3,7 @@
  * precise technical metadata, layered system motifs, and restrained editorial hierarchy.
  */
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -23,11 +24,11 @@ import {
 } from "lucide-react";
 
 const ASSETS = {
-  hero: "/manus-storage/onyx-hero-architecture_44510d66.png",
-  layers: "/manus-storage/onyx-layers-diagram_334467f9.png",
-  evidence: "/manus-storage/onyx-evidence-texture_7f7cb94b.png",
-  mark: "/manus-storage/onyx-mark_63214367.png",
-  wordmark: "/manus-storage/onyx-official-wordmark_082dbcd2.png",
+  hero: "/assets/onyx-hero-architecture.svg",
+  layers: "/assets/onyx-layers-diagram.svg",
+  evidence: "/assets/onyx-evidence-texture.svg",
+  mark: "/assets/onyx-mark.svg",
+  wordmark: "/assets/onyx-wordmark.svg",
 };
 
 const navItems = [
@@ -182,7 +183,7 @@ export default function Home() {
         <header className="topbar">
           <div><span className="eyebrow">SYSTEMS ARCHITECTURE / CASE STUDY</span></div>
           <div className="topbar-actions">
-            <a className="source-link" href="/assets"><FolderOpen /> Asset library</a>
+            <Link className="source-link" href="/assets"><FolderOpen /> Asset library</Link>
             <a className="source-link" href="https://github.com/SMozaff/Onyx-Framwork" target="_blank" rel="noreferrer"><Github /> Source repository</a>
             <button className="theme-button" onClick={toggleTheme} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button>
           </div>
