@@ -42,11 +42,11 @@
 
 ## High-priority SEO fixes
 
-- [ ] Remove the mobile zoom restriction from the viewport metadata.
-- [ ] Add intrinsic image dimensions or aspect-ratio reservations to reduce layout shift risk.
-- [ ] Replace the extreme-ratio wordmark social preview with a dedicated social-card asset and metadata.
-- [ ] Tighten the homepage meta description and preserve canonical consistency.
-- [ ] Validate the static build, crawl artifacts, and Pages workflow configuration.
+- [x] Remove the mobile zoom restriction from the viewport metadata.
+- [x] Add intrinsic image dimensions or aspect-ratio reservations to reduce layout shift risk.
+- [x] Replace the extreme-ratio wordmark social preview with a dedicated social-card asset and metadata.
+- [x] Tighten the homepage meta description and preserve canonical consistency.
+- [x] Validate the static build, crawl artifacts, and Pages workflow configuration.
 
 ## Full live SEO audit
 
