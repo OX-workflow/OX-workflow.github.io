@@ -35,7 +35,24 @@
 
 ## Branch merge
 
-- [ ] Inspect latest remote `main` and `seo/sitemap-structured-data` histories for divergence.
-- [ ] Commit and push any pending changes before merging.
-- [ ] Merge the SEO branch into `main` and push the merged branch.
-- [ ] Verify the merge, working-tree cleanliness, and deployment status.
+- [x] Inspect latest remote `main` and `seo/sitemap-structured-data` histories for divergence.
+- [x] Commit and push any pending changes before merging.
+- [x] Merge the SEO branch into `main` and push the merged branch.
+- [x] Verify the merge, working-tree cleanliness, and deployment status. GitHub Pages deployment is blocked because Pages is not enabled for the repository.
+
+## High-priority SEO fixes
+
+- [ ] Remove the mobile zoom restriction from the viewport metadata.
+- [ ] Add intrinsic image dimensions or aspect-ratio reservations to reduce layout shift risk.
+- [ ] Replace the extreme-ratio wordmark social preview with a dedicated social-card asset and metadata.
+- [ ] Tighten the homepage meta description and preserve canonical consistency.
+- [ ] Validate the static build, crawl artifacts, and Pages workflow configuration.
+
+## Full live SEO audit
+
+- [x] Audit live crawlability, canonicalization, sitemap, robots, and indexability signals.
+- [x] Audit title, description, social metadata, language metadata, favicon, and viewport signals.
+- [x] Audit headings, semantic page structure, links, images, accessibility-related SEO, and content discoverability.
+- [x] Audit JSON-LD entity relationships, completeness, consistency, and rich-result eligibility.
+- [x] Audit performance, asset delivery, JavaScript rendering, and GitHub Pages deployment constraints.
+- [x] Produce and deliver a prioritized SEO audit report with citations and next steps.
