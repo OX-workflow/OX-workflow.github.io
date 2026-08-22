@@ -1,0 +1,8 @@
+<svg width="720" height="160" viewBox="0 0 720 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="160" rx="18" fill="#0B2A4A"/>
+  <path d="M61 31L105 56V108L61 133L17 108V56L61 31Z" stroke="#BCEBFF" stroke-width="5"/>
+  <path d="M61 58L82 70V94L61 106L40 94V70L61 58Z" fill="#45AEE5"/>
+  <path d="M61 31V58M105 56L82 70M105 108L82 94M61 133V106M17 108L40 94M17 56L40 70" stroke="#BCEBFF" stroke-width="3"/>
+  <text x="142" y="82" fill="#F0FBFF" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700" letter-spacing="12">ONYX</text>
+  <text x="145" y="116" fill="#9FD8F8" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="4">TECTOSILICATE FRAMEWORK</text>
+</svg>
