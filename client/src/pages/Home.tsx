@@ -279,15 +279,15 @@ function detectBrowserLocale(): Locale {
 function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (next: Locale) => void }) {
   return (
     <div className="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-1 dark:border-white/15 dark:bg-white/5" aria-label="Language selector">
-      <button type="button" lang="en" aria-pressed={locale === "en"} onClick={() => onSelect("en")} className={`rounded-md px-2.5 py-1 text-xs font-bold transition ${locale === "en" ? "bg-[#082348] text-white shadow-sm" : "text-slate-600 hover:text-[#082348] dark:text-slate-300 dark:hover:text-white"}`}>EN</button>
-      <button type="button" lang="fa" dir="rtl" aria-pressed={locale === "fa"} onClick={() => onSelect("fa")} className={`rounded-md px-2.5 py-1 text-xs font-bold transition ${locale === "fa" ? "bg-[#082348] text-white shadow-sm" : "text-slate-600 hover:text-[#082348] dark:text-slate-300 dark:hover:text-white"}`}>فارسی</button>
+      <a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")} className={`rounded-md px-2.5 py-1 text-xs font-bold transition ${locale === "en" ? "bg-[#082348] text-white shadow-sm" : "text-slate-600 hover:text-[#082348] dark:text-slate-300 dark:hover:text-white"}`}>EN</a>
+      <a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")} className={`rounded-md px-2.5 py-1 text-xs font-bold transition ${locale === "fa" ? "bg-[#082348] text-white shadow-sm" : "text-slate-600 hover:text-[#082348] dark:text-slate-300 dark:hover:text-white"}`}>فارسی</a>
     </div>
   );
 }
 
-export default function Home() {
+export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [dark, setDark] = useState(false);
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
   const isRtl = locale === "fa";
@@ -299,12 +299,13 @@ export default function Home() {
   useEffect(() => {
     const initialDark = window.localStorage.getItem("onyx-theme") === "dark";
     const savedLocale = window.localStorage.getItem("onyx-locale");
-    const initialLocale: Locale = savedLocale === "fa" || savedLocale === "en" ? savedLocale : detectBrowserLocale();
+    const preferredLocale: Locale = initialLocale
+      ?? (savedLocale === "fa" || savedLocale === "en" ? savedLocale : detectBrowserLocale());
 
     setDark(initialDark);
-    setLocale(initialLocale);
+    setLocale(preferredLocale);
     document.documentElement.classList.toggle("dark", initialDark);
-  }, []);
+  }, [initialLocale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -336,7 +337,7 @@ export default function Home() {
 
   const selectLocale = (next: Locale) => {
     setLocale(next);
-    // A manual selection always takes precedence over future browser-language detection.
+    // A manual selection always takes precedence over future browser-language detection on the root URL.
     window.localStorage.setItem("onyx-locale", next);
     setMenuOpen(false);
   };
