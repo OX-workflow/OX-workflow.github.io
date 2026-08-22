@@ -31,3 +31,4 @@
 - [x] Inspect the live sitemap.xml and robots.txt for canonical host, scope, and crawlability issues.
 - [x] Inspect live JSON-LD for validity, entity relationships, URLs, and consistency with visible ONYX content.
 - [x] Apply and validate any focused SEO corrections needed in the repository.
+- [ ] Commit and push the SEO review changes on a separate branch without altering main.
