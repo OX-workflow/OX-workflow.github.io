@@ -35,22 +35,78 @@
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "WebSite",
+            "@id": "https://ox-workflow.github.io/#website",
+            "url": "https://ox-workflow.github.io/",
+            "name": "ONYX Tectosilicate Framework",
+            "description": "An evidence-led systems architecture case study for a local-first, authority-aware mission-operations framework.",
+            "publisher": { "@id": "https://ox-workflow.github.io/#organization" },
+            "inLanguage": ["en", "fa"]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://ox-workflow.github.io/#webpage",
+            "url": "https://ox-workflow.github.io/",
+            "name": "ONYX Tectosilicate Framework | Systems Architecture Case Study",
+            "description": "Explore the ONYX Tectosilicate Framework: an evidence-led, local-first mission-operations architecture with explicit boundaries, authority-aware workflows, and IFEM-informed engineering.",
+            "isPartOf": { "@id": "https://ox-workflow.github.io/#website" },
+            "mainEntity": { "@id": "https://ox-workflow.github.io/#case-study" },
+            "inLanguage": ["en", "fa"]
+          },
+          {
+            "@type": "Article",
+            "@id": "https://ox-workflow.github.io/#case-study",
+            "mainEntityOfPage": { "@id": "https://ox-workflow.github.io/#webpage" },
+            "headline": "Operational intelligence for complex systems",
+            "alternativeHeadline": "ONYX Tectosilicate Framework Systems Architecture Case Study",
+            "description": "A systems architecture case study describing the local-first, authority-aware mission-operations approach of the ONYX Tectosilicate Framework.",
+            "articleSection": "Systems Architecture",
+            "genre": "Technical case study",
+            "author": { "@id": "https://ox-workflow.github.io/#suhail-muzaffari" },
+            "publisher": { "@id": "https://ox-workflow.github.io/#organization" },
+            "about": [
+              { "@id": "https://ox-workflow.github.io/#onyx-framework" },
+              { "@id": "https://ifem-doctrine.github.io/#ifem" }
+            ],
+            "inLanguage": ["en", "fa"],
+            "isAccessibleForFree": true,
+            "keywords": ["mission operations", "systems architecture", "local-first", "IFEM", "software engineering"]
+          },
+          {
             "@type": "SoftwareSourceCode",
             "@id": "https://ox-workflow.github.io/#onyx-framework",
             "name": "ONYX Tectosilicate Framework",
             "url": "https://ox-workflow.github.io/",
-            "description": "A local-first, authority-aware mission operations system presented as an evidence-led systems architecture case study.",
-            "codeRepository": "https://github.com/OX-workflow/OX-workflow.github.io",
-            "programmingLanguage": ["TypeScript"],
+            "description": "A local-first, authority-aware mission-operations system presented as an evidence-led systems architecture case study.",
+            "codeRepository": "https://github.com/SMozaff/Onyx-Framwork",
+            "programmingLanguage": ["Rust", "TypeScript"],
             "author": { "@id": "https://ox-workflow.github.io/#suhail-muzaffari" },
             "about": { "@id": "https://ifem-doctrine.github.io/#ifem" },
             "keywords": "ONYX Tectosilicate Framework, mission operations, systems architecture, local-first, IFEM"
           },
           {
+            "@type": "Organization",
+            "@id": "https://ox-workflow.github.io/#organization",
+            "name": "ONYX Tectosilicate Framework",
+            "url": "https://ox-workflow.github.io/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ox-workflow.github.io/assets/onyx-logo.png",
+              "caption": "ONYX Tectosilicate Framework logo"
+            },
+            "email": "so.muzaff@gmail.com"
+          },
+          {
             "@type": "Person",
             "@id": "https://ox-workflow.github.io/#suhail-muzaffari",
             "name": "Suhail Muzaffari",
-            "email": "so.muzaff@gmail.com"
+            "jobTitle": "Software Engineer and Systems Architect",
+            "url": "https://SMozaff.github.io/",
+            "email": "so.muzaff@gmail.com",
+            "sameAs": [
+              "https://github.com/SMozaff",
+              "https://orcid.org/0009-0001-2428-1295"
+            ]
           },
           {
             "@type": "DefinedTerm",

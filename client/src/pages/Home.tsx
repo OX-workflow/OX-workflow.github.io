@@ -518,7 +518,7 @@ export default function Home() {
             </div>
           </div>
           <div className="developer-grid">
-            <div className="developer-title reveal"><div className="section-index"><span>05</span><p>DEVELOPER<br />ATTRIBUTION</p></div><p className="eyebrow">DEVELOPED BY</p><h2>Soheil<br /><i>Mozaffari</i></h2></div>
+            <div className="developer-title reveal"><div className="section-index"><span>05</span><p>DEVELOPER<br />ATTRIBUTION</p></div><p className="eyebrow">DEVELOPED BY</p><h2>Suhail<br /><i>Mozaffari</i></h2></div>
             <div className="developer-bio reveal delay-1"><p>Software Engineer · Systems Architect</p><p className="developer-copy">An independent systems and software practice focused on explicit boundaries, maintainable architectures, and verification paths that remain traceable as a system grows.</p><div className="developer-links"><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Personal website <ArrowUpRight /></a><a href="https://orcid.org/0009-0001-2428-1295" target="_blank" rel="noreferrer">ORCID 0009-0001-2428-1295 <ArrowUpRight /></a><a href="https://github.com/SMozaff" target="_blank" rel="noreferrer">GitHub SMozaff <ArrowUpRight /></a></div></div>
           </div>
           <footer className="footer"><span className="footer-brand"><img src={ASSETS.brandLogo} alt="ONYX Framework" />ONYX FRAMEWORK</span><span>CASE STUDY / 2026</span><a href="#overview" onClick={(event) => { event.preventDefault(); scrollTo("overview"); }}>Back to top <ArrowUpRight /></a></footer>
