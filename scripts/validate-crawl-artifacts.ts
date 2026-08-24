@@ -57,7 +57,7 @@ if (!/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sitemap)) {
 
 for (const [routeName, route] of Object.entries(routes)) {
   const html = fs.readFileSync(route.file, "utf8");
-  const htmlLanguage = route.language === "fa" ? '<html lang="fa" dir="rtl">' : '<html lang="en">';
+  const htmlLanguage = route.language === "fa" ? '<html lang="fa" dir="rtl">' : '<html lang="en" dir="ltr">';
 
   if (!html.includes(htmlLanguage)) {
     throw new Error(`${routeName} page does not declare the expected document language and direction.`);

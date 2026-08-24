@@ -43,7 +43,7 @@ for (const page of localizedPages) {
     `${localizedEntityBase}/#case-study`,
     `${siteUrl}/#onyx-framework`,
     `${siteUrl}/#organization`,
-    `${siteUrl}/#suhail-muzaffari`,
+    `${siteUrl}/#soheil-mozaffari`,
     "https://ifem-doctrine.github.io/#ifem",
   ]) {
     if (!ids.has(id)) {

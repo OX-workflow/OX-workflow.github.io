@@ -9,7 +9,7 @@ type Locale = "en" | "fa";
 
 type LocaleMetadata = {
   documentLanguage: string;
-  direction?: "rtl";
+  direction: "ltr" | "rtl";
   url: string;
   title: string;
   description: string;
@@ -30,6 +30,7 @@ const sourceDocument = fs.readFileSync(path.join(outputDirectory, "index.html"),
 const localeMetadata: Record<Locale, LocaleMetadata> = {
   en: {
     documentLanguage: "en",
+    direction: "ltr",
     url: `${SITE_URL}/en/`,
     title: "ONYX | The Architecture of Execution",
     description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that maps authority, coordinates execution, and verifies outcomes across complex organizations.",
@@ -110,7 +111,7 @@ function schema(locale: Locale): string {
         genre: "Operational Intelligence Infrastructure",
         url: metadata.url,
         image: [`${SITE_URL}/assets/product/mission-operations.png`, `${SITE_URL}/assets/product/operational-overview.png`],
-        author: { "@id": `${SITE_URL}/#suhail-muzaffari` },
+        author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
         publisher: { "@id": `${SITE_URL}/#organization` },
         about: [{ "@id": `${SITE_URL}/#onyx-framework` }, { "@id": "https://ifem-doctrine.github.io/#ifem" }],
         inLanguage: locale,
@@ -126,7 +127,7 @@ function schema(locale: Locale): string {
         description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that gives organizational authority, responsibility, execution, and verification a living digital structure.",
         codeRepository: "https://github.com/SMozaff/Onyx-Framwork",
         programmingLanguage: ["Rust", "TypeScript"],
-        author: { "@id": `${SITE_URL}/#suhail-muzaffari` },
+        author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
         about: { "@id": "https://ifem-doctrine.github.io/#ifem" },
         keywords: "ONYX, Mission Operations Platform, Operational Intelligence Infrastructure, authority graph, accountability, execution verification",
       },
@@ -140,15 +141,15 @@ function schema(locale: Locale): string {
           url: `${SITE_URL}/assets/onyx-logo.png`,
           caption: "ONYX Tectosilicate Framework logo",
         },
-        email: "so.muzaff@gmail.com",
+        email: ["Soheil.Mozaffari@gmail.com", "Mozaffari@lamatech.com"],
       },
       {
         "@type": "Person",
-        "@id": `${SITE_URL}/#suhail-muzaffari`,
-        name: "Suhail Muzaffari",
+        "@id": `${SITE_URL}/#soheil-mozaffari`,
+        name: "Soheil Mozaffari",
         jobTitle: "Software Engineer and Systems Architect",
         url: "https://SMozaff.github.io/",
-        email: "so.muzaff@gmail.com",
+        email: ["Soheil.Mozaffari@gmail.com", "Mozaffari@lamatech.com"],
         sameAs: ["https://github.com/SMozaff", "https://orcid.org/0009-0001-2428-1295"],
       },
       {
@@ -167,7 +168,7 @@ function schema(locale: Locale): string {
 function localizedDocument(locale: Locale): string {
   const metadata = localeMetadata[locale];
   const rootMarkup = renderToStaticMarkup(<Home initialLocale={locale} />);
-  const htmlAttributes = metadata.direction ? `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">` : `<html lang="${metadata.documentLanguage}">`;
+  const htmlAttributes = `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`;
   const metadataWithAlternates = `${alternateLinks()}\n    <link rel="canonical" href="${metadata.url}" />`;
 
   let documentHtml = sourceDocument

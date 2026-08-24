@@ -249,6 +249,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const selectLocale = (next: Locale) => {
     window.localStorage.setItem("onyx-locale", next);
     setLocale(next);
+    document.documentElement.lang = next;
+    document.documentElement.dir = next === "fa" ? "rtl" : "ltr";
     setMenuOpen(false);
   };
   const closeMenu = () => setMenuOpen(false);
@@ -303,10 +305,10 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section className="why-onyx section-shell"><div className="shell-content why-onyx__layout"><div><SignalTag>{t(text.why.tag)}</SignalTag><h2>{t(text.why.titleA)}<br /><em>{t(text.why.titleB)}</em></h2></div><div className="why-onyx__comparison">{text.why.labels.map(([label, copy], index) => <div className={index === 3 ? "why-onyx__answer" : ""} key={label.en}><span>{t(label)}</span><strong>{t(copy)}</strong></div>)}</div></div></section>
 
-        <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:so.muzaff@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:so.muzaff@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
+        <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — tectosilicate framework" className="site-footer__wide-logo" width="1200" height="400" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><a href="mailto:so.muzaff@gmail.com">Suhail Muzaffari · so.muzaff@gmail.com</a></div></div></footer>
+      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — tectosilicate framework" className="site-footer__wide-logo" width="1200" height="400" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil Mozaffari · Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></div></div></footer>
     </div>
   );
 }
