@@ -31,6 +31,7 @@ const assets = {
   authority: "/assets/product/mission-operations.png",
   execution: "/assets/product/operational-overview.png",
   nexus: "/assets/product/secure-browser-access.webp",
+  ifem: "/assets/ifem-doctrine.jpg",
   signalMark: "/assets/onyx-logo.png",
 };
 
@@ -53,6 +54,20 @@ const text = {
     scroll: { en: "Scroll to examine", fa: "برای بررسی حرکت کنید" },
   },
   bridge: { en: "Authority / responsibility / execution / verification", fa: "اختیار / مسئولیت / اجرا / راستی‌آزمایی" },
+  methodology: {
+    tag: { en: "Architecture doctrine", fa: "منطق معماری" },
+    titleA: { en: "Interface-first", fa: "طراحی از رابط" },
+    titleB: { en: "by design.", fa: "آغاز می‌شود." },
+    body: {
+      en: "ONYX is the operational platform. IFEM is the methodology that shapes its boundaries: interfaces, responsibilities, evidence, and verification are defined before implementation scales.",
+      fa: "ONYX پلتفرم عملیاتی است؛ IFEM روشی است که مرزهای آن را شکل می‌دهد: پیش از گسترش پیاده‌سازی، رابط‌ها، مسئولیت‌ها، شواهد و معیارهای راستی‌آزمایی روشن می‌شوند.",
+    },
+    product: { en: "Product layer", fa: "لایه محصول" },
+    productCopy: { en: "Authority-aware operational intelligence", fa: "هوشمندی عملیاتی آگاه از اختیار" },
+    doctrine: { en: "Methodology layer", fa: "لایه روش‌شناسی" },
+    doctrineCopy: { en: "Interface-first execution discipline", fa: "انضباط اجرای رابط‌محور" },
+    link: { en: "Explore the IFEM Doctrine", fa: "مطالعه مکتب IFEM" },
+  },
   problem: {
     tag: { en: "01 / The hidden problem", fa: "۰۱ / مسئله پنهان" },
     titleA: { en: "Organizations break", fa: "سازمان‌ها پیش از آن‌که" },
@@ -200,7 +215,7 @@ function ArrowAction({ children, href, solid = false, rtl = false }: { children:
 }
 
 function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (locale: Locale) => void }) {
-  return <div className="language-control" aria-label="Language selector"><a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")}>EN</a><a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")}>فارسی</a></div>;
+  return <div className="language-control" aria-label={locale === "fa" ? "انتخاب زبان" : "Language selector"}><a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")}>EN</a><a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")}>فارسی</a></div>;
 }
 
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
@@ -222,6 +237,15 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [initialLocale]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
   const selectLocale = (next: Locale) => {
     window.localStorage.setItem("onyx-locale", next);
     setLocale(next);
@@ -233,19 +257,19 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   return (
     <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
       <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
-        <a href="#top" className="header-mark" aria-label="ONYX home"><img src={assets.wideLogo} alt="ONYX" /></a>
+        <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={assets.wideLogo} alt="ONYX" width="1200" height="400" decoding="async" /></a>
         <nav className="desktop-nav" aria-label="Primary navigation"><a href="#platform">{t(text.nav.platform)}</a><a href="#outcomes">{t(text.nav.outcomes)}</a><a href="#enterprise">{t(text.nav.enterprise)}</a></nav>
         <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Toggle navigation">{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={isRtl ? "باز و بسته کردن منو" : "Toggle navigation"}>{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
       </header>
 
-      <div className={`mobile-nav ${menuOpen ? "mobile-nav--open" : ""}`}>
+      <nav id="mobile-navigation" className={`mobile-nav ${menuOpen ? "mobile-nav--open" : ""}`} aria-hidden={!menuOpen} aria-label={isRtl ? "پیمایش موبایل" : "Mobile navigation"}>
         <LanguageControl locale={locale} onSelect={selectLocale} />
         <a href="#platform" onClick={closeMenu}>{t(text.nav.platform)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
         <a href="#outcomes" onClick={closeMenu}>{t(text.nav.outcomes)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
         <a href="#enterprise" onClick={closeMenu}>{t(text.nav.enterprise)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
         <a href="#contact" onClick={closeMenu} className="mobile-nav__cta">{t(text.nav.demo)}</a>
-      </div>
+      </nav>
 
       <main id="top">
         <section className="hero section-shell">
@@ -255,7 +279,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
           <a className="hero__scroll" href="#problem" aria-label={t(text.hero.scroll)}><span>{t(text.hero.scroll)}</span><ChevronDown size={16} /></a>
         </section>
 
-        <div className="brand-bridge" aria-hidden="true"><div className="shell-content brand-bridge__content"><span className="brand-bridge__line" /><div className="brand-bridge__mark"><img src={assets.signalMark} alt="" /><strong>ONYX</strong></div><span className="brand-bridge__statement">{t(text.bridge)}</span><span className="brand-bridge__line" /></div></div>
+        <div className="brand-bridge" aria-hidden="true"><div className="shell-content brand-bridge__content"><span className="brand-bridge__line" /><div className="brand-bridge__mark"><img src={assets.signalMark} alt="" width="512" height="512" decoding="async" /><strong>ONYX</strong></div><span className="brand-bridge__statement">{t(text.bridge)}</span><span className="brand-bridge__line" /></div></div>
 
         <section id="problem" className="problem section-shell"><div className="shell-content split-grid split-grid--problem"><div className="section-intro"><SignalTag>{t(text.problem.tag)}</SignalTag><h2>{t(text.problem.titleA)}<br /><em>{t(text.problem.titleB)}</em></h2><p>{t(text.problem.body)}</p></div><div className="fracture-board"><div className="fracture-board__caption"><span>{t(text.problem.signal)}</span><span>{t(text.problem.fragmented)}</span></div><div className="fracture-board__items">{fracturePoints.map((item, index) => <div className="fracture-row" key={item.en}><span className="fracture-row__index">{String(index + 1).padStart(2, "0")}</span><span className="fracture-row__line" /><span>{t(item)}</span><Plus size={14} /></div>)}</div><Rule /><div className="fracture-board__result"><CircleDot size={16} /><span>{t(text.problem.result)}</span></div></div></div></section>
 
@@ -263,9 +287,11 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section className="philosophy section-shell"><div className="shell-content"><div className="philosophy__top"><SignalTag>{t(text.philosophy.tag)}</SignalTag><div><h2>{t(text.philosophy.titleA)}<br /><em>{t(text.philosophy.titleB)}</em></h2><p>{t(text.philosophy.body)}</p></div></div><div className="logic-path" aria-label="Authority becomes organizational intelligence">{text.philosophy.steps.map((item, index) => <div className={`logic-path__step ${index === 4 ? "logic-path__step--final" : ""}`} key={item.en}><span className="logic-path__number">{String(index + 1).padStart(2, "0")}</span><span className="logic-path__dot" /><strong>{t(item)}</strong></div>)}</div></div></section>
 
-        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
+        <section id="methodology" className="methodology section-shell"><div className="shell-content methodology__layout"><div className="methodology__content"><SignalTag>{t(text.methodology.tag)}</SignalTag><h2>{t(text.methodology.titleA)}<br /><em>{t(text.methodology.titleB)}</em></h2><p>{t(text.methodology.body)}</p><a className="methodology__link" href="https://ifem-doctrine.github.io/" target="_blank" rel="noreferrer">{t(text.methodology.link)}<ArrowUpLeft size={16} /></a></div><div className="methodology__system"><img src={assets.ifem} alt="IFEM Doctrine — Interface-First Execution Methodology" width="1536" height="512" loading="lazy" decoding="async" /><div className="methodology__layers"><div><span>ONYX</span><strong>{t(text.methodology.product)}</strong><small>{t(text.methodology.productCopy)}</small></div><div><span>IFEM</span><strong>{t(text.methodology.doctrine)}</strong><small>{t(text.methodology.doctrineCopy)}</small></div></div></div></div></section>
 
-        <section className="execution section-shell"><div className="execution__image-wrap"><img src={assets.execution} alt="ONYX Operational Overview interface" /><div className="execution__image-fade" /></div><div className="shell-content execution__content"><div className="section-heading"><SignalTag>{t(text.execution.tag)}</SignalTag><h2>{t(text.execution.titleA)}<br /><em>{t(text.execution.titleB)}</em></h2><p>{t(text.execution.body)}</p></div><div className="execution-path">{text.execution.stages.map((stage, index) => <div className="execution-path__item" key={stage.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(stage)}</strong><i /></div>)}</div></div></section>
+        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
+
+        <section className="execution section-shell"><div className="execution__image-wrap"><img src={assets.execution} alt="ONYX Operational Overview interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="execution__image-fade" /></div><div className="shell-content execution__content"><div className="section-heading"><SignalTag>{t(text.execution.tag)}</SignalTag><h2>{t(text.execution.titleA)}<br /><em>{t(text.execution.titleB)}</em></h2><p>{t(text.execution.body)}</p></div><div className="execution-path">{text.execution.stages.map((stage, index) => <div className="execution-path__item" key={stage.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(stage)}</strong><i /></div>)}</div></div></section>
 
         <section className="accountability section-shell"><div className="shell-content accountability__layout"><div className="accountability__statement"><SignalTag>{t(text.accountability.tag)}</SignalTag><h2>{t(text.accountability.titleA)}<br /><em>{t(text.accountability.titleB)}</em></h2></div><div className="verification-card"><div className="verification-card__meta"><span>{t(text.accountability.item)}</span><span>{t(text.accountability.log)}</span></div><div className="verification-card__route"><div className="route-node route-node--done"><Check size={14} /><span>{t(text.accountability.completed)}</span></div><span className="route-link" /><div className="route-node route-node--done"><ShieldCheck size={14} /><span>{t(text.accountability.verified)}</span></div><span className="route-link" /><div className="route-node route-node--active"><BadgeCheck size={14} /><span>{t(text.accountability.accepted)}</span></div></div><div className="verification-card__footer"><span>{t(text.accountability.recorded)}</span><span className="verified-stamp">COMPLETE</span></div></div></div></section>
 
@@ -273,14 +299,14 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section id="outcomes" className="outcomes section-shell"><div className="shell-content"><div className="section-heading section-heading--wide"><SignalTag>{t(text.outcomes.tag)}</SignalTag><h2>{t(text.outcomes.titleA)}<br /><em>{t(text.outcomes.titleB)}</em></h2><p>{t(text.outcomes.body)}</p></div><div className="outcomes-list">{text.outcomes.list.map((outcome, index) => <article key={outcome.en} className="outcome-row"><span>{String(index + 1).padStart(2, "0")}</span><h3>{t({ en: outcome.en, fa: outcome.fa })}</h3><p>{locale === "en" ? outcome.copyEn : outcome.copyFa}</p><Chevron size={20} /></article>)}</div></div></section>
 
-        <section id="enterprise" className="enterprise section-shell"><img className="enterprise__visual" src={assets.nexus} alt="ONYX secure access interface" /><div className="enterprise__overlay" /><div className="shell-content enterprise__content"><SignalTag>{t(text.enterprise.tag)}</SignalTag><h2>{t(text.enterprise.titleA)}<br />{t(text.enterprise.titleB)}<br /><em>{t(text.enterprise.titleC)}</em></h2><div className="enterprise__specs">{text.enterprise.specs.map((spec) => <span key={spec.en}>{t(spec)}</span>)}</div></div><div className="enterprise__annotations" aria-hidden="true">{text.enterprise.annotations.map((item, index) => <div key={item.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(item)}</strong></div>)}</div><div className="enterprise__badge"><Command size={17} /><span>ONYX // CONTROLLED EXECUTION</span></div></section>
+        <section id="enterprise" className="enterprise section-shell"><img className="enterprise__visual" src={assets.nexus} alt="ONYX secure access interface" width="893" height="768" loading="lazy" decoding="async" /><div className="enterprise__overlay" /><div className="shell-content enterprise__content"><SignalTag>{t(text.enterprise.tag)}</SignalTag><h2>{t(text.enterprise.titleA)}<br />{t(text.enterprise.titleB)}<br /><em>{t(text.enterprise.titleC)}</em></h2><div className="enterprise__specs">{text.enterprise.specs.map((spec) => <span key={spec.en}>{t(spec)}</span>)}</div></div><div className="enterprise__annotations" aria-hidden="true">{text.enterprise.annotations.map((item, index) => <div key={item.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(item)}</strong></div>)}</div><div className="enterprise__badge"><Command size={17} /><span>ONYX // CONTROLLED EXECUTION</span></div></section>
 
         <section className="why-onyx section-shell"><div className="shell-content why-onyx__layout"><div><SignalTag>{t(text.why.tag)}</SignalTag><h2>{t(text.why.titleA)}<br /><em>{t(text.why.titleB)}</em></h2></div><div className="why-onyx__comparison">{text.why.labels.map(([label, copy], index) => <div className={index === 3 ? "why-onyx__answer" : ""} key={label.en}><span>{t(label)}</span><strong>{t(copy)}</strong></div>)}</div></div></section>
 
-        <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:so.muzaff@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:so.muzaff@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
+        <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:so.muzaff@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:so.muzaff@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — tectosilicate framework" className="site-footer__wide-logo" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><a href="mailto:so.muzaff@gmail.com">Suhail Muzaffari · so.muzaff@gmail.com</a></div></div></footer>
+      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — tectosilicate framework" className="site-footer__wide-logo" width="1200" height="400" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><a href="mailto:so.muzaff@gmail.com">Suhail Muzaffari · so.muzaff@gmail.com</a></div></div></footer>
     </div>
   );
 }
