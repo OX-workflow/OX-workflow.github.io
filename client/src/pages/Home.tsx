@@ -249,6 +249,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const selectLocale = (next: Locale) => {
     window.localStorage.setItem("onyx-locale", next);
     setLocale(next);
+    document.documentElement.lang = next;
+    document.documentElement.dir = next === "fa" ? "rtl" : "ltr";
     setMenuOpen(false);
   };
   const closeMenu = () => setMenuOpen(false);

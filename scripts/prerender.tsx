@@ -9,7 +9,7 @@ type Locale = "en" | "fa";
 
 type LocaleMetadata = {
   documentLanguage: string;
-  direction?: "rtl";
+  direction: "ltr" | "rtl";
   url: string;
   title: string;
   description: string;
@@ -30,6 +30,7 @@ const sourceDocument = fs.readFileSync(path.join(outputDirectory, "index.html"),
 const localeMetadata: Record<Locale, LocaleMetadata> = {
   en: {
     documentLanguage: "en",
+    direction: "ltr",
     url: `${SITE_URL}/en/`,
     title: "ONYX | The Architecture of Execution",
     description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that maps authority, coordinates execution, and verifies outcomes across complex organizations.",
@@ -167,7 +168,7 @@ function schema(locale: Locale): string {
 function localizedDocument(locale: Locale): string {
   const metadata = localeMetadata[locale];
   const rootMarkup = renderToStaticMarkup(<Home initialLocale={locale} />);
-  const htmlAttributes = metadata.direction ? `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">` : `<html lang="${metadata.documentLanguage}">`;
+  const htmlAttributes = `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`;
   const metadataWithAlternates = `${alternateLinks()}\n    <link rel="canonical" href="${metadata.url}" />`;
 
   let documentHtml = sourceDocument
