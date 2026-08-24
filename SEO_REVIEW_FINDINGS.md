@@ -12,7 +12,7 @@ The live sitemap contains one absolute URL, `https://ox-workflow.github.io/`, wi
 
 ## Observed live JSON-LD graph
 
-The homepage exposes one JSON-LD graph containing WebSite, WebPage, Article, SoftwareSourceCode, Organization, Person, and DefinedTerm entities. The graph uses stable fragment IDs, links the WebPage to the WebSite, links the Article to the WebPage, connects ONYX to the IFEM DefinedTerm, identifies Suhail Muzaffari, and references the source repository at `https://github.com/SMozaff/Onyx-Framwork`.
+The homepage exposes one JSON-LD graph containing WebSite, WebPage, Article, SoftwareSourceCode, Organization, Person, and DefinedTerm entities. The graph uses stable fragment IDs, links the WebPage to the WebSite, links the Article to the WebPage, connects ONYX to the IFEM DefinedTerm, identifies Soheil Mozaffari, and references the source repository at `https://github.com/SMozaff/Onyx-Framwork`.
 
 ## Candidate improvements
 
