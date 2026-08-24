@@ -1,8 +1,6 @@
 /**
  * ONYX design reminder: light-only enterprise system — white and titanium-silver surfaces,
  * graphite typography, electric-blue signal accents, precise geometry, restrained shadows.
- * The light :root block below is the active theme; it intentionally overrides the base
- * token values so every section renders on white/light-blue surfaces with no dark variant.
  */
 @import "tailwindcss";
 
@@ -33,32 +31,39 @@
 }
 
 :root {
+  color-scheme: light;
   --radius: 0.25rem;
-  --background: #05070b;
-  --foreground: #f1f5fb;
-  --card: #0b0f17;
-  --card-foreground: #f1f5fb;
-  --popover: #101521;
-  --popover-foreground: #f1f5fb;
-  --primary: #125bff;
+  --background: #f5f8fc;
+  --foreground: #0c1a2f;
+  --card: #ffffff;
+  --card-foreground: #0c1a2f;
+  --popover: #ffffff;
+  --popover-foreground: #0c1a2f;
+  --primary: #0b63f6;
   --primary-foreground: #ffffff;
-  --secondary: #101521;
-  --secondary-foreground: #cad2df;
-  --muted: #151b27;
-  --muted-foreground: #8c96a7;
-  --accent: #172134;
-  --accent-foreground: #ffffff;
+  --secondary: #eaf1fb;
+  --secondary-foreground: #17365f;
+  --muted: #edf2f8;
+  --muted-foreground: #53627a;
+  --accent: #e7f0ff;
+  --accent-foreground: #0b4fc4;
   --destructive: #ef5b5b;
   --destructive-foreground: #fff;
-  --border: rgba(201, 216, 240, 0.13);
-  --input: rgba(201, 216, 240, 0.17);
-  --ring: #125bff;
-  --obsidian: #05070b;
-  --graphite: #0b0f17;
-  --graphite-2: #121826;
-  --titanium: #d6deec;
-  --signal: #125bff;
-  --signal-bright: #45a4ff;
+  --border: rgba(24, 58, 104, 0.14);
+  --input: rgba(24, 58, 104, 0.18);
+  --ring: #0b63f6;
+  --obsidian: #f5f8fc;
+  --graphite: #ffffff;
+  --graphite-2: #edf3fa;
+  --titanium: #233b5d;
+  --signal: #0b63f6;
+  --signal-bright: #1769e8;
+  --ink: #0c1a2f;
+  --ink-soft: #53627a;
+  --surface: #ffffff;
+  --surface-alt: #edf3fa;
+  --line: rgba(24, 58, 104, 0.14);
+  --teal: #0d8f7d;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
@@ -223,39 +228,6 @@ h2 em, h1 em { color: var(--signal-bright); font-style: normal; }
 .hero::before { position: absolute; z-index: -2; inset: 0; opacity: 0.55; background: repeating-linear-gradient(134deg, transparent 0 60px, rgba(73, 127, 255, 0.14) 61px 62px, transparent 63px 121px); content: ""; }
 
 /* Light-only enterprise system. Brand artwork remains on contained navy plates for fidelity. */
-:root {
-  color-scheme: light;
-  --background: #f5f8fc;
-  --foreground: #0c1a2f;
-  --card: #ffffff;
-  --card-foreground: #0c1a2f;
-  --popover: #ffffff;
-  --popover-foreground: #0c1a2f;
-  --primary: #0b63f6;
-  --primary-foreground: #ffffff;
-  --secondary: #eaf1fb;
-  --secondary-foreground: #17365f;
-  --muted: #edf2f8;
-  --muted-foreground: #53627a;
-  --accent: #e7f0ff;
-  --accent-foreground: #0b4fc4;
-  --border: rgba(24, 58, 104, 0.14);
-  --input: rgba(24, 58, 104, 0.18);
-  --ring: #0b63f6;
-  --obsidian: #f5f8fc;
-  --graphite: #ffffff;
-  --graphite-2: #edf3fa;
-  --titanium: #233b5d;
-  --signal: #0b63f6;
-  --signal-bright: #1769e8;
-  --ink: #0c1a2f;
-  --ink-soft: #53627a;
-  --surface: #ffffff;
-  --surface-alt: #edf3fa;
-  --line: rgba(24, 58, 104, 0.14);
-  --teal: #0d8f7d;
-}
-
 html,
 body,
 .onyx-site { background: var(--background); color: var(--ink); }
