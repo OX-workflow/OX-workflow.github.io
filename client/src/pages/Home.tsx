@@ -258,7 +258,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   return (
     <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
       <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
-        <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={assets.wideLogo} alt="ONYX" width="1320" height="360" decoding="async" /></a>
+        <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={assets.wideLogoLight} alt="ONYX" width="1200" height="492" decoding="async" /></a>
         <nav className="desktop-nav" aria-label="Primary navigation"><a href="#platform">{t(text.nav.platform)}</a><a href="#outcomes">{t(text.nav.outcomes)}</a><a href="#enterprise">{t(text.nav.enterprise)}</a></nav>
         <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={isRtl ? "باز و بسته کردن منو" : "Toggle navigation"}>{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
