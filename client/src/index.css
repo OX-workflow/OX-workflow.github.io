@@ -654,3 +654,49 @@ body { min-height: 100vh; overflow-x: hidden; }
   .hero--ready .hero__telemetry,
   .hero--ready .hero__scroll { transition:none; }
 }
+
+/* Final light-theme contrast pass: keep every operational label, control, card, and annotation readable. */
+:root:not([data-theme="dark"]) .hero-launch { color: #dceaff; }
+:root:not([data-theme="dark"]) .hero-launch__status,
+:root:not([data-theme="dark"]) .hero-launch__telemetry { color: #dceaff; }
+:root:not([data-theme="dark"]) .signal-tag { color: #35506f; }
+:root:not([data-theme="dark"]) .section-heading p,
+:root:not([data-theme="dark"]) .section-intro > p,
+:root:not([data-theme="dark"]) .philosophy__top p,
+:root:not([data-theme="dark"]) .industries__heading > p,
+:root:not([data-theme="dark"]) .platform__intro > p,
+:root:not([data-theme="dark"]) .authority-showcase__copy p,
+:root:not([data-theme="dark"]) .methodology__content > p,
+:root:not([data-theme="dark"]) .final-cta p { color: #405675; }
+:root:not([data-theme="dark"]) .fracture-board__caption,
+:root:not([data-theme="dark"]) .verification-card__meta,
+:root:not([data-theme="dark"]) .fracture-board__result,
+:root:not([data-theme="dark"]) .contrast-table__head,
+:root:not([data-theme="dark"]) .contrast-table__row,
+:root:not([data-theme="dark"]) .logic-path__number,
+:root:not([data-theme="dark"]) .capability-card__head,
+:root:not([data-theme="dark"]) .execution-path__item span,
+:root:not([data-theme="dark"]) .outcome-row > span { color: #526a88; }
+:root:not([data-theme="dark"]) .fracture-row,
+:root:not([data-theme="dark"]) .logic-path__step strong,
+:root:not([data-theme="dark"]) .execution-path__item strong,
+:root:not([data-theme="dark"]) .route-node,
+:root:not([data-theme="dark"]) .check-list,
+:root:not([data-theme="dark"]) .enterprise__specs,
+:root:not([data-theme="dark"]) .enterprise__badge { color: #294562; }
+:root:not([data-theme="dark"]) .contrast-table__row strong,
+:root:not([data-theme="dark"]) .capability-card h3,
+:root:not([data-theme="dark"]) .industry-card h3,
+:root:not([data-theme="dark"]) .outcome-row h3,
+:root:not([data-theme="dark"]) .why-onyx__comparison strong,
+:root:not([data-theme="dark"]) .enterprise h2,
+:root:not([data-theme="dark"]) .final-cta h2 { color: #102b4b; }
+:root:not([data-theme="dark"]) .capability-card > svg,
+:root:not([data-theme="dark"]) .industry-card > svg,
+:root:not([data-theme="dark"]) .outcome-row > svg,
+:root:not([data-theme="dark"]) .route-node svg { color: #4f6b8e; }
+:root:not([data-theme="dark"]) .methodology__link { color: #087968; }
+:root:not([data-theme="dark"]) .bound-context { color: #eaf3ff; }
+:root:not([data-theme="dark"]) .site-footer__right { color: #4d6380; }
+:root:not([data-theme="dark"]) .site-footer__right a { color: #214f8a; text-decoration: underline; text-decoration-color: rgba(33,79,138,.25); text-underline-offset: 3px; }
+:root:not([data-theme="dark"]) .site-footer__right a:hover { color: #0b63f6; text-decoration-color: currentColor; }
