@@ -227,8 +227,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
-    const saved = window.localStorage.getItem("onyx-locale");
-    const preferred = initialLocale ?? (saved === "fa" || saved === "en" ? saved : resolveBrowserLocale());
+    const preferred = initialLocale ?? resolveBrowserLocale();
     setLocale(preferred);
     document.documentElement.lang = preferred;
     document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
@@ -259,7 +258,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   return (
     <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
       <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
-        <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={assets.wideLogo} alt="ONYX" width="1200" height="492" decoding="async" /></a>
+        <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={assets.wideLogo} alt="ONYX" width="1320" height="360" decoding="async" /></a>
         <nav className="desktop-nav" aria-label="Primary navigation"><a href="#platform">{t(text.nav.platform)}</a><a href="#outcomes">{t(text.nav.outcomes)}</a><a href="#enterprise">{t(text.nav.enterprise)}</a></nav>
         <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={isRtl ? "باز و بسته کردن منو" : "Toggle navigation"}>{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
@@ -308,7 +307,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
         <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
 
-      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1200" height="492" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></span></div></div></footer>
+      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogo} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></span></div></div></footer>
     </div>
   );
 }
