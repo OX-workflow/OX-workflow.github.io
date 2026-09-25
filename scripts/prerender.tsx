@@ -139,8 +139,8 @@ function schema(locale: Locale): string {
         url: `${SITE_URL}/en/`,
         logo: {
           "@type": "ImageObject",
-          url: `${SITE_URL}/assets/onyx-logo.png`,
-          caption: "ONYX Tectosilicate Framework logo",
+          url: `${SITE_URL}/assets/onyx-symbol.svg`,
+          caption: "ONYX Mission Operations Platform symbol",
         },
         email: ["Soheil.Mozaffari@gmail.com", "Mozaffari@lamatech.com"],
       },
