@@ -8,7 +8,7 @@ const robots = fs.readFileSync(path.join(outputDirectory, "robots.txt"), "utf8")
 const sitemap = fs.readFileSync(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const siteUrl = "https://ox-workflow.github.io";
 const routes = {
-  root: { file: path.join(outputDirectory, "index.html"), url: `${siteUrl}/`, canonical: `${siteUrl}/en/`, language: "en", phrase: "Operational state" },
+  root: { file: path.join(outputDirectory, "index.html"), url: `${siteUrl}/`, canonical: `${siteUrl}/en/`, language: "en", phrase: "OPERATIONS THAT" },
   en: { file: path.join(outputDirectory, "en", "index.html"), url: `${siteUrl}/en/`, canonical: `${siteUrl}/en/`, language: "en", phrase: "Operational intelligence" },
   fa: { file: path.join(outputDirectory, "fa", "index.html"), url: `${siteUrl}/fa/`, canonical: `${siteUrl}/fa/`, language: "fa", phrase: "هوشمندی عملیاتی" },
 } as const;
