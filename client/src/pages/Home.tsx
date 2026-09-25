@@ -41,9 +41,12 @@ const assets = {
 
 const text = {
   nav: {
-    platform: { en: "Platform", fa: "پلتفرم" },
-    outcomes: { en: "Outcomes", fa: "نتایج" },
-    enterprise: { en: "Enterprise", fa: "سازمانی" },
+    product: { en: "Product", fa: "محصول" },
+    solutions: { en: "Solutions", fa: "راهکارها" },
+    architecture: { en: "Architecture", fa: "معماری" },
+    security: { en: "Security", fa: "امنیت" },
+    about: { en: "About", fa: "درباره" },
+    resources: { en: "Resources", fa: "منابع" },
     demo: { en: "Request a demo", fa: "درخواست دمو" },
   },
   hero: {
@@ -290,7 +293,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
       <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
         <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX" width="1320" height="360" decoding="async" /></a>
-        <nav className="desktop-nav" aria-label="Primary navigation"><a href="#platform">{t(text.nav.platform)}</a><a href="#outcomes">{t(text.nav.outcomes)}</a><a href="#enterprise">{t(text.nav.enterprise)}</a></nav>
+        <nav className="desktop-nav" aria-label={isRtl ? "پیمایش اصلی" : "Primary navigation"}><a href={`/${locale}/product/`}>{t(text.nav.product)}</a><a href={`/${locale}/solutions/`}>{t(text.nav.solutions)}</a><a href={`/${locale}/architecture/`}>{t(text.nav.architecture)}</a><a href={`/${locale}/security/`}>{t(text.nav.security)}</a><a href={`/${locale}/about/`}>{t(text.nav.about)}</a><a href={`/${locale}/resources/`}>{t(text.nav.resources)}</a></nav>
         <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? (isRtl ? "حالت روشن" : "Switch to light mode") : (isRtl ? "حالت تاریک" : "Switch to dark mode")} title={theme === "dark" ? (isRtl ? "حالت روشن" : "Light mode") : (isRtl ? "حالت تاریک" : "Dark mode")}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={isRtl ? "باز و بسته کردن منو" : "Toggle navigation"}>{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
       </header>
@@ -298,10 +301,13 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <nav id="mobile-navigation" className={`mobile-nav ${menuOpen ? "mobile-nav--open" : ""}`} aria-hidden={!menuOpen} aria-label={isRtl ? "پیمایش موبایل" : "Mobile navigation"}><a href="#top" className="mobile-nav__brand" onClick={closeMenu}><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX" width="1320" height="360" decoding="async" /></a>
         <LanguageControl locale={locale} onSelect={selectLocale} />
         <button className="theme-toggle theme-toggle--mobile" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? (isRtl ? "حالت روشن" : "Switch to light mode") : (isRtl ? "حالت تاریک" : "Switch to dark mode")}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}<span>{theme === "dark" ? (isRtl ? "روشن" : "Light") : (isRtl ? "تاریک" : "Dark")}</span></button>
-        <a href="#platform" onClick={closeMenu}>{t(text.nav.platform)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href="#outcomes" onClick={closeMenu}>{t(text.nav.outcomes)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href="#enterprise" onClick={closeMenu}>{t(text.nav.enterprise)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href="#contact" onClick={closeMenu} className="mobile-nav__cta">{t(text.nav.demo)}</a>
+        <a href={`/${locale}/product/`} onClick={closeMenu}>{t(text.nav.product)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href={`/${locale}/solutions/`} onClick={closeMenu}>{t(text.nav.solutions)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href={`/${locale}/architecture/`} onClick={closeMenu}>{t(text.nav.architecture)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href={`/${locale}/security/`} onClick={closeMenu}>{t(text.nav.security)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href={`/${locale}/about/`} onClick={closeMenu}>{t(text.nav.about)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href={`/${locale}/resources/`} onClick={closeMenu}>{t(text.nav.resources)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
+        <a href={`/${locale}/contact/`} onClick={closeMenu} className="mobile-nav__cta">{t(text.nav.demo)}</a>
       </nav>
 
       <main id="top">

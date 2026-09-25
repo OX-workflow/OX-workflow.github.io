@@ -725,3 +725,59 @@ body { min-height: 100vh; overflow-x: hidden; }
 :root:not([data-theme="dark"]) .site-footer__right { color: #4d6380; }
 :root:not([data-theme="dark"]) .site-footer__right a { color: #214f8a; text-decoration: underline; text-decoration-color: rgba(33,79,138,.25); text-underline-offset: 3px; }
 :root:not([data-theme="dark"]) .site-footer__right a:hover { color: #0b63f6; text-decoration-color: currentColor; }
+
+
+/* Phase 1 — information architecture route shell */
+.site-page-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0;
+  background: var(--page-bg, #f5f8fc);
+}
+
+.site-page {
+  width: min(100% - 3rem, 1120px);
+}
+
+.site-page .signal-tag {
+  margin-bottom: 1.5rem;
+}
+
+.site-page h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+.site-page p {
+  max-width: 720px;
+  margin: 2rem 0 0;
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.8;
+  color: var(--muted-text, #536174);
+}
+
+.site-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .site-page {
+    width: min(100% - 2rem, 1120px);
+  }
+
+  .site-page h1 {
+    font-size: clamp(3rem, 18vw, 5rem);
+  }
+
+  .site-page__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
