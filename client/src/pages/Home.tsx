@@ -19,6 +19,9 @@ import {
   ShieldCheck,
   Target,
   X,
+  Moon,
+  Sun,
+  ArrowUp,
 } from "lucide-react";
 
 type Locale = "en" | "fa";
@@ -221,6 +224,7 @@ function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (loca
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -228,6 +232,12 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 32);
     const preferred = initialLocale ?? resolveBrowserLocale();
+    const storedTheme = window.localStorage.getItem("onyx-theme");
+    const preferredTheme: "light" | "dark" = storedTheme === "dark" || storedTheme === "light"
+      ? storedTheme
+      : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    setTheme(preferredTheme);
+    document.documentElement.dataset.theme = preferredTheme;
     setLocale(preferred);
     document.documentElement.lang = preferred;
     document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
@@ -245,6 +255,13 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [menuOpen]);
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("onyx-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme((current) => current === "dark" ? "light" : "dark");
+
   const selectLocale = (next: Locale) => {
     window.localStorage.setItem("onyx-locale", next);
     setLocale(next);
@@ -260,12 +277,13 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
         <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={assets.wideLogoLight} alt="ONYX" width="1320" height="360" decoding="async" /></a>
         <nav className="desktop-nav" aria-label="Primary navigation"><a href="#platform">{t(text.nav.platform)}</a><a href="#outcomes">{t(text.nav.outcomes)}</a><a href="#enterprise">{t(text.nav.enterprise)}</a></nav>
-        <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
+        <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? (isRtl ? "حالت روشن" : "Switch to light mode") : (isRtl ? "حالت تاریک" : "Switch to dark mode")} title={theme === "dark" ? (isRtl ? "حالت روشن" : "Light mode") : (isRtl ? "حالت تاریک" : "Dark mode")}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={isRtl ? "باز و بسته کردن منو" : "Toggle navigation"}>{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
       </header>
 
       <nav id="mobile-navigation" className={`mobile-nav ${menuOpen ? "mobile-nav--open" : ""}`} aria-hidden={!menuOpen} aria-label={isRtl ? "پیمایش موبایل" : "Mobile navigation"}><a href="#top" className="mobile-nav__brand" onClick={closeMenu}><img src={assets.wideLogoDark} alt="ONYX" width="1320" height="360" decoding="async" /></a>
         <LanguageControl locale={locale} onSelect={selectLocale} />
+        <button className="theme-toggle theme-toggle--mobile" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? (isRtl ? "حالت روشن" : "Switch to light mode") : (isRtl ? "حالت تاریک" : "Switch to dark mode")}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}<span>{theme === "dark" ? (isRtl ? "روشن" : "Light") : (isRtl ? "تاریک" : "Dark")}</span></button>
         <a href="#platform" onClick={closeMenu}>{t(text.nav.platform)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
         <a href="#outcomes" onClick={closeMenu}>{t(text.nav.outcomes)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
         <a href="#enterprise" onClick={closeMenu}>{t(text.nav.enterprise)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
@@ -306,6 +324,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
+
+      <button className={"back-to-top " + (scrolled ? "back-to-top--visible" : "")} type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={isRtl ? "بازگشت به بالا" : "Back to top"}><ArrowUp size={17} /></button>
 
       <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogoDark} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></span></div></div></footer>
     </div>
