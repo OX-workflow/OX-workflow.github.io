@@ -27,7 +27,6 @@ type Localized = { en: string; fa: string };
 
 const assets = {
   wideLogo: "/assets/onyx-wordmark-dark.svg",
-  lightLogo: "/assets/onyx-wordmark-light.svg",
   stackedLogo: "/assets/onyx-symbol.svg",
   authority: "/assets/product/mission-operations.png",
   execution: "/assets/product/operational-overview.png",
