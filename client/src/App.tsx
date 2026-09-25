@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import SitePage, { type PageKey } from "./pages/SitePage";
+import ProductPage from "./pages/ProductPage";
 
 const pageKeys: PageKey[] = [
   "product",
@@ -29,6 +30,10 @@ function getRoute() {
 
 export default function App() {
   const { locale, page } = getRoute();
+
+  if (page === "product") {
+    return <ProductPage locale={locale} />;
+  }
 
   if (page) {
     return <SitePage locale={locale} page={page} />;
