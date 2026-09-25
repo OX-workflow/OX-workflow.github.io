@@ -44,7 +44,7 @@ for (const page of localizedPages) {
     `${siteUrl}/#onyx-framework`,
     `${siteUrl}/#organization`,
     `${siteUrl}/#soheil-mozaffari`,
-    "https://ifem-doctrine.github.io/#ifem",
+    "https://bound-method.github.io/#bound-method",
   ]) {
     if (!ids.has(id)) {
       throw new Error(`Missing required ${page.locale} entity identifier: ${id}`);
