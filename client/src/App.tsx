@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import SitePage, { type PageKey } from "./pages/SitePage";
 import ProductPage from "./pages/ProductPage";
 import ArchitecturePage from "./pages/ArchitecturePage";
+import SolutionsPage from "./pages/SolutionsPage";
 
 type Locale = "en" | "fa";
 
@@ -40,6 +41,10 @@ export default function App() {
 
   if (page === "architecture") {
     return <ArchitecturePage locale={locale} />;
+  }
+
+  if (page === "solutions") {
+    return <SolutionsPage locale={locale} />;
   }
 
   if (page) {
