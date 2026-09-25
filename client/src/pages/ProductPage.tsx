@@ -126,7 +126,7 @@ const copy = {
 } as const;
 
 function href(locale: Locale, page: string) {
-  return `/${locale}/${page}/`;
+  return page ? `/${locale}/${page}/` : `/${locale}/`;
 }
 
 export default function ProductPage({ locale }: { locale: Locale }) {
