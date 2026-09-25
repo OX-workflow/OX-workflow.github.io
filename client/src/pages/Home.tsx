@@ -361,7 +361,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
       <button className={"back-to-top " + (scrolled ? "back-to-top--visible" : "")} type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={isRtl ? "بازگشت به بالا" : "Back to top"}><ArrowUp size={17} /></button>
 
-      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogoDark} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></span></div></div></footer>
+      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogoDark} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com">Soheil.Mozaffari@gmail.com</a> · <a href="https://bound-method.github.io/" target="_blank" rel="noreferrer">BOUND Method</a></span></div></div></footer>
     </div>
   );
 }
