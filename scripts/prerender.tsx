@@ -113,7 +113,7 @@ function schema(locale: Locale): string {
         image: [`${SITE_URL}/assets/product/mission-operations.png`, `${SITE_URL}/assets/product/operational-overview.png`],
         author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
         publisher: { "@id": `${SITE_URL}/#organization` },
-        about: [{ "@id": `${SITE_URL}/#onyx-framework` }, { "@id": "https://ifem-doctrine.github.io/#ifem" }],
+        about: [{ "@id": `${SITE_URL}/#onyx-framework` }, { "@id": "https://bound-method.github.io/#bound-method" }],
         inLanguage: locale,
         isAccessibleForFree: true,
         keywords: metadata.articleKeywords,
@@ -129,7 +129,7 @@ function schema(locale: Locale): string {
         codeRepository: "https://github.com/SMozaff/Onyx-Framwork",
         programmingLanguage: ["Rust", "TypeScript"],
         author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
-        about: { "@id": "https://ifem-doctrine.github.io/#ifem" },
+        about: { "@id": "https://bound-method.github.io/#bound-method" },
         keywords: "ONYX, Mission Operations Platform, Operational Intelligence Infrastructure, authority graph, accountability, execution verification",
       },
       {
@@ -155,10 +155,10 @@ function schema(locale: Locale): string {
       },
       {
         "@type": "DefinedTerm",
-        "@id": "https://ifem-doctrine.github.io/#ifem",
-        name: "Interface-First Engineering Methodology (IFEM)",
-        url: "https://IFEM-doctrine.github.io/",
-        description: "An engineering methodology for defining interfaces, contracts, responsibilities, and verification boundaries before large-scale parallel implementation.",
+        "@id": "https://bound-method.github.io/#bound-method",
+        name: "BOUND Method v3.0 — Boundary-Oriented Unified Development",
+        url: "https://bound-method.github.io/",
+        description: "A boundary-oriented development method that defines domains, responsibility boundaries, contracts, independent execution, and continuous verification."
       },
     ],
   };

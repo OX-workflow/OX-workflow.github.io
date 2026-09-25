@@ -4,7 +4,7 @@ Applied direction:
 
 - Consolidate ONYX as an operational intelligence platform.
 - Preserve engineering credibility and avoid unsupported commercial claims.
-- Prioritize product evidence, screenshots, architecture clarity, and IFEM relationship.
+- Prioritize product evidence, screenshots, architecture clarity, and BOUND Method relationship.
 - Final review targets:
   - visual hierarchy
   - responsive behavior

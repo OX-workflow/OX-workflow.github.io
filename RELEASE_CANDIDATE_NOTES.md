@@ -5,7 +5,7 @@ Status: final review candidate.
 Focus completed:
 - product positioning consolidation
 - capability and experience layers
-- IFEM relationship preservation
+- BOUND Method relationship preservation
 - documentation of refinement stages
 
 Final manual checks before deployment:
