@@ -2,6 +2,8 @@ import Home from "./pages/Home";
 import SitePage, { type PageKey } from "./pages/SitePage";
 import ProductPage from "./pages/ProductPage";
 
+type Locale = "en" | "fa";
+
 const pageKeys: PageKey[] = [
   "product",
   "solutions",
@@ -14,12 +16,12 @@ const pageKeys: PageKey[] = [
   "investors",
 ];
 
-function getRoute() {
+function getRoute(): { locale: Locale; page: PageKey | null } {
   if (typeof window === "undefined") return { locale: "en" as const, page: null as PageKey | null };
 
   const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
   const segments = pathname.split("/").filter(Boolean);
-  const locale = segments[0] === "fa" ? "fa" : "en";
+  const locale: Locale = segments[0] === "fa" ? "fa" : "en";
   const page = segments[1] as PageKey | undefined;
 
   return {
