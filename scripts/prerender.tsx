@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../client/src/pages/Home";
+import SitePage, { type PageKey } from "../client/src/pages/SitePage";
 
 type Locale = "en" | "fa";
 
@@ -193,7 +194,37 @@ function localizedDocument(locale: Locale): string {
   return documentHtml;
 }
 
-for (const locale of ["en", "fa"] as const) {
+
+function pagesTitle(locale: Locale, page: PageKey) {
+  const titles: Record<PageKey, { en: string; fa: string }> = {
+    product: { en: "ONYX | Product", fa: "ONYX | محصول" },
+    solutions: { en: "ONYX | Solutions", fa: "ONYX | راهکارها" },
+    architecture: { en: "ONYX | Architecture", fa: "ONYX | معماری" },
+    security: { en: "ONYX | Security", fa: "ONYX | امنیت" },
+    roadmap: { en: "ONYX | Roadmap", fa: "ONYX | نقشه راه" },
+    about: { en: "ONYX | About", fa: "ONYX | درباره" },
+    resources: { en: "ONYX | Resources", fa: "ONYX | منابع" },
+    contact: { en: "ONYX | Contact / Demo", fa: "ONYX | تماس / دمو" },
+    investors: { en: "ONYX | Investors", fa: "ONYX | سرمایه‌گذاران" },
+  };
+  return titles[page][locale];
+}
+
+function pagesDescription(locale: Locale, page: PageKey) {
+  const descriptions: Record<PageKey, { en: string; fa: string }> = {
+    product: { en: "The ONYX product and deployment model.", fa: "محصول و مدل استقرار ONYX." },
+    solutions: { en: "Operational scenarios and environments for ONYX.", fa: "سناریوها و محیط‌های عملیاتی ONYX." },
+    architecture: { en: "The ONYX system and technical architecture.", fa: "معماری سامانه و فنی ONYX." },
+    security: { en: "Security, authority, auditability, and deployment controls for ONYX.", fa: "امنیت، اختیار، ممیزی و کنترل‌های استقرار ONYX." },
+    roadmap: { en: "The ONYX product and technology roadmap.", fa: "نقشه راه محصول و فناوری ONYX." },
+    about: { en: "The ONYX mission, team, and engineering philosophy.", fa: "مأموریت، تیم و فلسفه مهندسی ONYX." },
+    resources: { en: "ONYX product, architecture, technical, and media resources.", fa: "منابع محصول، معماری، فنی و رسانه‌ای ONYX." },
+    contact: { en: "Contact ONYX and request an enterprise demonstration.", fa: "تماس با ONYX و درخواست دمو سازمانی." },
+    investors: { en: "ONYX product, technology, roadmap, and commercial information.", fa: "اطلاعات محصول، فناوری، نقشه راه و تجاری ONYX." },
+  };
+  return descriptions[page][locale];
+}
+\nfor (const locale of ["en", "fa"] as const) {
   const documentHtml = localizedDocument(locale);
   const localeDirectory = path.join(outputDirectory, locale);
   fs.mkdirSync(localeDirectory, { recursive: true });
@@ -204,4 +235,38 @@ for (const locale of ["en", "fa"] as const) {
   }
 }
 
-console.log("Pre-rendered crawlable English and Farsi case-study documents into /en/ and /fa/.");
+const sitePages: PageKey[] = [
+  "product",
+  "solutions",
+  "architecture",
+  "security",
+  "roadmap",
+  "about",
+  "resources",
+  "contact",
+  "investors",
+];
+
+for (const locale of ["en", "fa"] as const) {
+  const metadata = localeMetadata[locale];
+  for (const page of sitePages) {
+    const pageUrl = `${SITE_URL}/${locale}/${page}/`;
+    const rootMarkup = renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+    const pageDocument = sourceDocument
+      .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
+      .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
+      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `    <link rel="canonical" href="${pageUrl}" />`)
+      .replace(/<title>[^<]*<\/title>/, `<title>${pagesTitle(locale, page)}</title>`)
+      .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${pagesDescription(locale, page)}" />`)
+      .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${pagesTitle(locale, page)}" />`)
+      .replace(/<meta property="og:description" content="[^"]*"\s*\/>/, `<meta property="og:description" content="${pagesDescription(locale, page)}" />`)
+      .replace(/<meta property="og:url" content="[^"]*"\s*\/>/, `<meta property="og:url" content="${pageUrl}" />`)
+      .replace(/<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${pagesTitle(locale, page)}" />`)
+      .replace(/<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${pagesDescription(locale, page)}" />`);
+    const pageDirectory = path.join(outputDirectory, locale, page);
+    fs.mkdirSync(pageDirectory, { recursive: true });
+    fs.writeFileSync(path.join(pageDirectory, "index.html"), pageDocument, "utf8");
+  }
+}
+
+console.log("Pre-rendered ONYX homepages and information-architecture route skeletons.");
