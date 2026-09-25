@@ -22,7 +22,7 @@
 
 - [x] Audit identity, author attribution, and relationship links against the project specification.
 - [x] Verify architecture claims against the ONYX repository and remove or qualify unsupported wording.
-- [x] Refine the architecture and IFEM sections to make boundaries, responsibilities, and methodology positioning clearer.
+- [x] Refine the architecture and BOUND context section to make boundaries, responsibilities, and methodology positioning clearer.
 - [x] Review and improve technical-case-study metadata and structured data only where necessary.
 - [x] Validate light/dark responsive presentation and final source alignment.
 
