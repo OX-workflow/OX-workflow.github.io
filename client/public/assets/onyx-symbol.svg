@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">ONYX symbol</title>
-  <desc id="desc">A luminous circular ONYX mission operations symbol.</desc>
+  <desc id="desc">Luminous ONYX circular mission-operations symbol.</desc>
   <defs>
-    <linearGradient id="g" x1="10%" y1="90%" x2="88%" y2="12%">
-      <stop offset="0" stop-color="#B94DFF"/>
-      <stop offset="38%" stop-color="#263BFF"/>
-      <stop offset="70%" stop-color="#087BFF"/>
-      <stop offset="100%" stop-color="#35D9FF"/>
+    <linearGradient id="onyxRing" x1="8%" y1="92%" x2="92%" y2="8%">
+      <stop offset="0" stop-color="#D04DFF"/><stop offset="28%" stop-color="#5D2BFF"/><stop offset="55%" stop-color="#1747FF"/><stop offset="78%" stop-color="#078BFF"/><stop offset="100%" stop-color="#39E5FF"/>
     </linearGradient>
-    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="18" result="b"/>
-      <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.25 0 0 0 0 1 0 0 0 .72 0" result="c"/>
-      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <linearGradient id="onyxHighlight" x1="10%" y1="90%" x2="90%" y2="10%">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".82"/><stop offset="24%" stop-color="#FFFFFF" stop-opacity=".18"/><stop offset="66%" stop-color="#FFFFFF" stop-opacity=".08"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity=".74"/>
+    </linearGradient>
+    <filter id="onyxGlow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="18" result="blur"/><feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.24 0 0 0 0 1 0 0 0 .75 0" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <circle cx="256" cy="256" r="171" fill="none" stroke="url(#g)" stroke-width="30" filter="url(#glow)"/>
-  <circle cx="256" cy="256" r="171" fill="none" stroke="#F4F8FF" stroke-opacity=".72" stroke-width="2"/>
+  <circle cx="256" cy="256" r="170" fill="none" stroke="url(#onyxRing)" stroke-width="31" filter="url(#onyxGlow)"/>
+  <circle cx="256" cy="256" r="170" fill="none" stroke="url(#onyxHighlight)" stroke-width="3"/>
+  <path d="M151 147 A170 170 0 0 1 355 118" fill="none" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="7" stroke-linecap="round"/>
 </svg>

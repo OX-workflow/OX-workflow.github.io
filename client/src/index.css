@@ -429,3 +429,13 @@ body,
   .onyx-site[dir="rtl"] .hero__veil { background: linear-gradient(270deg, rgba(255, 255, 255, 0.97) 0%, rgba(247, 251, 255, 0.86) 72%, rgba(238, 246, 255, 0.66) 100%), linear-gradient(0deg, #f5f8fc 0%, transparent 35%); }
   .enterprise__overlay { background: linear-gradient(90deg, rgba(248, 251, 255, 0.97) 0%, rgba(248, 251, 255, 0.78) 100%), linear-gradient(0deg, #f1f6fc, transparent 52%); }
 }
+
+
+/* ONYX brand composition refinements. */
+.mobile-nav__brand { display: flex; align-items: center; min-height: 58px; padding: 2px 8px 8px; border-bottom: 1px solid rgba(199, 220, 251, 0.12); }
+.mobile-nav__brand img { display: block; width: 146px; height: auto; object-fit: contain; }
+.mobile-nav__brand:hover { opacity: 0.92; }
+
+@media (max-width: 600px) {
+  .mobile-nav__brand img { width: 132px; }
+}

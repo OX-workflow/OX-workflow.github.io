@@ -1,23 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 492" role="img" aria-labelledby="title desc">
   <title id="title">ONYX Mission Operations Platform</title>
-  <desc id="desc">ONYX wordmark with the luminous circular symbol and Mission Operations Platform descriptor.</desc>
+  <desc id="desc">ONYX luminous circular symbol and dark wordmark for light surfaces.</desc>
   <defs>
-    <linearGradient id="g" x1="10%" y1="90%" x2="88%" y2="12%">
-      <stop offset="0" stop-color="#B94DFF"/>
-      <stop offset="38%" stop-color="#263BFF"/>
-      <stop offset="70%" stop-color="#087BFF"/>
-      <stop offset="100%" stop-color="#35D9FF"/>
-    </linearGradient>
-    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="9" result="b"/>
-      <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.25 0 0 0 0 1 0 0 0 .28 0" result="c"/>
-      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    <linearGradient id="ring" x1="8%" y1="92%" x2="92%" y2="8%"><stop offset="0" stop-color="#D04DFF"/><stop offset="28%" stop-color="#5D2BFF"/><stop offset="55%" stop-color="#1747FF"/><stop offset="78%" stop-color="#078BFF"/><stop offset="100%" stop-color="#39E5FF"/></linearGradient>
+    <linearGradient id="highlight" x1="10%" y1="90%" x2="90%" y2="10%"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".92"/><stop offset="30%" stop-color="#FFFFFF" stop-opacity=".24"/><stop offset="100%" stop-color="#FFFFFF" stop-opacity=".9"/></linearGradient>
+    <filter id="glow" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="10" result="b"/><feColorMatrix in="b" type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.24 0 0 0 0 1 0 0 0 .38 0" result="c"/><feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
-  <g transform="translate(70 28)">
-    <circle cx="230" cy="148" r="112" fill="none" stroke="url(#g)" stroke-width="22" filter="url(#glow)"/>
-    <circle cx="230" cy="148" r="112" fill="none" stroke="#FFFFFF" stroke-opacity=".9" stroke-width="1.5"/>
-    <text x="230" y="304" text-anchor="middle" fill="#08152D" font-family="ONYX Manrope, Manrope, Arial, sans-serif" font-size="112" font-weight="700" letter-spacing="24">ONYX</text>
-    <text x="230" y="356" text-anchor="middle" fill="#30466C" font-family="ONYX Manrope, Manrope, Arial, sans-serif" font-size="22" font-weight="600" letter-spacing="8">MISSION OPERATIONS PLATFORM</text>
+  <g transform="translate(54 34)">
+    <circle cx="196" cy="170" r="118" fill="none" stroke="url(#ring)" stroke-width="24" filter="url(#glow)"/>
+    <circle cx="196" cy="170" r="118" fill="none" stroke="url(#highlight)" stroke-width="2"/>
+    <path d="M122 94 A118 118 0 0 1 266 76" fill="none" stroke="#FFFFFF" stroke-opacity=".48" stroke-width="5" stroke-linecap="round"/>
+    <text x="450" y="202" fill="#07152D" font-family="ONYX Manrope, Manrope, Arial, sans-serif" font-size="116" font-weight="700" letter-spacing="18">ONYX</text>
   </g>
 </svg>
