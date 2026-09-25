@@ -310,8 +310,20 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
             <div className="hero-launch__ambient" />
             <div className="hero-launch__scan" />
             <div className="hero-launch__core">
-              <img src={assets.stackedLogoDark ?? "/assets/onyx-wordmark-dark.svg"} alt="ONYX — Mission Operations Platform" className="hero-launch__logo" width="1200" height="492" decoding="async" />
-              <div className="hero-launch__status"><span className="hero-launch__dot" /> <span>{isRtl ? "در حال راه‌اندازی سامانه" : "INITIALIZING MISSION OPERATIONS"}</span></div>
+              <div className="hero-launch__symbol-shell">
+                <div className="hero-launch__orbit hero-launch__orbit--one" />
+                <div className="hero-launch__orbit hero-launch__orbit--two" />
+                <div className="hero-launch__orbit hero-launch__orbit--three" />
+                <div className="hero-launch__crosshair" />
+                <img src={assets.stackedLogo ?? "/assets/onyx-symbol.svg"} alt="" className="hero-launch__symbol" width="512" height="512" decoding="async" />
+                <div className="hero-launch__ticks" aria-hidden="true">{Array.from({length: 12}, (_, i) => <i key={i} style={{"--i": i} as React.CSSProperties} />)}</div>
+              </div>
+              <div className="hero-launch__status"><span className="hero-launch__dot" /> <span>{isRtl ? "در حال راه‌اندازی" : "INITIALIZING"}</span></div>
+              <div className="hero-launch__telemetry">
+                <span>{isRtl ? "هسته" : "CORE"} <b>OK</b></span>
+                <span>{isRtl ? "شبکه" : "LINK"} <b>SYNC</b></span>
+                <span>{isRtl ? "زمینه" : "CTX"} <b>BOUND</b></span>
+              </div>
             </div>
             <div className="hero-launch__progress"><span /></div>
           </div>
