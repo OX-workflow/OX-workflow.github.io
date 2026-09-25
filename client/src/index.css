@@ -425,9 +425,8 @@ body,
 .final-cta__mark { filter: drop-shadow(0 12px 24px rgba(11, 99, 246, 0.2)); }
 
 .site-footer { border-top-color: var(--line); background: #ffffff; }
-.site-footer__brand { display: flex; align-items: center; gap: 14px; padding: 0; border: 0; border-radius: 0; background: transparent; }
-.site-footer__wide-logo,
-.site-footer__logo { height: auto; object-fit: contain; mix-blend-mode: normal; filter: none; }
+.site-footer__brand { display: flex; align-items: center; justify-content: flex-start; padding: 0; border: 0; border-radius: 0; background: transparent; }
+.site-footer__wide-logo { width: clamp(190px, 24vw, 270px); height: auto; object-fit: contain; mix-blend-mode: normal; filter: none; }
 .site-footer__right { color: #68788e; }
 .site-footer__right a { color: #3c536f; }
 
@@ -466,8 +465,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 .onyx-site[dir="rtl"] .site-footer__content { direction: rtl; align-items: center; }
 .onyx-site[dir="rtl"] .site-footer__right { align-items: flex-start; text-align: left; direction: rtl; }
 .onyx-site[dir="rtl"] .site-footer__brand { direction: rtl; }
-.onyx-site[dir="rtl"] .site-footer__wide-logo { order: 2; }
-.onyx-site[dir="rtl"] .site-footer__logo { order: 1; }
+
 .onyx-site[dir="rtl"] .desktop-nav { direction: rtl; }
 .onyx-site[dir="rtl"] .desktop-nav a { letter-spacing: 0; }
 .onyx-site[dir="rtl"] .header-actions { gap: 10px; }
@@ -596,4 +594,63 @@ body { min-height: 100vh; overflow-x: hidden; }
   .onyx-site[dir="rtl"] .site-footer__right { align-items:flex-start; text-align:right; }
   .back-to-top { bottom:18px; width:42px; height:42px; }
   .site-footer { padding:34px 0; }
+}
+
+/* Farsi typography: bundled fonts are assigned by role. Vazirmatn handles Persian display copy; Manrope remains the companion UI/body face for Latin, numerals and mixed strings. */
+.onyx-site[dir="rtl"] {
+  --farsi-title-font: "ONYX Vazirmatn", sans-serif;
+  --farsi-body-font: "ONYX Manrope", "ONYX Vazirmatn", sans-serif;
+}
+.onyx-site[dir="rtl"] h1,
+.onyx-site[dir="rtl"] h2,
+.onyx-site[dir="rtl"] h3,
+.onyx-site[dir="rtl"] h4,
+.onyx-site[dir="rtl"] h5,
+.onyx-site[dir="rtl"] h6,
+.onyx-site[dir="rtl"] .signal-tag,
+.onyx-site[dir="rtl"] .mono-label,
+.onyx-site[dir="rtl"] .hero-launch__status { font-family: var(--farsi-title-font); font-weight: 700; }
+.onyx-site[dir="rtl"] p,
+.onyx-site[dir="rtl"] li,
+.onyx-site[dir="rtl"] a,
+.onyx-site[dir="rtl"] button,
+.onyx-site[dir="rtl"] span,
+.onyx-site[dir="rtl"] small,
+.onyx-site[dir="rtl"] strong { font-family: var(--farsi-body-font); }
+.onyx-site[dir="rtl"] h1,
+.onyx-site[dir="rtl"] h2,
+.onyx-site[dir="rtl"] h3 { letter-spacing: 0; }
+
+/* App-launch hero: full-viewport startup sequence before the operational hero is revealed. */
+.hero { min-height: 100svh; }
+.hero--launching { overflow: hidden; }
+.hero--launching .hero__content,
+.hero--launching .hero__telemetry,
+.hero--launching .hero__scroll { opacity: 0; visibility: hidden; transform: translateY(18px); }
+.hero--ready .hero__content,
+.hero--ready .hero__telemetry,
+.hero--ready .hero__scroll { opacity: 1; visibility: visible; transform: translateY(0); transition: opacity 700ms 120ms var(--ease-out), transform 700ms 120ms var(--ease-out); }
+.hero-launch { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; overflow: hidden; background: radial-gradient(circle at 50% 48%, rgba(31,92,255,.18), transparent 24%), radial-gradient(circle at 50% 50%, rgba(109,43,255,.08), transparent 42%), #030712; transition: opacity 650ms var(--ease-in-out), visibility 650ms var(--ease-in-out); }
+.hero-launch--complete { opacity: 0; visibility: hidden; pointer-events: none; }
+.hero-launch__ambient { position: absolute; width: min(64vw, 720px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(24,103,255,.22), rgba(24,103,255,.05) 34%, transparent 67%); filter: blur(10px); animation: onyxLaunchPulse 2.2s ease-in-out both; }
+.hero-launch__scan { position: absolute; inset: -20% 0; background: linear-gradient(180deg, transparent 0%, rgba(69,164,255,.12) 49%, transparent 51%); transform: translateY(-55%); animation: onyxLaunchScan 2.1s cubic-bezier(.23,1,.32,1) .15s both; pointer-events: none; }
+.hero-launch__core { position: relative; z-index: 2; width: min(78vw, 620px); display: flex; flex-direction: column; align-items: center; gap: 28px; animation: onyxLaunchCore 1.8s cubic-bezier(.23,1,.32,1) both; }
+.hero-launch__logo { display: block; width: min(78vw, 520px); height: auto; filter: drop-shadow(0 0 34px rgba(33,112,255,.38)) drop-shadow(0 0 80px rgba(92,43,255,.18)); }
+.hero-launch__status { display: flex; align-items: center; gap: 10px; color: rgba(207,224,255,.78); font-family: "ONYX Manrope", sans-serif; font-size: 10px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; }
+.hero-launch__dot { width: 6px; height: 6px; border-radius: 50%; background: #45a5ff; box-shadow: 0 0 12px #45a5ff; animation: onyxLaunchDot 900ms ease-in-out infinite; }
+.hero-launch__progress { position: absolute; left: 50%; bottom: 9.5%; width: min(320px, 48vw); height: 1px; transform: translateX(-50%); background: rgba(150,190,255,.16); overflow: hidden; }
+.hero-launch__progress span { display: block; width: 42%; height: 100%; background: linear-gradient(90deg, transparent, #54b3ff, #a566ff, transparent); transform: translateX(-120%); animation: onyxLaunchProgress 2s cubic-bezier(.23,1,.32,1) .15s both; }
+@keyframes onyxLaunchPulse { 0%,100% { opacity:.42; transform:scale(.82); } 50% { opacity:1; transform:scale(1.04); } }
+@keyframes onyxLaunchScan { 0% { transform:translateY(-55%); opacity:0; } 15% { opacity:1; } 82% { opacity:.6; } 100% { transform:translateY(55%); opacity:0; } }
+@keyframes onyxLaunchCore { 0% { opacity:0; transform:scale(.84) translateY(12px); filter:blur(10px); } 35% { opacity:1; filter:blur(0); } 100% { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes onyxLaunchDot { 0%,100% { opacity:.35; transform:scale(.8); } 50% { opacity:1; transform:scale(1.15); } }
+@keyframes onyxLaunchProgress { 0% { transform:translateX(-120%); } 100% { transform:translateX(300%); } }
+@media (prefers-reduced-motion: reduce) {
+  .hero-launch { display:none; }
+  .hero--launching .hero__content,
+  .hero--launching .hero__telemetry,
+  .hero--launching .hero__scroll { opacity:1; visibility:visible; transform:none; }
+  .hero--ready .hero__content,
+  .hero--ready .hero__telemetry,
+  .hero--ready .hero__scroll { transition:none; }
 }

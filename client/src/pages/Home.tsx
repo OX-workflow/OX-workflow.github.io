@@ -32,6 +32,7 @@ const assets = {
   wideLogoLight: "/assets/onyx-horizontal-light.svg",
   wideLogoDark: "/assets/onyx-horizontal-dark.svg",
   stackedLogo: "/assets/onyx-symbol.svg",
+  stackedLogoDark: "/assets/onyx-wordmark-dark.svg",
   authority: "/assets/product/mission-operations.png",
   execution: "/assets/product/operational-overview.png",
   nexus: "/assets/product/secure-browser-access.webp",
@@ -225,6 +226,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [launching, setLaunching] = useState(true);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -245,6 +247,17 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, [initialLocale]);
+
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      setLaunching(false);
+      return;
+    }
+    const timer = window.setTimeout(() => setLaunching(false), 2400);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -291,8 +304,17 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       </nav>
 
       <main id="top">
-        <section className="hero section-shell">
+        <section className={"hero section-shell " + (launching ? "hero--launching" : "hero--ready")} aria-busy={launching}>
           <div className="hero__veil" /><div className="hero__grid" aria-hidden="true" />
+          <div className={"hero-launch " + (launching ? "hero-launch--active" : "hero-launch--complete")} aria-hidden={!launching}>
+            <div className="hero-launch__ambient" />
+            <div className="hero-launch__scan" />
+            <div className="hero-launch__core">
+              <img src={assets.stackedLogoDark ?? "/assets/onyx-wordmark-dark.svg"} alt="ONYX — Mission Operations Platform" className="hero-launch__logo" width="1200" height="492" decoding="async" />
+              <div className="hero-launch__status"><span className="hero-launch__dot" /> <span>{isRtl ? "در حال راه‌اندازی سامانه" : "INITIALIZING MISSION OPERATIONS"}</span></div>
+            </div>
+            <div className="hero-launch__progress"><span /></div>
+          </div>
           <div className="hero__content shell-content"><SignalTag>{t(text.hero.tag)}</SignalTag><h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1><p className="hero__lede">{t(text.hero.lede)}</p><div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div></div>
           <div className="hero__telemetry" aria-label="System status"><div className="telemetry-orbit"><span /><span /><span /></div><div><span className="telemetry-label">{t(text.hero.condition)}</span><strong>{t(text.hero.synchronized)}</strong></div><span className="telemetry-state">ONLINE</span></div>
           <a className="hero__scroll" href="#problem" aria-label={t(text.hero.scroll)}><span>{t(text.hero.scroll)}</span><ChevronDown size={16} /></a>
@@ -327,7 +349,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
       <button className={"back-to-top " + (scrolled ? "back-to-top--visible" : "")} type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={isRtl ? "بازگشت به بالا" : "Back to top"}><ArrowUp size={17} /></button>
 
-      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogoDark} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="lazy" decoding="async" /><img src={assets.stackedLogo} alt="" className="site-footer__logo" width="512" height="512" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></span></div></div></footer>
+      <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={assets.wideLogoDark} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="lazy" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://SMozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com,Mozaffari@lamatech.com">Soheil.Mozaffari@gmail.com · Mozaffari@lamatech.com</a></span></div></div></footer>
     </div>
   );
 }
