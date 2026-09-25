@@ -5,6 +5,14 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: "ONYX Estedad";
+  src: url("https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@0dbe689787b8c2ea302373cb601d0f352f9f98e5/fonts/webfonts/Estedad%5Bwght%5D.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "ONYX Manrope";
   src: url("/assets/fonts/manrope-latin-variable.woff2") format("woff2-variations");
   font-style: normal;
@@ -599,7 +607,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 /* Farsi typography: bundled fonts are assigned by role. Vazirmatn handles Persian display copy; Manrope remains the companion UI/body face for Latin, numerals and mixed strings. */
 .onyx-site[dir="rtl"] {
   --farsi-title-font: "ONYX Vazirmatn", sans-serif;
-  --farsi-body-font: "ONYX Manrope", "ONYX Vazirmatn", sans-serif;
+  --farsi-body-font: "ONYX Estedad", "ONYX Manrope", sans-serif;
 }
 .onyx-site[dir="rtl"] h1,
 .onyx-site[dir="rtl"] h2,
