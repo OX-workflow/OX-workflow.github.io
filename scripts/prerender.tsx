@@ -7,6 +7,7 @@ import Home from "../client/src/pages/Home";
 import SitePage, { type PageKey } from "../client/src/pages/SitePage";
 import ProductPage from "../client/src/pages/ProductPage";
 import ArchitecturePage from "../client/src/pages/ArchitecturePage";
+import SolutionsPage from "../client/src/pages/SolutionsPage";
 
 type Locale = "en" | "fa";
 
@@ -257,7 +258,9 @@ for (const locale of ["en", "fa"] as const) {
       ? renderToStaticMarkup(<ProductPage locale={locale} />)
       : page === "architecture"
         ? renderToStaticMarkup(<ArchitecturePage locale={locale} />)
-        : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+        : page === "solutions"
+          ? renderToStaticMarkup(<SolutionsPage locale={locale} />)
+          : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
