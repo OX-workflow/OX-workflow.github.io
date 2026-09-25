@@ -151,6 +151,13 @@ h2 em, h1 em { color: var(--signal-bright); font-style: normal; }
 .methodology__system::before, .methodology__system::after { position: absolute; width: 20px; height: 20px; border-color: #41c6b0; content: ""; }
 .methodology__system::before { top: -1px; left: -1px; border-top: 1px solid; border-left: 1px solid; }
 .methodology__system::after { right: -1px; bottom: -1px; border-right: 1px solid; border-bottom: 1px solid; }
+.bound-context { display: flex; min-height: 245px; flex-direction: column; justify-content: center; gap: 18px; padding: 28px; border: 1px solid rgba(65, 198, 176, 0.18); background: radial-gradient(circle at 88% 12%, rgba(65, 198, 176, 0.12), transparent 34%), linear-gradient(145deg, rgba(16, 29, 46, 0.92), rgba(5, 10, 18, 0.88)); color: #edf4ff; transition: border-color 180ms var(--ease-out), transform 180ms var(--ease-out), background 180ms var(--ease-out); }
+.bound-context:hover { border-color: rgba(65, 198, 176, 0.58); transform: translateY(-2px); background: radial-gradient(circle at 88% 12%, rgba(65, 198, 176, 0.17), transparent 34%), linear-gradient(145deg, rgba(17, 32, 50, 0.96), rgba(5, 10, 18, 0.9)); }
+.bound-context__eyebrow { color: #41c6b0; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.16em; }
+.bound-context__title { max-width: 440px; font-family: "ONYX Manrope"; font-size: clamp(1.45rem, 2.7vw, 2.35rem); font-weight: 600; letter-spacing: -0.045em; line-height: 1.02; }
+.bound-context__sequence { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 9px; color: #aebbd0; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; }
+.bound-context__sequence span { padding: 6px 8px; border: 1px solid rgba(190, 218, 252, 0.13); background: rgba(255, 255, 255, 0.025); }
+.bound-context__sequence i { color: #41c6b0; font-style: normal; }
 .methodology__system > a { display: block; }
 .methodology__system > a > img { display: block; width: 100%; height: auto; mix-blend-mode: normal; }
 .methodology__layers { display: grid; grid-template-columns: 1fr 1fr; margin-top: 25px; border-top: 1px solid rgba(190, 218, 252, 0.14); border-bottom: 1px solid rgba(190, 218, 252, 0.14); }
