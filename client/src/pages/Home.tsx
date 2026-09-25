@@ -32,7 +32,6 @@ const assets = {
   authority: "/assets/product/mission-operations.png",
   execution: "/assets/product/operational-overview.png",
   nexus: "/assets/product/secure-browser-access.webp",
-  ifem: "/assets/ifem-doctrine.png",
   signalMark: "/assets/onyx-symbol.svg",
 };
 
@@ -56,18 +55,18 @@ const text = {
   },
   bridge: { en: "Authority / responsibility / execution / verification", fa: "اختیار / مسئولیت / اجرا / راستی‌آزمایی" },
   methodology: {
-    tag: { en: "Architecture doctrine", fa: "منطق معماری" },
+    tag: { en: "BOUND context", fa: "زمینه BOUND" },
     titleA: { en: "Interface-first", fa: "طراحی از رابط" },
     titleB: { en: "by design.", fa: "آغاز می‌شود." },
     body: {
-      en: "ONYX is the operational platform. IFEM is the methodology that shapes its boundaries: interfaces, responsibilities, evidence, and verification are defined before implementation scales.",
-      fa: "ONYX پلتفرم عملیاتی است؛ IFEM روشی است که مرزهای آن را شکل می‌دهد: پیش از گسترش پیاده‌سازی، رابط‌ها، مسئولیت‌ها، شواهد و معیارهای راستی‌آزمایی روشن می‌شوند.",
+      en: "ONYX is the operational platform. BOUND Method v3.0 provides the boundary-oriented context behind independent execution: define the domain, establish responsibility boundaries, formalize contracts, execute, and verify continuously.",
+      fa: "ONYX پلتفرم عملیاتی است؛ BOUND Method v3.0 زمینه‌ای مرزمحور برای اجرای مستقل فراهم می‌کند: دامنه را تعریف کنید، مرز مسئولیت را مشخص کنید، قراردادها را رسمی کنید، اجرا کنید و پیوسته راستی‌آزمایی کنید.",
     },
     product: { en: "Product layer", fa: "لایه محصول" },
     productCopy: { en: "Authority-aware operational intelligence", fa: "هوشمندی عملیاتی آگاه از اختیار" },
-    doctrine: { en: "Methodology layer", fa: "لایه روش‌شناسی" },
-    doctrineCopy: { en: "Interface-first execution discipline", fa: "انضباط اجرای رابط‌محور" },
-    link: { en: "Explore the IFEM Doctrine", fa: "مطالعه مکتب IFEM" },
+    doctrine: { en: "Boundary context", fa: "زمینه مرزبندی" },
+    doctrineCopy: { en: "Domain → Boundary → Contract → Execution → Verification", fa: "دامنه ← مرز ← قرارداد ← اجرا ← راستی‌آزمایی" },
+    link: { en: "Explore BOUND Method v3.0", fa: "بررسی BOUND Method v3.0" },
   },
   problem: {
     tag: { en: "01 / The hidden problem", fa: "۰۱ / مسئله پنهان" },
@@ -289,7 +288,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section className="philosophy section-shell"><div className="shell-content"><div className="philosophy__top"><SignalTag>{t(text.philosophy.tag)}</SignalTag><div><h2>{t(text.philosophy.titleA)}<br /><em>{t(text.philosophy.titleB)}</em></h2><p>{t(text.philosophy.body)}</p></div></div><div className="logic-path" aria-label="Authority becomes organizational intelligence">{text.philosophy.steps.map((item, index) => <div className={`logic-path__step ${index === 4 ? "logic-path__step--final" : ""}`} key={item.en}><span className="logic-path__number">{String(index + 1).padStart(2, "0")}</span><span className="logic-path__dot" /><strong>{t(item)}</strong></div>)}</div></div></section>
 
-        <section id="methodology" className="methodology section-shell"><div className="shell-content methodology__layout"><div className="methodology__content"><SignalTag>{t(text.methodology.tag)}</SignalTag><h2>{t(text.methodology.titleA)}<br /><em>{t(text.methodology.titleB)}</em></h2><p>{t(text.methodology.body)}</p><a className="methodology__link" href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer">{t(text.methodology.link)}<ArrowUpLeft size={16} /></a></div><div className="methodology__system"><a href="https://IFEM-doctrine.github.io/" target="_blank" rel="noreferrer" aria-label={isRtl ? "وب‌سایت IFEM Doctrine" : "IFEM Doctrine website"}><img src={assets.ifem} alt="IFEM Doctrine — Interface-First Execution Methodology" width="1536" height="512" loading="lazy" decoding="async" /></a><div className="methodology__layers"><div><span>ONYX</span><strong>{t(text.methodology.product)}</strong><small>{t(text.methodology.productCopy)}</small></div><div><span>IFEM</span><strong>{t(text.methodology.doctrine)}</strong><small>{t(text.methodology.doctrineCopy)}</small></div></div></div></div></section>
+        <section id="methodology" className="methodology section-shell"><div className="shell-content methodology__layout"><div className="methodology__content"><SignalTag>{t(text.methodology.tag)}</SignalTag><h2>{t(text.methodology.titleA)}<br /><em>{t(text.methodology.titleB)}</em></h2><p>{t(text.methodology.body)}</p><a className="methodology__link" href="https://bound-method.github.io/" target="_blank" rel="noreferrer">{t(text.methodology.link)}<ArrowUpLeft size={16} /></a></div><div className="methodology__system"><a className="bound-context" href="https://bound-method.github.io/" target="_blank" rel="noreferrer" aria-label={isRtl ? "وب‌سایت BOUND Method v3.0" : "BOUND Method v3.0 website"}><div className="bound-context__eyebrow">BOUND METHOD v3.0</div><div className="bound-context__title">Boundary-Oriented Unified Development</div><div className="bound-context__sequence"><span>Domain</span><i>→</i><span>Boundary</span><i>→</i><span>Contract</span><i>→</i><span>Execution</span><i>→</i><span>Verification</span></div></a><div className="methodology__layers"><div><span>ONYX</span><strong>{t(text.methodology.product)}</strong><small>{t(text.methodology.productCopy)}</small></div><div><span>BOUND</span><strong>{t(text.methodology.doctrine)}</strong><small>{t(text.methodology.doctrineCopy)}</small></div></div></div></div></section>
 
         <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
 
