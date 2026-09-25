@@ -225,7 +225,7 @@ function pagesDescription(locale: Locale, page: PageKey) {
   };
   return descriptions[page][locale];
 }
-\nfor (const locale of ["en", "fa"] as const) {
+for (const locale of ["en", "fa"] as const) {
   const documentHtml = localizedDocument(locale);
   const localeDirectory = path.join(outputDirectory, locale);
   fs.mkdirSync(localeDirectory, { recursive: true });
