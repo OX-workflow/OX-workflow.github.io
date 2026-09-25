@@ -33,7 +33,7 @@ const copy = {
     statusTag:"07 / Implementation status", statusTitleA:"Architecture claims", statusTitleB:"must stay honest.",
     statusBody:"This architecture page describes the system model and intended boundaries. It does not imply that every layer or future interface is already shipped.",
     statuses:[["DOCUMENTED","Operating model","Local-first execution, synchronization, authority, and verification are the architectural model presented by ONYX."],["IN DEVELOPMENT","Platform components","Implementation details should be tracked against the roadmap rather than inferred from this diagram."],["PLANNED","Agent interface","Agentic AI / Plugin integration is a future layer and is explicitly separated from the current product model."]],
-    ctaTag:"08 / Continue", ctaTitleA:"Move from", ctaTitleB:"architecture to scenarios.", ctaBody:"See how the system maps onto operational environments, or return to the product model.", solutions:"View solutions", product:"View product", contact:"Contact team",
+    ctaTag:"08 / Continue", ctaTitleA:"Move from", ctaTitleB:"architecture to scenarios.", ctaBody:"See how the system maps onto operational environments, or return to the product model.", solutions:"View solutions", product:"View product",
     light:"Light mode", dark:"Dark mode", language:"فارسی"
   },
   fa: {
@@ -64,7 +64,7 @@ const copy = {
     statusTag:"۰۷ / وضعیت پیاده‌سازی", statusTitleA:"ادعاهای معماری", statusTitleB:"باید دقیق بمانند.",
     statusBody:"این صفحه مدل سامانه و مرزهای موردنظر را توضیح می‌دهد و به‌معنای عرضه شدن همه لایه‌ها یا رابط آینده نیست.",
     statuses:[["DOCUMENTED","مدل عملیاتی","اجرای محلی‌محور، همگام‌سازی، اختیار و راستی‌آزمایی مدل معماری ONYX را تشکیل می‌دهند."],["IN DEVELOPMENT","اجزای پلتفرم","جزئیات پیاده‌سازی باید با نقشه راه دنبال شوند و از این نمودار استنباط نشوند."],["PLANNED","رابط عامل","یکپارچه‌سازی Agentic AI / Plugin یک لایه آینده است و از مدل فعلی محصول جدا نگه داشته شده است."]],
-    ctaTag:"۰۸ / ادامه", ctaTitleA:"از معماری", ctaTitleB:"به سناریوها بروید.", ctaBody:"ببینید سامانه چگونه روی محیط‌های عملیاتی می‌نشیند یا به مدل محصول بازگردید.", solutions:"مشاهده راهکارها", product:"مشاهده محصول", contact:"تماس با تیم",
+    ctaTag:"۰۸ / ادامه", ctaTitleA:"از معماری", ctaTitleB:"به سناریوها بروید.", ctaBody:"ببینید سامانه چگونه روی محیط‌های عملیاتی می‌نشیند یا به مدل محصول بازگردید.", solutions:"مشاهده راهکارها", product:"مشاهده محصول",
     light:"حالت روشن", dark:"حالت تاریک", language:"English"
   }
 } as const;
