@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../client/src/pages/Home";
 import SitePage, { type PageKey } from "../client/src/pages/SitePage";
+import ProductPage from "../client/src/pages/ProductPage";
 
 type Locale = "en" | "fa";
 
@@ -197,7 +198,7 @@ function localizedDocument(locale: Locale): string {
 
 function pagesTitle(locale: Locale, page: PageKey) {
   const titles: Record<PageKey, { en: string; fa: string }> = {
-    product: { en: "ONYX | Product", fa: "ONYX | محصول" },
+    product: { en: "ONYX | Product — Local-first mission operations", fa: "ONYX | محصول — عملیات مأموریت‌محور محلی‌محور" },
     solutions: { en: "ONYX | Solutions", fa: "ONYX | راهکارها" },
     architecture: { en: "ONYX | Architecture", fa: "ONYX | معماری" },
     security: { en: "ONYX | Security", fa: "ONYX | امنیت" },
@@ -212,7 +213,7 @@ function pagesTitle(locale: Locale, page: PageKey) {
 
 function pagesDescription(locale: Locale, page: PageKey) {
   const descriptions: Record<PageKey, { en: string; fa: string }> = {
-    product: { en: "The ONYX product and deployment model.", fa: "محصول و مدل استقرار ONYX." },
+    product: { en: "ONYX is a local-first mission operations platform for distributed teams, built around local execution, controlled synchronization, and explicit operational authority.", fa: "ONYX یک پلتفرم عملیات مأموریت‌محور و محلی‌محور برای تیم‌های توزیع‌شده است که بر اجرای محلی، همگام‌سازی کنترل‌شده و اختیار عملیاتی صریح بنا شده است." },
     solutions: { en: "Operational scenarios and environments for ONYX.", fa: "سناریوها و محیط‌های عملیاتی ONYX." },
     architecture: { en: "The ONYX system and technical architecture.", fa: "معماری سامانه و فنی ONYX." },
     security: { en: "Security, authority, auditability, and deployment controls for ONYX.", fa: "امنیت، اختیار، ممیزی و کنترل‌های استقرار ONYX." },
@@ -251,7 +252,9 @@ for (const locale of ["en", "fa"] as const) {
   const metadata = localeMetadata[locale];
   for (const page of sitePages) {
     const pageUrl = `${SITE_URL}/${locale}/${page}/`;
-    const rootMarkup = renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+    const rootMarkup = page === "product"
+      ? renderToStaticMarkup(<ProductPage locale={locale} />)
+      : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
