@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ONYX symbol</title>
+  <desc id="desc">A luminous circular ONYX mission operations symbol.</desc>
+  <defs>
+    <linearGradient id="g" x1="10%" y1="90%" x2="88%" y2="12%">
+      <stop offset="0" stop-color="#B94DFF"/>
+      <stop offset="38%" stop-color="#263BFF"/>
+      <stop offset="70%" stop-color="#087BFF"/>
+      <stop offset="100%" stop-color="#35D9FF"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="18" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="0 0 0 0 0.08 0 0 0 0 0.25 0 0 0 0 1 0 0 0 .72 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <circle cx="256" cy="256" r="171" fill="none" stroke="url(#g)" stroke-width="30" filter="url(#glow)"/>
+  <circle cx="256" cy="256" r="171" fill="none" stroke="#F4F8FF" stroke-opacity=".72" stroke-width="2"/>
+</svg>
