@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 360" role="img" aria-labelledby="title desc">
+  <title id="title">ONYX</title><desc id="desc">ONYX horizontal brand mark.</desc>
+  <defs><linearGradient id="g" x1="8%" y1="92%" x2="90%" y2="8%"><stop offset="0" stop-color="#B94DFF"/><stop offset=".38" stop-color="#263BFF"/><stop offset=".7" stop-color="#087BFF"/><stop offset="1" stop-color="#35D9FF"/></linearGradient><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <circle cx="174" cy="180" r="118" fill="none" stroke="url(#g)" stroke-width="24" filter="url(#glow)"/><circle cx="174" cy="180" r="118" fill="none" stroke="#FFFFFF" stroke-opacity=".85" stroke-width="2"/>
+  <text x="380" y="232" fill="#0A1730" font-family="ONYX Manrope, Manrope, Arial, sans-serif" font-size="142" font-weight="700" letter-spacing="22">ONYX</text>
+</svg>
