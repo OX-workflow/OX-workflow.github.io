@@ -673,6 +673,7 @@ body { min-height: 100vh; overflow-x: hidden; }
 
 /* Final light-theme contrast pass: keep every operational label, control, card, and annotation readable. */
 :root:not([data-theme="dark"]) .hero-launch { color: #dceaff; }
+:root:not([data-theme="dark"]) .hero-launch__status { color: #dceaff; }
 :root:not([data-theme="dark"]) .hero-launch__status,
 :root:not([data-theme="dark"]) .hero-launch__telemetry { color: #dceaff; }
 :root:not([data-theme="dark"]) .signal-tag { color: #35506f; }
