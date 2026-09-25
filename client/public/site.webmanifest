@@ -4,14 +4,9 @@
   "description": "Mission Operations Platform for governed execution, accountability, and operational continuity.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#05070B",
-  "theme_color": "#05070B",
+  "background_color": "#F5F8FC",
+  "theme_color": "#F5F8FC",
   "icons": [
-    {
-      "src": "/assets/onyx-symbol.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    },
     {
       "src": "/assets/onyx-symbol.svg",
       "sizes": "any",
