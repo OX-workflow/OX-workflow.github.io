@@ -15,7 +15,7 @@ An **operational documentation system**: a restrained hybrid of enterprise contr
 1. **Authority through structure.** Deep navy structural elements, evidence panels, and precise metadata communicate traceability without promotional excess.
 2. **Evidence before assertion.** Repository facts, external references, and explicit boundary diagrams carry the narrative.
 3. **Restrained hierarchy.** Large editorial headings sit beside small uppercase context labels; generous space separates concepts rather than decorative effects.
-4. **Interfaces as architecture.** Lines, status markers, module blocks, and command-style navigation reinforce IFEM’s emphasis on clear responsibilities.
+4. **Interfaces as architecture.** Lines, status markers, module blocks, and command-style navigation reinforce BOUND’s emphasis on explicit responsibility boundaries.
 
 ### Color Philosophy
 
@@ -29,7 +29,7 @@ A permanent **documentation rail** on desktop acts as the architectural spine. C
 
 1. A square ONYX mark set inside a thin outlined frame.
 2. Fine technical rules, numbered section indexes, and small capsule metadata labels.
-3. Layered diamond planes and connector nodes based on the supplied IFEM mark, used as a quiet diagrammatic motif.
+3. Layered diamond planes and connector nodes based on the BOUND visual language, used as a quiet diagrammatic motif.
 
 ### Interaction Philosophy
 
@@ -59,7 +59,7 @@ Headlines state the architectural subject. CTAs point to evidence rather than co
 
 ### Wordmark & Logo
 
-Use the supplied ONYX visual language: a framed square symbol paired with a spaced uppercase ONYX wordmark. The geometric layers inspired by the supplied IFEM mark become the supporting architectural motif, not a replacement for ONYX.
+Use the supplied ONYX visual language: a framed square symbol paired with a spaced uppercase ONYX wordmark. The geometric layers inspired by the BOUND visual language become the supporting architectural motif, not a replacement for ONYX.
 
 ### Signature Brand Color
 
