@@ -75,6 +75,6 @@ export default function SecurityPage({locale}:{locale:Locale}){
    <section className="security-section security-section--future"><div className="shell-content"><div className="security-heading"><div className="security-kicker"><span/>{t.futureTag}</div><h2>{t.futureTitleA}<br/><em>{t.futureTitleB}</em></h2><p>{t.futureBody}</p></div><div className="security-future">{t.future.map((x,i)=><div key={x}><span>0{i+1}</span><Check size={16}/><p>{x}</p></div>)}</div></div></section>
    <section className="security-final"><div className="shell-content"><div className="security-kicker"><span/>{t.ctaTag}</div><h2>{t.ctaTitleA}<br/><em>{t.ctaTitleB}</em></h2><p>{t.ctaBody}</p><div className="security-actions"><a className="security-button security-button--primary" href={link("architecture")}>{t.architecture}</a><a className="security-button" href={link("contact")}>{t.contact}</a></div></div></section>
   </main>
-  <footer className="security-footer"><div className="shell-content"><img src={theme==="dark"?"/assets/onyx-horizontal-dark.svg":"/assets/onyx-horizontal-light.svg"} alt="ONYX"/><span>© {new Date().getFullYear()} ONYX · <a href="https://bound-method.github.io/" target="_blank" rel="noreferrer">BOUND Method</a></span></div></footer>
+  <footer className="security-footer"><div className="shell-content"><img src={theme==="dark"?"/assets/onyx-horizontal-dark.svg":"/assets/onyx-horizontal-light.svg"} alt="ONYX"/><span>© {new Date().getFullYear()} ONYX</span></div></footer>
  </div>
 }
