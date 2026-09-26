@@ -59,8 +59,15 @@ jobs:
             done
           done
           grep -q '<html lang="en" dir="ltr">' dist/public/en/index.html
+          for page in product solutions architecture security roadmap about resources contact investors pricing customers; do
+            grep -q '<html lang="fa" dir="rtl">' "dist/public/fa/$page/index.html"
+          done
           grep -q '<html lang="fa" dir="rtl">' dist/public/fa/index.html
           grep -q '<div id="root">' dist/public/en/index.html
           grep -q '<div id="root">' dist/public/fa/index.html
           grep -q 'ONYX | Product' dist/public/en/product/index.html
           grep -q 'ONYX | معماری' dist/public/fa/architecture/index.html
+          if grep -RqiE '>English<|>Light mode<|>Dark mode<|>Back to home<' dist/public/fa; then
+            echo 'English UI labels remain in the Farsi prerendered surface.'
+            exit 1
+          fi
