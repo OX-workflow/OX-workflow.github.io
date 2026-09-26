@@ -10,7 +10,6 @@ import ArchitecturePage from "../client/src/pages/ArchitecturePage";
 import SolutionsPage from "../client/src/pages/SolutionsPage";
 import SecurityPage from "../client/src/pages/SecurityPage";
 import AboutPage from "../client/src/pages/AboutPage";
-import RoadmapPage from "../client/src/pages/RoadmapPage";
 import PricingLicensingPage from "../client/src/pages/PricingLicensingPage";
 import CustomersPage from "../client/src/pages/CustomersPage";
 import RoadmapPage from "../client/src/pages/RoadmapPage";
@@ -19,6 +18,20 @@ import ResourcesPage from "../client/src/pages/ResourcesPage";
 import ContactPage from "../client/src/pages/ContactPage";
 
 type Locale = "en" | "fa";
+
+type PageKey =
+  | "product"
+  | "solutions"
+  | "architecture"
+  | "security"
+  | "roadmap"
+  | "about"
+  | "resources"
+  | "contact"
+  | "investors"
+  | "pricing"
+  | "customers";
+
 
 type LocaleMetadata = {
   documentLanguage: string;
