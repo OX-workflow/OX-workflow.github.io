@@ -6,7 +6,7 @@ type Theme = "light" | "dark";
 
 const copy = {
   en: {
-    tag: "ONYX / CUSTOMERS & CASE STUDIES",
+    tag: "ONYX / مشتریان و مطالعات موردی",
     eyebrow: "REFERENCE SCENARIOS",
     title: "BUILT FOR OPERATIONS THAT CANNOT DEPEND ON PERFECT CONNECTIVITY.",
     intro:
@@ -117,7 +117,7 @@ const copy = {
     architecture: "معماری",
     security: "امنیت",
     contact: "تماس",
-    language: "English",
+    language: "فارسی",
     light: "حالت روشن",
     dark: "حالت تاریک",
     home: "بازگشت به خانه",
