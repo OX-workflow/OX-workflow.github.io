@@ -7,10 +7,10 @@ type Theme = "light" | "dark";
 const copy = {
   en: {
     tag: "ONYX / RESOURCES",
-    kicker: "TECHNICAL REFERENCE",
-    title: "READ THE SYSTEM. TRACE THE OPERATING MODEL.",
+    kicker: "START HERE",
+    title: "UNDERSTAND ONYX. THEN GO DEEPER.",
     intro:
-      "A focused resource index for understanding ONYX as a mission operations platform: product behavior, architecture, security, engineering evidence, and the public project record.",
+      "A focused guide to the ONYX product, operating model, technical foundation, security posture, roadmap, and public engineering record.",
     product: "Product",
     architecture: "Architecture",
     security: "Security",
@@ -23,7 +23,7 @@ const copy = {
     sections: [
       {
         label: "01 / PRODUCT",
-        title: "Understand what ONYX is built to do.",
+        title: "Start with the product and operating model."
         body:
           "Start with the product surface for the operating model, local-first execution, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
         items: [
@@ -34,7 +34,7 @@ const copy = {
       },
       {
         label: "02 / SYSTEM",
-        title: "Trace the architecture behind the operation.",
+        title: "Go deeper into the system."
         body:
           "The architecture material explains how local clients, synchronization, authority, durable state, and infrastructure fit together. It is the technical bridge between the product thesis and implementation.",
         items: [
@@ -45,7 +45,7 @@ const copy = {
       },
       {
         label: "03 / ENGINEERING RECORD",
-        title: "Inspect the public engineering evidence.",
+        title: "Verify the engineering record."
         body:
           "The public repository is the source for implementation-level context. Use the repository documentation for architectural decisions, API material, development structure, tests, and deployment tooling.",
         items: [
@@ -56,7 +56,7 @@ const copy = {
       },
       {
         label: "04 / RELATED METHOD",
-        title: "Understand the methodology behind the system.",
+        title: "Explore the related methodology."
         body:
           "BOUND is presented as a related methodological and system-design layer behind ONYX, not as a separate ONYX product surface.",
         items: [
@@ -65,21 +65,21 @@ const copy = {
       },
     ],
     boundaryLabel: "05 / PUBLICATION BOUNDARY",
-    boundaryTitle: "Public reference. Controlled product surface.",
+    boundaryTitle: "Public reference. Clear product boundary.",
     boundaryBody:
       "These resources are intended to explain the public product and engineering record. They do not imply that every repository artifact is a commercial deliverable, nor that future or research capabilities are generally shipped. ONYX's commercialization position treats the core product and intellectual property as proprietary.",
     finalLabel: "06 / NEXT",
-    finalTitle: "Need the system in an operational context?",
+    finalTitle: "Ready to discuss the operation?"
     finalBody:
       "Use the contact path for a substantive product or enterprise discussion grounded in your operating environment, connectivity, authority model, and deployment constraints.",
     demo: "Request a demonstration",
   },
   fa: {
     tag: "ONYX / منابع",
-    kicker: "مرجع فنی",
-    title: "سامانه را بخوانید. مدل عملیاتی را دنبال کنید.",
+    kicker: "از اینجا شروع کنید",
+    title: "ONYX را بشناسید؛ سپس عمیق‌تر شوید.",
     intro:
-      "فهرستی متمرکز برای شناخت ONYX به‌عنوان یک پلتفرم عملیات مأموریت‌محور: رفتار محصول، معماری، امنیت، شواهد مهندسی و رکورد عمومی پروژه.",
+      "راهنمایی متمرکز برای شناخت محصول، مدل عملیاتی، بنیان فنی، وضعیت امنیتی، نقشه راه و رکورد مهندسی عمومی ONYX.",
     product: "محصول",
     architecture: "معماری",
     security: "امنیت",
@@ -92,7 +92,7 @@ const copy = {
     sections: [
       {
         label: "۰۱ / محصول",
-        title: "بفهمید ONYX برای چه چیزی ساخته شده است.",
+        title: "از محصول و مدل عملیاتی شروع کنید."
         body:
           "از سطح محصول برای مدل عملیاتی، اجرای محلی‌محور، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
         items: [
@@ -103,7 +103,7 @@ const copy = {
       },
       {
         label: "۰۲ / سامانه",
-        title: "معماری پشت عملیات را دنبال کنید.",
+        title: "عمیق‌تر وارد سامانه شوید."
         body:
           "مطالب معماری توضیح می‌دهند کلاینت‌های محلی، همگام‌سازی، اختیار، وضعیت پایدار و زیرساخت چگونه به هم متصل می‌شوند. این بخش پل میان محصول و پیاده‌سازی است.",
         items: [
@@ -114,7 +114,7 @@ const copy = {
       },
       {
         label: "۰۳ / رکورد مهندسی",
-        title: "شواهد مهندسی عمومی را بررسی کنید.",
+        title: "رکورد مهندسی را بررسی کنید."
         body:
           "مخزن عمومی مرجع زمینه پیاده‌سازی است. مستندات مخزن برای تصمیم‌های معماری، API، ساختار توسعه، آزمون‌ها و ابزارهای استقرار استفاده می‌شوند.",
         items: [
@@ -125,7 +125,7 @@ const copy = {
       },
       {
         label: "۰۴ / روش مرتبط",
-        title: "روش‌شناسی پشت سامانه را بشناسید.",
+        title: "روش‌شناسی مرتبط را ببینید."
         body:
           "BOUND به‌عنوان لایه روش‌شناختی و طراحی سیستم مرتبط با ONYX معرفی می‌شود، نه به‌عنوان یک سطح محصولی جداگانه از ONYX.",
         items: [
@@ -134,11 +134,11 @@ const copy = {
       },
     ],
     boundaryLabel: "۰۵ / مرز انتشار",
-    boundaryTitle: "مرجع عمومی. سطح محصول کنترل‌شده.",
+    boundaryTitle: "مرجع عمومی. مرز روشن محصول.",
     boundaryBody:
       "این منابع برای توضیح محصول عمومی و رکورد مهندسی پروژه هستند. آن‌ها به معنی تجاری‌بودن همه اقلام مخزن یا عرضه عمومی قابلیت‌های آینده و پژوهشی نیستند. جایگاه تجاری ONYX، هسته محصول و مالکیت فکری آن را اختصاصی در نظر می‌گیرد.",
     finalLabel: "۰۶ / گام بعد",
-    finalTitle: "به سامانه در یک زمینه عملیاتی نیاز دارید؟",
+    finalTitle: "آماده گفت‌وگو درباره عملیات هستید؟",
     finalBody:
       "برای گفت‌وگوی محصول یا سازمانی، مسیر تماس را با توضیح محیط عملیاتی، شرایط اتصال، مدل اختیار و محدودیت‌های استقرار خود استفاده کنید.",
     demo: "درخواست دمو",
