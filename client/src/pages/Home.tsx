@@ -217,6 +217,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
           </div>
         </div>
 
+        <ProductVisuals locale={locale} variant="hero" />
+
         <section id="problem" className="problem section-shell">
           <div className="shell-content split-grid split-grid--problem">
             <div className="section-intro">
