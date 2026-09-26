@@ -8,17 +8,18 @@ type Stage = {
   label: string;
   title: string;
   body: string;
+  evidence?: string[];
 };
 
 const stages: Record<Locale, Stage[]> = {
   en: [
-    { step: "01", label: "MISSION", title: "Define the operation", body: "Set the objective, owner, status, and operational boundary before work begins." },
-    { step: "02", label: "AUTHORITY", title: "Establish who can act", body: "Keep responsibility and decision authority visible as work moves through the operation." },
-    { step: "03", label: "EXECUTION", title: "Turn intent into work", body: "Structure tasks, dependencies, milestones, and deadlines around the mission." },
-    { step: "04", label: "DECISION", title: "Capture the decision", body: "Keep meetings, decisions, and resulting actions attached to the operation." },
-    { step: "05", label: "VERIFY", title: "Attach the evidence", body: "Connect approval, verification, and evidence to the outcome rather than leaving them in separate trails." },
-    { step: "06", label: "SYNC", title: "Reconcile the state", body: "Make distributed change visible and preserve explicit synchronization and conflict state." },
-    { step: "07", label: "HISTORY", title: "Reconstruct what happened", body: "Keep the operational record so the sequence, authority, decisions, and evidence remain explainable." },
+    { step: "01", label: "MISSION", title: "Define the operation", body: "Set the objective, owner, status, and operational boundary before work begins.", evidence: ["Mission defined", "Owner assigned", "Boundary recorded"] },
+    { step: "02", label: "AUTHORITY", title: "Establish who can act", body: "Keep responsibility and decision authority visible as work moves through the operation.", evidence: ["Authority recorded", "Responsibility visible", "Decision path clear"] },
+    { step: "03", label: "EXECUTION", title: "Turn intent into work", body: "Structure tasks, dependencies, milestones, and deadlines around the mission.", evidence: ["Work structured", "Dependencies linked", "Milestones tracked"] },
+    { step: "04", label: "DECISION", title: "Capture the decision", body: "Keep meetings, decisions, and resulting actions attached to the operation.", evidence: ["Decision recorded", "Action attached", "Context retained"] },
+    { step: "05", label: "VERIFY", title: "Attach the evidence", body: "Connect approval, verification, and evidence to the outcome rather than leaving them in separate trails.", evidence: ["Approval attached", "Evidence linked", "Outcome verified"] },
+    { step: "06", label: "SYNC", title: "Reconcile the state", body: "Make distributed change visible and preserve explicit synchronization and conflict state.", evidence: ["State visible", "Changes reconciled", "Conflict state explicit"] },
+    { step: "07", label: "HISTORY", title: "Reconstruct what happened", body: "Keep the operational record so the sequence, authority, decisions, and evidence remain explainable.", evidence: ["Sequence retained", "Authority traceable", "Evidence recoverable"] },
   ],
   fa: [
     { step: "۰۱", label: "مأموریت", title: "عملیات را تعریف کنید", body: "هدف، مالک، وضعیت و مرز عملیاتی را پیش از شروع کار مشخص کنید." },
@@ -33,13 +34,15 @@ const stages: Record<Locale, Stage[]> = {
 
 export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const items = stages[locale];
   const current = items[active];
 
   useEffect(() => {
+    if (paused) return;
     const timer = window.setInterval(() => setActive((value) => (value + 1) % items.length), 5200);
     return () => window.clearInterval(timer);
-  }, [items.length]);
+  }, [items.length, paused]);
 
   return (
     <section className="operational-demo section-shell" id="operational-demo">
@@ -61,6 +64,7 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
                 className={`operational-demo__step ${index === active ? "operational-demo__step--active" : ""}`}
                 onClick={() => setActive(index)}
                 aria-current={index === active ? "step" : undefined}
+                aria-label={item.step + " / " + item.label + ": " + item.title}
               >
                 <span>{item.step}</span>
                 <i aria-hidden="true" />
@@ -80,9 +84,7 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
                 <h3>{current.title}</h3>
                 <p>{current.body}</p>
                 <div className="operational-demo__evidence">
-                  <span><ShieldCheck size={14} /> {locale === "fa" ? "اختیار ثبت شد" : "Authority recorded"}</span>
-                  <span><Check size={14} /> {locale === "fa" ? "سابقه حفظ شد" : "History retained"}</span>
-                  <span><Wifi size={14} /> {locale === "fa" ? "وضعیت همگام‌سازی قابل مشاهده" : "Sync state visible"}</span>
+                  {(current.evidence ?? (locale === "fa" ? ["اختیار ثبت شد", "سابقه حفظ شد", "وضعیت همگام‌سازی قابل مشاهده"] : ["Authority recorded", "History retained", "Sync state visible"])).map((item, index) => <span key={item}>{index === 0 ? <ShieldCheck size={14} /> : index === 1 ? <Check size={14} /> : <Wifi size={14} />} {item}</span>)}
                 </div>
               </div>
             </div>
