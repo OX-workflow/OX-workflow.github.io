@@ -14,6 +14,8 @@ import CustomersPage from "./pages/CustomersPage";
 
 type Locale = "en" | "fa";
 
+type Locale = "en" | "fa";
+
 const pageKeys: PageKey[] = [
   "product",
   "solutions",
