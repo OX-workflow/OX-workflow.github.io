@@ -46,9 +46,20 @@ function OperationalState({ kind, locale, step }: { kind: StateKind; locale: Loc
       <div className="operational-demo__state-visual operational-demo__state-visual--evidence">
         <div className="operational-demo__evidence-stack">
           <span className="operational-demo__state-kicker">{locale === "fa" ? "اثبات عملیات" : "OPERATIONAL PROOF"}</span>
-          {["REPORT", "LOG", "RECEIPT"].map((item, index) => (
-            <div className="operational-demo__evidence-row" key={item}>
-              <span>{item}</span><i /><b>{index === 2 ? "VERIFIED" : "ATTACHED"}</b>
+          {(locale === "fa"
+            ? [
+                { label: "گزارش", status: "پیوست شد" },
+                { label: "گزارش رویداد", status: "پیوست شد" },
+                { label: "رسید", status: "راستی‌آزمایی شد" },
+              ]
+            : [
+                { label: "REPORT", status: "ATTACHED" },
+                { label: "LOG", status: "ATTACHED" },
+                { label: "RECEIPT", status: "VERIFIED" },
+              ]
+          ).map((item) => (
+            <div className="operational-demo__evidence-row" key={item.label}>
+              <span>{item.label}</span><i /><b>{item.status}</b>
             </div>
           ))}
         </div>
@@ -61,14 +72,14 @@ function OperationalState({ kind, locale, step }: { kind: StateKind; locale: Loc
     return (
       <div className="operational-demo__state-visual operational-demo__state-visual--forecast">
         <div className="operational-demo__forecast-head">
-          <span className="operational-demo__state-kicker">{locale === "fa" ? "ظرفیت" : "CAPACITY"}</span>
+          <span className="operational-demo__state-kicker">{locale === "fa" ? "ظرفیت · نمونه نمایشی" : "CAPACITY · ILLUSTRATIVE"}</span>
           <strong>78%</strong>
         </div>
         <div className="operational-demo__capacity"><i /></div>
         <div className="operational-demo__forecast-chart">
           <span /><span /><span /><span /><span /><span />
         </div>
-        <div className="operational-demo__forecast-meta"><span>{locale === "fa" ? "فشار پیش‌رو" : "Pressure ahead"}</span><b>+12%</b></div>
+        <div className="operational-demo__forecast-meta"><span>{locale === "fa" ? "فشار پیش‌رو · مقدار نمونه" : "Pressure ahead · demo value"}</span><b>+12%</b></div>
       </div>
     );
   }
@@ -76,9 +87,9 @@ function OperationalState({ kind, locale, step }: { kind: StateKind; locale: Loc
   if (kind === "automation") {
     return (
       <div className="operational-demo__state-visual operational-demo__state-visual--automation">
-        <div className="operational-demo__automation-node"><span>{locale === "fa" ? "قانون" : "RULE"}</span><b>IF</b></div>
+        <div className="operational-demo__automation-node"><span>{locale === "fa" ? "قانون" : "RULE"}</span><b>{locale === "fa" ? "اگر" : "IF"}</b></div>
         <div className="operational-demo__automation-path"><i /><i /><i /></div>
-        <div className="operational-demo__automation-node operational-demo__automation-node--active"><span>{locale === "fa" ? "پاسخ" : "RESPONSE"}</span><b>RUN</b></div>
+        <div className="operational-demo__automation-node operational-demo__automation-node--active"><span>{locale === "fa" ? "پاسخ" : "RESPONSE"}</span><b>{locale === "fa" ? "اجرا" : "RUN"}</b></div>
         <div className="operational-demo__receipt">{locale === "fa" ? "رسید اجرا حفظ شد" : "Execution receipt retained"}</div>
       </div>
     );
@@ -100,7 +111,10 @@ function OperationalState({ kind, locale, step }: { kind: StateKind; locale: Loc
       <div className="operational-demo__state-visual operational-demo__state-visual--history">
         <span className="operational-demo__state-kicker">{locale === "fa" ? "بازسازی عملیات" : "OPERATION RECONSTRUCTION"}</span>
         <div className="operational-demo__history-line">
-          {["DECISION", "APPROVAL", "EVIDENCE", "SYNC"].map((item, index) => (
+          {(locale === "fa"
+            ? ["تصمیم", "تأیید", "شواهد", "همگام‌سازی"]
+            : ["DECISION", "APPROVAL", "EVIDENCE", "SYNC"]
+          ).map((item, index) => (
             <div key={item}><i /><span>{item}</span><b>{String(index + 1).padStart(2, "0")}</b></div>
           ))}
         </div>
