@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-import SiteHeader, { getInitialTheme } from "./SiteHeader";
   ArrowLeft,
   ArrowRight,
   ArrowUpLeft,
@@ -24,6 +23,7 @@ import SiteHeader, { getInitialTheme } from "./SiteHeader";
   Sun,
   ArrowUp,
 } from "lucide-react";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 
