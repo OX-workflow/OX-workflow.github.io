@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Moon, Sun } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import ProductVisuals from "../components/ProductVisuals";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -197,6 +198,8 @@ export default function ProductPage({ locale }: { locale: Locale }) {
           <div className="product-hero__signal" aria-hidden="true"><span>LOCAL</span><i /><span>SYNC</span><i /><span>CONTROL</span></div>
         </section>
 
+        <ProductVisuals locale={locale} variant="hero" />
+
         <section className="product-section product-section--model">
           <div className="shell-content">
             <div className="product-heading"><div className="product-kicker"><span />{t.modelTag}</div><h2>{t.modelTitleA} <em>{t.modelTitleB}</em></h2><p>{t.modelBody}</p></div>
@@ -218,6 +221,8 @@ export default function ProductPage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
+        <ProductVisuals locale={locale} variant="gallery" />
+
         <section className="product-section product-section--language">
           <div className="shell-content">
             <div className="product-heading"><div className="product-kicker"><span />{t.languageTag}</div><h2>{t.languageTitleA}<br /><em>{t.languageTitleB}</em></h2><p>{t.languageBody}</p></div>
@@ -231,6 +236,8 @@ export default function ProductPage({ locale }: { locale: Locale }) {
             <div className="product-surfaces">{t.surfaces.map(([code, title, body, status]) => <article key={code}><div className="product-surface__top"><span>{code}</span><small>{status}</small></div><h3>{title}</h3><p>{body}</p></article>)}</div>
           </div>
         </section>
+
+        <ProductVisuals locale={locale} variant="mobile" />
 
         <section className="product-section product-section--status">
           <div className="shell-content">
