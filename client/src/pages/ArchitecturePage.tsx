@@ -7,34 +7,72 @@ type Theme = "light" | "dark";
 
 const copy = {
   en: {
-    tag:"01 / Architecture", titleA:"DESIGNED FOR", titleB:"DISCONNECTED REALITY.",
-    body:"ONYX treats connectivity as a variable, not a prerequisite. The architecture separates local execution, distributed state, synchronization, authority, and operational visibility so each layer can remain explicit.",
+    tag:"01 / Architecture", titleA:"ENGINEERED FOR", titleB:"DISTRIBUTED OPERATIONS.",
+    body:"ONYX treats connectivity, authority, and recovery as architectural concerns. Local execution, durable state, synchronization, event history, and auditability are explicit boundaries—not assumptions hidden inside transport.",
     explore:"Product model", contact:"Request a demo", home:"Back to home",
-    modelTag:"02 / System model", modelTitleA:"Five layers.", modelTitleB:"One operational state.",
-    modelBody:"The system can be understood as a chain from point-of-action state to coordinated operational visibility. Each layer has a distinct responsibility and boundary.",
+    modelTag:"02 / System model", modelTitleA:"One operation.", modelTitleB:"Multiple execution surfaces.",
+    modelBody:"An ONYX operation can be acted on locally, persisted durably, synchronized across replicas, and reconstructed from its operational history. Each boundary has a defined responsibility.",
     layers:[
-      ["01","EDGE","Local execution","The operator works against the state available at the point of action. Connectivity loss does not have to stop local work."],
-      ["02","STATE","Operational state","Work, decisions, outcomes, and relevant context are represented as operational state that can be inspected and reconciled."],
-      ["03","SYNC","Synchronization","Distributed changes are exchanged and reconciled when communication is available, according to defined system rules."],
-      ["04","AUTHORITY","Control plane","Authority and responsibility remain explicit so synchronization does not silently become permission to act."],
-      ["05","OPS","Operational view","Teams can coordinate around a shared operational picture without requiring every action to originate from the center."],
+      ["01","AUTHORITY","Who may act","Identity, organization boundaries, roles, delegation, and approval scope determine which operations a principal is allowed to perform."],
+      ["02","LOCAL","Execute locally","A node can work against its available operational state instead of making every action dependent on a continuously reachable central service."],
+      ["03","STATE","Persist durably","Operational state and event history are persisted so completed work survives process failure and can be reconstructed."],
+      ["04","SYNC","Reconcile replicas","Changes move between replicas when communication is available. Vector-clock based synchronization supports convergence, conflict detection, and explicit resolution."],
+      ["05","AUDIT","Explain what happened","Operational history and tamper-evident audit partitions provide a trace of actions, decisions, evidence, and verification."],
     ],
-    topologyTag:"03 / Topology", topologyTitleA:"The network can", topologyTitleB:"disappear.",
-    topologyBody:"A node may be connected, degraded, or offline. The architectural invariant is that local operational state remains meaningful and that reconciliation is an explicit transition when connectivity returns.",
-    states:[["CONNECTED","Coordinate + synchronize","The node exchanges state and participates in the shared operational view."],["DEGRADED","Continue + queue","Local execution continues while synchronization capacity is constrained."],["OFFLINE","Execute + preserve","The node operates against its available state and preserves outcomes for later reconciliation."],["RESTORED","Reconcile + verify","Connectivity returns and distributed changes are brought back together under system rules."]],
-    syncTag:"04 / Synchronization", syncTitleA:"Synchronization is", syncTitleB:"a system boundary.",
-    syncBody:"Synchronization should not be treated as a background transport detail. It is the boundary where distributed state becomes coordinated state, and therefore needs explicit rules for identity, ordering, conflicts, authority, and verification.",
-    rules:["State identity","Change ordering","Conflict handling","Authority boundaries","Verification / audit trail"],
-    authorityTag:"05 / Authority", authorityTitleA:"Coordination does not", authorityTitleB:"erase responsibility.",
-    authorityBody:"A distributed system needs more than data movement. ONYX keeps authority and responsibility conceptually separate from connectivity so the architecture can answer who may act, what changed, and what was verified.",
-    graph:["ACTOR","AUTHORITY","ACTION","STATE","VERIFICATION"],
-    futureTag:"06 / Future interface", futureTitleA:"A governed interface", futureTitleB:"for agents.",
-    futureBody:"The future Agentic AI / Plugin layer should sit above the operational model rather than bypass it. Agents can propose, inspect, coordinate, or trigger governed actions while the same authority, state, and verification boundaries remain in force.",
-    futureRules:[["OBSERVE","Read operational state and context."],["PROPOSE","Generate a candidate action without silently executing it."],["AUTHORIZE","Respect the authority boundary required for the action."],["EXECUTE","Invoke an allowed operation through the system boundary."],["VERIFY","Record and expose the resulting operational state."]],
-    statusTag:"07 / Implementation status", statusTitleA:"Architecture claims", statusTitleB:"must stay honest.",
-    statusBody:"This architecture page describes the system model and intended boundaries. It does not imply that every layer or future interface is already shipped.",
-    statuses:[["DOCUMENTED","Operating model","Local-first execution, synchronization, authority, and verification are the architectural model presented by ONYX."],["IN DEVELOPMENT","Platform components","Implementation details should be tracked against the roadmap rather than inferred from this diagram."],["PLANNED","Agent interface","Agentic AI / Plugin integration is a future layer and is explicitly separated from the current product model."]],
-    ctaTag:"08 / Continue", ctaTitleA:"Move from", ctaTitleB:"architecture to scenarios.", ctaBody:"See how the system maps onto operational environments, or return to the product model.", solutions:"View solutions", product:"View product",
+    localTag:"03 / Local-first execution", localTitleA:"The local node", localTitleB:"is part of the system.",
+    localBody:"Local-first means the point of action is not merely a thin terminal for a remote database. A node can operate against the state available to it, persist outcomes, and retain changes for later synchronization. The current architecture supports this resilience model; the public web client should not be read as proof of a complete offline browser experience.",
+    localSteps:[
+      ["READ","Use available state","The operator reads the replica current operational state and authority context."],
+      ["ACT","Execute within authority","A permitted command changes local operational state without requiring every interaction to round-trip through a central node."],
+      ["PERSIST","Durably retain outcome","State and the corresponding operational history are written so a completed action is not dependent on an in-memory session."],
+      ["SYNC","Exchange later","When communication is available, the replica exchanges changes and participates in reconciliation."],
+    ],
+    topologyTag:"04 / Network state", topologyTitleA:"The network can", topologyTitleB:"disappear.",
+    topologyBody:"A node may be connected, degraded, or offline. The architectural invariant is that meaningful local state can remain available and reconciliation becomes an explicit transition when connectivity returns.",
+    states:[
+      ["CONNECTED","Coordinate + synchronize","The node exchanges state and participates in the shared operational view."],
+      ["DEGRADED","Continue + queue","Local execution continues while synchronization capacity is constrained."],
+      ["OFFLINE","Execute + preserve","The node operates against its available state and preserves outcomes for later reconciliation."],
+      ["RESTORED","Reconcile + verify","Connectivity returns and distributed changes are brought back together under system rules."],
+    ],
+    syncTag:"05 / Synchronization", syncTitleA:"Synchronization is", syncTitleB:"reconciliation, not transport.",
+    syncBody:"ONYX treats synchronization as a consistency boundary. Replicas exchange operation batches and causal information, converge when changes are compatible, and surface conflicts when independent changes cannot be silently reconciled. The documented model uses vector clocks, replica acknowledgement, immutable operation batches, and explicit conflict resolution.",
+    syncRules:[
+      ["IDENTITY","Identify the replica and operation"],["CAUSALITY","Track causal relationships with vector clocks"],["DELIVERY","Exchange durable operation batches"],["CONVERGENCE","Apply compatible changes across replicas"],["CONFLICT","Detect and resolve divergent state explicitly"],["ACKNOWLEDGE","Track replica acknowledgement and progress"],
+    ],
+    durabilityTag:"06 / Durable state & event history", durabilityTitleA:"State tells you", durabilityTitleB:"what is true.",
+    durabilityBody:"Event history tells you how it became true. ONYX keeps durable operational state and event history as separate but connected concerns: current state supports execution; historical events support reconstruction, replay, investigation, and audit.",
+    durabilityCards:[
+      ["STATE","Current operational truth","Durable state is the materialized view used by the platform to answer what the operation currently looks like."],
+      ["EVENT","Recorded transition","Events capture meaningful changes so the system can preserve an operational sequence rather than only the latest snapshot."],
+      ["REPLAY","Reconstruct behavior","Replay/idempotency safeguards allow event processing to be retried without treating duplicate delivery as a new business action."],
+      ["RECOVERY","Resume after failure","Durable persistence, retries, and crash-recovery behavior keep recovery as an explicit system concern."],
+    ],
+    authorityTag:"07 / Authority model", authorityTitleA:"Data movement", authorityTitleB:"does not grant authority.",
+    authorityBody:"Synchronization can move information between replicas, but it must not silently expand who is allowed to act. ONYX models identity, organizational boundaries, roles, delegated authority, approval scope, and policy decisions as control boundaries around operational actions.",
+    graph:["IDENTITY","ORG BOUNDARY","AUTHORITY","ACTION","VERIFICATION"],
+    conflictTag:"08 / Conflict handling", conflictTitleA:"Independent changes", conflictTitleB:"must become explicit.",
+    conflictBody:"Disconnected replicas can legitimately change related state before they can communicate. A resilient architecture therefore distinguishes convergence from conflict resolution: compatible changes can converge automatically; conflicting changes are detected and routed through explicit resolution rather than hidden overwrites.",
+    conflictRules:[
+      ["DETECT","Identify divergent concurrent changes."],["CLASSIFY","Determine whether the changes can converge under the domain rules."],["RESOLVE","Apply an explicit conflict-resolution path when they cannot."],["RECORD","Preserve the resolution and its operational history."],["VERIFY","Make the resulting state and authority context inspectable."],
+    ],
+    deliveryTag:"09 / Outbox · replay · idempotency", deliveryTitleA:"Reliable delivery", deliveryTitleB:"needs durable boundaries.",
+    deliveryBody:"The transactional outbox pattern connects state change to event delivery without relying on an in-memory handoff. A change and its outgoing operation/event record are persisted transactionally; delivery can then retry from durable state. Idempotency and replay protection prevent retries or duplicate delivery from becoming duplicate business actions.",
+    deliveryFlow:[
+      ["1","TRANSACTION","Persist state change + outbox record"],["2","DELIVER","Read pending durable records"],["3","RETRY","Retry failed delivery without losing the operation"],["4","IDEMPOTENT","Ignore already-applied duplicates"],["5","REPLAY","Reprocess history safely when reconstruction is required"],
+    ],
+    auditTag:"10 / Auditability", auditTitleA:"The system should answer", auditTitleB:"what happened.",
+    auditBody:"Auditability is more than a log of HTTP requests. The documented model includes tamper-evident audit partitions and integrity verification so operational history can support reconstruction: who acted, under what authority, what changed, what evidence was attached, and what was verified.",
+    auditQuestions:["WHO ACTED?","UNDER WHICH AUTHORITY?","WHAT CHANGED?","WHAT EVIDENCE EXISTED?","WHAT WAS VERIFIED?"],
+    statusTag:"11 / Implementation status", statusTitleA:"Architecture claims", statusTitleB:"stay explicit.",
+    statusBody:"This page separates the documented architecture from product maturity. A mechanism may be represented in the repository contracts or backend design without implying that every client surface is production-complete.",
+    statuses:[
+      ["IMPLEMENTED / DOCUMENTED","Operational foundation","The repository documents and implements durable state/event history, authority controls, synchronization primitives, audit structures, transactional outbox delivery, retries, and replay/idempotency safeguards across the platform model."],
+      ["ARCHITECTURAL / VALIDATION REQUIRED","Local-first end-user experience","The architecture supports local execution and resilient synchronization. The current marketing evidence does not, by itself, prove a complete offline-first experience across every client surface; that should be demonstrated and tested explicitly."],
+      ["IN DEVELOPMENT","Production hardening","Deployment, browser security, CORS fail-closed behavior, WebSocket authentication, supply-chain controls, and related production-hardening work remain implementation concerns rather than assumptions of this page."],
+      ["PLANNED / RESEARCH","Agent and plugin interface","Future agentic or plugin interfaces remain above the governed operational model and must use the same authority, state, audit, and verification boundaries."],
+    ],
+    ctaTag:"12 / Continue", ctaTitleA:"From architecture", ctaTitleB:"to operational scenarios.", ctaBody:"See how these boundaries map onto real environments, or return to the platform lifecycle.", solutions:"View solutions", product:"View product",
     light:"Light mode", dark:"Dark mode", language:"فارسی"
   },
   fa: {
@@ -68,6 +106,7 @@ const copy = {
     ctaTag:"۰۸ / ادامه", ctaTitleA:"از معماری", ctaTitleB:"به سناریوها بروید.", ctaBody:"ببینید سامانه چگونه روی محیط‌های عملیاتی می‌نشیند یا به مدل محصول بازگردید.", solutions:"مشاهده راهکارها", product:"مشاهده محصول",
     light:"حالت روشن", dark:"حالت تاریک", language:"فارسی"
   }
+
 } as const;
 
 export default function ArchitecturePage({locale}:{locale:Locale}) {
@@ -80,10 +119,14 @@ export default function ArchitecturePage({locale}:{locale:Locale}) {
     <main>
       <section className="architecture-hero"><div className="architecture-grid" aria-hidden="true"/><div className="shell-content"><div className="architecture-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="architecture-actions"><a className="architecture-button architecture-button--primary" href={link("product")}>{t.explore}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="architecture-button" href={link("contact")}>{t.contact}</a></div><a className="architecture-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>
       <section className="architecture-section"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.modelTag}</div><h2>{t.modelTitleA}<br/><em>{t.modelTitleB}</em></h2><p>{t.modelBody}</p></div><div className="architecture-layers">{t.layers.map(([n,code,title,body])=><article key={code}><div><span>{n}</span><b>{code}</b></div><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
+      {locale==="en" && <section className="architecture-section architecture-section--local"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.localTag}</div><h2>{t.localTitleA}<br/><em>{t.localTitleB}</em></h2><p>{t.localBody}</p></div><div className="architecture-mechanism-grid">{t.localSteps.map(([a,b,c],i)=><article key={a}><span>0{i+1}</span><b>{a}</b><h3>{b}</h3><p>{c}</p></article>)}</div></div></section>}
       <section className="architecture-section architecture-section--topology"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.topologyTag}</div><h2>{t.topologyTitleA}<br/><em>{t.topologyTitleB}</em></h2><p>{t.topologyBody}</p></div><div className="architecture-states">{t.states.map(([code,title,body])=><article key={code}><span>{code}</span><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
-      <section className="architecture-section"><div className="shell-content architecture-two-col"><div><div className="architecture-kicker"><span/>{t.syncTag}</div><h2>{t.syncTitleA}<br/><em>{t.syncTitleB}</em></h2><p>{t.syncBody}</p></div><div className="architecture-rules">{t.rules.map((x,i)=><div key={x}><span>0{i+1}</span><strong>{x}</strong><Check size={16}/></div>)}</div></div></section>
+      <section className="architecture-section"><div className="shell-content architecture-two-col"><div><div className="architecture-kicker"><span/>{t.syncTag}</div><h2>{t.syncTitleA}<br/><em>{t.syncTitleB}</em></h2><p>{t.syncBody}</p></div><div className="architecture-rules">{(locale==="en"?t.syncRules:t.rules).map(([a,b],i)=><div key={a}><span>0{i+1}</span><strong>{a}</strong><small>{b}</small></div>)}</div></div></section>
+      {locale==="en" && <section className="architecture-section architecture-section--durability"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.durabilityTag}</div><h2>{t.durabilityTitleA}<br/><em>{t.durabilityTitleB}</em></h2><p>{t.durabilityBody}</p></div><div className="architecture-mechanism-grid">{t.durabilityCards.map(([a,b,c],i)=><article key={a}><span>0{i+1}</span><b>{a}</b><h3>{b}</h3><p>{c}</p></article>)}</div></div></section>}
       <section className="architecture-section architecture-section--authority"><div className="shell-content"><div className="architecture-two-col"><div><div className="architecture-kicker"><span/>{t.authorityTag}</div><h2>{t.authorityTitleA}<br/><em>{t.authorityTitleB}</em></h2><p>{t.authorityBody}</p></div><div className="architecture-graph">{t.graph.map((x,i)=><div key={x} className={i===2?"architecture-graph__node architecture-graph__node--active":"architecture-graph__node"}><span>{String(i+1).padStart(2,"0")}</span>{x}</div>)}</div></div></div></section>
-      <section className="architecture-section architecture-section--agent"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.futureTag}</div><h2>{t.futureTitleA}<br/><em>{t.futureTitleB}</em></h2><p>{t.futureBody}</p></div><div className="architecture-agent-grid">{t.futureRules.map(([a,b],i)=><article key={a}><span>0{i+1}</span><b>{a}</b><p>{b}</p></article>)}</div></div></section>
+      {locale==="en" && <section className="architecture-section architecture-section--conflict"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.conflictTag}</div><h2>{t.conflictTitleA}<br/><em>{t.conflictTitleB}</em></h2><p>{t.conflictBody}</p></div><div className="architecture-rule-stack">{t.conflictRules.map(([a,b],i)=><article key={a}><span>0{i+1}</span><b>{a}</b><p>{b}</p></article>)}</div></div></section>}
+      {locale==="en" && <section className="architecture-section architecture-section--delivery"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.deliveryTag}</div><h2>{t.deliveryTitleA}<br/><em>{t.deliveryTitleB}</em></h2><p>{t.deliveryBody}</p></div><div className="architecture-delivery-flow">{t.deliveryFlow.map(([n,a,b])=><article key={n}><span>{n}</span><b>{a}</b><p>{b}</p></article>)}</div></div></section>}
+      {locale==="en" && <section className="architecture-section architecture-section--audit"><div className="shell-content"><div className="architecture-two-col"><div><div className="architecture-kicker"><span/>{t.auditTag}</div><h2>{t.auditTitleA}<br/><em>{t.auditTitleB}</em></h2><p>{t.auditBody}</p></div><div className="architecture-audit-grid">{t.auditQuestions.map((x,i)=><div key={x}><span>0{i+1}</span><strong>{x}</strong></div>)}</div></div></div></section>}
       <section className="architecture-section architecture-section--status"><div className="shell-content"><div className="architecture-two-col"><div><div className="architecture-kicker"><span/>{t.statusTag}</div><h2>{t.statusTitleA}<br/><em>{t.statusTitleB}</em></h2><p>{t.statusBody}</p></div><div className="architecture-status">{t.statuses.map(([a,b,c])=><article key={a}><span>{a}</span><div><h3>{b}</h3><p>{c}</p></div></article>)}</div></div></div></section>
       <section className="architecture-final"><div className="shell-content"><div className="architecture-kicker"><span/>{t.ctaTag}</div><h2>{t.ctaTitleA}<br/><em>{t.ctaTitleB}</em></h2><p>{t.ctaBody}</p><div className="architecture-actions"><a className="architecture-button architecture-button--primary" href={link("solutions")}>{t.solutions}</a><a className="architecture-button" href={link("product")}>{t.product}</a><a className="architecture-button" href={link("contact")}>{t.contact}</a></div></div></section>
     </main>
