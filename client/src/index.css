@@ -2041,3 +2041,22 @@ h2 em, h1 em { color: var(--onyx-cyan); }
 .about-lineage h3{margin:0 0 9px;color:#eef4fb;font-size:1.05rem;font-weight:600}
 .about-lineage p{margin:0;color:#8f9daf;font-size:.9rem;line-height:1.75}
 @media(max-width:800px){.about-lineage article{grid-template-columns:1fr;gap:12px}}
+
+/* Ring · Orbit · Grid · Signal — canonical content language */
+.product-section--language{background:var(--product-surface-2)}
+.product-language-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--product-line)}
+.product-language-grid article{padding:28px 24px;border-right:1px solid var(--product-line)}
+.product-language-grid article:last-child{border-right:0}
+.product-language__mark,.architecture-language__code{color:var(--onyx-cyan);font-size:.62rem;font-weight:800;letter-spacing:.14em}
+.product-language-grid h3{margin:22px 0 10px;color:var(--product-ink);font-size:1.02rem}
+.product-language-grid p{margin:0;color:var(--product-muted);line-height:1.72;font-size:.88rem}
+.architecture-section--language{background:var(--arch-surface2)}
+.architecture-language-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--arch-line)}
+.architecture-language-grid article{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:30px 0;border-bottom:1px solid var(--arch-line)}
+.architecture-language-grid article:nth-child(odd){padding-right:30px;border-right:1px solid var(--arch-line)}
+.architecture-language-grid article:nth-child(even){padding-left:30px}
+.architecture-language-grid article>div:last-child>span{color:var(--onyx-cyan);font-size:.61rem;font-weight:800;letter-spacing:.13em}
+.architecture-language-grid h3{margin:8px 0 9px;color:var(--arch-ink);font-size:1.08rem}
+.architecture-language-grid p{margin:0;color:var(--arch-muted);font-size:.9rem;line-height:1.75}
+@media(max-width:900px){.product-language-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-language-grid article:nth-child(2){border-right:0}.product-language-grid article:nth-child(-n+2){border-bottom:1px solid var(--product-line)}.architecture-language-grid{grid-template-columns:1fr}.architecture-language-grid article:nth-child(odd){padding-right:0;border-right:0}.architecture-language-grid article:nth-child(even){padding-left:0}}
+@media(max-width:600px){.product-language-grid{grid-template-columns:1fr}.product-language-grid article{border-right:0;border-bottom:1px solid var(--product-line)}.product-language-grid article:last-child{border-bottom:0}.architecture-language-grid article{grid-template-columns:1fr;gap:12px}}
