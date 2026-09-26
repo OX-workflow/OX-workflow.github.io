@@ -55,6 +55,7 @@ for (const route of routes) {
   if (!html.includes(`<link rel="canonical" href="${route.canonical}" />`)) throw new Error(`${route.url} has incorrect canonical metadata.`);
 
   const title = html.match(/<title>([^<]+)<\\/title>/)?.[1] ?? "";
+  const title = html.match(/<title>([^<]+)<\/title>/)?.[1] ?? "";
   const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
   if (!title || !description) throw new Error(`${route.url} is missing title or description.`);
   if (!html.includes(`<meta property="og:title" content="${title}" />`)) throw new Error(`${route.url} has mismatched og:title.`);
@@ -69,7 +70,7 @@ for (const route of routes) {
 const titles = new Map<string, string>();
 for (const route of routes) {
   const html = fs.readFileSync(route.file, "utf8");
-  const title = html.match(/<title>([^<]+)<\\/title>/)?.[1] ?? "";
+  const title = html.match(/<title>([^<]+)<\/title>/)?.[1] ?? "";
   if (titles.has(title)) throw new Error(`Duplicate title "${title}" on ${route.url} and ${titles.get(title)}`);
   titles.set(title, route.url);
 }
