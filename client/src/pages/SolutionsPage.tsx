@@ -44,7 +44,7 @@ const copy = {
       ["EVIDENCE","Operational decisions and outcomes can carry their supporting records instead of being reconstructed from disconnected tools."],
       ["RECOVERY","Reconnection can become an explicit synchronization and reconciliation step, while the current disconnected command path still requires reconnect-and-retry."],
     ],
-    boundaryTag:"06 / Fit boundaries", boundaryTitleA:"Representative scenarios.", boundaryTitleB:"No invented proof.",
+    boundaryTag:"07 / Fit boundaries", boundaryTitleA:"Representative scenarios.", boundaryTitleB:"No invented proof.",
     boundaryBody:"The scenarios on this page are representative operating patterns derived from ONYX's documented capabilities and target environments. They are not claims that ONYX has been deployed by a named customer or achieved a particular field result.",
     boundaries:[
       ["DOCUMENTED FIT","Distributed, authority-sensitive operations where continuity, synchronization, evidence, and reconstruction matter."],
