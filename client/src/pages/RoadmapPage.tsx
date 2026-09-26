@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme, type Theme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -108,7 +109,7 @@ const copy = {
 export default function RoadmapPage({ locale }: { locale: Locale }) {
   const rtl = locale === "fa";
   const c = copy[locale];
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const Arrow = rtl ? ArrowRight : ArrowLeft;
   const href = (page: string) => page ? `/${locale}/${page}/` : `/${locale}/`;
 
@@ -126,25 +127,7 @@ export default function RoadmapPage({ locale }: { locale: Locale }) {
 
   return (
     <main className={`roadmap-page roadmap-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <header className="roadmap-header">
-        <div className="shell-content roadmap-header__inner">
-          <a className="roadmap-logo" href={href("")} aria-label="ONYX">
-            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
-          </a>
-          <nav>
-            <a href={href("product")}>{c.product}</a>
-            <a href={href("architecture")}>{c.architecture}</a>
-          </nav>
-          <div className="roadmap-tools">
-            <a href={href("contact")}>{c.contact}</a>
-            <a href={href("roadmap")} aria-current="page">ROADMAP</a>
-            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <a className="roadmap-language" href={href("")}>{c.language}</a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="roadmap" />
 
       <section className="roadmap-hero">
         <div className="roadmap-hero__grid" aria-hidden="true" />
