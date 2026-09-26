@@ -8,7 +8,7 @@ type Stage = {
   label: string;
   title: string;
   body: string;
-  evidence: string[];
+  evidence?: string[];
 };
 
 const stages: Record<Locale, Stage[]> = {
@@ -84,7 +84,7 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
                 <h3>{current.title}</h3>
                 <p>{current.body}</p>
                 <div className="operational-demo__evidence">
-                  {current.evidence.map((item, index) => <span key={item}>{index === 0 ? <ShieldCheck size={14} /> : index === 1 ? <Check size={14} /> : <Wifi size={14} />} {item}</span>)}
+                  {(current.evidence ?? (locale === "fa" ? ["اختیار ثبت شد", "سابقه حفظ شد", "وضعیت همگام‌سازی قابل مشاهده"] : ["Authority recorded", "History retained", "Sync state visible"])).map((item, index) => <span key={item}>{index === 0 ? <ShieldCheck size={14} /> : index === 1 ? <Check size={14} /> : <Wifi size={14} />} {item}</span>)}
                 </div>
               </div>
             </div>
