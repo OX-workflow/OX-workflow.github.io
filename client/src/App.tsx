@@ -8,11 +8,6 @@ import AboutPage from "./pages/AboutPage";
 import RoadmapPage from "./pages/RoadmapPage";
 import ContactPage from "./pages/ContactPage";
 import ResourcesPage from "./pages/ResourcesPage";
-import InvestorsPage from "./pages/InvestorsPage";
-import PricingLicensingPage from "./pages/PricingLicensingPage";
-import CustomersPage from "./pages/CustomersPage";
-
-type Locale = "en" | "fa";
 
 type Locale = "en" | "fa";
 
@@ -26,8 +21,6 @@ const pageKeys: PageKey[] = [
   "resources",
   "contact",
   "investors",
-  "pricing",
-  "customers",
 ];
 
 function getRoute(): { locale: Locale; page: PageKey | null } {
@@ -67,28 +60,12 @@ export default function App() {
     return <AboutPage locale={locale} />;
   }
 
-  if (page === "roadmap") {
-    return <RoadmapPage locale={locale} />;
-  }
-
   if (page === "contact") {
     return <ContactPage locale={locale} />;
   }
 
   if (page === "resources") {
     return <ResourcesPage locale={locale} />;
-  }
-
-  if (page === "investors") {
-    return <InvestorsPage locale={locale} />;
-  }
-
-  if (page === "pricing") {
-    return <PricingLicensingPage locale={locale} />;
-  }
-
-  if (page === "customers") {
-    return <CustomersPage locale={locale} />;
   }
 
   if (page) {

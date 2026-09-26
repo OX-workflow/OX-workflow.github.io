@@ -13,9 +13,6 @@ import AboutPage from "../client/src/pages/AboutPage";
 import RoadmapPage from "../client/src/pages/RoadmapPage";
 import ContactPage from "../client/src/pages/ContactPage";
 import ResourcesPage from "../client/src/pages/ResourcesPage";
-import InvestorsPage from "../client/src/pages/InvestorsPage";
-import PricingLicensingPage from "../client/src/pages/PricingLicensingPage";
-import CustomersPage from "../client/src/pages/CustomersPage";
 
 type Locale = "en" | "fa";
 
@@ -46,8 +43,8 @@ const localeMetadata: Record<Locale, LocaleMetadata> = {
     url: `${SITE_URL}/en/`,
     title: "ONYX | The Architecture of Execution",
     description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that maps authority, coordinates execution, and verifies outcomes across complex organizations.",
-    socialTitle: "ONYX | The Architecture of Execution",
-    socialDescription: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that maps authority, coordinates execution, and verifies outcomes across complex organizations.",
+    socialTitle: "ONYX | The architecture of execution",
+    socialDescription: "A Mission Operations Platform and Operational Intelligence Infrastructure for visible execution, accountability, and organizational intelligence.",
     articleHeadline: "The architecture of execution",
     articleAlternativeHeadline: "ONYX Mission Operations Platform",
     articleDescription: "A Mission Operations Platform and Operational Intelligence Infrastructure for connecting authority, responsibility, execution, and verification across complex organizations.",
@@ -61,7 +58,7 @@ const localeMetadata: Record<Locale, LocaleMetadata> = {
     title: "ONYX | معماری اجرا",
     description: "ONYX یک پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی است که اختیار، اجرا و راستی‌آزمایی نتایج را در سازمان‌های پیچیده قابل مشاهده می‌کند.",
     socialTitle: "ONYX | معماری اجرا",
-    socialDescription: "ONYX یک پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی است که اختیار، اجرا و راستی‌آزمایی نتایج را در سازمان‌های پیچیده قابل مشاهده می‌کند.",
+    socialDescription: "پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی برای اجرای قابل مشاهده، پاسخ‌گویی و هوشمندی سازمانی.",
     articleHeadline: "معماری اجرا",
     articleAlternativeHeadline: "پلتفرم عملیات مأموریت‌محور ONYX",
     articleDescription: "پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی برای اتصال اختیار، مسئولیت، اجرا و راستی‌آزمایی در عملیات پیچیده.",
@@ -79,12 +76,11 @@ function replaceMeta(html: string, attribute: "name" | "property", value: string
   return html.replace(expression, replacement);
 }
 
-function alternateLinks(pathname = ""): string {
-  const suffix = pathname ? `${pathname}/` : "";
+function alternateLinks(): string {
   return [
-    `    <link rel="alternate" hreflang="en" href="${SITE_URL}/en/${suffix}" />`,
-    `    <link rel="alternate" hreflang="fa" href="${SITE_URL}/fa/${suffix}" />`,
-    `    <link rel="alternate" hreflang="x-default" href="${pathname ? `${SITE_URL}/en/${suffix}` : `${SITE_URL}/`}" />`,
+    `    <link rel="alternate" hreflang="en" href="${localeMetadata.en.url}" />`,
+    `    <link rel="alternate" hreflang="fa" href="${localeMetadata.fa.url}" />`,
+    `    <link rel="alternate" hreflang="x-default" href="${SITE_URL}/" />`,
   ].join("\n");
 }
 
@@ -139,7 +135,7 @@ function schema(locale: Locale): string {
         url: `${SITE_URL}/en/`,
         logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/onyx-symbol.svg`, caption: "ONYX Mission Operations Platform symbol" },
         description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that gives organizational authority, responsibility, execution, and verification a living digital structure.",
-        codeRepository: "https://github.com/SMozaff/Onyx-Framework",
+        codeRepository: "https://github.com/SMozaff/Onyx-Framwork",
         programmingLanguage: ["Rust", "TypeScript"],
         author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
         about: { "@id": "https://bound-method.github.io/#bound-method" },
@@ -176,34 +172,6 @@ function schema(locale: Locale): string {
     ],
   };
 
-  return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2)}\n    </script>`;
-}
-
-function pageSchema(locale: Locale, page: PageKey, pageUrl: string): string {
-  const source = schema(locale);
-  const match = source.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/);
-  if (!match) throw new Error("Unable to derive page JSON-LD.");
-  const data = JSON.parse(match[1]) as { "@graph": Array<Record<string, unknown>> };
-  const webPage = data["@graph"].find((node) => node["@type"] === "WebPage");
-  const article = data["@graph"].find((node) => node["@type"] === "Article");
-  const webPageId = `${pageUrl}#webpage`;
-  const articleId = `${pageUrl}#case-study`;
-  if (webPage) {
-    webPage["@id"] = webPageId;
-    webPage.url = pageUrl;
-    webPage.name = pagesTitle(locale, page);
-    webPage.description = pagesDescription(locale, page);
-    webPage.inLanguage = locale;
-    webPage.mainEntity = { "@id": articleId };
-  }
-  if (article) {
-    article["@id"] = articleId;
-    article.url = pageUrl;
-    article.headline = pagesTitle(locale, page);
-    article.description = pagesDescription(locale, page);
-    article.mainEntityOfPage = { "@id": webPageId };
-    article.inLanguage = locale;
-  }
   return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2)}\n    </script>`;
 }
 
@@ -246,8 +214,6 @@ function pagesTitle(locale: Locale, page: PageKey) {
     resources: { en: "ONYX | Resources", fa: "ONYX | منابع" },
     contact: { en: "ONYX | Contact / Demo", fa: "ONYX | تماس / دمو" },
     investors: { en: "ONYX | Investors", fa: "ONYX | سرمایه‌گذاران" },
-    pricing: { en: "ONYX | Pricing & Licensing", fa: "ONYX | قیمت‌گذاری و مجوزدهی" },
-    customers: { en: "ONYX | Customers & Case Studies", fa: "ONYX | مشتریان و مطالعات موردی" },
   };
   return titles[page][locale];
 }
@@ -263,8 +229,6 @@ function pagesDescription(locale: Locale, page: PageKey) {
     resources: { en: "ONYX product, architecture, technical, and media resources.", fa: "منابع محصول، معماری، فنی و رسانه‌ای ONYX." },
     contact: { en: "Contact ONYX and request an enterprise demonstration.", fa: "تماس با ONYX و درخواست دمو سازمانی." },
     investors: { en: "ONYX product, technology, roadmap, and commercial information.", fa: "اطلاعات محصول، فناوری، نقشه راه و تجاری ONYX." },
-    pricing: { en: "ONYX commercial models, licensing principles, and enterprise deployment terms.", fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX." },
-    customers: { en: "Illustrative ONYX customer scenarios, operational fit, and the boundary between reference scenarios and verified customer evidence.", fa: "سناریوهای نمونه ONYX، تناسب عملیاتی و مرز میان سناریوهای مرجع و شواهد واقعی مشتری." },
   };
   return descriptions[page][locale];
 }
@@ -289,8 +253,6 @@ const sitePages: PageKey[] = [
   "resources",
   "contact",
   "investors",
-  "pricing",
-  "customers",
 ];
 
 for (const locale of ["en", "fa"] as const) {
@@ -313,18 +275,11 @@ for (const locale of ["en", "fa"] as const) {
                   ? renderToStaticMarkup(<ContactPage locale={locale} />)
                   : page === "resources"
                     ? renderToStaticMarkup(<ResourcesPage locale={locale} />)
-                    : page === "investors"
-                      ? renderToStaticMarkup(<InvestorsPage locale={locale} />)
-                      : page === "pricing"
-                        ? renderToStaticMarkup(<PricingLicensingPage locale={locale} />)
-                        : page === "customers"
-                          ? renderToStaticMarkup(<CustomersPage locale={locale} />)
-                          : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+                    : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
-      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `${alternateLinks(page)}\n    <link rel="canonical" href="${pageUrl}" />`)
-      .replace(/<script type="application\/ld\+json">\s*[\s\S]*?<\/script>/, pageSchema(locale, page, pageUrl))
+      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `    <link rel="canonical" href="${pageUrl}" />`)
       .replace(/<title>[^<]*<\/title>/, `<title>${pagesTitle(locale, page)}</title>`)
       .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${pagesDescription(locale, page)}" />`)
       .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${pagesTitle(locale, page)}" />`)

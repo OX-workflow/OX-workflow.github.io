@@ -1,6 +1,5 @@
 import { ArrowLeft, ArrowRight, ExternalLink, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -56,17 +55,6 @@ const copy = {
         ],
       },
       {
-        label: "05 / COMMERCIAL & DILIGENCE",
-        title: "Prepare for a substantive enterprise evaluation.",
-        body:
-          "Commercial evaluation is not limited to a product demo. The relevant record can include deployment architecture, security boundaries, licensing scope, proprietary core IP, customer/background/custom IP treatment, software inventory, support terms, and the evidence needed to validate the target operating environment.",
-        items: [
-          ["LICENSING & IP", "Understand the boundary between ONYX Core, ONYX background IP, customer data, customer confidential information, configuration, and custom feature rights.", "Open pricing & licensing", "/en/pricing/"],
-          ["TECHNICAL DILIGENCE", "Use architecture, security, repository evidence, tests, deployment documentation, and the documented maturity of capabilities as the technical diligence base.", "Open architecture", "/en/architecture/"],
-          ["EVALUATION PATH", "Start with the customer's operating constraints, validate a scoped workflow, test connectivity and authority behavior, then examine deployment and commercial requirements.", "Discuss an evaluation", "/en/contact/"],
-        ],
-      },
-      {
         label: "04 / RELATED METHOD",
         title: "Understand the methodology behind the system.",
         body:
@@ -76,11 +64,11 @@ const copy = {
         ],
       },
     ],
-    boundaryLabel: "06 / PUBLICATION BOUNDARY",
+    boundaryLabel: "05 / PUBLICATION BOUNDARY",
     boundaryTitle: "Public reference. Controlled product surface.",
     boundaryBody:
-      "These resources explain the public product and engineering record. They do not imply that every repository artifact is a commercial deliverable, that a planned capability is shipped, or that a research direction has passed production validation. ONYX's commercialization position treats the core product and intellectual property as proprietary; customer rights and any custom-development rights are defined separately by agreement.",
-    finalLabel: "07 / NEXT",
+      "These resources are intended to explain the public product and engineering record. They do not imply that every repository artifact is a commercial deliverable, nor that future or research capabilities are generally shipped. ONYX's commercialization position treats the core product and intellectual property as proprietary.",
+    finalLabel: "06 / NEXT",
     finalTitle: "Need the system in an operational context?",
     finalBody:
       "Use the contact path for a substantive product or enterprise discussion grounded in your operating environment, connectivity, authority model, and deployment constraints.",
@@ -97,7 +85,7 @@ const copy = {
     security: "امنیت",
     roadmap: "نقشه راه",
     contact: "تماس",
-    language: "فارسی",
+    language: "English",
     light: "حالت روشن",
     dark: "حالت تاریک",
     home: "بازگشت به خانه",
@@ -108,8 +96,8 @@ const copy = {
         body:
           "از سطح محصول برای مدل عملیاتی، اجرای محلی‌محور، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
         items: [
-          ["محصول", "پلتفرم، مدل عملیاتی، قابلیت‌ها و سطح استقرار.", "مشاهده محصول", "/fa/product/"],
-          ["راهکارها", "سناریوها و محیط‌های عملیاتی که تداوم، اختیار و شواهد در آن‌ها اهمیت دارد.", "مشاهده راهکارها", "/fa/solutions/"],
+          ["PRODUCT", "پلتفرم، مدل عملیاتی، قابلیت‌ها و سطح استقرار.", "مشاهده محصول", "/fa/product/"],
+          ["SOLUTIONS", "سناریوها و محیط‌های عملیاتی که تداوم، اختیار و شواهد در آن‌ها اهمیت دارد.", "مشاهده راهکارها", "/fa/solutions/"],
           ["ROADMAP", "بنیاد فعلی، توسعه برنامه‌ریزی‌شده و مسیرهای پژوهشی.", "مشاهده نقشه راه", "/fa/roadmap/"],
         ],
       },
@@ -119,8 +107,8 @@ const copy = {
         body:
           "مطالب معماری توضیح می‌دهند کلاینت‌های محلی، همگام‌سازی، اختیار، وضعیت پایدار و زیرساخت چگونه به هم متصل می‌شوند. این بخش پل میان محصول و پیاده‌سازی است.",
         items: [
-          ["معماری", "مدل سامانه ONYX از جریان عملیاتی تا پیاده‌سازی فنی.", "مشاهده معماری", "/fa/architecture/"],
-          ["امنیت", "هویت، مجوزدهی، مرزهای همگام‌سازی، ممیزی، استقرار و حدود تضمین.", "مشاهده امنیت", "/fa/security/"],
+          ["ARCHITECTURE", "مدل سامانه ONYX از جریان عملیاتی تا پیاده‌سازی فنی.", "مشاهده معماری", "/fa/architecture/"],
+          ["SECURITY", "هویت، مجوزدهی، مرزهای همگام‌سازی، ممیزی، استقرار و حدود تضمین.", "مشاهده امنیت", "/fa/security/"],
           ["PUBLIC REPOSITORY", "سطح عمومی مهندسی و مستندسازی فعلی پروژه ONYX.", "مشاهده GitHub", "https://github.com/SMozaff/Onyx-Framework"],
         ],
       },
@@ -141,7 +129,7 @@ const copy = {
         body:
           "BOUND به‌عنوان لایه روش‌شناختی و طراحی سیستم مرتبط با ONYX معرفی می‌شود، نه به‌عنوان یک سطح محصولی جداگانه از ONYX.",
         items: [
-          ["روش BOUND", "روش توسعه مرزگرا برای حوزه‌ها، مرزهای مسئولیت، قراردادها، اجرا و راستی‌آزمایی.", "مشاهده BOUND", "https://bound-method.github.io/"],
+          ["BOUND METHOD", "روش توسعه مرزگرا برای حوزه‌ها، مرزهای مسئولیت، قراردادها، اجرا و راستی‌آزمایی.", "مشاهده BOUND", "https://bound-method.github.io/"],
         ],
       },
     ],
@@ -160,7 +148,7 @@ const copy = {
 export default function ResourcesPage({ locale }: { locale: Locale }) {
   const rtl = locale === "fa";
   const c = copy[locale];
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>("dark");
   const href = (page: string) => page ? `/${locale}/${page}/` : `/${locale}/`;
   const Arrow = rtl ? ArrowRight : ArrowLeft;
 
@@ -179,7 +167,26 @@ export default function ResourcesPage({ locale }: { locale: Locale }) {
 
   return (
     <main className={`resources-page resources-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="resources" />
+      <header className="resources-header">
+        <div className="shell-content resources-header__inner">
+          <a className="resources-logo" href={href("")} aria-label="ONYX">
+            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
+          </a>
+          <nav>
+            <a href={href("product")}>{c.product}</a>
+            <a href={href("architecture")}>{c.architecture}</a>
+            <a href={href("security")}>{c.security}</a>
+          </nav>
+          <div className="resources-tools">
+            <a href={href("contact")}>{c.contact}</a>
+            <a href={href("resources")} aria-current="page">RESOURCES</a>
+            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <a className="resources-language" href={rtl ? "/en/resources/" : "/fa/resources/"}>{c.language}</a>
+          </div>
+        </div>
+      </header>
 
       <section className="resources-hero">
         <div className="resources-hero__grid" aria-hidden="true" />
