@@ -261,27 +261,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <main id="top">
         <section className="hero section-shell hero--ready">
           <div className="hero__veil" /><div className="hero__grid" aria-hidden="true" />
-          <div className={"hero-launch " + (launching ? "hero-launch--active" : "hero-launch--complete")} aria-hidden={!launching}>
-            <div className="hero-launch__ambient" />
-            <div className="hero-launch__scan" />
-            <div className="hero-launch__core">
-              <div className="hero-launch__symbol-shell">
-                <div className="hero-launch__orbit hero-launch__orbit--one" />
-                <div className="hero-launch__orbit hero-launch__orbit--two" />
-                <div className="hero-launch__orbit hero-launch__orbit--three" />
-                <div className="hero-launch__crosshair" />
-                <img src={assets.stackedLogo ?? "/assets/onyx-symbol.svg"} alt="" className="hero-launch__symbol" width="512" height="512" decoding="async" />
-                <div className="hero-launch__ticks" aria-hidden="true">{Array.from({length: 12}, (_, i) => <i key={i} style={{"--i": i} as React.CSSProperties} />)}</div>
-              </div>
-              <div className="hero-launch__status"><span className="hero-launch__dot" /> <span>{isRtl ? "در حال راه‌اندازی" : "INITIALIZING"}</span></div>
-              <div className="hero-launch__telemetry">
-                <span>{isRtl ? "هسته" : "CORE"} <b>OK</b></span>
-                <span>{isRtl ? "شبکه" : "LINK"} <b>SYNC</b></span>
-                <span>{isRtl ? "زمینه" : "CTX"} <b>BOUND</b></span>
-              </div>
-            </div>
-            <div className="hero-launch__progress"><span /></div>
-          </div>
           <div className="hero__content shell-content"><SignalTag>{t(text.hero.tag)}</SignalTag><h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1><p className="hero__lede">{t(text.hero.lede)}</p><div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div></div>
           <div className="hero__telemetry" aria-label="System status"><div className="telemetry-orbit"><span /><span /><span /></div><div><span className="telemetry-label">{t(text.hero.condition)}</span><strong>{t(text.hero.synchronized)}</strong></div><span className="telemetry-state">ONLINE</span></div>
           <a className="hero__scroll" href="#problem" aria-label={t(text.hero.scroll)}><span>{t(text.hero.scroll)}</span><ChevronDown size={16} /></a>
