@@ -1,5 +1,13 @@
 import { ChevronRight, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { primaryNavigation } from "../content/navigation";
+
+type Locale = "en" | "fa";
+export type Theme = "light" | "dark";
+
+port { ChevronRight, Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { primaryNavigation } from "../content/navigation";
 
 type Locale = "en" | "fa";
 export type Theme = "light" | "dark";
@@ -92,8 +100,8 @@ export default function SiteHeader({
         </a>
 
         <nav className="onyx-global-header__nav" aria-label={rtl ? "پیمایش اصلی" : "Primary navigation"}>
-          {navigation.map(([page, label]) => (
-            <a key={page} href={`/${locale}/${page}/`} aria-current={activePage === page ? "page" : undefined}>
+          {primaryNavigation.map(({ page, href, label }) => (
+            <a key={page} href={`/${locale}/${href}/`} aria-current={activePage === href ? "page" : undefined}>
               {label[locale]}
             </a>
           ))}
