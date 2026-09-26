@@ -1524,7 +1524,7 @@ html[data-theme="light"] {
 .product-visuals__kicker span{width:1.8rem;height:1px;background:var(--product-blue);display:block}
 .product-visuals h2{font-size:clamp(2rem,4.8vw,4.6rem);line-height:.98;letter-spacing:-.045em;margin:.8rem 0 1rem}
 .product-visuals p{max-width:680px;color:var(--product-muted);line-height:1.75}
-.product-visuals__hero-frame{position:relative;border:1px solid var(--product-line);background:var(--product-surface);box-shadow:0 28px 80px rgba(8,28,58,.16);overflow:hidden}
+.product-visuals__hero-frame{position:relative;margin:0;border:1px solid var(--product-line);background:var(--product-surface);box-shadow:0 28px 80px rgba(8,28,58,.16);overflow:hidden}
 .product-visuals__hero-frame img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
 .product-visuals__hero-frame>span{position:absolute;left:1rem;bottom:1rem;padding:.42rem .6rem;background:rgba(5,10,18,.82);color:#fff;font-size:.62rem;letter-spacing:.16em}
 .product-visuals__scan{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(79,140,255,.09) 48%,transparent 52%);animation:product-visual-scan 7s ease-in-out infinite;pointer-events:none}
