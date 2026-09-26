@@ -13,7 +13,7 @@ const copy = {
     modelTag:"02 / System model", modelTitleA:"Contracts → state →", modelTitleB:"execution → evidence.",
     modelBody:"The implementation separates domain contracts, application execution, persistence, synchronization, transport, and client composition. The boundary matters: an operational action is not just a UI event; it is a governed change to system state.",
     layers:[
-      ["01","EDGE","Local execution","The operator works against the state available at the point of action. The operator works against locally available state; the current command path does not queue disconnected commands and requires reconnect-and-retry."],
+      ["01","EDGE","Local execution","The operator works against locally available state; the current command path does not queue disconnected commands and requires reconnect-and-retry."],
       ["02","STATE","Operational state","Work, decisions, outcomes, and relevant context are represented as operational state that can be inspected and reconciled."],
       ["03","SYNC","Synchronization","Distributed changes are exchanged and reconciled when communication is available, according to defined system rules."],
       ["04","AUTHORITY","Control plane","Authority and responsibility remain explicit so synchronization does not silently become permission to act."],
