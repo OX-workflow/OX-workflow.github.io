@@ -39,9 +39,17 @@ export default function SiteHeader({
 }) {
   const rtl = locale === "fa";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const home = `/${locale}/`;
   const otherLocale = locale === "en" ? "fa" : "en";
   const languageHref = activePage ? `/${otherLocale}/${activePage}/` : `/${otherLocale}/`;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 220);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -131,6 +139,32 @@ export default function SiteHeader({
           <span>{theme === "dark" ? labels.light : labels.dark}</span>
         </button>
       </nav>
+
+      <div className="onyx-floating-controls" dir="ltr" aria-label={rtl ? "کنترل‌های شناور" : "Floating controls"}>
+        <button
+          className={`onyx-floating-controls__back-top ${scrolled ? "onyx-floating-controls__back-top--visible" : ""}`}
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label={rtl ? "بازگشت به بالا" : "Back to top"}
+          title={rtl ? "بازگشت به بالا" : "Back to top"}
+          tabIndex={scrolled ? 0 : -1}
+        >
+          ↑
+        </button>
+        <div className="onyx-floating-controls__group" role="group" aria-label={rtl ? "زبان" : "Language"}>
+          <a className={`onyx-floating-controls__language ${locale === "en" ? "is-active" : ""}`} href={activePage ? `/en/${activePage}/` : "/en/"} lang="en" aria-current={locale === "en" ? "page" : undefined}>EN</a>
+          <a className={`onyx-floating-controls__language ${locale === "fa" ? "is-active" : ""}`} href={activePage ? `/fa/${activePage}/` : "/fa/"} lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined}>فارسی</a>
+        </div>
+        <button
+          className="onyx-floating-controls__theme"
+          type="button"
+          onClick={onToggleTheme}
+          aria-label={theme === "dark" ? labels.light : labels.dark}
+          title={theme === "dark" ? labels.light : labels.dark}
+        >
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
+      </div>
     </header>
   );
 }
