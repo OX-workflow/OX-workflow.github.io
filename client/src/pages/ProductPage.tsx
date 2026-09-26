@@ -203,6 +203,13 @@ export default function ProductPage({ locale }: { locale: Locale }) {
         <ProductVisuals locale={locale} variant="hero" />
 
         <OperationalDemo locale={locale} />
+        <section className="product-proof-strip section-shell">
+          <div className="shell-content product-proof-strip__inner">
+            <span className="mono-label">{locale === "fa" ? "رابط عملیاتی" : "Operational interface"}</span>
+            <p>{locale === "fa" ? "جریان بالا به سطح واقعی محصول متصل می‌شود؛ از مأموریت تا تاریخچه." : "The flow above resolves into the product surface — from mission intent to operational history."}</p>
+            <a href="#product-gallery">{locale === "fa" ? "مشاهده رابط" : "View interface"} <span aria-hidden="true">↘</span></a>
+          </div>
+        </section>
 
         <section className="product-section product-section--model">
           <div className="shell-content">
