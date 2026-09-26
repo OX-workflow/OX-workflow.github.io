@@ -53,8 +53,9 @@ jobs:
           set -euo pipefail
           test -f dist/public/index.html
           for locale in en fa; do
-            for page in product solutions architecture security roadmap about resources contact investors; do
+            for page in product solutions architecture security roadmap about resources contact investors pricing customers; do
               test -f "dist/public/$locale/$page/index.html"
+            
             done
           done
           grep -q '<html lang="en" dir="ltr">' dist/public/en/index.html
