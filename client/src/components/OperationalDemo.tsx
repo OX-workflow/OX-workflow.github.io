@@ -11,6 +11,112 @@ type Stage = {
   evidence?: string[];
 };
 
+type StateKind = "ring" | "approval" | "evidence" | "forecast" | "automation" | "conflict" | "history";
+
+const stateKinds: StateKind[] = [
+  "ring",
+  "ring",
+  "ring",
+  "ring",
+  "approval",
+  "evidence",
+  "forecast",
+  "automation",
+  "conflict",
+  "history",
+];
+
+function OperationalState({ kind, locale, step }: { kind: StateKind; locale: Locale; step: string }) {
+  if (kind === "approval") {
+    return (
+      <div className="operational-demo__state-visual operational-demo__state-visual--approval">
+        <div className="operational-demo__gate">
+          <span className="operational-demo__state-kicker">{locale === "fa" ? "دروازه اختیار" : "AUTHORITY GATE"}</span>
+          <strong>{locale === "fa" ? "در انتظار تأیید" : "Approval required"}</strong>
+          <div className="operational-demo__gate-line"><i /><span>{locale === "fa" ? "آستانه بررسی" : "Review threshold"}</span><b>{locale === "fa" ? "فعال" : "ACTIVE"}</b></div>
+          <div className="operational-demo__gate-line"><i /><span>{locale === "fa" ? "بازبین" : "Reviewer"}</span><b>{locale === "fa" ? "تعیین شد" : "ASSIGNED"}</b></div>
+        </div>
+        <div className="operational-demo__state-pulse" />
+      </div>
+    );
+  }
+
+  if (kind === "evidence") {
+    return (
+      <div className="operational-demo__state-visual operational-demo__state-visual--evidence">
+        <div className="operational-demo__evidence-stack">
+          <span className="operational-demo__state-kicker">{locale === "fa" ? "اثبات عملیات" : "OPERATIONAL PROOF"}</span>
+          {["REPORT", "LOG", "RECEIPT"].map((item, index) => (
+            <div className="operational-demo__evidence-row" key={item}>
+              <span>{item}</span><i /><b>{index === 2 ? "VERIFIED" : "ATTACHED"}</b>
+            </div>
+          ))}
+        </div>
+        <div className="operational-demo__verify-mark"><Check size={22} /></div>
+      </div>
+    );
+  }
+
+  if (kind === "forecast") {
+    return (
+      <div className="operational-demo__state-visual operational-demo__state-visual--forecast">
+        <div className="operational-demo__forecast-head">
+          <span className="operational-demo__state-kicker">{locale === "fa" ? "ظرفیت" : "CAPACITY"}</span>
+          <strong>78%</strong>
+        </div>
+        <div className="operational-demo__capacity"><i /></div>
+        <div className="operational-demo__forecast-chart">
+          <span /><span /><span /><span /><span /><span />
+        </div>
+        <div className="operational-demo__forecast-meta"><span>{locale === "fa" ? "فشار پیش‌رو" : "Pressure ahead"}</span><b>+12%</b></div>
+      </div>
+    );
+  }
+
+  if (kind === "automation") {
+    return (
+      <div className="operational-demo__state-visual operational-demo__state-visual--automation">
+        <div className="operational-demo__automation-node"><span>{locale === "fa" ? "قانون" : "RULE"}</span><b>IF</b></div>
+        <div className="operational-demo__automation-path"><i /><i /><i /></div>
+        <div className="operational-demo__automation-node operational-demo__automation-node--active"><span>{locale === "fa" ? "پاسخ" : "RESPONSE"}</span><b>RUN</b></div>
+        <div className="operational-demo__receipt">{locale === "fa" ? "رسید اجرا حفظ شد" : "Execution receipt retained"}</div>
+      </div>
+    );
+  }
+
+  if (kind === "conflict") {
+    return (
+      <div className="operational-demo__state-visual operational-demo__state-visual--conflict">
+        <div className="operational-demo__replica"><span>A</span><b>{locale === "fa" ? "وضعیت محلی" : "LOCAL STATE"}</b><i /></div>
+        <div className="operational-demo__conflict-mark">!</div>
+        <div className="operational-demo__replica"><span>B</span><b>{locale === "fa" ? "وضعیت همتا" : "PEER STATE"}</b><i /></div>
+        <div className="operational-demo__resolution">{locale === "fa" ? "حل‌وفصل ثبت شد" : "Resolution recorded"}</div>
+      </div>
+    );
+  }
+
+  if (kind === "history") {
+    return (
+      <div className="operational-demo__state-visual operational-demo__state-visual--history">
+        <span className="operational-demo__state-kicker">{locale === "fa" ? "بازسازی عملیات" : "OPERATION RECONSTRUCTION"}</span>
+        <div className="operational-demo__history-line">
+          {["DECISION", "APPROVAL", "EVIDENCE", "SYNC"].map((item, index) => (
+            <div key={item}><i /><span>{item}</span><b>{String(index + 1).padStart(2, "0")}</b></div>
+          ))}
+        </div>
+        <strong>{locale === "fa" ? "توالی قابل بازیابی" : "Sequence recoverable"}</strong>
+      </div>
+    );
+  }
+
+  return (
+    <div className="operational-demo__ring">
+      <span />
+      <b>{step}</b>
+    </div>
+  );
+}
+
 const stages: Record<Locale, Stage[]> = {
   en: [
     { step: "01", label: "MISSION", title: "Define the operation", body: "Set the objective, owner, status, and operational boundary before work begins.", evidence: ["Mission defined", "Owner assigned", "Boundary recorded"] },
@@ -43,6 +149,7 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
   const [paused, setPaused] = useState(false);
   const items = stages[locale];
   const current = items[active];
+  const stateKind = stateKinds[active];
 
   useEffect(() => {
     if (paused) return;
@@ -79,13 +186,13 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
             ))}
           </div>
 
-          <div className="operational-demo__panel" aria-live="polite">
+          <div className={`operational-demo__panel operational-demo__panel--${stateKind}`} data-state={stateKind} aria-live="polite">
             <div className="operational-demo__panel-head">
               <span className="mono-label">{current.step} / {current.label}</span>
               <span className="operational-demo__status"><CircleDot size={12} /> {locale === "fa" ? "وضعیت عملیاتی" : "Operational state"}</span>
             </div>
             <div className="operational-demo__signal">
-              <div className="operational-demo__ring"><span /><b>{current.step}</b></div>
+              <OperationalState kind={stateKind} locale={locale} step={current.step} />
               <div className="operational-demo__copy">
                 <h3>{current.title}</h3>
                 <p>{current.body}</p>
