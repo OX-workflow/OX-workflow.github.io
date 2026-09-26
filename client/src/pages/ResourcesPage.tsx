@@ -1,6 +1,6 @@
 import { ArrowLeft, ArrowRight, ExternalLink, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import SiteHeader, { getInitialTheme, type Theme } from "./SiteHeader";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
