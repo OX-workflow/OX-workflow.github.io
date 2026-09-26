@@ -53,7 +53,7 @@ const text = {
     tag: { en: "Mission Operations Platform", fa: "پلتفرم عملیات مأموریت‌محور" },
     titleA: { en: "OPERATIONS CONTINUE.", fa: "عملیات ادامه دارد." },
     titleB: { en: "Accountability remains.", fa: "پاسخ‌گویی باقی می‌ماند." },
-    lede: { en: "ONYX connects authority, execution, decisions, evidence, policy, synchronization, and operational history in one governed system for complex operations.", fa: "ONYX اختیار، اجرا، تصمیم‌ها، شواهد، سیاست، همگام‌سازی و تاریخچه عملیاتی را در یک سامانه حاکمیت‌شده برای عملیات پیچیده به هم متصل می‌کند." },
+    lede: { en: "ONYX is a mission operations platform that connects authority, execution, decisions, evidence, policy, synchronization, and operational history in one governed system.", fa: "ONYX یک پلتفرم عملیات مأموریت‌محور است که اختیار، اجرا، تصمیم‌ها، شواهد، سیاست، همگام‌سازی و تاریخچه عملیاتی را در یک سامانه حاکمیت‌شده به هم متصل می‌کند." },
     framework: { en: "See the operating model", fa: "مدل عملیاتی را ببینید" },
     enterprise: { en: "Explore the platform", fa: "بررسی پلتفرم" },
     condition: { en: "Operating principle", fa: "اصل عملیاتی" },
@@ -63,14 +63,14 @@ const text = {
   bridge: { en: "Authority / execution / decisions / evidence / resilience", fa: "اختیار / اجرا / تصمیم‌ها / شواهد / تاب‌آوری" },
   methodology: {
     tag: { en: "BOUND context", fa: "زمینه BOUND" },
-    titleA: { en: "Interface-first", fa: "طراحی از رابط" },
-    titleB: { en: "by design.", fa: "آغاز می‌شود." },
+    titleA: { en: "Built around", fa: "بر محور" },
+    titleB: { en: "the operation.", fa: "خود عملیات." },
     body: {
-      en: "ONYX is the operational platform. BOUND Method v3.0 provides the boundary-oriented context behind independent execution: define the domain, establish responsibility boundaries, formalize contracts, execute, and verify continuously.",
-      fa: "ONYX پلتفرم عملیاتی است؛ BOUND Method v3.0 زمینه‌ای مرزمحور برای اجرای مستقل فراهم می‌کند: دامنه را تعریف کنید، مرز مسئولیت را مشخص کنید، قراردادها را رسمی کنید، اجرا کنید و پیوسته راستی‌آزمایی کنید.",
+      en: "ONYX is the operational platform. BOUND Method v3.0 provides the boundary context behind independent execution: define the domain, establish responsibility boundaries, formalize contracts, execute, and verify continuously.",
+      fa: "ONYX پلتفرم عملیاتی است؛ BOUND Method v3.0 زمینه مرزبندی برای اجرای مستقل فراهم می‌کند: دامنه را تعریف کنید، مرز مسئولیت را مشخص کنید، قراردادها را رسمی کنید، اجرا کنید و پیوسته راستی‌آزمایی کنید.",
     },
     product: { en: "Product layer", fa: "لایه محصول" },
-    productCopy: { en: "Authority-aware operational intelligence", fa: "هوشمندی عملیاتی آگاه از اختیار" },
+    productCopy: { en: "Governed operational execution", fa: "اجرای عملیاتی حاکمیت‌شده" },
     doctrine: { en: "Boundary context", fa: "زمینه مرزبندی" },
     doctrineCopy: { en: "Domain → Boundary → Contract → Execution → Verification", fa: "دامنه ← مرز ← قرارداد ← اجرا ← راستی‌آزمایی" },
     link: { en: "Explore BOUND Method v3.0", fa: "بررسی BOUND Method v3.0" },
@@ -199,8 +199,8 @@ const capabilityCards = [
   { number: "02", icon: Target, title: { en: "Execution", fa: "اجرا" }, copy: { en: "Missions, work, ownership, dependencies, timelines, milestones, and lifecycle states stay connected.", fa: "مأموریت‌ها، کار، مالکیت، وابستگی‌ها، زمان‌بندی، نقاط عطف و وضعیت‌های چرخه عمر به هم متصل می‌مانند." } },
   { number: "03", icon: Network, title: { en: "Coordination", fa: "هماهنگی" }, copy: { en: "Meetings, conversations, decisions, action items, and cross-context relationships stay attached to the operation.", fa: "جلسه‌ها، گفت‌وگوها، تصمیم‌ها، اقدامات و روابط میان‌زمینه‌ای به عملیات متصل می‌مانند." } },
   { number: "04", icon: BadgeCheck, title: { en: "Evidence", fa: "شواهد" }, copy: { en: "Reports, files, approvals, verification, review, and audit preserve what happened and why.", fa: "گزارش‌ها، فایل‌ها، تأییدها، راستی‌آزمایی، بررسی و ممیزی آنچه رخ داده و چرایی آن را حفظ می‌کنند." } },
-  { number: "05", icon: Radar, title: { en: "Resilience", fa: "تاب‌آوری" }, copy: { en: "Distributed state can synchronize, conflicts can be detected and resolved, and operational history can persist across change.", fa: "وضعیت توزیع‌شده می‌تواند همگام شود، تعارض‌ها تشخیص و حل شوند و تاریخچه عملیاتی در برابر تغییر حفظ شود." } },
-  { number: "06", icon: Layers3, title: { en: "Foresight", fa: "آینده‌نگری" }, copy: { en: "Capacity, forecasting, automation, notifications, and escalation help teams see pressure before it becomes failure.", fa: "ظرفیت، پیش‌بینی، خودکارسازی، اعلان‌ها و تشدید به تیم‌ها کمک می‌کنند فشار را پیش از تبدیل شدن به شکست ببینند." } },
+  { number: "05", icon: Radar, title: { en: "Resilience", fa: "تاب‌آوری" }, copy: { en: "Local-first operation and controlled synchronization keep distributed state aligned as connectivity changes.", fa: "اجرای محلی‌محور و همگام‌سازی کنترل‌شده کمک می‌کنند وضعیت توزیع‌شده با تغییر اتصال هم‌راستا بماند." } },
+  { number: "06", icon: Layers3, title: { en: "Planning", fa: "برنامه‌ریزی" }, copy: { en: "Capacity, forecasting, automation, notifications, and escalation help teams see pressure before it becomes failure.", fa: "ظرفیت، پیش‌بینی، خودکارسازی، اعلان‌ها و تشدید به تیم‌ها کمک می‌کنند فشار را پیش از تبدیل شدن به شکست ببینند." } },
 ];
 
 function resolveBrowserLocale(): Locale {
