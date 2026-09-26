@@ -40,9 +40,6 @@ export default function SiteHeader({
   const rtl = locale === "fa";
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const home = `/${locale}/`;
-  const otherLocale = locale === "en" ? "fa" : "en";
-  const languageHref = activePage ? `/${otherLocale}/${activePage}/` : `/${otherLocale}/`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 220);
@@ -61,8 +58,6 @@ export default function SiteHeader({
   }, [menuOpen]);
 
   const labels = {
-    home: rtl ? "خانه" : "Home",
-    language: rtl ? "English" : "فارسی",
     contact: rtl ? "تماس / دمو" : "Contact / Demo",
     light: rtl ? "حالت روشن" : "Light mode",
     dark: rtl ? "حالت تاریک" : "Dark mode",
