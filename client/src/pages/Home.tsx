@@ -233,6 +233,7 @@ function ArrowAction({ children, href, solid = false, rtl = false }: { children:
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
+  const [heroFocus, setHeroFocus] = useState("RING");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
   useEffect(() => {
@@ -256,9 +257,49 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <SiteHeader locale={locale} theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="top">
-        <section className="hero section-shell hero--ready">
-          <div className="hero__veil" /><div className="hero__grid" aria-hidden="true" />
-          <div className="hero__content shell-content"><SignalTag>{t(text.hero.tag)}</SignalTag><h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1><p className="hero__lede">{t(text.hero.lede)}</p><div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div></div>
+        <section className="hero hero--interactive section-shell hero--ready">
+          <div className="hero__veil" />
+          <div className="hero__grid" aria-hidden="true" />
+          <div className="hero-control" aria-label={isRtl ? "مدل عملیاتی ONYX" : "ONYX operating model"} onMouseLeave={() => setHeroFocus("RING")}>
+            <div className="hero-control__scan" />
+            <div className="hero-control__crosshair hero-control__crosshair--h" />
+            <div className="hero-control__crosshair hero-control__crosshair--v" />
+            <div className="hero-control__ring hero-control__ring--outer" />
+            <div className="hero-control__ring hero-control__ring--inner" />
+            <div className="hero-control__orbit hero-control__orbit--a"><span /></div>
+            <div className="hero-control__orbit hero-control__orbit--b"><span /></div>
+            <div className="hero-control__core"><img src={assets.signalMark} alt="" /><span>ONYX</span></div>
+            {[
+              ["RING", "AUTHORITY", "Controlled execution"],
+              ["ORBIT", "COORDINATION", "Synchronization"],
+              ["GRID", "STATE", "Operational structure"],
+              ["SIGNAL", "AWARENESS", "Events + evidence"],
+            ].map(([key, label, detail], index) => (
+              <button
+                type="button"
+                key={key}
+                className={`hero-control__node hero-control__node--${index + 1} ${heroFocus === key ? "is-active" : ""}`}
+                onMouseEnter={() => setHeroFocus(key)}
+                onFocus={() => setHeroFocus(key)}
+                aria-label={`${key}: ${label}`}
+              >
+                <i />
+                <span><b>{key}</b><small>{label}</small></span>
+              </button>
+            ))}
+            <div className={`hero-control__readout hero-control__readout--${heroFocus.toLowerCase()}`}>
+              <span>{heroFocus}</span>
+              <strong>
+                {heroFocus === "RING" ? "CONTROLLED EXECUTION" : heroFocus === "ORBIT" ? "DISTRIBUTED COORDINATION" : heroFocus === "GRID" ? "OPERATIONAL STATE" : "LIVE EVENTS / EVIDENCE"}
+              </strong>
+            </div>
+          </div>
+          <div className="hero__content shell-content">
+            <SignalTag>{t(text.hero.tag)}</SignalTag>
+            <h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1>
+            <p className="hero__lede">{t(text.hero.lede)}</p>
+            <div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div>
+          </div>
           <div className="hero__telemetry" aria-label="System status"><div className="telemetry-orbit"><span /><span /><span /></div><div><span className="telemetry-label">{t(text.hero.condition)}</span><strong>{t(text.hero.synchronized)}</strong></div><span className="telemetry-state">ONLINE</span></div>
           <a className="hero__scroll" href="#problem" aria-label={t(text.hero.scroll)}><span>{t(text.hero.scroll)}</span><ChevronDown size={16} /></a>
         </section>
