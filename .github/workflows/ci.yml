@@ -47,6 +47,12 @@ jobs:
       - name: Validate SEO and crawl artifacts
         run: pnpm validate:seo
 
+      - name: Validate accessibility
+        run: pnpm validate:a11y
+
+      - name: Validate performance budgets
+        run: pnpm validate:performance
+
       - name: Verify prerendered routes
         shell: bash
         run: |
