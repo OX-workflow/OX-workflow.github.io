@@ -9,7 +9,9 @@
     "build": "vite build && tsx --tsconfig tsconfig.prerender.json scripts/prerender.tsx && tsx scripts/generate-crawl-artifacts.ts",
     "preview": "vite preview",
     "check": "tsc --noEmit",
-    "validate:seo": "tsx scripts/validate-schema.ts && tsx scripts/validate-crawl-artifacts.ts"
+    "validate:seo": "tsx scripts/validate-schema.ts && tsx scripts/validate-crawl-artifacts.ts",
+    "validate:a11y": "tsx scripts/validate-accessibility.ts",
+    "validate:performance": "tsx scripts/validate-performance.ts"
   },
   "dependencies": {
     "lucide-react": "^0.453.0",
