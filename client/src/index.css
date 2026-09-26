@@ -2571,3 +2571,38 @@ html[data-theme="dark"] .commercial-frame__card:focus-visible{
 @media(prefers-reduced-motion:reduce){
   .operational-demo__illustrative{transition:none}
 }
+
+/* Evidence-boundary refinements */
+.product-section--resilience{
+  background:var(--product-surface,#fff);
+}
+.product-section--resilience .product-two-col{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:clamp(3rem,8vw,8rem);
+  align-items:start;
+}
+.product-section--resilience .product-two-col h2{
+  margin:18px 0 0;
+  font-family:"ONYX Manrope",Arial,sans-serif;
+  font-size:clamp(2.7rem,5.6vw,5.8rem);
+  font-weight:600;
+  letter-spacing:-.075em;
+  line-height:.9;
+}
+.product-section--resilience .product-two-col p{
+  max-width:720px;
+  margin:0;
+  color:var(--product-muted);
+  font-size:1rem;
+  line-height:1.85;
+}
+.customers-resilience-boundary{
+  background:var(--cu-bg);
+}
+@media(max-width:760px){
+  .product-section--resilience .product-two-col{
+    grid-template-columns:1fr;
+    gap:2rem;
+  }
+}
