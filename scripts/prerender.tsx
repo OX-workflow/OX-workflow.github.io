@@ -179,6 +179,34 @@ function schema(locale: Locale): string {
   return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2)}\n    </script>`;
 }
 
+function pageSchema(locale: Locale, page: PageKey, pageUrl: string): string {
+  const source = schema(locale);
+  const match = source.match(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/);
+  if (!match) throw new Error("Unable to derive page JSON-LD.");
+  const data = JSON.parse(match[1]) as { "@graph": Array<Record<string, unknown>> };
+  const webPage = data["@graph"].find((node) => node["@type"] === "WebPage");
+  const article = data["@graph"].find((node) => node["@type"] === "Article");
+  const webPageId = \`\${pageUrl}#webpage\`;
+  const articleId = \`\${pageUrl}#case-study\`;
+  if (webPage) {
+    webPage["@id"] = webPageId;
+    webPage.url = pageUrl;
+    webPage.name = pagesTitle(locale, page);
+    webPage.description = pagesDescription(locale, page);
+    webPage.inLanguage = locale;
+    webPage.mainEntity = { "@id": articleId };
+  }
+  if (article) {
+    article["@id"] = articleId;
+    article.url = pageUrl;
+    article.headline = pagesTitle(locale, page);
+    article.description = pagesDescription(locale, page);
+    article.mainEntityOfPage = { "@id": webPageId };
+    article.inLanguage = locale;
+  }
+  return \`<script type="application/ld+json">\n\${JSON.stringify(data, null, 2)}\n    </script>\`;
+}
+
 function localizedDocument(locale: Locale): string {
   const metadata = localeMetadata[locale];
   const rootMarkup = renderToStaticMarkup(<Home initialLocale={locale} />);
@@ -296,6 +324,7 @@ for (const locale of ["en", "fa"] as const) {
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
       .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `${alternateLinks(page)}\n    <link rel="canonical" href="${pageUrl}" />`)
+      .replace(/<script type="application\/ld\+json">\s*[\s\S]*?<\/script>/, pageSchema(locale, page, pageUrl))
       .replace(/<title>[^<]*<\/title>/, `<title>${pagesTitle(locale, page)}</title>`)
       .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${pagesDescription(locale, page)}" />`)
       .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${pagesTitle(locale, page)}" />`)
