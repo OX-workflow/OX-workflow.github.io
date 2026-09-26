@@ -7,6 +7,7 @@ import SecurityPage from "./pages/SecurityPage";
 import AboutPage from "./pages/AboutPage";
 import RoadmapPage from "./pages/RoadmapPage";
 import ContactPage from "./pages/ContactPage";
+import ResourcesPage from "./pages/ResourcesPage";
 
 type Locale = "en" | "fa";
 
@@ -61,6 +62,10 @@ export default function App() {
 
   if (page === "contact") {
     return <ContactPage locale={locale} />;
+  }
+
+  if (page === "resources") {
+    return <ResourcesPage locale={locale} />;
   }
 
   if (page) {

@@ -12,6 +12,7 @@ import SecurityPage from "../client/src/pages/SecurityPage";
 import AboutPage from "../client/src/pages/AboutPage";
 import RoadmapPage from "../client/src/pages/RoadmapPage";
 import ContactPage from "../client/src/pages/ContactPage";
+import ResourcesPage from "../client/src/pages/ResourcesPage";
 
 type Locale = "en" | "fa";
 
@@ -272,7 +273,9 @@ for (const locale of ["en", "fa"] as const) {
                 ? renderToStaticMarkup(<RoadmapPage locale={locale} />)
                 : page === "contact"
                   ? renderToStaticMarkup(<ContactPage locale={locale} />)
-                  : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+                  : page === "resources"
+                    ? renderToStaticMarkup(<ResourcesPage locale={locale} />)
+                    : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
