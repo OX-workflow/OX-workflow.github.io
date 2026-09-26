@@ -10,6 +10,7 @@ import ArchitecturePage from "../client/src/pages/ArchitecturePage";
 import SolutionsPage from "../client/src/pages/SolutionsPage";
 import SecurityPage from "../client/src/pages/SecurityPage";
 import AboutPage from "../client/src/pages/AboutPage";
+import RoadmapPage from "../client/src/pages/RoadmapPage";
 
 type Locale = "en" | "fa";
 
