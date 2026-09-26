@@ -143,11 +143,11 @@ export default function ProductVisuals({ locale, variant = "gallery" }: { locale
             <h2>{t.heroTitle}</h2>
             <p>{t.heroBody}</p>
           </div>
-          <div className="product-visuals__hero-frame">
+          <figure className="product-visuals__hero-frame">
             <img src={surface.src} alt={surface.title[locale] + " — " + surface.description[locale]} loading="eager" fetchPriority="high" decoding="async" />
             <div className="product-visuals__scan" aria-hidden="true" />
             <SurfaceCaption surface={surface} locale={locale} />
-          </div>
+          </figure>
         </div>
       </section>
     );
