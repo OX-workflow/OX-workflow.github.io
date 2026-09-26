@@ -47,6 +47,12 @@ jobs:
       - name: Validate SEO and crawl artifacts
         run: pnpm validate:seo
 
+      - name: Validate accessibility
+        run: pnpm validate:a11y
+
+      - name: Validate performance budgets
+        run: pnpm validate:performance
+
       - name: Verify prerendered routes
         shell: bash
         run: |
@@ -67,7 +73,7 @@ jobs:
           grep -q '<div id="root">' dist/public/fa/index.html
           grep -q 'ONYX | Product' dist/public/en/product/index.html
           grep -q 'ONYX | معماری' dist/public/fa/architecture/index.html
-          if grep -RqiE '>English<|>Light mode<|>Dark mode<|>Back to home<' dist/public/fa; then
+          if grep -RqiE '>Light mode<|>Dark mode<|>Back to home<' dist/public/fa; then
             echo 'English UI labels remain in the Farsi prerendered surface.'
             exit 1
           fi

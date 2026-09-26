@@ -25,16 +25,20 @@ function getLastModifiedDate(): string {
   }
 }
 
-function alternateLinks(): string {
-  return `    <xhtml:link rel="alternate" hreflang="en" href="${localizedUrls.en}" />
-    <xhtml:link rel="alternate" hreflang="fa" href="${localizedUrls.fa}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="${localizedUrls.default}" />`;
+const pages = ["product","solutions","architecture","security","roadmap","about","resources","contact","investors","pricing","customers"] as const;
+
+function alternateLinks(page: string | null): string {
+  const suffix = page ? `${page}/` : "";
+  const xDefault = page ? `${SITE_URL}/en/${suffix}` : localizedUrls.default;
+  return `    <xhtml:link rel="alternate" hreflang="en" href="${SITE_URL}/en/${suffix}" />
+    <xhtml:link rel="alternate" hreflang="fa" href="${SITE_URL}/fa/${suffix}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${xDefault}" />`;
 }
 
-function sitemapEntry(url: string, lastModified: string): string {
+function sitemapEntry(url: string, lastModified: string, page: string | null): string {
   return `  <url>
     <loc>${url}</loc>
-${alternateLinks()}
+${alternateLinks(page)}
     <lastmod>${lastModified}</lastmod>
   </url>`;
 }
@@ -47,9 +51,11 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `;
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${sitemapEntry(localizedUrls.default, lastModified)}
-${sitemapEntry(localizedUrls.en, lastModified)}
-${sitemapEntry(localizedUrls.fa, lastModified)}
+${sitemapEntry(localizedUrls.default, lastModified, null)}
+${pages.flatMap((page) => [
+  sitemapEntry(`${SITE_URL}/en/${page}/`, lastModified, page),
+  sitemapEntry(`${SITE_URL}/fa/${page}/`, lastModified, page),
+]).join("\n")}
 </urlset>
 `;
 
