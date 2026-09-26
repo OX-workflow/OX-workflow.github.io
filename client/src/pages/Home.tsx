@@ -124,8 +124,6 @@ const text = {
     demo: { en: "Request a demo", fa: "درخواست دمو" },
     technology: { en: "Explore technology", fa: "بررسی فناوری" },
   },
-};
-
 
   commercialFrame: {
     tag: { en: "07 / Commercial frame", fa: "۰۷ / چارچوب تجاری" },
@@ -187,6 +185,7 @@ const text = {
       },
     ],
   },
+};
 
 const modelIcons = [Target, Network, ShieldCheck, History];
 
