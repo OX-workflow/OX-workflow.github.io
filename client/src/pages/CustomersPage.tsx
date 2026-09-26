@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import ProductVisuals from "../components/ProductVisuals";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -243,6 +244,8 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
           <p className="customers-intro">{c.intro}</p>
         </div>
       </section>
+
+      <ProductVisuals locale={locale} variant="mobile" />
 
       <section className="customers-boundary">
         <div className="shell-content customers-two-col">
