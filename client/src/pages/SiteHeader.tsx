@@ -38,9 +38,11 @@ export default function SiteHeader({
   activePage?: string;
 }) {
   const rtl = locale === "fa";
-  const home = `/${locale}/`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const home = `/${locale}/`;
+  const otherLocale = locale === "en" ? "fa" : "en";
+  const languageHref = activePage ? `/${otherLocale}/${activePage}/` : `/${otherLocale}/`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 220);
@@ -59,6 +61,8 @@ export default function SiteHeader({
   }, [menuOpen]);
 
   const labels = {
+    home: rtl ? "خانه" : "Home",
+    language: rtl ? "English" : "فارسی",
     contact: rtl ? "تماس / دمو" : "Contact / Demo",
     light: rtl ? "حالت روشن" : "Light mode",
     dark: rtl ? "حالت تاریک" : "Dark mode",
@@ -67,18 +71,6 @@ export default function SiteHeader({
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <div className="onyx-intro" aria-hidden="true">
-        <div className="onyx-intro__field">
-          <div className="onyx-intro__halo" />
-          <div className="onyx-intro__ring">
-            <img src="/assets/onyx-symbol.svg" alt="" width="512" height="512" decoding="async" />
-          </div>
-          <div className="onyx-intro__wordmark">ONYX</div>
-          <div className="onyx-intro__signal" />
-        </div>
-      </div>
-
     <header className="onyx-global-header" dir="ltr">
       <div className="onyx-global-header__inner">
         <a className="onyx-global-header__logo" href={home} aria-label={rtl ? "صفحه اصلی ONYX" : "ONYX home"}>
@@ -100,6 +92,21 @@ export default function SiteHeader({
         </nav>
 
         <div className="onyx-global-header__tools">
+          <a className="onyx-global-header__home" href={home} aria-current={activePage === undefined ? "page" : undefined}>
+            {labels.home}
+          </a>
+          <a className="onyx-global-header__language" href={languageHref}>
+            {labels.language}
+          </a>
+          <button
+            className="onyx-global-header__theme"
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={theme === "dark" ? labels.light : labels.dark}
+            title={theme === "dark" ? labels.light : labels.dark}
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
           <a className="onyx-global-header__contact" href={`/${locale}/contact/`}>
             {labels.contact}
             <ChevronRight size={14} />
@@ -119,15 +126,18 @@ export default function SiteHeader({
       </div>
 
       <nav id="onyx-global-mobile-nav" className={`onyx-global-mobile-nav ${menuOpen ? "onyx-global-mobile-nav--open" : ""}`} aria-hidden={!menuOpen}>
-        <a className="onyx-global-mobile-nav__brand" href={home} onClick={closeMenu} aria-label={rtl ? "صفحه اصلی ONYX" : "ONYX home"}>
-          <img src={theme === "dark" ? "/assets/onyx-horizontal-dark.svg" : "/assets/onyx-horizontal-light.svg"} alt="ONYX" width="1320" height="360" decoding="async" />
-        </a>
+        <a href={home} onClick={closeMenu}>{labels.home}</a>
         {navigation.map(([page, label]) => (
           <a key={page} href={`/${locale}/${page}/`} onClick={closeMenu} aria-current={activePage === page ? "page" : undefined}>
             {label[locale]}
           </a>
         ))}
         <a href={`/${locale}/contact/`} onClick={closeMenu} className="onyx-global-mobile-nav__contact">{labels.contact}</a>
+        <a href={languageHref} onClick={closeMenu}>{labels.language}</a>
+        <button type="button" onClick={onToggleTheme} className="onyx-global-mobile-nav__theme">
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+          <span>{theme === "dark" ? labels.light : labels.dark}</span>
+        </button>
       </nav>
 
       <div className="onyx-floating-controls" dir="ltr" aria-label={rtl ? "کنترل‌های شناور" : "Floating controls"}>
@@ -156,6 +166,5 @@ export default function SiteHeader({
         </button>
       </div>
     </header>
-    </>
   );
 }
