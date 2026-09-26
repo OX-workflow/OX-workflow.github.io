@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, ExternalLink, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -148,7 +149,7 @@ const copy = {
 export default function ResourcesPage({ locale }: { locale: Locale }) {
   const rtl = locale === "fa";
   const c = copy[locale];
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const href = (page: string) => page ? `/${locale}/${page}/` : `/${locale}/`;
   const Arrow = rtl ? ArrowRight : ArrowLeft;
 
@@ -167,26 +168,7 @@ export default function ResourcesPage({ locale }: { locale: Locale }) {
 
   return (
     <main className={`resources-page resources-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <header className="resources-header">
-        <div className="shell-content resources-header__inner">
-          <a className="resources-logo" href={href("")} aria-label="ONYX">
-            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
-          </a>
-          <nav>
-            <a href={href("product")}>{c.product}</a>
-            <a href={href("architecture")}>{c.architecture}</a>
-            <a href={href("security")}>{c.security}</a>
-          </nav>
-          <div className="resources-tools">
-            <a href={href("contact")}>{c.contact}</a>
-            <a href={href("resources")} aria-current="page">RESOURCES</a>
-            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <a className="resources-language" href={rtl ? "/en/resources/" : "/fa/resources/"}>{c.language}</a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="resources" />
 
       <section className="resources-hero">
         <div className="resources-hero__grid" aria-hidden="true" />

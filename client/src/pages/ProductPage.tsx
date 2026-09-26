@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Moon, Sun } from "lucide-react";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -149,15 +150,7 @@ export default function ProductPage({ locale }: { locale: Locale }) {
 
   return (
     <div className={`product-page product-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <header className="product-header">
-        <a className="product-header__logo" href={href(locale, "")}><img src={theme === "dark" ? "/assets/onyx-horizontal-dark.svg" : "/assets/onyx-horizontal-light.svg"} alt="ONYX" /></a>
-        <nav>{t.nav.map((item, i) => <a key={item} href={href(locale, ["product","solutions","architecture","security","about","resources"][i])}>{item}</a>)}</nav>
-        <div className="product-header__tools">
-          <a className="product-header__lang" href={locale === "en" ? "/fa/product/" : "/en/product/"}>{t.language}</a>
-          <button type="button" onClick={toggle} aria-label={theme === "dark" ? t.themeLight : t.themeDark}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button>
-          <a className="product-header__contact" href={href(locale, "contact")}>{t.secondary}<ChevronRight size={15} /></a>
-        </div>
-      </header>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="product" />
 
       <main>
         <section className="product-hero">
