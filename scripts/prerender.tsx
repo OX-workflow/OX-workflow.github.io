@@ -15,6 +15,7 @@ import ContactPage from "../client/src/pages/ContactPage";
 import ResourcesPage from "../client/src/pages/ResourcesPage";
 import InvestorsPage from "../client/src/pages/InvestorsPage";
 import PricingLicensingPage from "../client/src/pages/PricingLicensingPage";
+import CustomersPage from "../client/src/pages/CustomersPage";
 
 type Locale = "en" | "fa";
 
@@ -217,6 +218,7 @@ function pagesTitle(locale: Locale, page: PageKey) {
     contact: { en: "ONYX | Contact / Demo", fa: "ONYX | تماس / دمو" },
     investors: { en: "ONYX | Investors", fa: "ONYX | سرمایه‌گذاران" },
     pricing: { en: "ONYX | Pricing & Licensing", fa: "ONYX | قیمت‌گذاری و مجوزدهی" },
+    customers: { en: "ONYX | Customers & Case Studies", fa: "ONYX | مشتریان و مطالعات موردی" },
   };
   return titles[page][locale];
 }
@@ -233,6 +235,7 @@ function pagesDescription(locale: Locale, page: PageKey) {
     contact: { en: "Contact ONYX and request an enterprise demonstration.", fa: "تماس با ONYX و درخواست دمو سازمانی." },
     investors: { en: "ONYX product, technology, roadmap, and commercial information.", fa: "اطلاعات محصول، فناوری، نقشه راه و تجاری ONYX." },
     pricing: { en: "ONYX commercial models, licensing principles, and enterprise deployment terms.", fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX." },
+    customers: { en: "Illustrative ONYX customer scenarios, operational fit, and the boundary between reference scenarios and verified customer evidence.", fa: "سناریوهای نمونه ONYX، تناسب عملیاتی و مرز میان سناریوهای مرجع و شواهد واقعی مشتری." },
   };
   return descriptions[page][locale];
 }
@@ -258,6 +261,7 @@ const sitePages: PageKey[] = [
   "contact",
   "investors",
   "pricing",
+  "customers",
 ];
 
 for (const locale of ["en", "fa"] as const) {
@@ -284,7 +288,9 @@ for (const locale of ["en", "fa"] as const) {
                       ? renderToStaticMarkup(<InvestorsPage locale={locale} />)
                       : page === "pricing"
                         ? renderToStaticMarkup(<PricingLicensingPage locale={locale} />)
-                        : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+                        : page === "customers"
+                          ? renderToStaticMarkup(<CustomersPage locale={locale} />)
+                          : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
