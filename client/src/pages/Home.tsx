@@ -21,6 +21,7 @@ import {
   X,
   Moon,
   Sun,
+  ArrowUp,
 } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
@@ -50,105 +51,96 @@ const text = {
     demo: { en: "Request a demo", fa: "درخواست دمو" },
   },
   hero: {
-    tag: { en: "Mission Operations Platform", fa: "پلتفرم عملیات مأموریت‌محور" },
-    titleA: { en: "OPERATIONS CONTINUE.", fa: "عملیات ادامه دارد." },
-    titleB: { en: "Accountability remains.", fa: "پاسخ‌گویی باقی می‌ماند." },
-    lede: { en: "ONYX is a mission operations platform that connects authority, execution, decisions, evidence, policy, synchronization, and operational history in one governed system.", fa: "ONYX یک پلتفرم عملیات مأموریت‌محور است که اختیار، اجرا، تصمیم‌ها، شواهد، سیاست، همگام‌سازی و تاریخچه عملیاتی را در یک سامانه حاکمیت‌شده به هم متصل می‌کند." },
-    framework: { en: "See the operating model", fa: "مدل عملیاتی را ببینید" },
+    tag: { en: "Mission operations platform", fa: "پلتفرم عملیات مأموریت‌محور" },
+    titleA: { en: "OPERATIONS THAT", fa: "عملیاتی که" },
+    titleB: { en: "never stop.", fa: "هرگز متوقف نمی‌شوند." },
+    lede: { en: "ONYX keeps distributed teams operational when networks are unreliable, intermittent, or unavailable — then reconciles state when connectivity returns.", fa: "ONYX تیم‌های توزیع‌شده را زمانی عملیاتی نگه می‌دارد که شبکه ناپایدار، منقطع یا در دسترس نباشد؛ سپس با بازگشت ارتباط، وضعیت را همگام می‌کند." },
+    framework: { en: "How ONYX operates", fa: "نحوه عملکرد ONYX" },
     enterprise: { en: "Explore the platform", fa: "بررسی پلتفرم" },
-    condition: { en: "Operating principle", fa: "اصل عملیاتی" },
-    synchronized: { en: "Governed execution", fa: "اجرای حاکمیت‌شده" },
-    scroll: { en: "Examine the system", fa: "سامانه را بررسی کنید" },
+    condition: { en: "Operational state", fa: "وضعیت عملیاتی" },
+    synchronized: { en: "Local execution ready", fa: "اجرای محلی آماده است" },
+    scroll: { en: "Scroll to examine", fa: "برای بررسی حرکت کنید" },
   },
-  bridge: { en: "Authority / execution / decisions / evidence / resilience", fa: "اختیار / اجرا / تصمیم‌ها / شواهد / تاب‌آوری" },
+  bridge: { en: "Authority / responsibility / execution / verification", fa: "اختیار / مسئولیت / اجرا / راستی‌آزمایی" },
   methodology: {
     tag: { en: "BOUND context", fa: "زمینه BOUND" },
-    titleA: { en: "Built around", fa: "بر محور" },
-    titleB: { en: "the operation.", fa: "خود عملیات." },
+    titleA: { en: "Interface-first", fa: "طراحی از رابط" },
+    titleB: { en: "by design.", fa: "آغاز می‌شود." },
     body: {
-      en: "ONYX is the operational platform. BOUND Method v3.0 provides the boundary context behind independent execution: define the domain, establish responsibility boundaries, formalize contracts, execute, and verify continuously.",
-      fa: "ONYX پلتفرم عملیاتی است؛ BOUND Method v3.0 زمینه مرزبندی برای اجرای مستقل فراهم می‌کند: دامنه را تعریف کنید، مرز مسئولیت را مشخص کنید، قراردادها را رسمی کنید، اجرا کنید و پیوسته راستی‌آزمایی کنید.",
+      en: "ONYX is the operational platform. BOUND Method v3.0 provides the boundary-oriented context behind independent execution: define the domain, establish responsibility boundaries, formalize contracts, execute, and verify continuously.",
+      fa: "ONYX پلتفرم عملیاتی است؛ BOUND Method v3.0 زمینه‌ای مرزمحور برای اجرای مستقل فراهم می‌کند: دامنه را تعریف کنید، مرز مسئولیت را مشخص کنید، قراردادها را رسمی کنید، اجرا کنید و پیوسته راستی‌آزمایی کنید.",
     },
     product: { en: "Product layer", fa: "لایه محصول" },
-    productCopy: { en: "Governed operational execution", fa: "اجرای عملیاتی حاکمیت‌شده" },
+    productCopy: { en: "Authority-aware operational intelligence", fa: "هوشمندی عملیاتی آگاه از اختیار" },
     doctrine: { en: "Boundary context", fa: "زمینه مرزبندی" },
     doctrineCopy: { en: "Domain → Boundary → Contract → Execution → Verification", fa: "دامنه ← مرز ← قرارداد ← اجرا ← راستی‌آزمایی" },
     link: { en: "Explore BOUND Method v3.0", fa: "بررسی BOUND Method v3.0" },
   },
   problem: {
-    tag: { en: "01 / The operational problem", fa: "۰۱ / مسئله عملیاتی" },
-    titleA: { en: "Critical work is", fa: "کارهای مهم" },
-    titleB: { en: "fragmented across systems.", fa: "میان سامانه‌ها پراکنده‌اند." },
-    body: { en: "Discussion, tasks, files, approvals, policy, evidence, and decisions often live in different places. The failure is not inside any one tool — it is the missing operational record between them.", fa: "گفت‌وگو، وظایف، فایل‌ها، تأییدها، سیاست، شواهد و تصمیم‌ها اغلب در مکان‌های جداگانه قرار دارند. مشکل لزوماً در یک ابزار نیست؛ در نبود یک سابقه عملیاتی یکپارچه میان آن‌هاست." },
-    signal: { en: "Operational fragmentation", fa: "پراکندگی عملیاتی" },
-    fragmented: { en: "Disconnected trails", fa: "ردپاهای گسسته" },
-    result: { en: "ONYX makes authority, execution, evidence, and history part of the operation itself.", fa: "ONYX اختیار، اجرا، شواهد و تاریخچه را بخشی از خود عملیات می‌کند." },
+    tag: { en: "01 / The connectivity problem", fa: "۰۱ / مسئله اتصال" },
+    titleA: { en: "Operations cannot", fa: "عملیات نباید" },
+    titleB: { en: "depend on a network.", fa: "به شبکه وابسته باشد." },
+    body: { en: "Distributed work fails when the system assumes the network is always available. ONYX is designed around continued local execution, controlled synchronization, and explicit operational state.", fa: "وقتی سامانه فرض کند شبکه همیشه در دسترس است، عملیات توزیع‌شده آسیب‌پذیر می‌شود. ONYX بر اجرای محلی مداوم، همگام‌سازی کنترل‌شده و وضعیت عملیاتی صریح بنا شده است." },
+    signal: { en: "Connectivity condition", fa: "شرایط اتصال" },
+    fragmented: { en: "Network dependent", fa: "وابسته به شبکه" },
+    result: { en: "When connectivity changes, operations continue locally instead of becoming unavailable.", fa: "با تغییر وضعیت اتصال، عملیات به‌صورت محلی ادامه پیدا می‌کند و متوقف نمی‌شود." },
   },
   contrast: {
-    tag: { en: "02 / One governed operational record", fa: "۰۲ / یک سابقه عملیاتی حاکمیت‌شده" },
-    titleA: { en: "Authority. Execution. Evidence.", fa: "اختیار. اجرا. شواهد." },
-    titleB: { en: "Connected by design.", fa: "از ابتدا به هم متصل." },
-    body: { en: "ONYX keeps the relationships that matter visible: who can act, what was planned, what changed, which decision governed the work, what evidence supports the outcome, and what happened next.", fa: "ONYX روابط مهم را قابل مشاهده نگه می‌دارد: چه کسی اختیار اقدام دارد، چه چیزی برنامه‌ریزی شد، چه چیزی تغییر کرد، کدام تصمیم بر کار حاکم بود، چه شواهدی نتیجه را پشتیبانی می‌کند و بعد چه اتفاقی افتاد." },
-    traditional: { en: "Operational condition", fa: "شرایط عملیاتی" },
-    onyx: { en: "ONYX record", fa: "سابقه ONYX" },
+    tag: { en: "02 / The operating model", fa: "۰۲ / مدل عملیاتی" },
+    titleA: { en: "Local. Sync. Control.", fa: "محلی. همگام. کنترل‌شده." },
+    titleB: { en: "by architecture.", fa: "با طراحی معماری." },
+    body: { en: "ONYX separates execution from connectivity: work can continue locally, state can synchronize when links permit, and authority remains explicit throughout the operation.", fa: "ONYX اجرا را از اتصال جدا می‌کند: کار می‌تواند محلی ادامه پیدا کند، وضعیت هنگام امکان ارتباط همگام شود و اختیار در تمام عملیات صریح باقی بماند." },
+    traditional: { en: "Operating condition", fa: "شرایط عملیاتی" },
+    onyx: { en: "ONYX behavior", fa: "رفتار ONYX" },
     rows: [
-      [{ en: "Objective", fa: "هدف" }, { en: "Defined mission, owner, scope, and intended outcome.", fa: "مأموریت، مالک، دامنه و نتیجه موردنظر تعریف می‌شوند." }],
-      [{ en: "Authority", fa: "اختیار" }, { en: "Roles and delegated authority establish who can act.", fa: "نقش‌ها و اختیار تفویض‌شده مشخص می‌کنند چه کسی می‌تواند اقدام کند." }],
-      [{ en: "Execution", fa: "اجرا" }, { en: "Work, dependencies, timelines, and decisions remain connected.", fa: "کار، وابستگی‌ها، زمان‌بندی و تصمیم‌ها به هم متصل می‌مانند." }],
-      [{ en: "Evidence & history", fa: "شواهد و تاریخچه" }, { en: "Verification, approvals, policy, and audit preserve why the outcome happened.", fa: "راستی‌آزمایی، تأییدها، سیاست و ممیزی دلیل شکل‌گیری نتیجه را حفظ می‌کنند." }],
+      [{ en: "Network available", fa: "شبکه در دسترس" }, { en: "Synchronize state and coordinate execution.", fa: "وضعیت همگام و اجرا هماهنگ می‌شود." }],
+      [{ en: "Network degraded", fa: "شبکه ناپایدار" }, { en: "Continue local work without blocking the operator.", fa: "کار محلی بدون مسدود کردن اپراتور ادامه می‌یابد." }],
+      [{ en: "Network unavailable", fa: "شبکه قطع" }, { en: "Operate locally and preserve operational state.", fa: "محلی اجرا کنید و وضعیت عملیاتی را حفظ کنید." }],
+      [{ en: "Connection restored", fa: "اتصال برقرار شد" }, { en: "Reconcile and synchronize changes under system rules.", fa: "تغییرات طبق قواعد سامانه تلفیق و همگام می‌شوند." }],
     ],
   },
   philosophy: {
-    tag: { en: "03 / The operational lifecycle", fa: "۰۳ / چرخه عملیاتی" },
-    titleA: { en: "One operation,", fa: "یک عملیات،" },
-    titleB: { en: "one governed history.", fa: "یک تاریخچه حاکمیت‌شده." },
-    body: { en: "ONYX follows the operation from objective to audit, keeping authority, execution, decisions, verification, and reconciliation connected across the lifecycle.", fa: "ONYX عملیات را از هدف تا ممیزی دنبال می‌کند و اختیار، اجرا، تصمیم‌ها، راستی‌آزمایی و تطبیق را در سراسر چرخه به هم متصل نگه می‌دارد." },
+    tag: { en: "03 / Operational continuity", fa: "۰۳ / تداوم عملیات" },
+    titleA: { en: "From field", fa: "از میدان" },
+    titleB: { en: "to operations center.", fa: "تا مرکز عملیات." },
+    body: { en: "ONYX connects edge execution, operational coordination, and centralized visibility without requiring every action to wait for a live network.", fa: "ONYX اجرای لبه، هماهنگی عملیاتی و دید متمرکز را به هم متصل می‌کند بدون آن‌که هر اقدام به شبکه زنده وابسته باشد." },
     steps: [
-      { en: "Objective", fa: "هدف" }, { en: "Authority", fa: "اختیار" }, { en: "Plan", fa: "برنامه" }, { en: "Execute", fa: "اجرا" },
-      { en: "Decide", fa: "تصمیم" }, { en: "Verify", fa: "راستی‌آزمایی" }, { en: "Reconcile", fa: "تطبیق" }, { en: "Audit", fa: "ممیزی" },
+      { en: "Authority", fa: "اختیار" }, { en: "Responsibility", fa: "مسئولیت" }, { en: "Execution", fa: "اجرا" }, { en: "Verification", fa: "راستی‌آزمایی" }, { en: "Organizational intelligence", fa: "هوشمندی سازمانی" },
     ],
   },
   platform: {
-    tag: { en: "04 / The platform model", fa: "۰۴ / مدل پلتفرم" },
-    titleA: { en: "Everything important", fa: "هر چیز مهم" },
-    titleB: { en: "belongs to the operation.", fa: "به خود عملیات تعلق دارد." },
-    body: { en: "ONYX connects the operational objects that normally become separate trails: organization, authority, missions, work, decisions, evidence, policy, planning, synchronization, and history.", fa: "ONYX اشیای عملیاتی را که معمولاً به ردپاهای جداگانه تبدیل می‌شوند به هم متصل می‌کند: سازمان، اختیار، مأموریت‌ها، کار، تصمیم‌ها، شواهد، سیاست، برنامه‌ریزی، همگام‌سازی و تاریخچه." },
-    label: { en: "Operational model / connected state", fa: "مدل عملیاتی / وضعیت متصل" },
-    headline: { en: "The system stays connected to the work it governs.", fa: "سامانه به کاری که بر آن حاکم است متصل می‌ماند." },
-    copy: { en: "Authority, lifecycle state, decisions, evidence, and operational history are treated as part of the same governed system rather than separate administrative trails.", fa: "اختیار، وضعیت چرخه عمر، تصمیم‌ها، شواهد و تاریخچه عملیاتی بخشی از یک سامانه حاکمیت‌شده واحد هستند، نه ردپاهای اداری جداگانه." },
-    checks: [{ en: "Authority & policy", fa: "اختیار و سیاست" }, { en: "Execution & lifecycle", fa: "اجرا و چرخه عمر" }, { en: "Evidence & history", fa: "شواهد و تاریخچه" }],
-    systemLanguageTag: { en: "Ring · Orbit · Grid · Signal", fa: "حلقه · مدار · شبکه · سیگنال" },
-    systemLanguageBody: { en: "The brand language is also an operational language: Ring marks authority, Orbit connects distributed coordination, Grid structures state, and Signal exposes live events and evidence.", fa: "زبان برند هم‌زمان یک زبان عملیاتی است: حلقه اختیار را مشخص می‌کند، مدار هماهنگی توزیع‌شده را به هم متصل می‌کند، شبکه وضعیت را ساختاربندی می‌کند و سیگنال رویدادها و شواهد زنده را آشکار می‌سازد." },
-    systemLanguageItems: [
-      { en: "RING / Authority", fa: "حلقه / اختیار" },
-      { en: "ORBIT / Coordination", fa: "مدار / هماهنگی" },
-      { en: "GRID / Operational state", fa: "شبکه / وضعیت عملیاتی" },
-      { en: "SIGNAL / Events & evidence", fa: "سیگنال / رویدادها و شواهد" },
-    ],
+    tag: { en: "04 / The platform", fa: "۰۴ / پلتفرم" },
+    titleA: { en: "Your organization,", fa: "سازمان شما،" },
+    titleB: { en: "digitally defined.", fa: "دیجیتالی تعریف‌شده." },
+    body: { en: "ONYX makes the invisible architecture behind every organization legible, navigable, and ready for execution.", fa: "ONYX معماری نامرئی پشت هر سازمان را خوانا، قابل پیمایش و آماده اجرا می‌کند." },
+    label: { en: "Authority graph / live model", fa: "نقشه اختیار / مدل زنده" },
+    headline: { en: "Structure is no longer a static org chart.", fa: "ساختار دیگر یک چارت سازمانی ایستا نیست." },
+    copy: { en: "Roles, teams, departments, permissions, and decision paths are represented as a system that stays connected to the work it governs.", fa: "نقش‌ها، تیم‌ها، واحدها، مجوزها و مسیرهای تصمیم به‌عنوان سامانه‌ای نمایش داده می‌شوند که به کارِ تحت مدیریت خود متصل می‌ماند." },
+    checks: [{ en: "Roles and responsibilities", fa: "نقش‌ها و مسئولیت‌ها" }, { en: "Decision authority", fa: "اختیار تصمیم" }, { en: "Operational visibility", fa: "دید عملیاتی" }],
   },
   execution: {
-    tag: { en: "05 / Governed execution", fa: "۰۵ / اجرای حاکمیت‌شده" },
-    titleA: { en: "From objective", fa: "از هدف" },
-    titleB: { en: "to verified outcome.", fa: "تا نتیجه راستی‌آزمایی‌شده." },
-    body: { en: "Turn intent into an explicit operational path: establish authority, assign work, track dependencies and time, record decisions, verify evidence, and preserve the result.", fa: "نیت را به مسیر عملیاتی صریح تبدیل کنید: اختیار را مشخص کنید، کار را واگذار کنید، وابستگی و زمان را دنبال کنید، تصمیم‌ها را ثبت کنید، شواهد را راستی‌آزمایی کنید و نتیجه را حفظ کنید." },
-    stages: [{ en: "Objective", fa: "هدف" }, { en: "Authority", fa: "اختیار" }, { en: "Mission", fa: "مأموریت" }, { en: "Work", fa: "کار" }, { en: "Decision", fa: "تصمیم" }, { en: "Verification", fa: "راستی‌آزمایی" }, { en: "Outcome", fa: "نتیجه" }],
+    tag: { en: "05 / From objectives to outcomes", fa: "۰۵ / از اهداف تا نتایج" },
+    titleA: { en: "Execution becomes", fa: "اجرا به مسیری" },
+    titleB: { en: "a visible path.", fa: "قابل مشاهده تبدیل می‌شود." },
+    body: { en: "ONYX connects leadership objectives with day-to-day operations, making every transfer of responsibility visible and intentional.", fa: "ONYX اهداف رهبری را به عملیات روزانه متصل می‌کند و هر انتقال مسئولیت را قابل مشاهده و هدفمند می‌سازد." },
+    stages: [{ en: "Strategic goal", fa: "هدف راهبردی" }, { en: "Mission", fa: "مأموریت" }, { en: "Assignment", fa: "واگذاری" }, { en: "Execution", fa: "اجرا" }, { en: "Verification", fa: "راستی‌آزمایی" }, { en: "Result", fa: "نتیجه" }],
   },
   accountability: {
-    tag: { en: "06 / Evidence & accountability", fa: "۰۶ / شواهد و پاسخ‌گویی" },
-    titleA: { en: "An outcome should explain", fa: "یک نتیجه باید توضیح دهد" },
-    titleB: { en: "why it happened.", fa: "چرا به وجود آمد." },
-    item: { en: "Operational record / 042", fa: "سابقه عملیاتی / ۰۴۲" },
-    log: { en: "Evidence & decision trail", fa: "ردپای شواهد و تصمیم" },
-    completed: { en: "Work completed", fa: "کار تکمیل شد" },
-    verified: { en: "Evidence verified", fa: "شواهد راستی‌آزمایی شد" },
-    accepted: { en: "Outcome accepted", fa: "نتیجه پذیرفته شد" },
-    recorded: { en: "The operation remains reconstructable after completion.", fa: "پس از پایان نیز عملیات قابل بازسازی باقی می‌ماند." },
+    tag: { en: "06 / Accountability engine", fa: "۰۶ / موتور پاسخ‌گویی" },
+    titleA: { en: "Completion is", fa: "اتمام،" },
+    titleB: { en: "not enough.", fa: "کافی نیست." },
+    item: { en: "Work item / 042", fa: "آیتم کار / ۰۴۲" },
+    log: { en: "Verification log", fa: "ثبت راستی‌آزمایی" },
+    completed: { en: "Task completed", fa: "وظیفه تکمیل شد" },
+    verified: { en: "Verified", fa: "راستی‌آزمایی شد" },
+    accepted: { en: "Accepted", fa: "پذیرفته شد" },
+    recorded: { en: "Outcome recorded in operational memory.", fa: "نتیجه در حافظه عملیاتی ثبت شد." },
   },
   industries: {
-    tag: { en: "07 / Operational patterns", fa: "۰۷ / الگوهای عملیاتی" },
-    titleA: { en: "For operations where", fa: "برای عملیات‌هایی که" },
-    titleB: { en: "continuity and accountability matter.", fa: "تداوم و پاسخ‌گویی اهمیت دارند." },
-    body: { en: "ONYX can be evaluated across distributed operational environments where teams, authority, evidence, and execution must remain connected.", fa: "ONYX را می‌توان در محیط‌های عملیاتی توزیع‌شده‌ای ارزیابی کرد که در آن تیم‌ها، اختیار، شواهد و اجرا باید به هم متصل بمانند." },
+    tag: { en: "07 / Operational environments", fa: "۰۷ / محیط‌های عملیاتی" },
+    titleA: { en: "Built for the", fa: "ساخته‌شده برای" },
+    titleB: { en: "complexity of operations.", fa: "پیچیدگی عملیات." },
+    body: { en: "Whether operations happen across a factory floor, a job site, a global route, or a layered organization, ONYX keeps responsibility visible.", fa: "چه عملیات در کارخانه، کارگاه، مسیر جهانی یا سازمانی چندلایه رخ دهد، ONYX مسئولیت را قابل مشاهده نگه می‌دارد." },
     cards: [
       { en: "Defense & government", fa: "دفاع و دولت", copyEn: "Distributed command, constrained connectivity, accountable execution.", copyFa: "فرماندهی توزیع‌شده، اتصال محدود و اجرای پاسخ‌گو." },
       { en: "Space operations", fa: "عملیات فضایی", copyEn: "Long-delay links, autonomous execution, synchronized mission state.", copyFa: "ارتباطات با تأخیر، اجرای خودمختار و وضعیت همگام مأموریت." },
@@ -157,42 +149,42 @@ const text = {
     ],
   },
   outcomes: {
-    tag: { en: "08 / What changes", fa: "۰۸ / چه چیزی تغییر می‌کند" },
-    titleA: { en: "Make operations", fa: "عملیات را" },
-    titleB: { en: "understandable and explainable.", fa: "قابل فهم و قابل توضیح کنید." },
-    body: { en: "ONYX gives teams a shared operational model: clearer authority, connected execution, explicit evidence, durable history, and resilience when connectivity changes.", fa: "ONYX یک مدل عملیاتی مشترک به تیم‌ها می‌دهد: اختیار شفاف‌تر، اجرای متصل، شواهد صریح، تاریخچه پایدار و تاب‌آوری در برابر تغییر وضعیت اتصال." },
+    tag: { en: "08 / Business outcomes", fa: "۰۸ / نتایج کسب‌وکار" },
+    titleA: { en: "More than", fa: "فراتر از" },
+    titleB: { en: "productivity.", fa: "بهره‌وری." },
+    body: { en: "When responsibility is designed into execution, the organization gains a durable operating advantage.", fa: "وقتی مسئولیت در اجرا طراحی شود، سازمان به مزیتی عملیاتی و پایدار دست می‌یابد." },
     list: [
-      { en: "Authority", fa: "اختیار", copyEn: "Know who can act and within what scope.", copyFa: "بدانید چه کسی و در چه دامنه‌ای می‌تواند اقدام کند." },
-      { en: "Execution", fa: "اجرا", copyEn: "Keep missions, work, dependencies, and timelines connected.", copyFa: "مأموریت‌ها، کار، وابستگی‌ها و زمان‌بندی را متصل نگه دارید." },
-      { en: "Evidence", fa: "شواهد", copyEn: "Connect approvals, reports, files, and verification to the work.", copyFa: "تأییدها، گزارش‌ها، فایل‌ها و راستی‌آزمایی را به کار متصل کنید." },
-      { en: "History", fa: "تاریخچه", copyEn: "Preserve the decisions and changes needed to reconstruct the operation.", copyFa: "تصمیم‌ها و تغییرات لازم برای بازسازی عملیات را حفظ کنید." },
-      { en: "Resilience", fa: "تاب‌آوری", copyEn: "Continue distributed work and reconcile state as connectivity permits.", copyFa: "کار توزیع‌شده را ادامه دهید و با امکان اتصال، وضعیت را تطبیق دهید." },
+      { en: "Clarity", fa: "شفافیت", copyEn: "Everyone understands responsibility.", copyFa: "همه مسئولیت را درک می‌کنند." },
+      { en: "Control", fa: "کنترل", copyEn: "Managers understand operations.", copyFa: "مدیران عملیات را درک می‌کنند." },
+      { en: "Speed", fa: "سرعت", copyEn: "Decisions move faster.", copyFa: "تصمیم‌ها سریع‌تر حرکت می‌کنند." },
+      { en: "Accountability", fa: "پاسخ‌گویی", copyEn: "Actions have ownership.", copyFa: "اقدام‌ها مالک دارند." },
+      { en: "Intelligence", fa: "هوشمندی", copyEn: "Organizations learn continuously.", copyFa: "سازمان‌ها پیوسته یاد می‌گیرند." },
     ],
   },
   enterprise: {
-    tag: { en: "09 / Resilience", fa: "۰۹ / تاب‌آوری" },
-    titleA: { en: "Operate across", fa: "در میان" },
-    titleB: { en: "changing connectivity", fa: "اتصال متغیر" },
-    titleC: { en: "without losing the record.", fa: "بدون از دست دادن سابقه." },
-    specs: [{ en: "Local-first execution", fa: "اجرای محلی‌محور" }, { en: "Controlled synchronization", fa: "همگام‌سازی کنترل‌شده" }, { en: "Conflict detection & resolution", fa: "تشخیص و حل تعارض" }, { en: "Deployment flexibility", fa: "انعطاف در استقرار" }],
-    annotations: [{ en: "Local state preserved", fa: "وضعیت محلی حفظ شد" }, { en: "Changes synchronized", fa: "تغییرات همگام شد" }, { en: "History retained", fa: "تاریخچه حفظ شد" }],
+    tag: { en: "09 / Deployment model", fa: "۰۹ / مدل استقرار" },
+    titleA: { en: "Built for", fa: "ساخته‌شده برای" },
+    titleB: { en: "distributed", fa: "توزیع‌شده" },
+    titleC: { en: "operations.", fa: "مأموریت." },
+    specs: [{ en: "Distributed architecture", fa: "معماری توزیع‌شده" }, { en: "Secure synchronization", fa: "همگام‌سازی امن" }, { en: "Offline-first operation", fa: "عملیات آفلاین‌محور" }, { en: "Enterprise deployment", fa: "استقرار سازمانی" }],
+    annotations: [{ en: "Ownership mapped", fa: "مالکیت ترسیم شد" }, { en: "Authority routed", fa: "اختیار مسیر‌دهی شد" }, { en: "Outcome verified", fa: "نتیجه تأیید شد" }],
   },
   why: {
-    tag: { en: "10 / Position", fa: "۱۰ / جایگاه" },
-    titleA: { en: "Not another task system.", fa: "فقط یک سامانه وظیفه نیست." },
-    titleB: { en: "A governed operational system.", fa: "یک سامانه عملیاتی حاکمیت‌شده است." },
+    tag: { en: "10 / Platform position", fa: "۱۰ / جایگاه پلتفرم" },
+    titleA: { en: "The network is not", fa: "شبکه نباید" },
+    titleB: { en: "the single point of failure.", fa: "نقطه شکست یگانه باشد." },
     labels: [
-      [{ en: "Communication tools", fa: "ابزارهای ارتباطی" }, { en: "Move information.", fa: "اطلاعات را جابه‌جا می‌کنند." }],
-      [{ en: "Task systems", fa: "سامانه‌های وظیفه" }, { en: "Track work.", fa: "کار را دنبال می‌کنند." }],
-      [{ en: "Document systems", fa: "سامانه‌های اسناد" }, { en: "Store records.", fa: "سوابق را نگه می‌دارند." }],
-      [{ en: "ONYX", fa: "ONYX" }, { en: "Connects authority, execution, evidence, and history.", fa: "اختیار، اجرا، شواهد و تاریخچه را به هم متصل می‌کند." }],
+      [{ en: "Traditional tools", fa: "ابزارهای سنتی" }, { en: "Manage tasks.", fa: "وظیفه‌ها را مدیریت می‌کنند." }],
+      [{ en: "ERP systems", fa: "سامانه‌های ERP" }, { en: "Manage resources.", fa: "منابع را مدیریت می‌کنند." }],
+      [{ en: "Communication tools", fa: "ابزارهای ارتباطی" }, { en: "Exchange information.", fa: "اطلاعات ردوبدل می‌کنند." }],
+      [{ en: "ONYX", fa: "ONYX" }, { en: "Manages operational responsibility.", fa: "مسئولیت عملیاتی را مدیریت می‌کند." }],
     ],
   },
   cta: {
-    tag: { en: "Mission Operations Platform", fa: "پلتفرم عملیات مأموریت‌محور" },
-    titleA: { en: "Make every important", fa: "هر عملیات مهم را" },
-    titleB: { en: "understandable while it happens.", fa: "در حین وقوع قابل فهم کنید." },
-    body: { en: "ONYX connects authority, execution, decisions, evidence, policy, synchronization, and operational history into one governed system. Explore the platform or request a briefing.", fa: "ONYX اختیار، اجرا، تصمیم‌ها، شواهد، سیاست، همگام‌سازی و تاریخچه عملیاتی را در یک سامانه حاکمیت‌شده به هم متصل می‌کند. پلتفرم را بررسی کنید یا برای یک جلسه معرفی درخواست دهید." },
+    tag: { en: "Mission operations", fa: "عملیات مأموریت" },
+    titleA: { en: "Operate when the", fa: "وقتی شبکه" },
+    titleB: { en: "network disappears.", fa: "ناپدید می‌شود، عملیات ادامه دارد." },
+    body: { en: "A local-first operational platform for distributed teams that need continuity, controlled synchronization, and accountable execution.", fa: "پلتفرم عملیاتی محلی‌محور برای تیم‌های توزیع‌شده‌ای که به تداوم، همگام‌سازی کنترل‌شده و اجرای پاسخ‌گو نیاز دارند." },
     demo: { en: "Request a demo", fa: "درخواست دمو" },
     contact: { en: "Contact the team", fa: "تماس با تیم" },
   },
@@ -203,12 +195,12 @@ const fracturePoints: Localized[] = [
 ];
 
 const capabilityCards = [
-  { number: "01", icon: ShieldCheck, title: { en: "Authority", fa: "اختیار" }, copy: { en: "Roles, scope, delegated authority, and policy establish who can act and under what conditions.", fa: "نقش‌ها، دامنه، اختیار تفویض‌شده و سیاست مشخص می‌کنند چه کسی و تحت چه شرایطی می‌تواند اقدام کند." } },
-  { number: "02", icon: Target, title: { en: "Execution", fa: "اجرا" }, copy: { en: "Missions, work, ownership, dependencies, timelines, milestones, and lifecycle states stay connected.", fa: "مأموریت‌ها، کار، مالکیت، وابستگی‌ها، زمان‌بندی، نقاط عطف و وضعیت‌های چرخه عمر به هم متصل می‌مانند." } },
-  { number: "03", icon: Network, title: { en: "Coordination", fa: "هماهنگی" }, copy: { en: "Meetings, conversations, decisions, action items, and cross-context relationships stay attached to the operation.", fa: "جلسه‌ها، گفت‌وگوها، تصمیم‌ها، اقدامات و روابط میان‌زمینه‌ای به عملیات متصل می‌مانند." } },
-  { number: "04", icon: BadgeCheck, title: { en: "Evidence", fa: "شواهد" }, copy: { en: "Reports, files, approvals, verification, review, and audit preserve what happened and why.", fa: "گزارش‌ها، فایل‌ها، تأییدها، راستی‌آزمایی، بررسی و ممیزی آنچه رخ داده و چرایی آن را حفظ می‌کنند." } },
-  { number: "05", icon: Radar, title: { en: "Resilience", fa: "تاب‌آوری" }, copy: { en: "Local-first operation and controlled synchronization keep distributed state aligned as connectivity changes.", fa: "اجرای محلی‌محور و همگام‌سازی کنترل‌شده کمک می‌کنند وضعیت توزیع‌شده با تغییر اتصال هم‌راستا بماند." } },
-  { number: "06", icon: Layers3, title: { en: "Planning", fa: "برنامه‌ریزی" }, copy: { en: "Capacity, forecasting, automation, notifications, and escalation help teams see pressure before it becomes failure.", fa: "ظرفیت، پیش‌بینی، خودکارسازی، اعلان‌ها و تشدید به تیم‌ها کمک می‌کنند فشار را پیش از تبدیل شدن به شکست ببینند." } },
+  { number: "01", icon: Network, title: { en: "Authority Graph", fa: "نقشه اختیار" }, copy: { en: "A living organizational model of roles, teams, permissions, and decision paths.", fa: "مدلی زنده از نقش‌ها، تیم‌ها، مجوزها و مسیرهای تصمیم." } },
+  { number: "02", icon: Target, title: { en: "Operational Execution", fa: "اجرای عملیاتی" }, copy: { en: "Leadership intent connected to the people and handoffs that deliver outcomes.", fa: "نیت رهبری متصل به افراد و تحویل‌هایی که نتیجه می‌سازند." } },
+  { number: "03", icon: BadgeCheck, title: { en: "Accountability Engine", fa: "موتور پاسخ‌گویی" }, copy: { en: "Completion becomes a verified, accepted, and historically visible result.", fa: "اتمام به نتیجه‌ای تأییدشده، پذیرفته‌شده و قابل مشاهده در تاریخ تبدیل می‌شود." } },
+  { number: "04", icon: GitBranch, title: { en: "Dynamic Teams", fa: "تیم‌های پویا" }, copy: { en: "Structured cross-team collaboration and controlled delegation without ambiguity.", fa: "همکاری ساخت‌یافته میان تیم‌ها و تفویض کنترل‌شده بدون ابهام." } },
+  { number: "05", icon: Radar, title: { en: "Escalation Network", fa: "شبکه تشدید" }, copy: { en: "Issues move through the correct authority path before visibility is lost.", fa: "مسائل پیش از از دست رفتن دید، در مسیر صحیح اختیار حرکت می‌کنند." } },
+  { number: "06", icon: Layers3, title: { en: "Operational Memory", fa: "حافظه عملیاتی" }, copy: { en: "Decisions, work, obstacles, and resolutions become institutional knowledge.", fa: "تصمیم‌ها، کار، موانع و راه‌حل‌ها به دانش سازمانی تبدیل می‌شوند." } },
 ];
 
 function resolveBrowserLocale(): Locale {
@@ -230,8 +222,13 @@ function ArrowAction({ children, href, solid = false, rtl = false }: { children:
   return <a className={`arrow-action ${solid ? "arrow-action--solid" : ""}`} href={href}><Arrow size={15} strokeWidth={1.8} /><span>{children}</span></a>;
 }
 
+function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (locale: Locale) => void }) {
+  return <div className="language-control" aria-label={locale === "fa" ? "انتخاب زبان" : "Language selector"}><a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")}>EN</a><a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")}>فارسی</a></div>;
+}
+
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
+  const [scrolled, setScrolled] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -242,6 +239,12 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
   }, [initialLocale]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("onyx-theme", theme);
@@ -273,7 +276,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section id="bound-context" className="methodology section-shell"><div className="shell-content methodology__layout"><div className="methodology__content"><SignalTag>{t(text.methodology.tag)}</SignalTag><h2>{t(text.methodology.titleA)}<br /><em>{t(text.methodology.titleB)}</em></h2><p>{t(text.methodology.body)}</p><a className="methodology__link" href="https://bound-method.github.io/" target="_blank" rel="noreferrer">{t(text.methodology.link)}<ArrowUpLeft size={16} /></a></div><div className="methodology__system"><a className="bound-context" href="https://bound-method.github.io/" target="_blank" rel="noreferrer" aria-label={isRtl ? "وب‌سایت BOUND Method v3.0" : "BOUND Method v3.0 website"}><div className="bound-context__eyebrow">BOUND METHOD v3.0</div><div className="bound-context__title">Boundary-Oriented Unified Development</div><div className="bound-context__sequence"><span>Domain</span><i>→</i><span>Boundary</span><i>→</i><span>Contract</span><i>→</i><span>Execution</span><i>→</i><span>Verification</span></div></a><div className="methodology__layers"><div><span>ONYX</span><strong>{t(text.methodology.product)}</strong><small>{t(text.methodology.productCopy)}</small></div><div><span>BOUND</span><strong>{t(text.methodology.doctrine)}</strong><small>{t(text.methodology.doctrineCopy)}</small></div></div></div></div></section>
 
-        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="platform-language"><span className="mono-label">{t(text.platform.systemLanguageTag)}</span><p>{t(text.platform.systemLanguageBody)}</p><div>{text.platform.systemLanguageItems.map((item) => <span key={item.en}>{t(item)}</span>)}</div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
+        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
 
         <section className="execution section-shell"><div className="execution__image-wrap"><img src={assets.execution} alt="ONYX Operational Overview interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="execution__image-fade" /></div><div className="shell-content execution__content"><div className="section-heading"><SignalTag>{t(text.execution.tag)}</SignalTag><h2>{t(text.execution.titleA)}<br /><em>{t(text.execution.titleB)}</em></h2><p>{t(text.execution.body)}</p></div><div className="execution-path">{text.execution.stages.map((stage, index) => <div className="execution-path__item" key={stage.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(stage)}</strong><i /></div>)}</div></div></section>
 
@@ -289,6 +292,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
+
+      <button className={"back-to-top " + (scrolled ? "back-to-top--visible" : "")} type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={isRtl ? "بازگشت به بالا" : "Back to top"}><ArrowUp size={17} /></button>
 
       <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="eager" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com">Soheil.Mozaffari@gmail.com</a> · <a href="https://bound-method.github.io/" target="_blank" rel="noreferrer">BOUND Method</a></span></div></div></footer>
     </div>

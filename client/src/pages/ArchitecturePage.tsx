@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -75,7 +76,7 @@ export default function ArchitecturePage({locale}:{locale:Locale}) {
   useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.lang=locale;document.documentElement.dir=rtl?"rtl":"ltr";window.localStorage.setItem("onyx-theme",theme)},[theme,locale,rtl]);
   const home=`/${locale}/`; const link=(p:string)=>`/${locale}/${p}/`;
   return <div className={`architecture-page architecture-page--${theme}`} dir={rtl?"rtl":"ltr"}>
-    <header className="architecture-header"><a href={home}><img src={theme==="dark"?"/assets/onyx-horizontal-dark.svg":"/assets/onyx-horizontal-light.svg"} alt="ONYX"/></a><nav><a href={link("product")}>{rtl?"محصول":"Product"}</a><a href={link("solutions")}>{rtl?"راهکارها":"Solutions"}</a><a href={link("architecture")}>{rtl?"معماری":"Architecture"}</a><a href={link("security")}>{rtl?"امنیت":"Security"}</a><a href={link("resources")}>{rtl?"منابع":"Resources"}</a></nav><div className="architecture-tools"><a href={locale==="en"?"/fa/architecture/":"/en/architecture/"}>{t.language}</a><button onClick={()=>setTheme(x=>x==="dark"?"light":"dark")} aria-label={theme==="dark"?t.light:t.dark}>{theme==="dark"?<Sun size={16}/>:<Moon size={16}/>}</button><a className="architecture-contact" href={link("contact")}>{t.contact}<ChevronRight size={14}/></a></div></header>
+    <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="architecture" />
     <main>
       <section className="architecture-hero"><div className="architecture-grid" aria-hidden="true"/><div className="shell-content"><div className="architecture-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="architecture-actions"><a className="architecture-button architecture-button--primary" href={link("product")}>{t.explore}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="architecture-button" href={link("contact")}>{t.contact}</a></div><a className="architecture-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>
       <section className="architecture-section"><div className="shell-content"><div className="architecture-heading"><div className="architecture-kicker"><span/>{t.modelTag}</div><h2>{t.modelTitleA}<br/><em>{t.modelTitleB}</em></h2><p>{t.modelBody}</p></div><div className="architecture-layers">{t.layers.map(([n,code,title,body])=><article key={code}><div><span>{n}</span><b>{code}</b></div><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
