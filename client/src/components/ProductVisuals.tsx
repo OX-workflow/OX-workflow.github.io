@@ -56,7 +56,7 @@ export default function ProductVisuals({ locale, variant = "gallery" }: { locale
             <p>{t.heroBody}</p>
           </div>
           <div className="product-visuals__hero-frame">
-            <img src={desktopAssets[0].src} alt="ONYX desktop product interface" loading="eager" decoding="async" />
+            <img src={desktopAssets[0].src} alt="ONYX desktop product interface" loading="eager" fetchPriority="high" decoding="async" />
             <div className="product-visuals__scan" aria-hidden="true" />
             <span>DESKTOP / 01</span>
           </div>
