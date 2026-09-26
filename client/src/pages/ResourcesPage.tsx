@@ -150,6 +150,10 @@ export default function ResourcesPage({ locale }: { locale: Locale }) {
   const c = copy[locale];
   const [theme, setTheme] = useState<Theme>("dark");
   const href = (page: string) => page ? `/${locale}/${page}/` : `/${locale}/`;
+  const resourceHref = (target: string) => {
+    if (!target.startsWith("/en/")) return target;
+    return `/${locale}/${target.slice(4)}`;
+  };
   const Arrow = rtl ? ArrowRight : ArrowLeft;
 
   useEffect(() => {
