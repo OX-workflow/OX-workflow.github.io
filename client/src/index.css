@@ -820,6 +820,42 @@ body { min-height: 100vh; overflow-x: hidden; }
 @media(max-width:1000px){.architecture-header nav{display:none}.architecture-contact{display:none!important}.architecture-layers{grid-template-columns:repeat(2,1fr)}.architecture-states{grid-template-columns:repeat(2,1fr)}.architecture-agent-grid{grid-template-columns:repeat(2,1fr)}.architecture-two-col{grid-template-columns:1fr;gap:60px}.architecture-graph{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.architecture-header{height:68px;padding:0 18px}.architecture-header>a:first-child{width:105px}.architecture-tools{margin-left:auto}.architecture-tools>a{font-size:.58rem}.architecture-section,.architecture-final{padding:95px 0}.architecture-hero .shell-content{padding-block:95px}.architecture-hero h1{font-size:clamp(3.2rem,17vw,5rem)}.architecture-layers,.architecture-states,.architecture-agent-grid{grid-template-columns:1fr}.architecture-layers article,.architecture-states article{min-height:0}.architecture-layers h3,.architecture-states h3{margin-top:45px}.architecture-graph{grid-template-columns:1fr 1fr}.architecture-status article{grid-template-columns:1fr;gap:10px}.architecture-footer .shell-content{align-items:flex-start;flex-direction:column}}
 
+
+/* Architecture technical-content upgrade */
+.architecture-mechanism-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:70px;background:var(--arch-line);border:1px solid var(--arch-line)}
+.architecture-mechanism-grid article{min-height:250px;padding:24px;background:var(--arch-surface)}
+.architecture-mechanism-grid article>span,.architecture-rule-stack span,.architecture-delivery-flow span,.architecture-audit-grid span{color:var(--arch-blue);font-size:.6rem;font-weight:800;letter-spacing:.13em}
+.architecture-mechanism-grid article>b{display:block;margin-top:12px;color:var(--arch-blue);font-size:.62rem;letter-spacing:.12em}
+.architecture-mechanism-grid h3{margin:48px 0 12px;font-size:1rem}
+.architecture-mechanism-grid p,.architecture-rule-stack p,.architecture-delivery-flow p{margin:0;color:var(--arch-muted);font-size:.8rem;line-height:1.72}
+.architecture-section--local{background:var(--arch-surface2)!important}
+.architecture-section--durability{background:var(--arch-surface)!important}
+.architecture-rules div{grid-template-columns:55px 150px 1fr}
+.architecture-rules small{color:var(--arch-muted);font-size:.75rem;line-height:1.5}
+.architecture-section--conflict{background:var(--arch-surface2)!important}
+.architecture-rule-stack{margin-top:70px;border-top:1px solid var(--arch-line)}
+.architecture-rule-stack article{display:grid;grid-template-columns:55px 145px 1fr;gap:18px;align-items:start;padding:20px 0;border-bottom:1px solid var(--arch-line)}
+.architecture-rule-stack b{font-size:.78rem;letter-spacing:.08em}
+.architecture-section--delivery{background:var(--arch-surface)!important}
+.architecture-delivery-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;margin-top:70px;background:var(--arch-line);border:1px solid var(--arch-line)}
+.architecture-delivery-flow article{min-height:190px;padding:22px;background:var(--arch-surface2)}
+.architecture-delivery-flow b{display:block;margin:45px 0 12px;font-size:.72rem;letter-spacing:.08em}
+.architecture-section--audit{background:var(--arch-surface2)!important}
+.architecture-audit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--arch-line);border:1px solid var(--arch-line)}
+.architecture-audit-grid div{min-height:145px;padding:22px;background:var(--arch-surface)}
+.architecture-audit-grid strong{display:block;margin-top:52px;font-size:.72rem;letter-spacing:.08em}
+@media(max-width:1000px){
+  .architecture-mechanism-grid{grid-template-columns:repeat(2,1fr)}
+  .architecture-delivery-flow{grid-template-columns:repeat(2,1fr)}
+  .architecture-rule-stack article{grid-template-columns:55px 130px 1fr}
+}
+@media(max-width:640px){
+  .architecture-mechanism-grid,.architecture-delivery-flow,.architecture-audit-grid{grid-template-columns:1fr}
+  .architecture-rules div,.architecture-rule-stack article{grid-template-columns:45px 1fr}
+  .architecture-rules small,.architecture-rule-stack p{grid-column:2}
+  .architecture-mechanism-grid article,.architecture-delivery-flow article{min-height:0}
+}
+
 /* Phase 5 — Solutions page */
 .solutions-page{min-height:100vh;background:var(--sol-bg);color:var(--sol-ink);--sol-bg:#f4f7fb;--sol-surface:#fff;--sol-surface2:#e9f0f8;--sol-ink:#102b4b;--sol-muted:#566d89;--sol-line:rgba(24,58,104,.14);--sol-blue:#0b63f6}
 .solutions-page--dark{--sol-bg:#05070b;--sol-surface:#0b1018;--sol-surface2:#111927;--sol-ink:#eef5ff;--sol-muted:#9eacc0;--sol-line:rgba(195,215,245,.14);--sol-blue:#4f8cff}
