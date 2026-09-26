@@ -124,6 +124,67 @@ const text = {
     demo: { en: "Request a demo", fa: "درخواست دمو" },
     technology: { en: "Explore technology", fa: "بررسی فناوری" },
   },
+
+  commercialFrame: {
+    tag: { en: "07 / Commercial frame", fa: "۰۷ / چارچوب تجاری" },
+    title: { en: "Built around the operation behind the tools.", fa: "برای خودِ عملیات، نه فقط ابزارهای پیرامون آن." },
+    body: {
+      en: "Five questions make the product easier to understand: who it is for, why it exists, how it can be deployed, what makes the operating record trustworthy, and how it is commercialized.",
+      fa: "پنج پرسش، درک محصول را ساده‌تر می‌کند: برای چه کسی است، چرا وجود دارد، چگونه مستقر می‌شود، چه چیزی سابقه عملیاتی را قابل اعتماد می‌کند و مدل تجاری آن چیست.",
+    },
+    cards: [
+      {
+        key: "who",
+        title: { en: "Who ONYX is for", fa: "ONYX برای چه کسانی است" },
+        body: {
+          en: "Teams responsible for complex, high-accountability operations where authority, evidence, continuity, and reconstruction matter.",
+          fa: "تیم‌هایی که مسئول عملیات پیچیده و پاسخ‌گو هستند؛ جایی که اختیار، شواهد، تداوم و بازسازی سابقه اهمیت دارد.",
+        },
+        link: { en: "See representative operating patterns", fa: "سناریوهای عملیاتی را ببینید" },
+        href: "solutions",
+      },
+      {
+        key: "why",
+        title: { en: "Why ONYX", fa: "چرا ONYX" },
+        body: {
+          en: "Execution is not enough. ONYX connects authority, work, decisions, evidence, and history so the operation stays understandable while it runs and explainable afterward.",
+          fa: "اجرا به‌تنهایی کافی نیست. ONYX اختیار، کار، تصمیم‌ها، شواهد و سابقه را به هم متصل می‌کند تا عملیات هنگام اجرا قابل فهم و پس از آن قابل توضیح باشد.",
+        },
+        link: { en: "Explore the product model", fa: "مدل محصول را ببینید" },
+        href: "product",
+      },
+      {
+        key: "deployment",
+        title: { en: "Deployment", fa: "استقرار" },
+        body: {
+          en: "Commercial paths include hosted subscription, enterprise self-hosted / on-premise deployment, and customized enterprise editions.",
+          fa: "مسیرهای تجاری شامل اشتراک میزبانی‌شده، استقرار سازمانی خودمیزبان / درون‌سازمانی و نسخه‌های سفارشی سازمانی است.",
+        },
+        link: { en: "See licensing and deployment", fa: "مجوز و استقرار را ببینید" },
+        href: "pricing",
+      },
+      {
+        key: "trust",
+        title: { en: "Trust", fa: "اعتماد" },
+        body: {
+          en: "Explicit authority, controlled approvals, evidence, synchronization, and audit keep actions connected to the context that governs them.",
+          fa: "اختیار صریح، تأییدهای کنترل‌شده، شواهد، همگام‌سازی و ممیزی، اقدامات را به زمینه‌ای که بر آن‌ها حاکم است متصل نگه می‌دارند.",
+        },
+        link: { en: "Inspect the trust layer", fa: "لایه اعتماد را بررسی کنید" },
+        href: "security",
+      },
+      {
+        key: "commercial",
+        title: { en: "Commercial model", fa: "مدل تجاری" },
+        body: {
+          en: "ONYX is commercialized through subscriptions, enterprise licensing, and customized enterprise editions. Core ONYX IP remains proprietary.",
+          fa: "ONYX از طریق اشتراک، مجوز سازمانی و نسخه‌های سفارشی سازمانی تجاری‌سازی می‌شود. مالکیت فکری هسته ONYX اختصاصی باقی می‌ماند.",
+        },
+        link: { en: "Explore enterprise options", fa: "گزینه‌های سازمانی را ببینید" },
+        href: "pricing",
+      },
+    ],
+  },
 };
 
 const modelIcons = [Target, Network, ShieldCheck, History];
@@ -379,6 +440,32 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
               <p>{locale === "fa" ? "تصاویر واقعی محصول، روایت عملیاتی را به سطح رابط کاربری متصل می‌کنند." : "Real product imagery closes the gap between the operational story and the interface that carries it."}</p>
             </div>
             <ProductVisuals locale={locale} variant="gallery" />
+          </div>
+        </section>
+
+
+        <section className="commercial-frame section-shell" aria-labelledby="commercial-frame-title">
+          <div className="shell-content">
+            <div className="commercial-frame__intro">
+              <div>
+                <SignalTag>{t(text.commercialFrame.tag)}</SignalTag>
+                <h2 id="commercial-frame-title">{t(text.commercialFrame.title)}</h2>
+              </div>
+              <p>{t(text.commercialFrame.body)}</p>
+            </div>
+            <div className="commercial-frame__grid">
+              {text.commercialFrame.cards.map((card, index) => (
+                <a key={card.key} className="commercial-frame__card" href={`/${locale}/${card.href}/`}>
+                  <div className="commercial-frame__card-head">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <Chevron size={16} />
+                  </div>
+                  <h3>{t(card.title)}</h3>
+                  <p>{t(card.body)}</p>
+                  <span className="commercial-frame__link">{t(card.link)}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
