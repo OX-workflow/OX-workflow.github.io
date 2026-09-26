@@ -1,6 +1,9 @@
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import { useEffect, useState } from "react";
 
 type Locale = "en" | "fa";
+type Theme = "light" | "dark";
 
 const copy = {
   en: {
@@ -96,24 +99,21 @@ const copy = {
 } as const;
 
 export default function AboutPage({ locale }: { locale: Locale }) {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const rtl = locale === "fa";
   const c = copy[locale];
   const Arrow = rtl ? ArrowRight : ArrowLeft;
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.lang = locale;
+    document.documentElement.dir = rtl ? "rtl" : "ltr";
+    window.localStorage.setItem("onyx-theme", theme);
+  }, [theme, locale, rtl]);
   const href = (page: string) => `/${locale}/${page}/`;
 
   return (
-    <main className="about-page" dir={rtl ? "rtl" : "ltr"}>
-      <header className="about-header">
-        <div className="shell-content about-header__inner">
-          <a className="about-logo" href={href("")} aria-label="ONYX">
-            <img src="/assets/onyx-horizontal-dark.svg" alt="ONYX" />
-          </a>
-          <div className="about-header__tools">
-            <a href={href("product")}>{c.product}</a>
-            <a className="about-header__contact" href={href("contact")}>{c.contact}</a>
-          </div>
-        </div>
-      </header>
+    <main className={`about-page about-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="about" />
 
       <section className="about-hero">
         <div className="about-hero__grid" aria-hidden="true" />
