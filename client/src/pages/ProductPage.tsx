@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Moon, Sun } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
 import ProductVisuals from "../components/ProductVisuals";
+import OperationalDemo from "../components/OperationalDemo";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -200,6 +201,8 @@ export default function ProductPage({ locale }: { locale: Locale }) {
         </section>
 
         <ProductVisuals locale={locale} variant="hero" />
+
+        <OperationalDemo locale={locale} />
 
         <section className="product-section product-section--model">
           <div className="shell-content">
