@@ -21,10 +21,10 @@ const copy = {
     conditionTag:"03 / Operating conditions", conditionTitleA:"The scenario changes.", conditionTitleB:"The invariant does not.",
     conditionBody:"Across these environments, ONYX applies the same basic operating sequence. The system adapts to the state of the network without making connectivity the definition of operational continuity.",
     conditions:[
-      ["متصل","COORDINATE","Use available connectivity to synchronize state and coordinate teams."],
-      ["مختل","CONTINUE","Keep local work available while communication capacity is constrained."],
-      ["قطع","PRESERVE","Execute against available state and preserve outcomes for reconciliation."],
-      ["بازیابی‌شده","RECONCILE","Bring distributed changes together under explicit synchronization rules."],
+      ["CONNECTED","COORDINATE","Use available connectivity to synchronize state and coordinate teams."],
+      ["DEGRADED","CONTINUE","Keep local work available while communication capacity is constrained."],
+      ["OFFLINE","PRESERVE","Execute against available state and preserve outcomes for reconciliation."],
+      ["RESTORED","RECONCILE","Bring distributed changes together under explicit synchronization rules."],
     ],
     valueTag:"04 / Operational value", valueTitleA:"What changes", valueTitleB:"for the operator.",
     values:[
