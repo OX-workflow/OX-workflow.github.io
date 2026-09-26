@@ -186,8 +186,8 @@ function pageSchema(locale: Locale, page: PageKey, pageUrl: string): string {
   const data = JSON.parse(match[1]) as { "@graph": Array<Record<string, unknown>> };
   const webPage = data["@graph"].find((node) => node["@type"] === "WebPage");
   const article = data["@graph"].find((node) => node["@type"] === "Article");
-  const webPageId = \`\${pageUrl}#webpage\`;
-  const articleId = \`\${pageUrl}#case-study\`;
+  const webPageId = `${pageUrl}#webpage`;
+  const articleId = `${pageUrl}#case-study`;
   if (webPage) {
     webPage["@id"] = webPageId;
     webPage.url = pageUrl;
@@ -204,7 +204,7 @@ function pageSchema(locale: Locale, page: PageKey, pageUrl: string): string {
     article.mainEntityOfPage = { "@id": webPageId };
     article.inLanguage = locale;
   }
-  return \`<script type="application/ld+json">\n\${JSON.stringify(data, null, 2)}\n    </script>\`;
+  return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2)}\n    </script>`;
 }
 
 function localizedDocument(locale: Locale): string {
