@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, ChevronRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import ProductVisuals from "../components/ProductVisuals";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -100,6 +101,7 @@ export default function SolutionsPage({locale}:{locale:Locale}) {
   return <div className={`solutions-page solutions-page--${theme}`} dir={rtl?"rtl":"ltr"}>
     <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="solutions" />
     <main>
+      <ProductVisuals locale={locale} variant="hero" />
       <section className="solutions-hero"><div className="solutions-hero__grid" aria-hidden="true"/><div className="shell-content"><div className="solutions-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="solutions-actions"><a className="solutions-button solutions-button--primary" href={link("product")}>{t.primary}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="solutions-button" href={link("contact")}>{t.secondary}</a></div><a className="solutions-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>
       <section className="solutions-section"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.scenarioTag}</div><h2>{t.scenarioTitleA}<br/><em>{t.scenarioTitleB}</em></h2><p>{t.scenarioBody}</p></div><div className="solutions-scenarios">{locale === "en" ? copy.en.scenarios.map(([n,sector,title,body,aLabel,aText,eLabel,eText,rLabel,rText]) => <article key={n}><header><span>{n}</span><b>{sector}</b></header><h3>{title}</h3><p>{body}</p><div className="solutions-scenario-detail"><div><small>{aLabel}</small><strong>{aText}</strong></div><div><small>{eLabel}</small><strong>{eText}</strong></div><div><small>{rLabel}</small><strong>{rText}</strong></div></div></article>) : copy.fa.scenarios.map(([n,sector,title,body,tags]) => <article key={n}><header><span>{n}</span><b>{sector}</b></header><h3>{title}</h3><p>{body}</p><small>{tags}</small></article>)}</div></div></section>
       <section className="solutions-section solutions-section--conditions"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.conditionTag}</div><h2>{t.conditionTitleA}<br/><em>{t.conditionTitleB}</em></h2><p>{t.conditionBody}</p></div><div className="solutions-conditions">{t.conditions.map(([state,title,body],i)=><article key={state}><span>0{i+1}</span><b>{state}</b><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
