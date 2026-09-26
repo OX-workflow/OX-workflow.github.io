@@ -38,6 +38,7 @@ export default function SiteHeader({
   activePage?: string;
 }) {
   const rtl = locale === "fa";
+  const home = `/${locale}/`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
