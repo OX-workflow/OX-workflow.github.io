@@ -8,6 +8,7 @@ import AboutPage from "./pages/AboutPage";
 import RoadmapPage from "./pages/RoadmapPage";
 import ContactPage from "./pages/ContactPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import InvestorsPage from "./pages/InvestorsPage";
 
 type Locale = "en" | "fa";
 
@@ -66,6 +67,10 @@ export default function App() {
 
   if (page === "resources") {
     return <ResourcesPage locale={locale} />;
+  }
+
+  if (page === "investors") {
+    return <InvestorsPage locale={locale} />;
   }
 
   if (page) {
