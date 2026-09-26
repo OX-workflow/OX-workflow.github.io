@@ -1877,3 +1877,102 @@ h2 em, h1 em { color: var(--onyx-cyan); }
 /* Keep the primary ring brighter than every secondary accent. */
 .onyx-intro__ring img,
 .hero-launch__symbol img { mix-blend-mode: normal; }
+
+
+/* ONYX UNIVERSAL IDENTITY APPLICATION */
+:root {
+  --onyx-surface-light: #FFFFFF;
+  --onyx-surface-light-alt: #E0E5F5;
+  --onyx-light-border: rgba(7, 21, 45, .12);
+  --onyx-dark-border: rgba(193, 215, 255, .12);
+  --onyx-grid-light: rgba(7, 21, 45, .10);
+  --onyx-grid-dark: rgba(57, 217, 255, .10);
+}
+
+/* Canonical per-page aliases: every screen consumes the same brand tokens. */
+.architecture-page, .architecture-page--light { --arch-bg: var(--onyx-white); --arch-surface: #FFFFFF; --arch-surface2: var(--onyx-ice); --arch-ink: var(--onyx-ink); --arch-muted: #34415A; --arch-line: var(--border-light); --arch-blue: var(--onyx-field); }
+.architecture-page--dark { --arch-bg: var(--onyx-void); --arch-surface: var(--onyx-deep); --arch-surface2: var(--onyx-midnight); --arch-ink: var(--onyx-white); --arch-muted: var(--onyx-muted); --arch-line: var(--border-dark); --arch-blue: var(--onyx-blue); }
+.contact-page, .contact-page--light { --ct-bg: var(--onyx-white); --ct-surface: #FFFFFF; --ct-surface2: var(--onyx-ice); --ct-ink: var(--onyx-ink); --ct-muted: #34415A; --ct-line: var(--border-light); --ct-blue: var(--onyx-field); }
+.contact-page--dark { --ct-bg: var(--onyx-void); --ct-surface: var(--onyx-deep); --ct-surface2: var(--onyx-midnight); --ct-ink: var(--onyx-white); --ct-muted: var(--onyx-muted); --ct-line: var(--border-dark); --ct-blue: var(--onyx-blue); }
+.customers-page, .customers-page--light { --cu-bg: var(--onyx-white); --cu-surface: #FFFFFF; --cu-surface2: var(--onyx-ice); --cu-ink: var(--onyx-ink); --cu-muted: #34415A; --cu-line: var(--border-light); --cu-blue: var(--onyx-field); }
+.customers-page--dark { --cu-bg: var(--onyx-void); --cu-surface: var(--onyx-deep); --cu-surface2: var(--onyx-midnight); --cu-ink: var(--onyx-white); --cu-muted: var(--onyx-muted); --cu-line: var(--border-dark); --cu-blue: var(--onyx-blue); }
+.investors-page, .investors-page--light { --iv-bg: var(--onyx-white); --iv-surface: #FFFFFF; --iv-surface2: var(--onyx-ice); --iv-ink: var(--onyx-ink); --iv-muted: #34415A; --iv-line: var(--border-light); --iv-blue: var(--onyx-field); }
+.investors-page--dark { --iv-bg: var(--onyx-void); --iv-surface: var(--onyx-deep); --iv-surface2: var(--onyx-midnight); --iv-ink: var(--onyx-white); --iv-muted: var(--onyx-muted); --iv-line: var(--border-dark); --iv-blue: var(--onyx-blue); }
+.pricing-page, .pricing-page--light { --pr-bg: var(--onyx-white); --pr-surface: #FFFFFF; --pr-surface2: var(--onyx-ice); --pr-ink: var(--onyx-ink); --pr-muted: #34415A; --pr-line: var(--border-light); --pr-blue: var(--onyx-field); }
+.pricing-page--dark { --pr-bg: var(--onyx-void); --pr-surface: var(--onyx-deep); --pr-surface2: var(--onyx-midnight); --pr-ink: var(--onyx-white); --pr-muted: var(--onyx-muted); --pr-line: var(--border-dark); --pr-blue: var(--onyx-blue); }
+.product-page, .product-page--light { --product-bg: var(--onyx-white); --product-surface: #FFFFFF; --product-surface-2: var(--onyx-ice); --product-ink: var(--onyx-ink); --product-muted: #34415A; --product-line: var(--border-light); --product-blue: var(--onyx-field); }
+.product-page--dark { --product-bg: var(--onyx-void); --product-surface: var(--onyx-deep); --product-surface-2: var(--onyx-midnight); --product-ink: var(--onyx-white); --product-muted: var(--onyx-muted); --product-line: var(--border-dark); --product-blue: var(--onyx-blue); }
+.resources-page, .resources-page--light { --rs-bg: var(--onyx-white); --rs-surface: #FFFFFF; --rs-surface2: var(--onyx-ice); --rs-ink: var(--onyx-ink); --rs-muted: #34415A; --rs-line: var(--border-light); --rs-blue: var(--onyx-field); }
+.resources-page--dark { --rs-bg: var(--onyx-void); --rs-surface: var(--onyx-deep); --rs-surface2: var(--onyx-midnight); --rs-ink: var(--onyx-white); --rs-muted: var(--onyx-muted); --rs-line: var(--border-dark); --rs-blue: var(--onyx-blue); }
+.roadmap-page, .roadmap-page--light { --rm-bg: var(--onyx-white); --rm-surface: #FFFFFF; --rm-surface2: var(--onyx-ice); --rm-ink: var(--onyx-ink); --rm-muted: #34415A; --rm-line: var(--border-light); --rm-blue: var(--onyx-field); }
+.roadmap-page--dark { --rm-bg: var(--onyx-void); --rm-surface: var(--onyx-deep); --rm-surface2: var(--onyx-midnight); --rm-ink: var(--onyx-white); --rm-muted: var(--onyx-muted); --rm-line: var(--border-dark); --rm-blue: var(--onyx-blue); }
+.security-page, .security-page--light { --sec-bg: var(--onyx-white); --sec-surface: #FFFFFF; --sec-surface2: var(--onyx-ice); --sec-ink: var(--onyx-ink); --sec-muted: #34415A; --sec-line: var(--border-light); --sec-blue: var(--onyx-field); }
+.security-page--dark { --sec-bg: var(--onyx-void); --sec-surface: var(--onyx-deep); --sec-surface2: var(--onyx-midnight); --sec-ink: var(--onyx-white); --sec-muted: var(--onyx-muted); --sec-line: var(--border-dark); --sec-blue: var(--onyx-blue); }
+.solutions-page, .solutions-page--light { --sol-bg: var(--onyx-white); --sol-surface: #FFFFFF; --sol-surface2: var(--onyx-ice); --sol-ink: var(--onyx-ink); --sol-muted: #34415A; --sol-line: var(--border-light); --sol-blue: var(--onyx-field); }
+.solutions-page--dark { --sol-bg: var(--onyx-void); --sol-surface: var(--onyx-deep); --sol-surface2: var(--onyx-midnight); --sol-ink: var(--onyx-white); --sol-muted: var(--onyx-muted); --sol-line: var(--border-dark); --sol-blue: var(--onyx-blue); }
+
+/* About was the remaining page with hard-coded surfaces; bring it into the same system. */
+.about-page--light { background: var(--onyx-white); color: var(--onyx-ink); }
+.about-page--light .about-hero { background: radial-gradient(circle at 72% 28%, rgba(23,71,255,.08), transparent 30%), var(--onyx-white); }
+.about-page--light .about-hero__grid { background-image: linear-gradient(var(--onyx-grid-light) 1px, transparent 1px), linear-gradient(90deg, var(--onyx-grid-light) 1px, transparent 1px); }
+.about-page--light .about-hero h1, .about-page--light .about-section h2 { color: var(--onyx-ink); }
+.about-page--light .about-hero__intro, .about-page--light .about-section p { color: #34415A; }
+.about-page--light .about-section { border-top-color: var(--border-light); }
+.about-page--light .about-section--mission, .about-page--light .about-section--origin, .about-page--light .about-section--philosophy, .about-page--light .about-section--bound, .about-page--light .about-final { background: var(--onyx-white); }
+.about-page--light .about-section--team, .about-page--light .about-section--community { background: #FFFFFF; color: var(--onyx-ink); }
+.about-page--light .about-team-card { background: var(--onyx-ice); border-color: var(--border-light); }
+.about-page--light .about-label, .about-page--light .about-kicker { color: var(--onyx-field); }
+.about-page--dark { background: var(--onyx-void); color: var(--onyx-white); }
+.about-page--dark .about-hero { background: radial-gradient(circle at 72% 28%, rgba(23,71,255,.18), transparent 30%), var(--onyx-void); }
+.about-page--dark .about-hero__grid { background-image: linear-gradient(var(--onyx-grid-dark) 1px, transparent 1px), linear-gradient(90deg, var(--onyx-grid-dark) 1px, transparent 1px); }
+.about-page--dark .about-hero h1, .about-page--dark .about-section h2 { color: var(--onyx-white); }
+.about-page--dark .about-hero__intro, .about-page--dark .about-section p { color: var(--onyx-muted); }
+.about-page--dark .about-section { border-top-color: var(--border-dark); }
+.about-page--dark .about-section--mission, .about-page--dark .about-section--philosophy { background: var(--onyx-deep); }
+.about-page--dark .about-section--origin, .about-page--dark .about-section--bound, .about-page--dark .about-final { background: var(--onyx-midnight); }
+.about-page--dark .about-section--team, .about-page--dark .about-section--community { background: var(--onyx-deep); color: var(--onyx-white); }
+.about-page--dark .about-team-card { background: rgba(6,18,80,.72); border-color: var(--border-dark); }
+.about-page--dark .about-label, .about-page--dark .about-kicker { color: var(--onyx-cyan); }
+
+/* Common accents: cyan marks the live signal; blue remains the primary action. */
+.architecture-page .architecture-kicker, .architecture-page .architecture-final h2 em,
+.security-page .security-kicker, .security-page .security-final h2 em,
+.solutions-page .solutions-kicker, .solutions-page .solutions-final h2 em,
+.product-page .product-kicker, .product-page .product-final h2 em,
+.contact-page .contact-kicker, .contact-page .contact-eyebrow,
+.customers-page .customers-kicker, .customers-page .customers-eyebrow,
+.investors-page .investors-kicker, .investors-page .investors-eyebrow,
+.pricing-page .pricing-kicker, .pricing-page .pricing-eyebrow,
+.resources-page .resources-kicker, .resources-page .resources-eyebrow,
+.roadmap-page .roadmap-kicker, .roadmap-page .roadmap-eyebrow { color: var(--onyx-cyan); }
+
+.architecture-page .architecture-kicker span, .security-page .security-kicker span,
+.solutions-page .solutions-kicker span, .product-page .product-kicker span,
+.contact-page .contact-kicker span, .customers-page .customers-kicker span,
+.investors-page .investors-kicker span, .pricing-page .pricing-kicker span,
+.resources-page .resources-kicker span, .roadmap-page .roadmap-kicker span {
+  background: var(--onyx-blue);
+  box-shadow: 0 0 0 4px rgba(57,217,255,.12), 0 0 14px rgba(57,217,255,.45);
+}
+
+.architecture-button--primary, .security-button--primary, .solutions-button--primary,
+.product-button--primary, .contact-primary {
+  background: var(--onyx-energy);
+  border-color: transparent;
+  color: var(--onyx-white);
+  box-shadow: 0 12px 35px rgba(23,71,255,.22);
+}
+.architecture-button--primary:hover, .security-button--primary:hover, .solutions-button--primary:hover,
+.product-button--primary:hover, .contact-primary:hover {
+  border-color: transparent;
+  box-shadow: 0 16px 42px rgba(57,217,255,.20), 0 12px 34px rgba(99,48,255,.16);
+}
+
+/* Canonical logo sizing across desktop, tablet and mobile compositions. */
+.onyx-global-header__logo { width: 132px; }
+.onyx-global-header__logo img { display:block; width:100%; height:auto; }
+@media (max-width: 900px) { .onyx-global-header__logo { width:118px; } }
+@media (max-width: 600px) { .onyx-global-header__logo { width:112px; } }
+
+/* Keep the primary ring brighter than secondary UI accents. */
+.onyx-intro__ring img, .hero-launch__symbol img { mix-blend-mode: normal; }
