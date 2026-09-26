@@ -22,8 +22,6 @@ type Locale = "en" | "fa";
 type Localized = { en: string; fa: string };
 
 const assets = {
-  authority: "/assets/product/mission-operations.png",
-  execution: "/assets/product/operational-overview.png",
   nexus: "/assets/product/secure-browser-access.webp",
   signalMark: "/assets/onyx-symbol.svg",
   wideLogoLight: "/assets/onyx-horizontal-light.svg",
