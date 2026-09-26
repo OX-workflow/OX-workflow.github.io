@@ -31,6 +31,16 @@ const copy = {
     flowTitleA: "Authority to",
     flowTitleB: "recovery.",
     flowBody: "The lifecycle is the product model. ONYX carries operational context from authorization through planning and execution to verification, durable record, and recovery.",
+    languageTag: "04 / Brand operating language",
+    languageTitleA: "Four visual forms.",
+    languageTitleB: "One operational model.",
+    languageBody: "The ONYX identity is also a product language. The ring, orbit, grid, and signal describe four structural concerns that recur throughout the system—not decorative metaphors added after the fact.",
+    languageItems: [
+      ["RING", "Authority / controlled execution", "The ring represents the controlled boundary around action: who may act, under which authority, and how execution remains governed."],
+      ["ORBIT", "Coordination / synchronization", "The orbit represents movement between participants and replicas: coordination, synchronization, reconciliation, and continuity across distributed operations."],
+      ["GRID", "Operational structure / system state", "The grid represents the underlying structure: durable state, lifecycle, relationships, boundaries, and the organized geometry of the operation."],
+      ["SIGNAL", "Live awareness / events / evidence", "The signal represents what is happening and what can be observed: events, changes, evidence, verification, and operational awareness."],
+    ],
     flow: ["Authority", "Plan", "Execute", "Coordinate", "Verify", "Record", "Recover"],
     capabilityTag: "04 / Capability groups",
     capabilityTitleA: "The platform follows",
@@ -195,6 +205,13 @@ export default function ProductPage({ locale }: { locale: Locale }) {
           <div className="shell-content">
             <div className="product-heading"><div className="product-kicker"><span />{t.capabilityTag}</div><h2>{t.capabilityTitleA}<br /><em>{t.capabilityTitleB}</em></h2></div>
             <div className="product-capability-grid">{t.capabilities.map(([title, body], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{body}</p><Check size={17} /></article>)}</div>
+          </div>
+        </section>
+
+        <section className="product-section product-section--language">
+          <div className="shell-content">
+            <div className="product-heading"><div className="product-kicker"><span />{t.languageTag}</div><h2>{t.languageTitleA}<br /><em>{t.languageTitleB}</em></h2><p>{t.languageBody}</p></div>
+            <div className="product-language-grid">{t.languageItems.map(([code, title, body]) => <article key={code}><div className="product-language__mark">{code}</div><h3>{title}</h3><p>{body}</p></article>)}</div>
           </div>
         </section>
 
