@@ -9,6 +9,7 @@ import RoadmapPage from "./pages/RoadmapPage";
 import ContactPage from "./pages/ContactPage";
 import ResourcesPage from "./pages/ResourcesPage";
 import InvestorsPage from "./pages/InvestorsPage";
+import PricingLicensingPage from "./pages/PricingLicensingPage";
 
 type Locale = "en" | "fa";
 
@@ -22,6 +23,7 @@ const pageKeys: PageKey[] = [
   "resources",
   "contact",
   "investors",
+  "pricing",
 ];
 
 function getRoute(): { locale: Locale; page: PageKey | null } {
@@ -71,6 +73,10 @@ export default function App() {
 
   if (page === "investors") {
     return <InvestorsPage locale={locale} />;
+  }
+
+  if (page === "pricing") {
+    return <PricingLicensingPage locale={locale} />;
   }
 
   if (page) {
