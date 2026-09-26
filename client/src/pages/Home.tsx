@@ -15,6 +15,7 @@ import {
   Target,
 } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import ProductVisuals from "../components/ProductVisuals";
 import { commercialMessage } from "../content/commercial";
 
 type Locale = "en" | "fa";
@@ -215,6 +216,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
             <span className="brand-bridge__line" />
           </div>
         </div>
+
+        <ProductVisuals locale={locale} variant="hero" />
 
         <section id="problem" className="problem section-shell">
           <div className="shell-content split-grid split-grid--problem">
