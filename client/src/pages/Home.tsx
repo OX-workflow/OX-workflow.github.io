@@ -369,6 +369,18 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
         </section>
 
         <OperationalDemo locale={locale} />
+        <section className="demo-evidence section-shell" aria-label={locale === "fa" ? "شواهد محصول" : "Product evidence"}>
+          <div className="shell-content">
+            <div className="demo-evidence__head">
+              <div>
+                <div className="signal-tag"><span className="signal-tag__node" /><span>{locale === "fa" ? "۰۶ / شواهد محصول" : "06 / Product evidence"}</span></div>
+                <h2>{locale === "fa" ? "عملیات را ببینید." : "See the operation."}<br /><em>{locale === "fa" ? "نه فقط توضیح آن را." : "Not just the explanation."}</em></h2>
+              </div>
+              <p>{locale === "fa" ? "تصاویر واقعی محصول، روایت عملیاتی را به سطح رابط کاربری متصل می‌کنند." : "Real product imagery closes the gap between the operational story and the interface that carries it."}</p>
+            </div>
+            <ProductVisuals locale={locale} variant="gallery" />
+          </div>
+        </section>
 
         <section className="accountability section-shell">
           <div className="shell-content accountability__layout">
