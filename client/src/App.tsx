@@ -65,6 +65,10 @@ export default function App() {
     return <AboutPage locale={locale} />;
   }
 
+  if (page === "roadmap") {
+    return <RoadmapPage locale={locale} />;
+  }
+
   if (page === "contact") {
     return <ContactPage locale={locale} />;
   }
