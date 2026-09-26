@@ -11,7 +11,8 @@ type PageKey =
   | "about"
   | "resources"
   | "contact"
-  | "investors";
+  | "investors"
+  | "pricing";
 
 const pages: Record<PageKey, { title: { en: string; fa: string }; description: { en: string; fa: string } }> = {
   product: {
@@ -68,6 +69,13 @@ const pages: Record<PageKey, { title: { en: string; fa: string }; description: {
     description: {
       en: "The Contact section will provide the primary path for enterprise enquiries, demonstrations, and direct communication.",
       fa: "بخش تماس مسیر اصلی برای درخواست‌های سازمانی، دمو و ارتباط مستقیم را فراهم خواهد کرد.",
+    },
+  },
+  pricing: {
+    title: { en: "Pricing & Licensing", fa: "قیمت‌گذاری و مجوزدهی" },
+    description: {
+      en: "ONYX commercial models, licensing principles, and enterprise deployment terms.",
+      fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX.",
     },
   },
   investors: {
