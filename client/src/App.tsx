@@ -3,6 +3,7 @@ import SitePage, { type PageKey } from "./pages/SitePage";
 import ProductPage from "./pages/ProductPage";
 import ArchitecturePage from "./pages/ArchitecturePage";
 import SolutionsPage from "./pages/SolutionsPage";
+import SecurityPage from "./pages/SecurityPage";
 
 type Locale = "en" | "fa";
 
@@ -45,6 +46,10 @@ export default function App() {
 
   if (page === "solutions") {
     return <SolutionsPage locale={locale} />;
+  }
+
+  if (page === "security") {
+    return <SecurityPage locale={locale} />;
   }
 
   if (page) {
