@@ -23,7 +23,7 @@ const copy = {
     sections: [
       {
         label: "01 / PRODUCT",
-        title: "Start with the product and operating model."
+        title: "Start with the product and operating model.",
         body:
           "Start with the product surface for the operating model, local-first execution, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
         items: [
@@ -34,7 +34,7 @@ const copy = {
       },
       {
         label: "02 / SYSTEM",
-        title: "Go deeper into the system."
+        title: "Go deeper into the system.",
         body:
           "The architecture material explains how local clients, synchronization, authority, durable state, and infrastructure fit together. It is the technical bridge between the product thesis and implementation.",
         items: [
@@ -45,7 +45,7 @@ const copy = {
       },
       {
         label: "03 / ENGINEERING RECORD",
-        title: "Verify the engineering record."
+        title: "Verify the engineering record.",
         body:
           "The public repository is the source for implementation-level context. Use the repository documentation for architectural decisions, API material, development structure, tests, and deployment tooling.",
         items: [
@@ -56,7 +56,7 @@ const copy = {
       },
       {
         label: "04 / RELATED METHOD",
-        title: "Explore the related methodology."
+        title: "Explore the related methodology.",
         body:
           "BOUND is presented as a related methodological and system-design layer behind ONYX, not as a separate ONYX product surface.",
         items: [
@@ -69,7 +69,7 @@ const copy = {
     boundaryBody:
       "These resources are intended to explain the public product and engineering record. They do not imply that every repository artifact is a commercial deliverable, nor that future or research capabilities are generally shipped. ONYX's commercialization position treats the core product and intellectual property as proprietary.",
     finalLabel: "06 / NEXT",
-    finalTitle: "Ready to discuss the operation?"
+    finalTitle: "Ready to discuss the operation?",
     finalBody:
       "Use the contact path for a substantive product or enterprise discussion grounded in your operating environment, connectivity, authority model, and deployment constraints.",
     demo: "Request a demonstration",
@@ -92,7 +92,7 @@ const copy = {
     sections: [
       {
         label: "۰۱ / محصول",
-        title: "از محصول و مدل عملیاتی شروع کنید."
+        title: "از محصول و مدل عملیاتی شروع کنید.",
         body:
           "از سطح محصول برای مدل عملیاتی، اجرای محلی‌محور، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
         items: [
@@ -103,7 +103,7 @@ const copy = {
       },
       {
         label: "۰۲ / سامانه",
-        title: "عمیق‌تر وارد سامانه شوید."
+        title: "عمیق‌تر وارد سامانه شوید.",
         body:
           "مطالب معماری توضیح می‌دهند کلاینت‌های محلی، همگام‌سازی، اختیار، وضعیت پایدار و زیرساخت چگونه به هم متصل می‌شوند. این بخش پل میان محصول و پیاده‌سازی است.",
         items: [
@@ -114,7 +114,7 @@ const copy = {
       },
       {
         label: "۰۳ / رکورد مهندسی",
-        title: "رکورد مهندسی را بررسی کنید."
+        title: "رکورد مهندسی را بررسی کنید.",
         body:
           "مخزن عمومی مرجع زمینه پیاده‌سازی است. مستندات مخزن برای تصمیم‌های معماری، API، ساختار توسعه، آزمون‌ها و ابزارهای استقرار استفاده می‌شوند.",
         items: [
@@ -125,7 +125,7 @@ const copy = {
       },
       {
         label: "۰۴ / روش مرتبط",
-        title: "روش‌شناسی مرتبط را ببینید."
+        title: "روش‌شناسی مرتبط را ببینید.",
         body:
           "BOUND به‌عنوان لایه روش‌شناختی و طراحی سیستم مرتبط با ONYX معرفی می‌شود، نه به‌عنوان یک سطح محصولی جداگانه از ONYX.",
         items: [

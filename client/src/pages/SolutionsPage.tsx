@@ -10,10 +10,10 @@ const copy = {
   en: {
     nav:["Product","Solutions","Architecture","Security","About","Resources"],
     tag:"01 / Solutions", titleA:"WHEN THE", titleB:"OPERATION GETS COMPLEX.",
-    body:"ONYX is built for operations where people, work, decisions, and evidence need to stay connected as conditions change."
+    body:"ONYX is built for operations where people, work, decisions, and evidence need to stay connected as conditions change.",
     primary:"Explore product", secondary:"Request a demo", home:"Back to home", language:"فارسی", light:"Light mode", dark:"Dark mode",
     scenarioTag:"02 / Where it fits", scenarioTitleA:"Different environments.", scenarioTitleB:"One operating model.",
-    scenarioBody:"These are representative operating patterns, not customer claims. The environment changes; the core model stays focused on authority, work, evidence, and continuity."
+    scenarioBody:"These are representative operating patterns, not customer claims. The environment changes; the core model stays focused on authority, work, evidence, and continuity.",
     scenarios:[
       ["01","DEFENSE & GOVERNMENT","A distributed mission changes state","A mission lead activates an operation, assigns work to teams, records decisions and approvals, and keeps field teams working when communications become intermittent.","AUTHORITY","Mission activation · delegated roles · scoped access","EVIDENCE","Decisions · approvals · files · operational history","RECOVERY","Local outcomes are preserved and synchronized when connectivity returns."],
       ["02","SPACE OPERATIONS","A mission operates across delayed links","A mission team plans work against known constraints, executes from available local state, records observations and decisions, and reconciles updates when communication windows reopen.","AUTHORITY","Mission roles · approval boundaries · controlled actions","EVIDENCE","Mission state · observations · files · decision history","RECOVERY","Delayed updates are brought back into the shared operational record under synchronization rules."],
