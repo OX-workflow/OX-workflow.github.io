@@ -8,26 +8,26 @@ type Theme = "light" | "dark";
 const copy = {
   en: {
     tag: "ONYX / INVESTORS", eyebrow: "INVESTOR REFERENCE",
-    title: "A PLATFORM BUILT AROUND OPERATIONAL CONTINUITY.",
-    intro: "A factual overview of the product thesis, technical foundation, roadmap, commercial posture, and areas of diligence for evaluating ONYX.",
+    title: "A PLATFORM BUILT AROUND GOVERNED OPERATIONS.",
+    intro: "A concise view of the product thesis, technical foundation, roadmap, commercial posture, and diligence boundaries around ONYX.",
     product: "Product", architecture: "Architecture", security: "Security", roadmap: "Roadmap", contact: "Contact", language: "فارسی", light: "Light mode", dark: "Dark mode",
     sections: [
-      { label: "01 / PRODUCT THESIS", title: "Operations are the system of record.", body: "ONYX is a mission operations platform for teams that need controlled execution, explicit authority, durable evidence, and continuity across connected, degraded, and offline conditions.", items: [
+      { label: "01 / PRODUCT THESIS", title: "Operations become the governed record.", body: "ONYX is a mission operations platform for teams that need controlled execution, explicit authority, durable evidence, and continuity across connected, degraded, and offline conditions.", items: [
         ["CONTINUITY", "Local-first execution is designed to keep operational work available when network access is unreliable or unavailable."],
         ["AUTHORITY", "Execution is tied to explicit operational authority rather than treating awareness as permission to act."],
         ["ACCOUNTABILITY", "Operational state, decisions, evidence, approvals, and audit history are designed to remain traceable."]
       ]},
-      { label: "02 / TECHNICAL FOUNDATION", title: "The platform is built around operational work.", body: "The documented application model spans local execution, synchronization, authority, durable state, evidence, planning, policy, and operational history.", items: [
+      { label: "02 / TECHNICAL FOUNDATION", title: "The technical foundation supports the operating model.", body: "The documented application model spans local execution, synchronization, authority, durable state, evidence, planning, policy, and operational history.", items: [
         ["DISTRIBUTED SYNCHRONIZATION", "Vector-clock synchronization, conflict detection and resolution, transactional outbox patterns, replay, and idempotency are part of the documented system model."],
         ["OPERATIONAL APPLICATIONS", "The application manifest describes 18 operational contexts spanning missions, tasks, reports, meetings, files, approvals, capacity, automation, notifications, and audit."],
         ["SECURITY BOUNDARIES", "Identity, authorization, synchronization, auditability, deployment, recovery, and supply-chain concerns are treated as distinct control domains."]
       ]},
-      { label: "03 / ROADMAP", title: "Expansion follows the foundation.", body: "The published roadmap distinguishes what is current from what is planned and what remains research.", items: [
+      { label: "03 / ROADMAP", title: "The roadmap extends the foundation.", body: "The published roadmap distinguishes what is current from what is planned and what remains research.", items: [
         ["CURRENT", "Local-first execution, synchronization, authority, durable operational state, and evidence/auditability."],
         ["PLANNED", "Mobile, multi-region, and enterprise deployment expansion."],
         ["RESEARCH", "Federated operations, agent/plugin interfaces, and policy-aware automation."]
       ]},
-      { label: "04 / COMMERCIAL POSTURE", title: "A controlled intellectual-property model.", body: "The commercialization plan treats ONYX Core and its intellectual property as proprietary. The public repository is an engineering and documentation surface, not an automatic grant of commercial rights. Enterprise rights are intended to be defined through explicit agreements that separate ONYX background IP, customer data and confidential information, configuration, and any custom-feature treatment.", items: [
+      { label: "04 / COMMERCIAL POSTURE", title: "A controlled commercial and IP model.", body: "The commercialization plan treats ONYX Core and its intellectual property as proprietary. The public repository is an engineering and documentation surface, not an automatic grant of commercial rights. Enterprise rights are intended to be defined through explicit agreements that separate ONYX background IP, customer data and confidential information, configuration, and any custom-feature treatment.", items: [
         ["CORE IP", "ONYX Core remains proprietary; use rights are granted contractually rather than by publication of the repository."],
         ["LICENSING", "Hosted, self-managed, and customized deployments can carry different rights, entitlements, support, update, and termination terms."],
         ["BACKGROUND & CUSTOM IP", "Background IP remains ONYX property by default; customer-specific development requires explicit ownership or licensing treatment rather than an implied transfer."],
@@ -40,26 +40,26 @@ const copy = {
   },
   fa: {
     tag: "ONYX / سرمایه‌گذاران", eyebrow: "مرجع سرمایه‌گذاری",
-    title: "پلتفرمی بر پایه تداوم عملیات.",
+    title: "پلتفرمی بر پایه عملیات تحت حاکمیت.",
     intro: "مروری مستند بر تز محصول، بنیان فنی، نقشه راه، جایگاه تجاری و حوزه‌های لازم برای بررسی دقیق ONYX.",
     product: "محصول", architecture: "معماری", security: "امنیت", roadmap: "نقشه راه", contact: "تماس", language: "فارسی", light: "حالت روشن", dark: "حالت تاریک",
     sections: [
-      { label: "۰۱ / تز محصول", title: "عملیات باید رکورد مرجع باشد.", body: "ONYX یک پلتفرم عملیات مأموریت‌محور برای تیم‌هایی است که به اجرای کنترل‌شده، اختیار صریح، شواهد پایدار و تداوم در شرایط اتصال کامل، محدود یا قطع‌شده نیاز دارند.", items: [
+      { label: "۰۱ / تز محصول", title: "عملیات به رکورد تحت حاکمیت تبدیل می‌شود.", body: "ONYX یک پلتفرم عملیات مأموریت‌محور برای تیم‌هایی است که به اجرای کنترل‌شده، اختیار صریح، شواهد پایدار و تداوم در شرایط اتصال کامل، محدود یا قطع‌شده نیاز دارند.", items: [
         ["تداوم", "اجرای محلی‌محور برای در دسترس ماندن کار عملیاتی در زمان اتصال ناپایدار یا قطع‌شده طراحی شده است."],
         ["اختیار", "اجرا به اختیار عملیاتی صریح متصل است و صرف آگاهی را مجوز اقدام تلقی نمی‌کند."],
         ["پاسخ‌گویی", "وضعیت عملیاتی، تصمیم‌ها، شواهد، تأییدها و تاریخچه ممیزی برای قابل‌ردیابی بودن طراحی شده‌اند."]
       ]},
-      { label: "۰۲ / بنیان فنی", title: "سامانه برای کار عملیاتی ساخته شده است.", body: "مدل مستند محصول اجرای محلی، همگام‌سازی، اختیار، وضعیت پایدار، شواهد، برنامه‌ریزی، سیاست و تاریخچه عملیاتی را در بر می‌گیرد.", items: [
+      { label: "۰۲ / بنیان فنی", title: "بنیان فنی از مدل عملیاتی پشتیبانی می‌کند.", body: "مدل مستند محصول اجرای محلی، همگام‌سازی، اختیار، وضعیت پایدار، شواهد، برنامه‌ریزی، سیاست و تاریخچه عملیاتی را در بر می‌گیرد.", items: [
         ["همگام‌سازی توزیع‌شده", "همگام‌سازی مبتنی بر vector clock، تشخیص و حل تعارض، الگوی transactional outbox، بازپخش و idempotency در مدل مستند سامانه قرار دارند."],
         ["برنامه‌های عملیاتی", "مانیفست برنامه ۱۸ حوزه عملیاتی شامل مأموریت، وظایف، گزارش، جلسات، فایل، تأیید، ظرفیت، اتوماسیون، اعلان و ممیزی را توصیف می‌کند."],
         ["مرزهای امنیتی", "هویت، مجوزدهی، همگام‌سازی، ممیزی، استقرار، بازیابی و زنجیره تأمین به‌عنوان حوزه‌های کنترل متمایز دیده می‌شوند."]
       ]},
-      { label: "۰۳ / نقشه راه", title: "توسعه بر پایه بنیاد فعلی انجام می‌شود.", body: "نقشه راه منتشرشده میان قابلیت‌های فعلی، برنامه‌ریزی‌شده و پژوهشی تمایز می‌گذارد.", items: [
+      { label: "۰۳ / نقشه راه", title: "نقشه راه، بنیاد فعلی را گسترش می‌دهد.", body: "نقشه راه منتشرشده میان قابلیت‌های فعلی، برنامه‌ریزی‌شده و پژوهشی تمایز می‌گذارد.", items: [
         ["فعلی", "اجرای محلی‌محور، همگام‌سازی، اختیار، وضعیت پایدار و شواهد/ممیزی."],
         ["برنامه‌ریزی‌شده", "گسترش موبایل، چندمنطقه‌ای و استقرار سازمانی."],
         ["پژوهشی", "عملیات فدره، رابط‌های عامل/افزونه و اتوماسیون آگاه از سیاست."]
       ]},
-      { label: "۰۴ / جایگاه تجاری", title: "مدل مالکیت فکری کنترل‌شده.", body: "برنامه تجاری‌سازی، هسته و مالکیت فکری ONYX را اختصاصی در نظر می‌گیرد. مخزن عمومی سطح مهندسی و مستندسازی است و حقوق تجاری باید در توافق‌های صریح تعریف شوند.", items: [
+      { label: "۰۴ / جایگاه تجاری", title: "مدل تجاری و مالکیت فکری کنترل‌شده.", body: "برنامه تجاری‌سازی، هسته و مالکیت فکری ONYX را اختصاصی در نظر می‌گیرد. مخزن عمومی سطح مهندسی و مستندسازی است و حقوق تجاری باید در توافق‌های صریح تعریف شوند.", items: [
         ["مالکیت فکری", "موضع هسته اختصاصی است و فرض خودکار متن‌باز بودن وجود ندارد."],
         ["مجوزدهی", "حقوق مشتری، حقوق استقرار و سازوکار مجوزدهی نیازمند تعریف قراردادی صریح هستند."],
         ["آمادگی حقوقی", "زنجیره مالکیت، مجوز وابستگی‌ها، قراردادهای مشتری، مستندات حریم خصوصی، علامت تجاری و چک‌لیست انتشار حقوقی از حوزه‌های آمادگی هستند."]
