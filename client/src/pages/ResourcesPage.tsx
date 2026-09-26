@@ -25,7 +25,7 @@ const copy = {
         label: "01 / PRODUCT",
         title: "Start with the product and operating model.",
         body:
-          "Start with the product surface for the operating model, local-first execution, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
+          "Start with the product surface for the operating model, local operational state, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
         items: [
           ["PRODUCT", "The platform, operating model, capabilities, and deployment surface.", "Open product page", "/en/product/"],
           ["SOLUTIONS", "Operational scenarios and environments where continuity, authority, and evidence matter.", "Open solutions", "/en/solutions/"],
@@ -94,7 +94,7 @@ const copy = {
         label: "۰۱ / محصول",
         title: "از محصول و مدل عملیاتی شروع کنید.",
         body:
-          "از سطح محصول برای مدل عملیاتی، اجرای محلی‌محور، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
+          "از سطح محصول برای مدل عملیاتی، وضعیت عملیاتی محلی، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
         items: [
           ["PRODUCT", "پلتفرم، مدل عملیاتی، قابلیت‌ها و سطح استقرار.", "مشاهده محصول", "/fa/product/"],
           ["SOLUTIONS", "سناریوها و محیط‌های عملیاتی که تداوم، اختیار و شواهد در آن‌ها اهمیت دارد.", "مشاهده راهکارها", "/fa/solutions/"],
@@ -168,92 +168,3 @@ export default function ResourcesPage({ locale }: { locale: Locale }) {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("onyx-theme", theme);
   }, [theme]);
-
-  return (
-    <main className={`resources-page resources-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <header className="resources-header">
-        <div className="shell-content resources-header__inner">
-          <a className="resources-logo" href={href("")} aria-label="ONYX">
-            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
-          </a>
-          <nav>
-            <a href={href("product")}>{c.product}</a>
-            <a href={href("architecture")}>{c.architecture}</a>
-            <a href={href("security")}>{c.security}</a>
-          </nav>
-          <div className="resources-tools">
-            <a href={href("contact")}>{c.contact}</a>
-            <a href={href("resources")} aria-current="page">RESOURCES</a>
-            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <a className="resources-language" href={rtl ? "/en/resources/" : "/fa/resources/"}>{c.language}</a>
-          </div>
-        </div>
-      </header>
-
-      <section className="resources-hero">
-        <div className="resources-hero__grid" aria-hidden="true" />
-        <div className="shell-content resources-hero__inner">
-          <div className="resources-kicker"><span />{c.tag}</div>
-          <p className="resources-eyebrow">{c.kicker}</p>
-          <h1>{c.title}</h1>
-          <p className="resources-hero__intro">{c.intro}</p>
-        </div>
-      </section>
-
-      {c.sections.map((section) => (
-        <section className="resources-section" key={section.label}>
-          <div className="shell-content">
-            <div className="resources-two-col">
-              <div>
-                <span className="resources-label">{section.label}</span>
-                <h2>{section.title}</h2>
-                <p>{section.body}</p>
-              </div>
-              <div className="resources-list">
-                {section.items.map(([title, body, action, url]) => (
-                  <article key={title}>
-                    <div className="resources-item__meta"><span>{title}</span><ExternalLink size={14} /></div>
-                    <p>{body}</p>
-                    <a href={url} target={url.startsWith("http") ? "_blank" : undefined} rel={url.startsWith("http") ? "noreferrer" : undefined}>
-                      {action}<Arrow size={14} />
-                    </a>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <section className="resources-boundary">
-        <div className="shell-content resources-two-col">
-          <div>
-            <span className="resources-label">{c.boundaryLabel}</span>
-            <h2>{c.boundaryTitle}</h2>
-          </div>
-          <p>{c.boundaryBody}</p>
-        </div>
-      </section>
-
-      <section className="resources-final">
-        <div className="shell-content resources-final__inner">
-          <div>
-            <span className="resources-label">{c.finalLabel}</span>
-            <h2>{c.finalTitle}</h2>
-            <p>{c.finalBody}</p>
-          </div>
-          <a className="resources-action" href={href("contact")}>{c.demo}</a>
-        </div>
-      </section>
-
-      <footer className="resources-footer">
-        <div className="shell-content resources-footer__inner">
-          <a href={href("")}><Arrow size={15} />{c.home}</a>
-          <span>ONYX / RESOURCES</span>
-        </div>
-      </footer>
-    </main>
-  );
-}
