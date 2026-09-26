@@ -73,7 +73,10 @@ function OperationalState({ kind, locale, step }: { kind: StateKind; locale: Loc
       <div className="operational-demo__state-visual operational-demo__state-visual--forecast">
         <div className="operational-demo__forecast-head">
           <span className="operational-demo__state-kicker">{locale === "fa" ? "ظرفیت · نمونه نمایشی" : "CAPACITY · ILLUSTRATIVE"}</span>
-          <strong>78%</strong>
+          <div>
+            <strong>78%</strong>
+            <span className="operational-demo__illustrative">{locale === "fa" ? "مقدار نمایشی · غیرزنده" : "Illustrative demo value · not live telemetry"}</span>
+          </div>
         </div>
         <div className="operational-demo__capacity"><i /></div>
         <div className="operational-demo__forecast-chart">
