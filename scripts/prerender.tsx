@@ -79,11 +79,12 @@ function replaceMeta(html: string, attribute: "name" | "property", value: string
   return html.replace(expression, replacement);
 }
 
-function alternateLinks(): string {
+function alternateLinks(pathname = ""): string {
+  const suffix = pathname ? `${pathname}/` : "";
   return [
-    `    <link rel="alternate" hreflang="en" href="${localeMetadata.en.url}" />`,
-    `    <link rel="alternate" hreflang="fa" href="${localeMetadata.fa.url}" />`,
-    `    <link rel="alternate" hreflang="x-default" href="${SITE_URL}/" />`,
+    `    <link rel="alternate" hreflang="en" href="${SITE_URL}/en/${suffix}" />`,
+    `    <link rel="alternate" hreflang="fa" href="${SITE_URL}/fa/${suffix}" />`,
+    `    <link rel="alternate" hreflang="x-default" href="${pathname ? `${SITE_URL}/en/${suffix}` : `${SITE_URL}/`}" />`,
   ].join("\n");
 }
 
@@ -138,7 +139,7 @@ function schema(locale: Locale): string {
         url: `${SITE_URL}/en/`,
         logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/onyx-symbol.svg`, caption: "ONYX Mission Operations Platform symbol" },
         description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that gives organizational authority, responsibility, execution, and verification a living digital structure.",
-        codeRepository: "https://github.com/SMozaff/Onyx-Framwork",
+        codeRepository: "https://github.com/SMozaff/Onyx-Framework",
         programmingLanguage: ["Rust", "TypeScript"],
         author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
         about: { "@id": "https://bound-method.github.io/#bound-method" },
@@ -294,7 +295,7 @@ for (const locale of ["en", "fa"] as const) {
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
-      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `    <link rel="canonical" href="${pageUrl}" />`)
+      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `${alternateLinks(page)}\n    <link rel="canonical" href="${pageUrl}" />`)
       .replace(/<title>[^<]*<\/title>/, `<title>${pagesTitle(locale, page)}</title>`)
       .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${pagesDescription(locale, page)}" />`)
       .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${pagesTitle(locale, page)}" />`)
