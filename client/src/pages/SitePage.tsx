@@ -12,7 +12,8 @@ type PageKey =
   | "resources"
   | "contact"
   | "investors"
-  | "pricing";
+  | "pricing"
+  | "customers";
 
 const pages: Record<PageKey, { title: { en: string; fa: string }; description: { en: string; fa: string } }> = {
   product: {
@@ -76,6 +77,13 @@ const pages: Record<PageKey, { title: { en: string; fa: string }; description: {
     description: {
       en: "ONYX commercial models, licensing principles, and enterprise deployment terms.",
       fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX.",
+    },
+  },
+  customers: {
+    title: { en: "Customers & Case Studies", fa: "مشتریان و مطالعات موردی" },
+    description: {
+      en: "Illustrative customer scenarios, operational fit, and an explicit boundary between reference scenarios and verified customer evidence.",
+      fa: "سناریوهای نمونه مشتری، تناسب عملیاتی و مرز روشن میان سناریوهای مرجع و شواهد واقعی مشتری.",
     },
   },
   investors: {
