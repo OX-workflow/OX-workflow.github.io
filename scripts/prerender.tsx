@@ -14,6 +14,7 @@ import RoadmapPage from "../client/src/pages/RoadmapPage";
 import ContactPage from "../client/src/pages/ContactPage";
 import ResourcesPage from "../client/src/pages/ResourcesPage";
 import InvestorsPage from "../client/src/pages/InvestorsPage";
+import PricingLicensingPage from "../client/src/pages/PricingLicensingPage";
 
 type Locale = "en" | "fa";
 
@@ -215,6 +216,7 @@ function pagesTitle(locale: Locale, page: PageKey) {
     resources: { en: "ONYX | Resources", fa: "ONYX | منابع" },
     contact: { en: "ONYX | Contact / Demo", fa: "ONYX | تماس / دمو" },
     investors: { en: "ONYX | Investors", fa: "ONYX | سرمایه‌گذاران" },
+    pricing: { en: "ONYX | Pricing & Licensing", fa: "ONYX | قیمت‌گذاری و مجوزدهی" },
   };
   return titles[page][locale];
 }
@@ -230,6 +232,7 @@ function pagesDescription(locale: Locale, page: PageKey) {
     resources: { en: "ONYX product, architecture, technical, and media resources.", fa: "منابع محصول، معماری، فنی و رسانه‌ای ONYX." },
     contact: { en: "Contact ONYX and request an enterprise demonstration.", fa: "تماس با ONYX و درخواست دمو سازمانی." },
     investors: { en: "ONYX product, technology, roadmap, and commercial information.", fa: "اطلاعات محصول، فناوری، نقشه راه و تجاری ONYX." },
+    pricing: { en: "ONYX commercial models, licensing principles, and enterprise deployment terms.", fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX." },
   };
   return descriptions[page][locale];
 }
@@ -254,6 +257,7 @@ const sitePages: PageKey[] = [
   "resources",
   "contact",
   "investors",
+  "pricing",
 ];
 
 for (const locale of ["en", "fa"] as const) {
@@ -278,7 +282,9 @@ for (const locale of ["en", "fa"] as const) {
                     ? renderToStaticMarkup(<ResourcesPage locale={locale} />)
                     : page === "investors"
                       ? renderToStaticMarkup(<InvestorsPage locale={locale} />)
-                      : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+                      : page === "pricing"
+                        ? renderToStaticMarkup(<PricingLicensingPage locale={locale} />)
+                        : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
