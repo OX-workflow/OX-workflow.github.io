@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme, type Theme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -72,7 +73,7 @@ const copy = {
 export default function InvestorsPage({ locale }: { locale: Locale }) {
   const rtl = locale === "fa";
   const c = copy[locale];
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const href = (page: string) => page ? "/" + locale + "/" + page + "/" : "/" + locale + "/";
   useEffect(() => {
     const stored = window.localStorage.getItem("onyx-theme") as Theme | null;
@@ -85,11 +86,7 @@ export default function InvestorsPage({ locale }: { locale: Locale }) {
   }, [theme]);
   return (
     <main className={"investors-page investors-page--" + theme} dir={rtl ? "rtl" : "ltr"}>
-      <header className="investors-header"><div className="shell-content investors-header__inner">
-        <a className="investors-logo" href={href("")}><img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" /></a>
-        <nav><a href={href("product")}>{c.product}</a><a href={href("architecture")}>{c.architecture}</a><a href={href("security")}>{c.security}</a><a href={href("roadmap")}>{c.roadmap}</a></nav>
-        <div className="investors-tools"><a href={href("contact")}>{c.contact}</a><button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button><a href={rtl ? "/en/investors/" : "/fa/investors/"}>{c.language}</a></div>
-      </div></header>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="investors" />
       <section className="investors-hero"><div className="investors-grid" aria-hidden="true" /><div className="shell-content investors-hero__inner"><div className="investors-kicker"><span />{c.tag}</div><p className="investors-eyebrow">{c.eyebrow}</p><h1>{c.title}</h1><p className="investors-intro">{c.intro}</p></div></section>
       {c.sections.map((section) => <section className="investors-section" key={section.label}><div className="shell-content investors-two-col"><div><span className="investors-label">{section.label}</span><h2>{section.title}</h2><p className="investors-lead">{section.body}</p></div><div className="investors-list">{section.items.map(([label, body]) => <article key={label}><span>{label}</span><p>{body}</p></article>)}</div></div></section>)}
       <section className="investors-diligence"><div className="shell-content investors-two-col"><div><span className="investors-label">{c.diligenceLabel}</span><h2>{c.diligenceTitle}</h2></div><p>{c.diligenceBody}</p></div></section>
