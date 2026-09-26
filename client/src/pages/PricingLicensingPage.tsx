@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme, type Theme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -58,16 +59,12 @@ const copy = {
 } as const;
 
 export default function PricingLicensingPage({locale}:{locale:Locale}){
- const rtl=locale==="fa"; const c=copy[locale]; const [theme,setTheme]=useState<Theme>("dark");
+ const rtl=locale==="fa"; const c=copy[locale]; const [theme,setTheme]=useState<Theme>(getInitialTheme);
  const href=(p:string)=>p?"/"+locale+"/"+p+"/":"/"+locale+"/";
  useEffect(()=>{const s=window.localStorage.getItem("onyx-theme") as Theme|null;const p=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";setTheme(s==="dark"||s==="light"?s:p)},[]);
  useEffect(()=>{document.documentElement.dataset.theme=theme;window.localStorage.setItem("onyx-theme",theme)},[theme]);
  return <main className={"pricing-page pricing-page--"+theme} dir={rtl?"rtl":"ltr"}>
-  <header className="pricing-header"><div className="shell-content pricing-header__inner">
-   <a className="pricing-logo" href={href("")}><img src={theme==="dark"?"/assets/onyx-horizontal-light.svg":"/assets/onyx-horizontal-dark.svg"} alt="ONYX"/></a>
-   <nav><a href={href("product")}>{c.product}</a><a href={href("architecture")}>{c.architecture}</a><a href={href("security")}>{c.security}</a><a href={href("investors")}>{c.investors}</a></nav>
-   <div className="pricing-tools"><a href={href("contact")}>{c.contact}</a><button type="button" onClick={()=>setTheme(theme==="dark"?"light":"dark")} aria-label={theme==="dark"?c.light:c.dark}>{theme==="dark"?<Sun size={16}/>:<Moon size={16}/>}</button><a href={rtl?"/en/pricing/":"/fa/pricing/"}>{c.language}</a></div>
-  </div></header>
+  <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="pricing" />
   <section className="pricing-hero"><div className="pricing-grid" aria-hidden="true"/><div className="shell-content pricing-hero__inner"><div className="pricing-kicker"><span/>{c.tag}</div><p className="pricing-eyebrow">{c.eyebrow}</p><h1>{c.title}</h1><p className="pricing-intro">{c.intro}</p></div></section>
   <section className="pricing-notice"><div className="shell-content pricing-notice__inner"><span className="pricing-label">{c.notice}</span><p>{c.noticeBody}</p></div></section>
   <section className="pricing-models"><div className="shell-content"><div className="pricing-model-grid">{c.models.map((m)=><article className="pricing-card" key={m.label}><span className="pricing-label">{m.label}</span><h2>{m.title}</h2><p>{m.body}</p><ul>{m.items.map(item=><li key={item}>{item}</li>)}</ul></article>)}</div></div></section>
