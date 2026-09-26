@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
   ArrowLeft,
   ArrowRight,
   ArrowUpLeft,
@@ -226,29 +227,16 @@ function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (loca
 }
 
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
   const [launching, setLaunching] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
-
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
     const preferred = initialLocale ?? resolveBrowserLocale();
-    const storedTheme = window.localStorage.getItem("onyx-theme");
-    const preferredTheme: "light" | "dark" = storedTheme === "dark" || storedTheme === "light"
-      ? storedTheme
-      : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    setTheme(preferredTheme);
-    document.documentElement.dataset.theme = preferredTheme;
     setLocale(preferred);
     document.documentElement.lang = preferred;
     document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
   }, [initialLocale]);
 
 
@@ -262,16 +250,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     const timer = window.setTimeout(() => setLaunching(false), 1500);
     return () => window.clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [menuOpen]);
-
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("onyx-theme", theme);
@@ -279,36 +257,11 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
   const toggleTheme = () => setTheme((current) => current === "dark" ? "light" : "dark");
 
-  const selectLocale = (next: Locale) => {
-    window.localStorage.setItem("onyx-locale", next);
-    setLocale(next);
-    document.documentElement.lang = next;
-    document.documentElement.dir = next === "fa" ? "rtl" : "ltr";
-    setMenuOpen(false);
-  };
-  const closeMenu = () => setMenuOpen(false);
-  const Chevron = isRtl ? ChevronRight : ChevronLeft;
+    const Chevron = isRtl ? ChevronRight : ChevronLeft;
 
   return (
     <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
-      <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
-        <a href="#top" className="header-mark" aria-label={isRtl ? "صفحه اصلی ONYX" : "ONYX home"}><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX" width="1320" height="360" decoding="async" /></a>
-        <nav className="desktop-nav" aria-label={isRtl ? "پیمایش اصلی" : "Primary navigation"}><a href={`/${locale}/product/`}>{t(text.nav.product)}</a><a href={`/${locale}/solutions/`}>{t(text.nav.solutions)}</a><a href={`/${locale}/architecture/`}>{t(text.nav.architecture)}</a><a href={`/${locale}/security/`}>{t(text.nav.security)}</a><a href={`/${locale}/about/`}>{t(text.nav.about)}</a><a href={`/${locale}/resources/`}>{t(text.nav.resources)}</a></nav>
-        <div className="header-actions"><LanguageControl locale={locale} onSelect={selectLocale} /><button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? (isRtl ? "حالت روشن" : "Switch to light mode") : (isRtl ? "حالت تاریک" : "Switch to dark mode")} title={theme === "dark" ? (isRtl ? "حالت روشن" : "Light mode") : (isRtl ? "حالت تاریک" : "Dark mode")}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}</button><a className="header-cta" href="#contact"><span>{t(text.nav.demo)}</span>{isRtl ? <ArrowRight size={15} /> : <ArrowLeft size={15} />}</a></div>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={isRtl ? "باز و بسته کردن منو" : "Toggle navigation"}>{menuOpen ? <X size={20} /> : <Menu size={21} />}</button>
-      </header>
-
-      <nav id="mobile-navigation" className={`mobile-nav ${menuOpen ? "mobile-nav--open" : ""}`} aria-hidden={!menuOpen} aria-label={isRtl ? "پیمایش موبایل" : "Mobile navigation"}><a href="#top" className="mobile-nav__brand" onClick={closeMenu}><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX" width="1320" height="360" decoding="async" /></a>
-        <LanguageControl locale={locale} onSelect={selectLocale} />
-        <button className="theme-toggle theme-toggle--mobile" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? (isRtl ? "حالت روشن" : "Switch to light mode") : (isRtl ? "حالت تاریک" : "Switch to dark mode")}>{theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}<span>{theme === "dark" ? (isRtl ? "روشن" : "Light") : (isRtl ? "تاریک" : "Dark")}</span></button>
-        <a href={`/${locale}/product/`} onClick={closeMenu}>{t(text.nav.product)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href={`/${locale}/solutions/`} onClick={closeMenu}>{t(text.nav.solutions)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href={`/${locale}/architecture/`} onClick={closeMenu}>{t(text.nav.architecture)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href={`/${locale}/security/`} onClick={closeMenu}>{t(text.nav.security)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href={`/${locale}/about/`} onClick={closeMenu}>{t(text.nav.about)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href={`/${locale}/resources/`} onClick={closeMenu}>{t(text.nav.resources)}{isRtl ? <ArrowRight size={17} /> : <ArrowLeft size={17} />}</a>
-        <a href={`/${locale}/contact/`} onClick={closeMenu} className="mobile-nav__cta">{t(text.nav.demo)}</a>
-      </nav>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="top">
         <section className={"hero section-shell " + (launching ? "hero--launching" : "hero--ready")} aria-busy={launching}>
