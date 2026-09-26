@@ -128,3 +128,108 @@ export default function RoadmapPage({ locale }: { locale: Locale }) {
     <main className={`roadmap-page roadmap-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
       <header className="roadmap-header">
         <div className="shell-content roadmap-header__inner">
+          <a className="roadmap-logo" href={href("")} aria-label="ONYX">
+            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
+          </a>
+          <nav>
+            <a href={href("product")}>{c.product}</a>
+            <a href={href("architecture")}>{c.architecture}</a>
+          </nav>
+          <div className="roadmap-tools">
+            <a href={href("contact")}>{c.contact}</a>
+            <a href={href("roadmap")} aria-current="page">ROADMAP</a>
+            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <a className="roadmap-language" href={href("")}>{c.language}</a>
+          </div>
+        </div>
+      </header>
+
+      <section className="roadmap-hero">
+        <div className="roadmap-hero__grid" aria-hidden="true" />
+        <div className="shell-content">
+          <div className="roadmap-kicker"><span />{c.tag}</div>
+          <p className="roadmap-eyebrow">{c.kicker}</p>
+          <h1>{c.title}</h1>
+          <p className="roadmap-hero__intro">{c.intro}</p>
+        </div>
+      </section>
+
+      <section className="roadmap-stage roadmap-stage--current">
+        <div className="shell-content roadmap-two-col">
+          <div>
+            <span className="roadmap-label">{c.nowLabel}</span>
+            <h2>{c.nowTitle}</h2>
+            <p>{c.nowBody}</p>
+          </div>
+          <div className="roadmap-items">
+            {c.nowItems.map(([title, body], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span>
+                <div><b>{title}</b><p>{body}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="roadmap-stage roadmap-stage--next">
+        <div className="shell-content">
+          <div className="roadmap-heading">
+            <span className="roadmap-label">{c.nextLabel}</span>
+            <h2>{c.nextTitle}</h2>
+            <p>{c.nextBody}</p>
+          </div>
+          <div className="roadmap-cards">
+            {c.nextItems.map(([title, body], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span><b>{title}</b><p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="roadmap-stage roadmap-stage--horizon">
+        <div className="shell-content">
+          <div className="roadmap-heading">
+            <span className="roadmap-label">{c.horizonLabel}</span>
+            <h2>{c.horizonTitle}</h2>
+            <p>{c.horizonBody}</p>
+          </div>
+          <div className="roadmap-horizon">
+            {c.horizonItems.map(([title, body], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span><div><b>{title}</b><p>{body}</p></div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="roadmap-stage roadmap-stage--status">
+        <div className="shell-content roadmap-two-col">
+          <div><span className="roadmap-label">{c.statusLabel}</span><h2>{c.statusTitle}</h2></div>
+          <div className="roadmap-statuses">
+            {c.statuses.map(([title, body]) => <article key={title}><b>{title}</b><p>{body}</p></article>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="roadmap-final">
+        <div className="shell-content roadmap-final__inner">
+          <div><span className="roadmap-label">{c.ctaLabel}</span><h2>{c.ctaTitle}</h2><p>{c.ctaBody}</p></div>
+          <a className="roadmap-action" href={href("architecture")}>{c.architecture}</a>
+        </div>
+      </section>
+
+      <footer className="roadmap-footer">
+        <div className="shell-content roadmap-footer__inner">
+          <a href={href("")}><Arrow size={15} />{c.back}</a>
+          <span>ONYX / ROADMAP</span>
+        </div>
+      </footer>
+    </main>
+  );
+}
