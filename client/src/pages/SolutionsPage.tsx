@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, ChevronRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme, type Theme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -89,7 +90,7 @@ export default function SolutionsPage({locale}:{locale:Locale}) {
   useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.lang=locale;document.documentElement.dir=rtl?"rtl":"ltr";window.localStorage.setItem("onyx-theme",theme)},[theme,locale,rtl]);
   const link=(p:string)=>`/${locale}/${p}/`; const home=`/${locale}/`;
   return <div className={`solutions-page solutions-page--${theme}`} dir={rtl?"rtl":"ltr"}>
-    <header className="solutions-header"><a className="solutions-logo" href={home}><img src={theme==="dark"?"/assets/onyx-horizontal-dark.svg":"/assets/onyx-horizontal-light.svg"} alt="ONYX"/></a><nav>{t.nav.map((x,i)=><a key={x} href={link(["product","solutions","architecture","security","about","resources"][i])}>{x}</a>)}</nav><div className="solutions-tools"><a href={locale==="en"?"/fa/solutions/":"/en/solutions/"}>{t.language}</a><button type="button" onClick={()=>setTheme(x=>x==="dark"?"light":"dark")} aria-label={theme==="dark"?t.light:t.dark}>{theme==="dark"?<Sun size={16}/>:<Moon size={16}/>}</button><a className="solutions-contact" href={link("contact")}>{t.secondary}<ChevronRight size={14}/></a></div></header>
+    <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="solutions" />
     <main>
       <section className="solutions-hero"><div className="solutions-hero__grid" aria-hidden="true"/><div className="shell-content"><div className="solutions-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="solutions-actions"><a className="solutions-button solutions-button--primary" href={link("product")}>{t.primary}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="solutions-button" href={link("contact")}>{t.secondary}</a></div><a className="solutions-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>
       <section className="solutions-section"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.scenarioTag}</div><h2>{t.scenarioTitleA}<br/><em>{t.scenarioTitleB}</em></h2><p>{t.scenarioBody}</p></div><div className="solutions-scenarios">{t.scenarios.map(([n,sector,title,body,tags])=><article key={n}><header><span>{n}</span><b>{sector}</b></header><h3>{title}</h3><p>{body}</p><small>{tags}</small></article>)}</div></div></section>
