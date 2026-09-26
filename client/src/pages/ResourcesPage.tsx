@@ -27,8 +27,8 @@ const copy = {
         body:
           "Start with the product surface for the operating model, local-first execution, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
         items: [
-          ["محصول", "The platform, operating model, capabilities, and deployment surface.", "Open product page", "/en/product/"],
-          ["راهکارها", "Operational scenarios and environments where continuity, authority, and evidence matter.", "Open solutions", "/en/solutions/"],
+          ["PRODUCT", "The platform, operating model, capabilities, and deployment surface.", "Open product page", "/en/product/"],
+          ["SOLUTIONS", "Operational scenarios and environments where continuity, authority, and evidence matter.", "Open solutions", "/en/solutions/"],
           ["ROADMAP", "Current foundation, planned expansion, and research directions.", "Open roadmap", "/en/roadmap/"],
         ],
       },
@@ -38,8 +38,8 @@ const copy = {
         body:
           "The architecture material explains how local clients, synchronization, authority, durable state, and infrastructure fit together. It is the technical bridge between the product thesis and implementation.",
         items: [
-          ["معماری", "The ONYX system model from operational flow to technical implementation.", "Open architecture", "/en/architecture/"],
-          ["امنیت", "Identity, authorization, synchronization boundaries, auditability, deployment, and assurance limits.", "Open security", "/en/security/"],
+          ["ARCHITECTURE", "The ONYX system model from operational flow to technical implementation.", "Open architecture", "/en/architecture/"],
+          ["SECURITY", "Identity, authorization, synchronization boundaries, auditability, deployment, and assurance limits.", "Open security", "/en/security/"],
           ["PUBLIC REPOSITORY", "The current public engineering and documentation surface of the ONYX project.", "Open GitHub", "https://github.com/SMozaff/Onyx-Framework"],
         ],
       },
@@ -60,7 +60,7 @@ const copy = {
         body:
           "BOUND is presented as a related methodological and system-design layer behind ONYX, not as a separate ONYX product surface.",
         items: [
-          ["روش BOUND", "Boundary-oriented development methodology covering domains, responsibility boundaries, contracts, execution, and verification.", "Explore BOUND", "https://bound-method.github.io/"],
+          ["BOUND METHOD", "Boundary-oriented development methodology covering domains, responsibility boundaries, contracts, execution, and verification.", "Explore BOUND", "https://bound-method.github.io/"],
         ],
       },
     ],
