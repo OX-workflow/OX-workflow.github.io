@@ -245,6 +245,8 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <ProductVisuals locale={locale} variant="mobile" />
+
       <section className="customers-boundary">
         <div className="shell-content customers-two-col">
           <div>
