@@ -119,6 +119,9 @@ export default function SiteHeader({
       </div>
 
       <nav id="onyx-global-mobile-nav" className={`onyx-global-mobile-nav ${menuOpen ? "onyx-global-mobile-nav--open" : ""}`} aria-hidden={!menuOpen}>
+        <a className="onyx-global-mobile-nav__brand" href={home} onClick={closeMenu} aria-label={rtl ? "صفحه اصلی ONYX" : "ONYX home"}>
+          <img src={theme === "dark" ? "/assets/onyx-horizontal-dark.svg" : "/assets/onyx-horizontal-light.svg"} alt="ONYX" width="1320" height="360" decoding="async" />
+        </a>
         {navigation.map(([page, label]) => (
           <a key={page} href={`/${locale}/${page}/`} onClick={closeMenu} aria-current={activePage === page ? "page" : undefined}>
             {label[locale]}
