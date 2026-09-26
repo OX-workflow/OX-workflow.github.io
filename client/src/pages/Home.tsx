@@ -157,6 +157,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [scrolled, setScrolled] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const [activeModel, setActiveModel] = useState(0);
+  const [activeLifecycle, setActiveLifecycle] = useState(0);
   const [heroActive, setHeroActive] = useState(false);
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -338,14 +339,30 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
           <div className="execution__image-wrap"><img src={assets.execution} alt="ONYX operational overview interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="execution__image-fade" /></div>
           <div className="shell-content execution__content">
             <div className="section-heading"><SignalTag>{t(text.lifecycle.tag)}</SignalTag><h2>{t(text.lifecycle.title)}</h2><p>{t(text.lifecycle.body)}</p></div>
-            <div className="execution-path">
-              {text.lifecycle.steps.map((stage, index) => (
-                <div className="execution-path__item" key={stage.en}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{t(stage)}</strong>
-                  <i title={t(lifecycleDescriptions[index])} />
-                </div>
-              ))}
+            <div className="execution-path" role="tablist" aria-label={t(text.lifecycle.title)}>
+              {text.lifecycle.steps.map((stage, index) => {
+                const active = index === activeLifecycle;
+                return (
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    className={"execution-path__item " + (active ? "execution-path__item--active" : "")}
+                    key={stage.en}
+                    onClick={() => setActiveLifecycle(index)}
+                    onMouseEnter={() => setActiveLifecycle(index)}
+                    onFocus={() => setActiveLifecycle(index)}
+                  >
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <strong>{t(stage)}</strong>
+                    <i aria-hidden="true" />
+                  </button>
+                );
+              })}
+            </div>
+            <div className="execution-path__detail" role="tabpanel">
+              <span className="mono-label">{String(activeLifecycle + 1).padStart(2, "0")} / {t(text.lifecycle.steps[activeLifecycle])}</span>
+              <p>{t(lifecycleDescriptions[activeLifecycle])}</p>
             </div>
           </div>
         </section>

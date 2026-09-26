@@ -161,6 +161,7 @@ function href(locale: Locale, page: string) {
 }
 
 export default function ProductPage({ locale }: { locale: Locale }) {
+  const [activeFlow, setActiveFlow] = useState(0);
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === "undefined") return "light";
     const stored = window.localStorage.getItem("onyx-theme") as Theme | null;
@@ -210,7 +211,31 @@ export default function ProductPage({ locale }: { locale: Locale }) {
         <section className="product-section product-section--flow">
           <div className="shell-content">
             <div className="product-flow-intro"><div className="product-kicker"><span />{t.flowTag}</div><h2>{t.flowTitleA}<br /><em>{t.flowTitleB}</em></h2><p>{t.flowBody}</p></div>
-            <div className="product-flow">{t.flow.map((item, i) => <div className="product-flow__item" key={item}><span>{String(i + 1).padStart(2, "0")}</span><strong>{item}</strong>{i < t.flow.length - 1 && <i aria-hidden="true" />}</div>)}</div>
+            <div className="product-flow" role="tablist" aria-label={t.flowTitleA + " " + t.flowTitleB}>
+              {t.flow.map((item, i) => {
+                const active = i === activeFlow;
+                return (
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={active}
+                    className={"product-flow__item " + (active ? "product-flow__item--active" : "")}
+                    key={item}
+                    onClick={() => setActiveFlow(i)}
+                    onMouseEnter={() => setActiveFlow(i)}
+                    onFocus={() => setActiveFlow(i)}
+                  >
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                    <strong>{item}</strong>
+                    {i < t.flow.length - 1 && <i aria-hidden="true" />}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="product-flow__detail" role="tabpanel">
+              <span className="mono-label">{String(activeFlow + 1).padStart(2, "0")} / {t.flow[activeFlow]}</span>
+              <p>{t.cards[activeFlow]?.[3] ?? t.flowBody}</p>
+            </div>
           </div>
         </section>
 
