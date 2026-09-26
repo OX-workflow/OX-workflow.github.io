@@ -157,6 +157,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [scrolled, setScrolled] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const [activeModel, setActiveModel] = useState(0);
+  const [heroActive, setHeroActive] = useState(false);
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
 
@@ -172,6 +173,32 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const hero = document.querySelector<HTMLElement>(".hero");
+    if (!hero) return;
+
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+      hero.style.setProperty("--hero-pointer-x", x.toFixed(3));
+      hero.style.setProperty("--hero-pointer-y", y.toFixed(3));
+      setHeroActive(true);
+    };
+    const onPointerLeave = () => {
+      hero.style.setProperty("--hero-pointer-x", "0");
+      hero.style.setProperty("--hero-pointer-y", "0");
+      setHeroActive(false);
+    };
+
+    hero.addEventListener("pointermove", onPointerMove, { passive: true });
+    hero.addEventListener("pointerleave", onPointerLeave);
+    return () => {
+      hero.removeEventListener("pointermove", onPointerMove);
+      hero.removeEventListener("pointerleave", onPointerLeave);
+    };
   }, []);
 
   useEffect(() => {
@@ -191,6 +218,17 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
         <section className="hero section-shell hero--ready">
           <div className="hero__veil" />
           <div className="hero__grid" aria-hidden="true" />
+          <div className={"hero__system " + (heroActive ? "hero__system--active" : "")} aria-hidden="true">
+            <div className="hero__orbit hero__orbit--outer" />
+            <div className="hero__orbit hero__orbit--middle" />
+            <div className="hero__orbit hero__orbit--inner" />
+            <div className="hero__core"><img src={assets.signalMark} alt="" width="512" height="512" decoding="async" /></div>
+            <span className="hero__node hero__node--one" />
+            <span className="hero__node hero__node--two" />
+            <span className="hero__node hero__node--three" />
+            <span className="hero__signal hero__signal--one" />
+            <span className="hero__signal hero__signal--two" />
+          </div>
           <div className="hero__content shell-content">
             <SignalTag>{t(commercialMessage.category)}</SignalTag>
             <h1>{t(commercialMessage.headline).split(". ")[0]}.<br /><em>{t(commercialMessage.headline).split(". ").slice(1).join(". ")}</em></h1>
