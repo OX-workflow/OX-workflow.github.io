@@ -56,6 +56,17 @@ const copy = {
         ],
       },
       {
+        label: "05 / COMMERCIAL & DILIGENCE",
+        title: "Prepare for a substantive enterprise evaluation.",
+        body:
+          "Commercial evaluation is not limited to a product demo. The relevant record can include deployment architecture, security boundaries, licensing scope, proprietary core IP, customer/background/custom IP treatment, software inventory, support terms, and the evidence needed to validate the target operating environment.",
+        items: [
+          ["LICENSING & IP", "Understand the boundary between ONYX Core, ONYX background IP, customer data, customer confidential information, configuration, and custom feature rights.", "Open pricing & licensing", "/en/pricing/"],
+          ["TECHNICAL DILIGENCE", "Use architecture, security, repository evidence, tests, deployment documentation, and the documented maturity of capabilities as the technical diligence base.", "Open architecture", "/en/architecture/"],
+          ["EVALUATION PATH", "Start with the customer's operating constraints, validate a scoped workflow, test connectivity and authority behavior, then examine deployment and commercial requirements.", "Discuss an evaluation", "/en/contact/"],
+        ],
+      },
+      {
         label: "04 / RELATED METHOD",
         title: "Understand the methodology behind the system.",
         body:
@@ -65,11 +76,11 @@ const copy = {
         ],
       },
     ],
-    boundaryLabel: "05 / PUBLICATION BOUNDARY",
+    boundaryLabel: "06 / PUBLICATION BOUNDARY",
     boundaryTitle: "Public reference. Controlled product surface.",
     boundaryBody:
-      "These resources are intended to explain the public product and engineering record. They do not imply that every repository artifact is a commercial deliverable, nor that future or research capabilities are generally shipped. ONYX's commercialization position treats the core product and intellectual property as proprietary.",
-    finalLabel: "06 / NEXT",
+      "These resources explain the public product and engineering record. They do not imply that every repository artifact is a commercial deliverable, that a planned capability is shipped, or that a research direction has passed production validation. ONYX's commercialization position treats the core product and intellectual property as proprietary; customer rights and any custom-development rights are defined separately by agreement.",
+    finalLabel: "07 / NEXT",
     finalTitle: "Need the system in an operational context?",
     finalBody:
       "Use the contact path for a substantive product or enterprise discussion grounded in your operating environment, connectivity, authority model, and deployment constraints.",
