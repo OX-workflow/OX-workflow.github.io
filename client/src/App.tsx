@@ -1,5 +1,4 @@
 import Home from "./pages/Home";
-import SitePage, { type PageKey } from "./pages/SitePage";
 import ProductPage from "./pages/ProductPage";
 import ArchitecturePage from "./pages/ArchitecturePage";
 import SolutionsPage from "./pages/SolutionsPage";
@@ -13,6 +12,20 @@ import ResourcesPage from "./pages/ResourcesPage";
 import ContactPage from "./pages/ContactPage";
 
 type Locale = "en" | "fa";
+
+type PageKey =
+  | "product"
+  | "solutions"
+  | "architecture"
+  | "security"
+  | "roadmap"
+  | "about"
+  | "resources"
+  | "contact"
+  | "investors"
+  | "pricing"
+  | "customers";
+
 
 const pageKeys: PageKey[] = [
   "product",
@@ -87,10 +100,6 @@ export default function App() {
 
   if (page === "contact") {
     return <ContactPage locale={locale} />;
-  }
-
-  if (page) {
-    return <SitePage locale={locale} page={page} />;
   }
 
   return <Home initialLocale={locale} />;
