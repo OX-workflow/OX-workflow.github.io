@@ -29,6 +29,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+      - run: pnpm validate:seo
+      - run: pnpm validate:a11y
+      - run: pnpm validate:performance
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -44,3 +47,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Production smoke test
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          for path in / /en/ /fa/ /en/product/ /en/solutions/ /en/architecture/ /en/security/ /en/roadmap/ /en/about/ /en/resources/ /en/contact/ /en/investors/ /en/pricing/ /en/customers/ /fa/product/ /fa/customers/; do
+            curl --fail --silent --show-error --location --max-time 20 "${PAGE_URL%/}${path}" >/tmp/onyx-page.html
+            grep -q '<title>' /tmp/onyx-page.html
+          done
+          echo "Production Pages smoke test passed for core English and Farsi routes."
