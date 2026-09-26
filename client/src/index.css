@@ -1524,7 +1524,7 @@ html[data-theme="light"] {
 .product-visuals__kicker span{width:1.8rem;height:1px;background:var(--product-blue);display:block}
 .product-visuals h2{font-size:clamp(2rem,4.8vw,4.6rem);line-height:.98;letter-spacing:-.045em;margin:.8rem 0 1rem}
 .product-visuals p{max-width:680px;color:var(--product-muted);line-height:1.75}
-.product-visuals__hero-frame{position:relative;border:1px solid var(--product-line);background:var(--product-surface);box-shadow:0 28px 80px rgba(8,28,58,.16);overflow:hidden}
+.product-visuals__hero-frame{position:relative;margin:0;border:1px solid var(--product-line);background:var(--product-surface);box-shadow:0 28px 80px rgba(8,28,58,.16);overflow:hidden}
 .product-visuals__hero-frame img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
 .product-visuals__hero-frame>span{position:absolute;left:1rem;bottom:1rem;padding:.42rem .6rem;background:rgba(5,10,18,.82);color:#fff;font-size:.62rem;letter-spacing:.16em}
 .product-visuals__scan{position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(79,140,255,.09) 48%,transparent 52%);animation:product-visual-scan 7s ease-in-out infinite;pointer-events:none}
@@ -2453,4 +2453,121 @@ html[data-theme="dark"] .commercial-frame__card:focus-visible{
   .commercial-frame__card,
   .commercial-frame__card::after,
   .commercial-frame__card-head svg{transition:none}
+}
+
+/* Product evidence refinement — semantic captions */
+.product-visuals__caption{
+  display:grid;
+  gap:.28rem;
+  padding:.85rem .1rem 0;
+}
+.product-visuals__caption>span{
+  color:var(--product-muted);
+  font-size:.55rem;
+  font-weight:700;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.product-visuals__caption strong{
+  color:var(--product-ink);
+  font-size:.9rem;
+  line-height:1.2;
+}
+.product-visuals__caption p{
+  margin:0;
+  color:var(--product-muted);
+  font-size:.68rem;
+  line-height:1.6;
+}
+.product-visuals__hero-frame .product-visuals__caption{
+  position:relative;
+  padding:1rem 1.1rem 1.15rem;
+  border-top:1px solid var(--product-line);
+  background:var(--product-surface);
+}
+.product-visuals__hero-frame .product-visuals__caption>span{
+  color:#8cb9ff;
+}
+.product-visuals__mobile-grid .product-visuals__caption{
+  padding-top:.7rem;
+}
+@media(max-width:600px){
+  .product-visuals__caption strong{font-size:.82rem}
+  .product-visuals__caption p{font-size:.65rem}
+}
+
+/* Homepage — one operational scenario, one product proof */
+.demo-evidence--single{
+  padding-bottom:clamp(3.5rem,7vw,7rem);
+}
+.homepage-proof{
+  margin:0;
+}
+.homepage-proof__image{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(127,160,196,.18);
+  background:#05070b;
+  box-shadow:0 28px 80px rgba(8,28,58,.2);
+}
+.homepage-proof__image img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.homepage-proof__image span{
+  position:absolute;
+  inset-inline-start:1rem;
+  inset-block-end:1rem;
+  max-width:calc(100% - 2rem);
+  padding:.48rem .65rem;
+  background:rgba(5,10,18,.84);
+  color:#fff;
+  font-size:.58rem;
+  line-height:1.4;
+  letter-spacing:.08em;
+}
+.homepage-proof figcaption{
+  margin-top:.8rem;
+  color:var(--text-muted,#718096);
+  font-size:.66rem;
+  letter-spacing:.06em;
+}
+.authority-showcase--text-only{
+  display:flex;
+  justify-content:flex-start;
+}
+.authority-showcase--text-only .authority-showcase__copy{
+  max-width:720px;
+}
+.execution--text-only{
+  padding-top:clamp(3rem,6vw,6rem);
+}
+.execution--text-only .execution__content{
+  max-width:none;
+}
+@media(prefers-reduced-motion:reduce){
+  .homepage-proof__image img{transition:none}
+}
+
+/* Operational demo — distinguish illustrative values from live telemetry */
+.operational-demo__illustrative{
+  display:inline-flex;
+  align-items:center;
+  margin-top:.55rem;
+  padding:.3rem .45rem;
+  border:1px solid rgba(57,217,255,.2);
+  color:#8ea6c3;
+  font-size:.48rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  line-height:1.3;
+  text-transform:uppercase;
+}
+.operational-demo__forecast-meta b{
+  padding:.18rem .32rem;
+  border:1px solid rgba(255,139,185,.25);
+}
+@media(prefers-reduced-motion:reduce){
+  .operational-demo__illustrative{transition:none}
 }

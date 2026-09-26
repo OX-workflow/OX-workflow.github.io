@@ -15,7 +15,6 @@ import {
   Target,
 } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
-import ProductVisuals from "../components/ProductVisuals";
 import OperationalDemo from "../components/OperationalDemo";
 import { commercialMessage } from "../content/commercial";
 
@@ -23,8 +22,6 @@ type Locale = "en" | "fa";
 type Localized = { en: string; fa: string };
 
 const assets = {
-  authority: "/assets/product/mission-operations.png",
-  execution: "/assets/product/operational-overview.png",
   nexus: "/assets/product/secure-browser-access.webp",
   signalMark: "/assets/onyx-symbol.svg",
   wideLogoLight: "/assets/onyx-horizontal-light.svg",
@@ -318,7 +315,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
           </div>
         </div>
 
-        <ProductVisuals locale={locale} variant="hero" />
 
         <section id="problem" className="problem section-shell">
           <div className="shell-content split-grid split-grid--problem">
@@ -383,11 +379,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
             <div className="section-heading"><SignalTag>{t(text.experience.tag)}</SignalTag><h2>{t(text.experience.title)}</h2></div>
             <p>{t(text.experience.body)}</p>
           </div>
-          <div className="authority-showcase shell-content">
-            <div className="authority-showcase__image">
-              <img src={assets.authority} alt="ONYX mission operations interface" width="1440" height="1000" loading="lazy" decoding="async" />
-              <div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" />
-            </div>
+          <div className="authority-showcase authority-showcase--text-only shell-content">
             <div className="authority-showcase__copy">
               <span className="mono-label">{t(commercialMessage.category)}</span>
               <h3>{t(text.experience.title)}</h3>
@@ -397,8 +389,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
           </div>
         </section>
 
-        <section className="execution section-shell">
-          <div className="execution__image-wrap"><img src={assets.execution} alt="ONYX operational overview interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="execution__image-fade" /></div>
+        <section className="execution execution--text-only section-shell">
           <div className="shell-content execution__content">
             <div className="section-heading"><SignalTag>{t(text.lifecycle.tag)}</SignalTag><h2>{t(text.lifecycle.title)}</h2><p>{t(text.lifecycle.body)}</p></div>
             <div className="execution-path" role="tablist" aria-label={t(text.lifecycle.title)}>
@@ -430,16 +421,22 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
         </section>
 
         <OperationalDemo locale={locale} />
-        <section className="demo-evidence section-shell" aria-label={locale === "fa" ? "شواهد محصول" : "Product evidence"}>
+        <section className="demo-evidence demo-evidence--single section-shell" aria-label={locale === "fa" ? "شاهد محصول" : "Product proof"}>
           <div className="shell-content">
             <div className="demo-evidence__head">
               <div>
-                <div className="signal-tag"><span className="signal-tag__node" /><span>{locale === "fa" ? "۰۶ / شواهد محصول" : "06 / Product evidence"}</span></div>
-                <h2>{locale === "fa" ? "عملیات را ببینید." : "See the operation."}<br /><em>{locale === "fa" ? "نه فقط توضیح آن را." : "Not just the explanation."}</em></h2>
+                <div className="signal-tag"><span className="signal-tag__node" /><span>{locale === "fa" ? "۰۶ / شاهد محصول" : "06 / Product proof"}</span></div>
+                <h2>{locale === "fa" ? "یک عملیات." : "One operation."}<br /><em>{locale === "fa" ? "یک سطح واقعی." : "One real surface."}</em></h2>
               </div>
-              <p>{locale === "fa" ? "تصاویر واقعی محصول، روایت عملیاتی را به سطح رابط کاربری متصل می‌کنند." : "Real product imagery closes the gap between the operational story and the interface that carries it."}</p>
+              <p>{locale === "fa" ? "نمای مأموریت در ONYX همان جریان دمو را به یک سطح واقعی محصول متصل می‌کند: وضعیت، اختیار، جزئیات مأموریت و خط زمانی تصمیم." : "The mission view connects the demo to one real product surface: status, authority, mission detail, and the decision timeline."}</p>
             </div>
-            <ProductVisuals locale={locale} variant="gallery" />
+            <figure className="homepage-proof">
+              <div className="homepage-proof__image">
+                <img src="/assets/product/Desktop7.webp?v=2026-09-26-2" alt={locale === "fa" ? "نمای مأموریت ONYX با وضعیت اختیار و خط زمانی" : "ONYX mission view showing authority state and operational timeline"} loading="lazy" decoding="async" />
+                <span>{locale === "fa" ? "DESKTOP / 07 · جزئیات مأموریت و خط زمانی اختیار" : "DESKTOP / 07 · Mission detail & authority timeline"}</span>
+              </div>
+              <figcaption>{locale === "fa" ? "شاهد رابط کاربری برای همان سناریوی عملیاتی." : "Interface evidence for the same operational scenario."}</figcaption>
+            </figure>
           </div>
         </section>
 
