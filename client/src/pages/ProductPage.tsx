@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ChevronRight, Moon, Sun } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import ProductVisuals from "../components/ProductVisuals";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
