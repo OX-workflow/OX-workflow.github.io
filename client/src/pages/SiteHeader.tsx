@@ -40,6 +40,8 @@ export default function SiteHeader({
   const rtl = locale === "fa";
   const [menuOpen, setMenuOpen] = useState(false);
   const home = `/${locale}/`;
+  const otherLocale = locale === "en" ? "fa" : "en";
+  const languageHref = activePage ? `/${otherLocale}/${activePage}/` : `/${otherLocale}/`;
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -85,7 +87,7 @@ export default function SiteHeader({
           <a className="onyx-global-header__home" href={home} aria-current={activePage === undefined ? "page" : undefined}>
             {labels.home}
           </a>
-          <a className="onyx-global-header__language" href={`/${locale === "en" ? "fa" : "en"}/`}>
+          <a className="onyx-global-header__language" href={languageHref}>
             {labels.language}
           </a>
           <button
@@ -123,7 +125,7 @@ export default function SiteHeader({
           </a>
         ))}
         <a href={`/${locale}/contact/`} onClick={closeMenu} className="onyx-global-mobile-nav__contact">{labels.contact}</a>
-        <a href={`/${locale === "en" ? "fa" : "en"}/`} onClick={closeMenu}>{labels.language}</a>
+        <a href={languageHref} onClick={closeMenu}>{labels.language}</a>
         <button type="button" onClick={onToggleTheme} className="onyx-global-mobile-nav__theme">
           {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           <span>{theme === "dark" ? labels.light : labels.dark}</span>
