@@ -5,9 +5,12 @@ import ArchitecturePage from "./pages/ArchitecturePage";
 import SolutionsPage from "./pages/SolutionsPage";
 import SecurityPage from "./pages/SecurityPage";
 import AboutPage from "./pages/AboutPage";
-import RoadmapPage from "./pages/RoadmapPage";
 import PricingLicensingPage from "./pages/PricingLicensingPage";
 import CustomersPage from "./pages/CustomersPage";
+import RoadmapPage from "./pages/RoadmapPage";
+import InvestorsPage from "./pages/InvestorsPage";
+import ResourcesPage from "./pages/ResourcesPage";
+import ContactPage from "./pages/ContactPage";
 
 type Locale = "en" | "fa";
 
@@ -68,6 +71,22 @@ export default function App() {
 
   if (page === "customers") {
     return <CustomersPage locale={locale} />;
+  }
+
+  if (page === "roadmap") {
+    return <RoadmapPage locale={locale} />;
+  }
+
+  if (page === "investors") {
+    return <InvestorsPage locale={locale} />;
+  }
+
+  if (page === "resources") {
+    return <ResourcesPage locale={locale} />;
+  }
+
+  if (page === "contact") {
+    return <ContactPage locale={locale} />;
   }
 
   if (page) {
