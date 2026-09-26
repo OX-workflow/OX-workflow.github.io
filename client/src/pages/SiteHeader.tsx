@@ -38,10 +38,16 @@ export default function SiteHeader({
   activePage?: string;
 }) {
   const rtl = locale === "fa";
-  const [menuOpen, setMenuOpen] = useState(false);
   const home = `/${locale}/`;
-  const otherLocale = locale === "en" ? "fa" : "en";
-  const languageHref = activePage ? `/${otherLocale}/${activePage}/` : `/${otherLocale}/`;
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 220);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -53,8 +59,6 @@ export default function SiteHeader({
   }, [menuOpen]);
 
   const labels = {
-    home: rtl ? "خانه" : "Home",
-    language: rtl ? "English" : "فارسی",
     contact: rtl ? "تماس / دمو" : "Contact / Demo",
     light: rtl ? "حالت روشن" : "Light mode",
     dark: rtl ? "حالت تاریک" : "Dark mode",
@@ -63,6 +67,18 @@ export default function SiteHeader({
   const closeMenu = () => setMenuOpen(false);
 
   return (
+    <>
+      <div className="onyx-intro" aria-hidden="true">
+        <div className="onyx-intro__field">
+          <div className="onyx-intro__halo" />
+          <div className="onyx-intro__ring">
+            <img src="/assets/onyx-symbol.svg" alt="" width="512" height="512" decoding="async" />
+          </div>
+          <div className="onyx-intro__wordmark">ONYX</div>
+          <div className="onyx-intro__signal" />
+        </div>
+      </div>
+
     <header className="onyx-global-header" dir="ltr">
       <div className="onyx-global-header__inner">
         <a className="onyx-global-header__logo" href={home} aria-label={rtl ? "صفحه اصلی ONYX" : "ONYX home"}>
@@ -84,21 +100,6 @@ export default function SiteHeader({
         </nav>
 
         <div className="onyx-global-header__tools">
-          <a className="onyx-global-header__home" href={home} aria-current={activePage === undefined ? "page" : undefined}>
-            {labels.home}
-          </a>
-          <a className="onyx-global-header__language" href={languageHref}>
-            {labels.language}
-          </a>
-          <button
-            className="onyx-global-header__theme"
-            type="button"
-            onClick={onToggleTheme}
-            aria-label={theme === "dark" ? labels.light : labels.dark}
-            title={theme === "dark" ? labels.light : labels.dark}
-          >
-            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
           <a className="onyx-global-header__contact" href={`/${locale}/contact/`}>
             {labels.contact}
             <ChevronRight size={14} />
@@ -118,19 +119,40 @@ export default function SiteHeader({
       </div>
 
       <nav id="onyx-global-mobile-nav" className={`onyx-global-mobile-nav ${menuOpen ? "onyx-global-mobile-nav--open" : ""}`} aria-hidden={!menuOpen}>
-        <a href={home} onClick={closeMenu}>{labels.home}</a>
         {navigation.map(([page, label]) => (
           <a key={page} href={`/${locale}/${page}/`} onClick={closeMenu} aria-current={activePage === page ? "page" : undefined}>
             {label[locale]}
           </a>
         ))}
         <a href={`/${locale}/contact/`} onClick={closeMenu} className="onyx-global-mobile-nav__contact">{labels.contact}</a>
-        <a href={languageHref} onClick={closeMenu}>{labels.language}</a>
-        <button type="button" onClick={onToggleTheme} className="onyx-global-mobile-nav__theme">
-          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          <span>{theme === "dark" ? labels.light : labels.dark}</span>
-        </button>
       </nav>
+
+      <div className="onyx-floating-controls" dir="ltr" aria-label={rtl ? "کنترل‌های شناور" : "Floating controls"}>
+        <button
+          className={`onyx-floating-controls__back-top ${scrolled ? "onyx-floating-controls__back-top--visible" : ""}`}
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label={rtl ? "بازگشت به بالا" : "Back to top"}
+          title={rtl ? "بازگشت به بالا" : "Back to top"}
+          tabIndex={scrolled ? 0 : -1}
+        >
+          ↑
+        </button>
+        <div className="onyx-floating-controls__group" role="group" aria-label={rtl ? "زبان" : "Language"}>
+          <a className={`onyx-floating-controls__language ${locale === "en" ? "is-active" : ""}`} href={activePage ? `/en/${activePage}/` : "/en/"} lang="en" aria-current={locale === "en" ? "page" : undefined}>EN</a>
+          <a className={`onyx-floating-controls__language ${locale === "fa" ? "is-active" : ""}`} href={activePage ? `/fa/${activePage}/` : "/fa/"} lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined}>فارسی</a>
+        </div>
+        <button
+          className="onyx-floating-controls__theme"
+          type="button"
+          onClick={onToggleTheme}
+          aria-label={theme === "dark" ? labels.light : labels.dark}
+          title={theme === "dark" ? labels.light : labels.dark}
+        >
+          {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
+      </div>
     </header>
+    </>
   );
 }
