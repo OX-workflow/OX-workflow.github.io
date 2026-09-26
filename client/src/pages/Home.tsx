@@ -228,6 +228,7 @@ function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (loca
 
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
+  const [scrolled, setScrolled] = useState(false);
   const [launching, setLaunching] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
@@ -238,6 +239,13 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     document.documentElement.lang = preferred;
     document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
   }, [initialLocale]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 32);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
 
   useEffect(() => {
