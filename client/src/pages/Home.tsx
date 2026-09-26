@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
 import ProductVisuals from "../components/ProductVisuals";
+import OperationalDemo from "../components/OperationalDemo";
 import { commercialMessage } from "../content/commercial";
 
 type Locale = "en" | "fa";
@@ -366,6 +367,8 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
             </div>
           </div>
         </section>
+
+        <OperationalDemo locale={locale} />
 
         <section className="accountability section-shell">
           <div className="shell-content accountability__layout">
