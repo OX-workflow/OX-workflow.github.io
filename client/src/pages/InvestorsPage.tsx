@@ -24,7 +24,7 @@ const copy = {
       { label: "03 / ROADMAP", title: "Expansion follows the foundation.", body: "The published roadmap distinguishes what is current from what is planned and what remains research.", items: [
         ["CURRENT", "Local-first execution, synchronization, authority, durable operational state, and evidence/auditability."],
         ["PLANNED", "Mobile, multi-region, and enterprise deployment expansion."],
-        ["RESEARCH", "Federated operations, agent/plugin interfaces, and policy-aware automation."]
+        ["RESEARCH", "Federated operations, عامل/افزونه interfaces, and policy-aware automation."]
       ]},
       { label: "04 / COMMERCIAL POSTURE", title: "A controlled intellectual-property model.", body: "The commercialization plan treats the ONYX core and intellectual property as proprietary. The public repository is an engineering and documentation surface; commercial rights are intended to be defined through explicit agreements.", items: [
         ["CORE IP", "Proprietary core position; no automatic open-source assumption."],
@@ -40,7 +40,7 @@ const copy = {
     tag: "ONYX / سرمایه‌گذاران", eyebrow: "مرجع سرمایه‌گذاری",
     title: "پلتفرمی بر پایه تداوم عملیات.",
     intro: "مروری مستند بر تز محصول، بنیان فنی، نقشه راه، جایگاه تجاری و حوزه‌های لازم برای بررسی دقیق ONYX.",
-    product: "محصول", architecture: "معماری", security: "امنیت", roadmap: "نقشه راه", contact: "تماس", language: "English", light: "حالت روشن", dark: "حالت تاریک",
+    product: "محصول", architecture: "معماری", security: "امنیت", roadmap: "نقشه راه", contact: "تماس", language: "فارسی", light: "حالت روشن", dark: "حالت تاریک",
     sections: [
       { label: "۰۱ / تز محصول", title: "عملیات باید رکورد مرجع باشد.", body: "ONYX یک پلتفرم عملیات مأموریت‌محور برای تیم‌هایی است که به اجرای کنترل‌شده، اختیار صریح، شواهد پایدار و تداوم در شرایط اتصال کامل، محدود یا قطع‌شده نیاز دارند.", items: [
         ["تداوم", "اجرای محلی‌محور برای در دسترس ماندن کار عملیاتی در زمان اتصال ناپایدار یا قطع‌شده طراحی شده است."],
@@ -55,7 +55,7 @@ const copy = {
       { label: "۰۳ / نقشه راه", title: "توسعه بر پایه بنیاد فعلی انجام می‌شود.", body: "نقشه راه منتشرشده میان قابلیت‌های فعلی، برنامه‌ریزی‌شده و پژوهشی تمایز می‌گذارد.", items: [
         ["فعلی", "اجرای محلی‌محور، همگام‌سازی، اختیار، وضعیت پایدار و شواهد/ممیزی."],
         ["برنامه‌ریزی‌شده", "گسترش موبایل، چندمنطقه‌ای و استقرار سازمانی."],
-        ["پژوهشی", "عملیات فدره، رابط‌های agent/plugin و اتوماسیون آگاه از سیاست."]
+        ["پژوهشی", "عملیات فدره، رابط‌های عامل/افزونه و اتوماسیون آگاه از سیاست."]
       ]},
       { label: "۰۴ / جایگاه تجاری", title: "مدل مالکیت فکری کنترل‌شده.", body: "برنامه تجاری‌سازی، هسته و مالکیت فکری ONYX را اختصاصی در نظر می‌گیرد. مخزن عمومی سطح مهندسی و مستندسازی است و حقوق تجاری باید در توافق‌های صریح تعریف شوند.", items: [
         ["مالکیت فکری", "موضع هسته اختصاصی است و فرض خودکار متن‌باز بودن وجود ندارد."],
