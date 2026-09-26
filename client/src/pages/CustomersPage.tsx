@@ -9,9 +9,9 @@ const copy = {
   en: {
     tag: "ONYX / مشتریان و مطالعات موردی",
     eyebrow: "REFERENCE SCENARIOS",
-    title: "BUILT FOR OPERATIONS THAT CANNOT DEPEND ON PERFECT CONNECTIVITY.",
+    title: "BUILT FOR OPERATIONS WHERE CONTINUITY MATTERS.",
     intro:
-      "ONYX is designed for organizations where authority, execution, evidence, and continuity have to remain connected across offices, field teams, operations centers, and disconnected environments.",
+      "ONYX is designed for organizations where people, work, decisions, and evidence need to stay connected across changing locations and conditions.",
     product: "Product",
     solutions: "Solutions",
     architecture: "Architecture",
@@ -80,7 +80,7 @@ const copy = {
       },
     ],
     fitLabel: "05 / CUSTOMER FIT",
-    fitTitle: "The common requirement is governed continuity.",
+    fitTitle: "The common requirement is controlled continuity.",
     fitBody:
       "The strongest fit is not defined by industry alone. It is defined by an operating environment where work must remain controlled and explainable while people, locations, connectivity, and authority change.",
     fitItems: [
@@ -90,8 +90,8 @@ const copy = {
       ["EVIDENCE-DRIVEN", "Decisions, actions, approvals, files, reports, and operational history need to remain connected."],
       ["RECONSTRUCTABLE", "After the operation, the organization needs to understand who did what, under which authority, and what happened next."],
     ],
-    proofLabel: "06 / WHAT TO VALIDATE",
-    proofTitle: "Turn the reference model into operational proof.",
+    proofLabel: "06 / EVALUATION",
+    proofTitle: "Turn the model into operational proof.",
     proofBody:
       "A customer evaluation should validate the actual environment rather than assume that a marketing scenario proves deployment readiness. The evaluation path should move from a scoped operational workflow to technical validation, then deployment/security review and commercial/legal scoping. Evidence can include connectivity behavior, local execution, synchronization, authorization, conflict handling, auditability, recovery, deployment topology, and the customer's own operational constraints.",
     proofItems: [
@@ -104,7 +104,7 @@ const copy = {
       ["COMMERCIAL BOUNDARY", "Define the license scope, ONYX background IP, customer data/confidential information, and any custom-development treatment before production commitment."],
     ],
     finalLabel: "07 / NEXT",
-    finalTitle: "Bring the operation, not just the use case.",
+    finalTitle: "Bring the operation, not just the industry.",
     finalBody:
       "For a product or enterprise discussion, describe your operating environment, locations, connectivity profile, authority model, critical workflows, and deployment constraints. The evaluation should start from those facts.",
     cta: "Discuss an operational evaluation",
@@ -112,9 +112,9 @@ const copy = {
   fa: {
     tag: "ONYX / مشتریان و مطالعات موردی",
     eyebrow: "سناریوهای مرجع",
-    title: "برای عملیاتی ساخته شده است که نمی‌توانند به اتصال کامل وابسته باشند.",
+    title: "برای عملیاتی ساخته شده است که تداوم در آن اهمیت دارد.",
     intro:
-      "ONYX برای سازمان‌هایی طراحی شده است که در آن‌ها اختیار، اجرا، شواهد و تداوم باید میان دفتر، تیم‌های میدانی، مراکز عملیات و محیط‌های قطع‌ارتباط‌شده همچنان به هم متصل بمانند.",
+      "ONYX برای سازمان‌هایی طراحی شده است که در آن‌ها افراد، کار، تصمیم‌ها و شواهد باید در مکان‌ها و شرایط متغیر به هم متصل بمانند.",
     product: "محصول",
     solutions: "راهکارها",
     architecture: "معماری",
@@ -183,7 +183,7 @@ const copy = {
       },
     ],
     fitLabel: "۰۵ / تناسب مشتری",
-    fitTitle: "نیاز مشترک، تداوم تحت حاکمیت است.",
+    fitTitle: "نیاز مشترک، تداوم کنترل‌شده است.",
     fitBody:
       "تناسب قوی صرفاً با صنعت تعریف نمی‌شود؛ با محیطی تعریف می‌شود که در آن کار باید هنگام تغییر افراد، مکان‌ها، اتصال و اختیار همچنان کنترل‌شده و قابل توضیح باقی بماند.",
     fitItems: [
@@ -193,8 +193,8 @@ const copy = {
       ["شواهدمحور", "تصمیم‌ها، اقدامات، تأییدها، فایل‌ها، گزارش‌ها و تاریخچه عملیاتی باید به هم متصل بمانند."],
       ["قابل بازسازی", "پس از عملیات باید مشخص باشد چه کسی، تحت چه اختیاری، چه کاری انجام داده و سپس چه رخ داده است."],
     ],
-    proofLabel: "۰۶ / موارد قابل اعتبارسنجی",
-    proofTitle: "مدل مرجع را به شواهد عملیاتی تبدیل کنید.",
+    proofLabel: "۰۶ / ارزیابی",
+    proofTitle: "مدل را به شواهد عملیاتی تبدیل کنید.",
     proofBody:
       "ارزیابی مشتری باید محیط واقعی را اعتبارسنجی کند و فرض نکند که یک سناریوی بازاریابی اثبات آمادگی استقرار است. ارزیابی واقعی می‌تواند قطع ارتباط، اجرای محلی، همگام‌سازی، مجوزدهی، تعارض، ممیزی، بازیابی و محدودیت‌های محیط مشتری را بررسی کند.",
     proofItems: [
@@ -205,7 +205,7 @@ const copy = {
       ["بازیابی", "الزامات راه‌اندازی مجدد، replay، پشتیبان‌گیری، بازیابی و بازسازی عملیات را اعتبارسنجی کنید."],
     ],
     finalLabel: "۰۷ / گام بعد",
-    finalTitle: "خود عملیات را بیاورید، نه فقط نام صنعت را.",
+    finalTitle: "خود عملیات را بیاورید، نه فقط نام صنعت.",
     finalBody:
       "برای گفت‌وگوی محصول یا سازمانی، محیط عملیاتی، مکان‌ها، الگوی اتصال، مدل اختیار، جریان‌های حیاتی و محدودیت‌های استقرار خود را توضیح دهید. ارزیابی باید از همین واقعیت‌ها آغاز شود.",
     cta: "گفت‌وگو درباره ارزیابی عملیاتی",
@@ -323,7 +323,7 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
       <footer className="customers-footer">
         <div className="shell-content customers-footer__inner">
           <a href={href("")}><Arrow size={15} />{c.home}</a>
-          <span>ONYX / CUSTOMERS &amp; CASE STUDIES</span>
+          <span>ONYX / CUSTOMER FIT</span>
         </div>
       </footer>
     </main>
