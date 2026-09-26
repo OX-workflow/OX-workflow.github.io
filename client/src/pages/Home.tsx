@@ -15,6 +15,7 @@ import {
   Target,
 } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
+import ProductVisuals from "../components/ProductVisuals";
 import { commercialMessage } from "../content/commercial";
 
 type Locale = "en" | "fa";
