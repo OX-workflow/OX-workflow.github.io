@@ -1976,3 +1976,22 @@ h2 em, h1 em { color: var(--onyx-cyan); }
 
 /* Keep the primary ring brighter than secondary UI accents. */
 .onyx-intro__ring img, .hero-launch__symbol img { mix-blend-mode: normal; }
+
+/* ONYX MOBILE NAV BRAND */
+.onyx-global-mobile-nav__brand {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  padding: 2px 8px 12px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--onyx-header-line);
+}
+.onyx-global-mobile-nav__brand img {
+  display: block;
+  width: 142px;
+  height: auto;
+}
+.onyx-global-mobile-nav__brand:hover { opacity: .92; }
+@media (max-width: 600px) {
+  .onyx-global-mobile-nav__brand img { width: 130px; }
+}
