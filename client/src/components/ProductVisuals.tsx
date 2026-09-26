@@ -3,13 +3,15 @@ import React from "react";
 type Locale = "en" | "fa";
 type Variant = "hero" | "gallery" | "mobile";
 
+const PRODUCT_ASSET_VERSION = "2026-09-26-2";
+
 const desktopAssets = Array.from({ length: 9 }, (_, i) => ({
-  src: `/assets/product/Desktop${i + 1}.webp`,
+  src: `/assets/product/Desktop${i + 1}.webp?v=${PRODUCT_ASSET_VERSION}`,
   label: String(i + 1).padStart(2, "0"),
 }));
 
 const mobileAssets = Array.from({ length: 3 }, (_, i) => ({
-  src: `/assets/product/Mobile${i + 1}.webp`,
+  src: `/assets/product/Mobile${i + 1}.webp?v=${PRODUCT_ASSET_VERSION}`,
   label: String(i + 1).padStart(2, "0"),
 }));
 
