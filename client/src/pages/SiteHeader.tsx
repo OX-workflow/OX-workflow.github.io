@@ -5,22 +5,6 @@ import { primaryNavigation } from "../content/navigation";
 type Locale = "en" | "fa";
 export type Theme = "light" | "dark";
 
-port { ChevronRight, Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { primaryNavigation } from "../content/navigation";
-
-type Locale = "en" | "fa";
-export type Theme = "light" | "dark";
-
-const navigation = [
-  ["product", { en: "Product", fa: "محصول" }],
-  ["solutions", { en: "Solutions", fa: "راهکارها" }],
-  ["architecture", { en: "Architecture", fa: "معماری" }],
-  ["security", { en: "Security", fa: "امنیت" }],
-  ["about", { en: "About", fa: "درباره" }],
-  ["resources", { en: "Resources", fa: "منابع" }],
-] as const;
-
 export function getInitialTheme(): Theme {
   if (typeof document !== "undefined") {
     const preset = document.documentElement.dataset.theme;
@@ -127,8 +111,8 @@ export default function SiteHeader({
       </div>
 
       <nav id="onyx-global-mobile-nav" className={`onyx-global-mobile-nav ${menuOpen ? "onyx-global-mobile-nav--open" : ""}`} aria-hidden={!menuOpen}>
-        {navigation.map(([page, label]) => (
-          <a key={page} href={`/${locale}/${page}/`} onClick={closeMenu} aria-current={activePage === page ? "page" : undefined}>
+        {primaryNavigation.map(({ page, href, label }) => (
+          <a key={page} href={`/${locale}/${href}/`} onClick={closeMenu} aria-current={activePage === href ? "page" : undefined}>
             {label[locale]}
           </a>
         ))}
