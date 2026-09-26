@@ -19,16 +19,6 @@ const copy = {
       ["04","SYNC","Reconcile replicas","Changes move between replicas when communication is available. Vector-clock based synchronization supports convergence, conflict detection, and explicit resolution."],
       ["05","AUDIT","Explain what happened","Operational history and tamper-evident audit partitions provide a trace of actions, decisions, evidence, and verification."],
     ],
-    languageTag:"03 / Ring · Orbit · Grid · Signal",
-    languageTitleA:"The identity",
-    languageTitleB:"maps to the architecture.",
-    languageBody:"ONYX uses the same four-part language to describe system behavior: authority around execution, coordination across replicas, structured operational state, and live signals from events and evidence.",
-    languageItems:[
-      ["RING","AUTHORITY","Controlled execution","Identity and authority boundaries determine which actions are permitted and keep execution inside an explicit control surface."],
-      ["ORBIT","COORDINATION","Synchronization","Replicas, participants, acknowledgements, and reconciliation connect distributed operation without making connectivity the source of authority."],
-      ["GRID","STRUCTURE","Operational state","Durable state, lifecycle, relationships, policies, and event history provide the structured substrate on which the operation exists."],
-      ["SIGNAL","AWARENESS","Events + evidence","Events, audit records, verification, and operational evidence expose what changed, what was observed, and what can be reconstructed."],
-    ],
     localTag:"03 / Local-first execution", localTitleA:"The local node", localTitleB:"is part of the system.",
     localBody:"Local-first means the point of action is not merely a thin terminal for a remote database. A node can operate against the state available to it, persist outcomes, and retain changes for later synchronization. The current architecture supports this resilience model; the public web client should not be read as proof of a complete offline browser experience.",
     localSteps:[
