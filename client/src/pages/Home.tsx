@@ -371,7 +371,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
             <p>{t(text.cta.body)}</p>
             <div className="hero__actions">
               <ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction>
-              <ArrowAction href="/${locale}/architecture/" rtl={isRtl}>{t(text.cta.technology)}</ArrowAction>
+              <ArrowAction href={`/${locale}/architecture/`} rtl={isRtl}>{t(text.cta.technology)}</ArrowAction>
             </div>
           </div>
         </section>
