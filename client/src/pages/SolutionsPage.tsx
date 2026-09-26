@@ -9,39 +9,47 @@ const copy = {
   en: {
     nav:["Product","Solutions","Architecture","Security","About","Resources"],
     tag:"01 / Solutions", titleA:"WHEN THE", titleB:"NETWORK IS NOT ENOUGH.",
-    body:"ONYX is designed for operations where work must continue across distributed teams, intermittent connectivity, and changing conditions. The scenarios differ; the operating model stays consistent.",
+    body:"ONYX is built for operations where authority, work, evidence, and recovery must remain coherent while teams move between connected, degraded, and disconnected conditions.",
     primary:"Explore product", secondary:"Request a demo", home:"Back to home", language:"فارسی", light:"Light mode", dark:"Dark mode",
-    scenarioTag:"02 / Operational scenarios", scenarioTitleA:"Four environments.", scenarioTitleB:"One continuity model.",
-    scenarioBody:"Use cases are expressed as operational conditions rather than industry slogans: where work happens, what fails when connectivity disappears, and what must remain accountable.",
+    scenarioTag:"02 / Operational scenarios", scenarioTitleA:"Four environments.", scenarioTitleB:"Four concrete operations.",
+    scenarioBody:"These are operating patterns, not customer claims. Each scenario shows what the team is trying to do, what authority governs the work, what evidence is produced, and how the operation returns to a coherent state after disruption.",
     scenarios:[
-      ["01","DEFENSE & GOVERNMENT","Distributed command","Field teams need to continue working when links are intermittent, constrained, or unavailable, while operational authority and state remain explicit.","Local execution · controlled sync · authority"],
-      ["02","SPACE OPERATIONS","Mission teams at the edge","Remote or latency-sensitive operations require local state and disciplined reconciliation instead of assuming continuous communication.","Local state · delayed links · reconciliation"],
-      ["03","EMERGENCY RESPONSE","Coordination under disruption","Responders operate in changing conditions where infrastructure may be degraded. The system must preserve useful local state while coordination recovers.","Degraded networks · local work · shared visibility"],
-      ["04","CRITICAL INFRASTRUCTURE","Operations that cannot pause","Infrastructure teams need continuity across sites, devices, and operational roles without turning every action into a dependency on central connectivity.","Distributed sites · operational memory · verification"],
+      ["01","DEFENSE & GOVERNMENT","A distributed mission changes state","A mission lead activates an operation, assigns work to teams, records decisions and approvals, and keeps field teams working when communications become intermittent.","AUTHORITY","Mission activation · delegated roles · scoped access","EVIDENCE","Decisions · approvals · files · operational history","RECOVERY","Local outcomes are preserved and synchronized when connectivity returns."],
+      ["02","SPACE OPERATIONS","A mission operates across delayed links","A mission team plans work against known constraints, executes from available local state, records observations and decisions, and reconciles updates when communication windows reopen.","AUTHORITY","Mission roles · approval boundaries · controlled actions","EVIDENCE","Mission state · observations · files · decision history","RECOVERY","Delayed updates are brought back into the shared operational record under synchronization rules."],
+      ["03","EMERGENCY RESPONSE","An incident unfolds while infrastructure is degraded","An incident lead establishes the response, assigns tasks, tracks changing conditions, shares evidence, and coordinates teams while parts of the network or supporting infrastructure are unavailable.","AUTHORITY","Incident lead · team roles · delegated actions","EVIDENCE","Incident updates · assignments · reports · attached files","RECOVERY","Teams continue from available local state and reconcile the response record as coordination is restored."],
+      ["04","CRITICAL INFRASTRUCTURE","A site incident requires controlled continuity","An operations team records an incident, assigns inspection or maintenance work, captures findings and approvals, and coordinates across sites without making every action dependent on a central connection.","AUTHORITY","Site roles · work ownership · approval scope","EVIDENCE","Inspection findings · work records · approvals · supporting files","RECOVERY","Site changes are synchronized into the broader operational history after connectivity is restored."],
     ],
-    conditionTag:"03 / Operating conditions", conditionTitleA:"The scenario changes.", conditionTitleB:"The invariant does not.",
-    conditionBody:"Across these environments, ONYX applies the same basic operating sequence. The system adapts to the state of the network without making connectivity the definition of operational continuity.",
+    conditionTag:"03 / Operational conditions", conditionTitleA:"The network changes.", conditionTitleB:"The operation keeps its structure.",
+    conditionBody:"ONYX does not define continuity as permanent connectivity. The operating model keeps authority, work, evidence, and state explicit as conditions move from connected to degraded, offline, and restored.",
     conditions:[
-      ["CONNECTED","COORDINATE","Use available connectivity to synchronize state and coordinate teams."],
-      ["DEGRADED","CONTINUE","Keep local work available while communication capacity is constrained."],
-      ["OFFLINE","PRESERVE","Execute against available state and preserve outcomes for reconciliation."],
-      ["RESTORED","RECONCILE","Bring distributed changes together under explicit synchronization rules."],
+      ["CONNECTED","COORDINATE","Use available connectivity to distribute current state, decisions, assignments, and evidence across authorized participants."],
+      ["DEGRADED","CONTINUE","Keep the relevant local operational state available while communication capacity is limited or unreliable."],
+      ["OFFLINE","PRESERVE","Continue against available state, record actions and outcomes locally, and retain them for later reconciliation."],
+      ["RESTORED","RECONCILE","Synchronize distributed changes and return the operation to a coherent shared state under explicit rules."],
     ],
-    valueTag:"04 / Operational value", valueTitleA:"What changes", valueTitleB:"for the operator.",
+    workflowTag:"04 / Workflow anatomy", workflowTitleA:"Every scenario still answers", workflowTitleB:"the same questions.",
+    workflowBody:"The environment changes the operational details. The core questions remain: who may act, what must happen, what proves it happened, and how does the record recover when conditions change?",
+    workflow:[
+      ["01","AUTHORITY","Who may act?","Identity, roles, organizational boundaries, delegation, and approval scope establish the authority for the operation."],
+      ["02","WORK","What must happen?","Missions, tasks, ownership, dependencies, timelines, and state define the work being executed."],
+      ["03","EVIDENCE","What proves it?","Decisions, approvals, files, reports, verification, and operational history connect outcomes to their supporting record."],
+      ["04","RECOVERY","What happens after disruption?","Local state, synchronization, conflict handling, and reconciliation preserve continuity when the operating conditions change."],
+    ],
+    valueTag:"05 / Operational value", valueTitleA:"The result is not", valueTitleB:"just connectivity.",
     values:[
-      ["LESS BLOCKING","Network loss does not automatically become a work stoppage."],
-      ["CLEARER STATE","Operators work from an explicit local operational state rather than an assumed live connection."],
-      ["CONTROLLED RECOVERY","Reconnection is a defined reconciliation event, not an improvised recovery process."],
-      ["VISIBLE RESPONSIBILITY","Authority, action, outcome, and verification remain part of the operational picture."],
+      ["CONTINUITY","Network loss does not automatically become a work stoppage; the relevant local operational state can remain available."],
+      ["AUTHORITY","Actions remain connected to the roles, organizational boundaries, and approval context that govern them."],
+      ["EVIDENCE","Operational decisions and outcomes can carry their supporting records instead of being reconstructed from disconnected tools."],
+      ["RECOVERY","Reconnection becomes an explicit synchronization and reconciliation step rather than an improvised handoff."],
     ],
-    boundaryTag:"05 / Fit boundaries", boundaryTitleA:"Where ONYX", boundaryTitleB:"should not be overclaimed.",
-    boundaryBody:"The solution model describes environments ONYX is intended to address. It does not mean every organization or workflow requires the platform, nor does it imply a particular certification, deployment guarantee, or field result.",
+    boundaryTag:"06 / Fit boundaries", boundaryTitleA:"Concrete scenarios.", boundaryTitleB:"No invented case studies.",
+    boundaryBody:"The scenarios on this page are representative operating patterns derived from ONYX's documented capabilities and target environments. They are not claims that ONYX has been deployed by a named customer or achieved a particular field result.",
     boundaries:[
-      ["DOCUMENTED FIT","Distributed operations where continuity, synchronization, and authority are meaningful requirements."],
-      ["REQUIRES DESIGN","Security controls, identity models, retention, compliance, and deployment topology depend on the target environment."],
-      ["NOT A CLAIM","No certification, customer outcome, or operational deployment should be inferred unless separately documented."],
+      ["DOCUMENTED FIT","Distributed, authority-sensitive operations where continuity, synchronization, evidence, and reconstruction matter."],
+      ["SCENARIO, NOT PROOF","Defense, space, emergency response, and critical-infrastructure examples describe intended operating patterns; they are not customer testimonials."],
+      ["ENVIRONMENT-SPECIFIC","Identity, security controls, retention, compliance, deployment topology, and recovery procedures must be designed for the target organization."],
     ],
-    ctaTag:"06 / Next", ctaTitleA:"Map your operation", ctaTitleB:"to the model.", ctaBody:"Start with the product model, inspect the architecture, or contact the team to discuss a concrete operational environment.",
+    ctaTag:"07 / Next", ctaTitleA:"Take a real operation", ctaTitleB:"through the model.", ctaBody:"Start with the product lifecycle, inspect the architecture behind synchronization and state, or discuss a concrete operating environment with the team.",
     product:"View product", architecture:"View architecture", contact:"Contact the team"
   },
   fa: {
@@ -93,8 +101,9 @@ export default function SolutionsPage({locale}:{locale:Locale}) {
     <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="solutions" />
     <main>
       <section className="solutions-hero"><div className="solutions-hero__grid" aria-hidden="true"/><div className="shell-content"><div className="solutions-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="solutions-actions"><a className="solutions-button solutions-button--primary" href={link("product")}>{t.primary}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="solutions-button" href={link("contact")}>{t.secondary}</a></div><a className="solutions-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>
-      <section className="solutions-section"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.scenarioTag}</div><h2>{t.scenarioTitleA}<br/><em>{t.scenarioTitleB}</em></h2><p>{t.scenarioBody}</p></div><div className="solutions-scenarios">{t.scenarios.map(([n,sector,title,body,tags])=><article key={n}><header><span>{n}</span><b>{sector}</b></header><h3>{title}</h3><p>{body}</p><small>{tags}</small></article>)}</div></div></section>
+      <section className="solutions-section"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.scenarioTag}</div><h2>{t.scenarioTitleA}<br/><em>{t.scenarioTitleB}</em></h2><p>{t.scenarioBody}</p></div><div className="solutions-scenarios">{locale === "en" ? copy.en.scenarios.map(([n,sector,title,body,aLabel,aText,eLabel,eText,rLabel,rText]) => <article key={n}><header><span>{n}</span><b>{sector}</b></header><h3>{title}</h3><p>{body}</p><div className="solutions-scenario-detail"><div><small>{aLabel}</small><strong>{aText}</strong></div><div><small>{eLabel}</small><strong>{eText}</strong></div><div><small>{rLabel}</small><strong>{rText}</strong></div></div></article>) : copy.fa.scenarios.map(([n,sector,title,body,tags]) => <article key={n}><header><span>{n}</span><b>{sector}</b></header><h3>{title}</h3><p>{body}</p><small>{tags}</small></article>)}</div></div></section>
       <section className="solutions-section solutions-section--conditions"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.conditionTag}</div><h2>{t.conditionTitleA}<br/><em>{t.conditionTitleB}</em></h2><p>{t.conditionBody}</p></div><div className="solutions-conditions">{t.conditions.map(([state,title,body],i)=><article key={state}><span>0{i+1}</span><b>{state}</b><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
+      {locale === "en" && <section className="solutions-section solutions-section--workflow"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{copy.en.workflowTag}</div><h2>{copy.en.workflowTitleA}<br/><em>{copy.en.workflowTitleB}</em></h2><p>{copy.en.workflowBody}</p></div><div className="solutions-workflow">{copy.en.workflow.map(([n,title,question,body])=><article key={n}><span>{n}</span><small>{title}</small><h3>{question}</h3><p>{body}</p></article>)}</div></div></section>}
       <section className="solutions-section"><div className="shell-content"><div className="solutions-heading"><div className="solutions-kicker"><span/>{t.valueTag}</div><h2>{t.valueTitleA}<br/><em>{t.valueTitleB}</em></h2></div><div className="solutions-values">{t.values.map(([title,body],i)=><article key={title}><span>0{i+1}</span><h3>{title}</h3><p>{body}</p></article>)}</div></div></section>
       <section className="solutions-section solutions-section--boundaries"><div className="shell-content"><div className="solutions-two-col"><div><div className="solutions-kicker"><span/>{t.boundaryTag}</div><h2>{t.boundaryTitleA}<br/><em>{t.boundaryTitleB}</em></h2><p>{t.boundaryBody}</p></div><div className="solutions-boundaries">{t.boundaries.map(([a,b])=><article key={a}><b>{a}</b><p>{b}</p></article>)}</div></div></div></section>
       <section className="solutions-final"><div className="shell-content"><div className="solutions-kicker"><span/>{t.ctaTag}</div><h2>{t.ctaTitleA}<br/><em>{t.ctaTitleB}</em></h2><p>{t.ctaBody}</p><div className="solutions-actions"><a className="solutions-button solutions-button--primary" href={link("product")}>{t.product}</a><a className="solutions-button" href={link("architecture")}>{t.architecture}</a><a className="solutions-button" href={link("contact")}>{t.contact}</a></div></div></section>
