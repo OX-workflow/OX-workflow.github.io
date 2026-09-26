@@ -21,7 +21,6 @@ import {
   X,
   Moon,
   Sun,
-  ArrowUp,
 } from "lucide-react";
 import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
@@ -222,13 +221,8 @@ function ArrowAction({ children, href, solid = false, rtl = false }: { children:
   return <a className={`arrow-action ${solid ? "arrow-action--solid" : ""}`} href={href}><Arrow size={15} strokeWidth={1.8} /><span>{children}</span></a>;
 }
 
-function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (locale: Locale) => void }) {
-  return <div className="language-control" aria-label={locale === "fa" ? "انتخاب زبان" : "Language selector"}><a href="/en/" lang="en" aria-current={locale === "en" ? "page" : undefined} onClick={() => onSelect("en")}>EN</a><a href="/fa/" lang="fa" dir="rtl" aria-current={locale === "fa" ? "page" : undefined} onClick={() => onSelect("fa")}>فارسی</a></div>;
-}
-
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
-  const [scrolled, setScrolled] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -239,12 +233,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     document.documentElement.dir = preferred === "fa" ? "rtl" : "ltr";
   }, [initialLocale]);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("onyx-theme", theme);
@@ -292,8 +280,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section id="contact" className="final-cta section-shell"><div className="final-cta__rail" aria-hidden="true"><span /><span /><span /></div><div className="shell-content final-cta__content"><img src={assets.signalMark} alt="ONYX signal graphic" className="final-cta__mark" width="512" height="512" loading="lazy" decoding="async" /><SignalTag>{t(text.cta.tag)}</SignalTag><h2>{t(text.cta.titleA)}<br /><em>{t(text.cta.titleB)}</em></h2><p>{t(text.cta.body)}</p><div className="hero__actions"><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=ONYX%20Enterprise%20Demo" solid rtl={isRtl}>{t(text.cta.demo)}</ArrowAction><ArrowAction href="mailto:Soheil.Mozaffari@gmail.com?subject=Contact%20ONYX" rtl={isRtl}>{t(text.cta.contact)}</ArrowAction></div></div></section>
       </main>
-
-      <button className={"back-to-top " + (scrolled ? "back-to-top--visible" : "")} type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={isRtl ? "بازگشت به بالا" : "Back to top"}><ArrowUp size={17} /></button>
 
       <footer className="site-footer"><div className="shell-content site-footer__content"><div className="site-footer__brand"><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="eager" decoding="async" /></div><div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com">Soheil.Mozaffari@gmail.com</a> · <a href="https://bound-method.github.io/" target="_blank" rel="noreferrer">BOUND Method</a></span></div></div></footer>
     </div>
