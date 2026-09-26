@@ -12,8 +12,8 @@ const copy = {
     intro: "A concise view of the product thesis, technical foundation, roadmap, commercial posture, and diligence boundaries around ONYX.",
     product: "Product", architecture: "Architecture", security: "Security", roadmap: "Roadmap", contact: "Contact", language: "فارسی", light: "Light mode", dark: "Dark mode",
     sections: [
-      { label: "01 / PRODUCT THESIS", title: "Operations become the governed record.", body: "ONYX is a mission operations platform for teams that need controlled execution, explicit authority, durable evidence, and continuity across connected, degraded, and offline conditions.", items: [
-        ["CONTINUITY", "Local-first execution is designed to keep operational work available when network access is unreliable or unavailable."],
+      { label: "01 / PRODUCT THESIS", title: "Operations become the governed record.", body: "ONYX is a mission operations platform for teams that need controlled execution, explicit authority, durable evidence, and continuity across changing connectivity. Current evidence supports local operational state and synchronization in trusted clients; full offline command queuing is not yet established.", items: [
+        ["CONTINUITY", "Local operational state and synchronization support continuity across changing connectivity; the current desktop command path does not queue disconnected commands."],
         ["AUTHORITY", "Execution is tied to explicit operational authority rather than treating awareness as permission to act."],
         ["ACCOUNTABILITY", "Operational state, decisions, evidence, approvals, and audit history are designed to remain traceable."]
       ]},
@@ -23,7 +23,7 @@ const copy = {
         ["SECURITY BOUNDARIES", "Identity, authorization, synchronization, auditability, deployment, recovery, and supply-chain concerns are treated as distinct control domains."]
       ]},
       { label: "03 / ROADMAP", title: "The roadmap extends the foundation.", body: "The published roadmap distinguishes what is current from what is planned and what remains research.", items: [
-        ["CURRENT", "Local-first execution, synchronization, authority, durable operational state, and evidence/auditability."],
+        ["CURRENT", "Local operational state, synchronization, authority, durable operational state, and evidence/auditability are implemented in the reviewed client architecture."],
         ["PLANNED", "Mobile, multi-region, and enterprise deployment expansion."],
         ["RESEARCH", "Federated operations, agent/plugin interfaces, and policy-aware automation."]
       ]},
