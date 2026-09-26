@@ -8,18 +8,18 @@ type Theme = "light" | "dark";
 const copy = {
   en: {
     nav:["Product","Solutions","Architecture","Security","About","Resources"],
-    tag:"01 / Solutions", titleA:"WHEN THE", titleB:"NETWORK IS NOT ENOUGH.",
-    body:"ONYX is built for operations where authority, work, evidence, and recovery must remain coherent while teams move between connected, degraded, and disconnected conditions.",
+    tag:"01 / Solutions", titleA:"WHEN THE", titleB:"OPERATION GETS COMPLEX.",
+    body:"ONYX is built for operations where people, work, decisions, and evidence need to stay connected as conditions change."
     primary:"Explore product", secondary:"Request a demo", home:"Back to home", language:"فارسی", light:"Light mode", dark:"Dark mode",
-    scenarioTag:"02 / Operational scenarios", scenarioTitleA:"Four environments.", scenarioTitleB:"Four concrete operations.",
-    scenarioBody:"These are operating patterns, not customer claims. Each scenario shows what the team is trying to do, what authority governs the work, what evidence is produced, and how the operation returns to a coherent state after disruption.",
+    scenarioTag:"02 / Where it fits", scenarioTitleA:"Different environments.", scenarioTitleB:"One operating model.",
+    scenarioBody:"These are representative operating patterns, not customer claims. The environment changes; the core model stays focused on authority, work, evidence, and continuity."
     scenarios:[
       ["01","DEFENSE & GOVERNMENT","A distributed mission changes state","A mission lead activates an operation, assigns work to teams, records decisions and approvals, and keeps field teams working when communications become intermittent.","AUTHORITY","Mission activation · delegated roles · scoped access","EVIDENCE","Decisions · approvals · files · operational history","RECOVERY","Local outcomes are preserved and synchronized when connectivity returns."],
       ["02","SPACE OPERATIONS","A mission operates across delayed links","A mission team plans work against known constraints, executes from available local state, records observations and decisions, and reconciles updates when communication windows reopen.","AUTHORITY","Mission roles · approval boundaries · controlled actions","EVIDENCE","Mission state · observations · files · decision history","RECOVERY","Delayed updates are brought back into the shared operational record under synchronization rules."],
       ["03","EMERGENCY RESPONSE","An incident unfolds while infrastructure is degraded","An incident lead establishes the response, assigns tasks, tracks changing conditions, shares evidence, and coordinates teams while parts of the network or supporting infrastructure are unavailable.","AUTHORITY","Incident lead · team roles · delegated actions","EVIDENCE","Incident updates · assignments · reports · attached files","RECOVERY","Teams continue from available local state and reconcile the response record as coordination is restored."],
       ["04","CRITICAL INFRASTRUCTURE","A site incident requires controlled continuity","An operations team records an incident, assigns inspection or maintenance work, captures findings and approvals, and coordinates across sites without making every action dependent on a central connection.","AUTHORITY","Site roles · work ownership · approval scope","EVIDENCE","Inspection findings · work records · approvals · supporting files","RECOVERY","Site changes are synchronized into the broader operational history after connectivity is restored."],
     ],
-    conditionTag:"03 / Operational conditions", conditionTitleA:"The network changes.", conditionTitleB:"The operation keeps its structure.",
+    conditionTag:"03 / Conditions", conditionTitleA:"Conditions change.", conditionTitleB:"The operation keeps its structure.",
     conditionBody:"ONYX does not define continuity as permanent connectivity. The operating model keeps authority, work, evidence, and state explicit as conditions move from connected to degraded, offline, and restored.",
     conditions:[
       ["CONNECTED","COORDINATE","Use available connectivity to distribute current state, decisions, assignments, and evidence across authorized participants."],
@@ -35,21 +35,21 @@ const copy = {
       ["03","EVIDENCE","What proves it?","Decisions, approvals, files, reports, verification, and operational history connect outcomes to their supporting record."],
       ["04","RECOVERY","What happens after disruption?","Local state, synchronization, conflict handling, and reconciliation preserve continuity when the operating conditions change."],
     ],
-    valueTag:"05 / Operational value", valueTitleA:"The result is not", valueTitleB:"just connectivity.",
+    valueTag:"05 / Value", valueTitleA:"The value is", valueTitleB:"operational clarity.",
     values:[
       ["CONTINUITY","Network loss does not automatically become a work stoppage; the relevant local operational state can remain available."],
       ["AUTHORITY","Actions remain connected to the roles, organizational boundaries, and approval context that govern them."],
       ["EVIDENCE","Operational decisions and outcomes can carry their supporting records instead of being reconstructed from disconnected tools."],
       ["RECOVERY","Reconnection becomes an explicit synchronization and reconciliation step rather than an improvised handoff."],
     ],
-    boundaryTag:"06 / Fit boundaries", boundaryTitleA:"Concrete scenarios.", boundaryTitleB:"No invented case studies.",
+    boundaryTag:"06 / Fit boundaries", boundaryTitleA:"Representative scenarios.", boundaryTitleB:"No invented proof.",
     boundaryBody:"The scenarios on this page are representative operating patterns derived from ONYX's documented capabilities and target environments. They are not claims that ONYX has been deployed by a named customer or achieved a particular field result.",
     boundaries:[
       ["DOCUMENTED FIT","Distributed, authority-sensitive operations where continuity, synchronization, evidence, and reconstruction matter."],
       ["SCENARIO, NOT PROOF","Defense, space, emergency response, and critical-infrastructure examples describe intended operating patterns; they are not customer testimonials."],
       ["ENVIRONMENT-SPECIFIC","Identity, security controls, retention, compliance, deployment topology, and recovery procedures must be designed for the target organization."],
     ],
-    ctaTag:"07 / Next", ctaTitleA:"Take a real operation", ctaTitleB:"through the model.", ctaBody:"Start with the product lifecycle, inspect the architecture behind synchronization and state, or discuss a concrete operating environment with the team.",
+    ctaTag:"07 / Next", ctaTitleA:"Bring your operation", ctaTitleB:"into the model.", ctaBody:"Start with the product lifecycle, inspect the architecture behind synchronization and state, or discuss a concrete operating environment with the team.",
     product:"View product", architecture:"View architecture", contact:"Contact the team"
   },
   fa: {
