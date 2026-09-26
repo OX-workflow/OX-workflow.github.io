@@ -27,15 +27,16 @@ const copy = {
         ["PLANNED", "Mobile, multi-region, and enterprise deployment expansion."],
         ["RESEARCH", "Federated operations, agent/plugin interfaces, and policy-aware automation."]
       ]},
-      { label: "04 / COMMERCIAL POSTURE", title: "A controlled intellectual-property model.", body: "The commercialization plan treats the ONYX core and intellectual property as proprietary. The public repository is an engineering and documentation surface; commercial rights are intended to be defined through explicit agreements.", items: [
-        ["CORE IP", "Proprietary core position; no automatic open-source assumption."],
-        ["LICENSING", "Customer rights, deployment rights, and licensing mechanics require explicit contractual definition."],
+      { label: "04 / COMMERCIAL POSTURE", title: "A controlled intellectual-property model.", body: "The commercialization plan treats ONYX Core and its intellectual property as proprietary. The public repository is an engineering and documentation surface, not an automatic grant of commercial rights. Enterprise rights are intended to be defined through explicit agreements that separate ONYX background IP, customer data and confidential information, configuration, and any custom-feature treatment.", items: [
+        ["CORE IP", "ONYX Core remains proprietary; use rights are granted contractually rather than by publication of the repository."],
+        ["LICENSING", "Hosted, self-managed, and customized deployments can carry different rights, entitlements, support, update, and termination terms."],
+        ["BACKGROUND & CUSTOM IP", "Background IP remains ONYX property by default; customer-specific development requires explicit ownership or licensing treatment rather than an implied transfer."],
         ["LEGAL READINESS", "Chain of title, dependency licensing, customer contracts, privacy documentation, trademark protection, and release/legal checklists are identified readiness areas."]
       ]}
     ],
     diligenceLabel: "05 / DILIGENCE", diligenceTitle: "What the public record does — and does not — establish.",
-    diligenceBody: "The public ONYX materials document the product model, technical architecture, security posture, roadmap, and commercialization direction. They do not establish financing history, valuation, revenue, customer contracts, customer counts, market-share figures, or audited financial performance. Those matters require direct diligence and supporting evidence.",
-    finalLabel: "06 / DISCUSSION", finalTitle: "Evaluate the platform in the context that matters.", finalBody: "For a substantive investor or strategic discussion, contact the team with the operating environment, deployment model, technical questions, and diligence scope you want to examine.", contactCta: "Contact the team", home: "Back to home"
+    diligenceBody: "Technical diligence should examine the implementation and its boundaries: architecture and synchronization model, identity and authority controls, data/state behavior, security assumptions, deployment topology, test evidence, release controls, dependency inventory, and the maturity of each evaluated capability. Commercial diligence should separately examine the proposed deployment model, license scope, support/SLA terms, IP ownership boundaries, customer data treatment, custom development, and exit requirements. A practical evaluation can proceed from scoped use case → technical validation → deployment review → commercial/legal review. The public record does not establish financing history, valuation, revenue, customer contracts, customer counts, market share, or audited financial performance; those matters require direct evidence.",
+    finalLabel: "06 / DISCUSSION", finalTitle: "Evaluate the platform in the context that matters.", finalBody: "For a substantive investor or strategic discussion, use the same evidence boundary: define the operating environment and deployment model, identify the technical and IP questions, then request the supporting material required for diligence rather than treating roadmap or marketing language as proof.", contactCta: "Contact the team", home: "Back to home"
   },
   fa: {
     tag: "ONYX / سرمایه‌گذاران", eyebrow: "مرجع سرمایه‌گذاری",

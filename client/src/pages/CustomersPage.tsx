@@ -93,13 +93,15 @@ const copy = {
     proofLabel: "06 / WHAT TO VALIDATE",
     proofTitle: "Turn the reference model into operational proof.",
     proofBody:
-      "A customer evaluation should validate the actual environment rather than assume that a marketing scenario proves deployment readiness. A substantive evaluation can examine connectivity loss, local execution, synchronization, authorization, conflict handling, auditability, recovery, and the customer's own operational constraints.",
+      "A customer evaluation should validate the actual environment rather than assume that a marketing scenario proves deployment readiness. The evaluation path should move from a scoped operational workflow to technical validation, then deployment/security review and commercial/legal scoping. Evidence can include connectivity behavior, local execution, synchronization, authorization, conflict handling, auditability, recovery, deployment topology, and the customer's own operational constraints.",
     proofItems: [
       ["CONNECTIVITY", "Test the operating model across available, degraded, unavailable, and restored network states."],
       ["AUTHORITY", "Verify that permitted execution follows the customer's real roles, boundaries, and delegation model."],
       ["SYNCHRONIZATION", "Exercise distributed changes and inspect how resulting state and conflicts are represented."],
       ["EVIDENCE", "Trace a decision through work, approval, evidence, and resulting operational state."],
       ["RECOVERY", "Validate restart, replay, backup, recovery, and operational reconstruction requirements for the target deployment."],
+      ["DEPLOYMENT", "Confirm whether the target model is hosted, self-managed, hybrid, or otherwise constrained by the customer environment."],
+      ["COMMERCIAL BOUNDARY", "Define the license scope, ONYX background IP, customer data/confidential information, and any custom-development treatment before production commitment."],
     ],
     finalLabel: "07 / NEXT",
     finalTitle: "Bring the operation, not just the use case.",
