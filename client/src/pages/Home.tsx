@@ -233,7 +233,6 @@ function ArrowAction({ children, href, solid = false, rtl = false }: { children:
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
-  const [heroFocus, setHeroFocus] = useState("RING");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
   useEffect(() => {
@@ -257,49 +256,9 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <SiteHeader locale={locale} theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="top">
-        <section className="hero hero--interactive section-shell hero--ready">
-          <div className="hero__veil" />
-          <div className="hero__grid" aria-hidden="true" />
-          <div className="hero-control" aria-label={isRtl ? "مدل عملیاتی ONYX" : "ONYX operating model"} onMouseLeave={() => setHeroFocus("RING")}>
-            <div className="hero-control__scan" />
-            <div className="hero-control__crosshair hero-control__crosshair--h" />
-            <div className="hero-control__crosshair hero-control__crosshair--v" />
-            <div className="hero-control__ring hero-control__ring--outer" />
-            <div className="hero-control__ring hero-control__ring--inner" />
-            <div className="hero-control__orbit hero-control__orbit--a"><span /></div>
-            <div className="hero-control__orbit hero-control__orbit--b"><span /></div>
-            <div className="hero-control__core"><img src={assets.signalMark} alt="" /><span>ONYX</span></div>
-            {[
-              ["RING", "AUTHORITY", "Controlled execution"],
-              ["ORBIT", "COORDINATION", "Synchronization"],
-              ["GRID", "STATE", "Operational structure"],
-              ["SIGNAL", "AWARENESS", "Events + evidence"],
-            ].map(([key, label, detail], index) => (
-              <button
-                type="button"
-                key={key}
-                className={`hero-control__node hero-control__node--${index + 1} ${heroFocus === key ? "is-active" : ""}`}
-                onMouseEnter={() => setHeroFocus(key)}
-                onFocus={() => setHeroFocus(key)}
-                aria-label={`${key}: ${label}`}
-              >
-                <i />
-                <span><b>{key}</b><small>{label}</small></span>
-              </button>
-            ))}
-            <div className={`hero-control__readout hero-control__readout--${heroFocus.toLowerCase()}`}>
-              <span>{heroFocus}</span>
-              <strong>
-                {heroFocus === "RING" ? "CONTROLLED EXECUTION" : heroFocus === "ORBIT" ? "DISTRIBUTED COORDINATION" : heroFocus === "GRID" ? "OPERATIONAL STATE" : "LIVE EVENTS / EVIDENCE"}
-              </strong>
-            </div>
-          </div>
-          <div className="hero__content shell-content">
-            <SignalTag>{t(text.hero.tag)}</SignalTag>
-            <h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1>
-            <p className="hero__lede">{t(text.hero.lede)}</p>
-            <div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div>
-          </div>
+        <section className="hero section-shell hero--ready">
+          <div className="hero__veil" /><div className="hero__grid" aria-hidden="true" />
+          <div className="hero__content shell-content"><SignalTag>{t(text.hero.tag)}</SignalTag><h1>{t(text.hero.titleA)}<br /><em>{t(text.hero.titleB)}</em></h1><p className="hero__lede">{t(text.hero.lede)}</p><div className="hero__actions"><ArrowAction href="#platform" solid rtl={isRtl}>{t(text.hero.framework)}</ArrowAction><ArrowAction href="#enterprise" rtl={isRtl}>{t(text.hero.enterprise)}</ArrowAction></div></div>
           <div className="hero__telemetry" aria-label="System status"><div className="telemetry-orbit"><span /><span /><span /></div><div><span className="telemetry-label">{t(text.hero.condition)}</span><strong>{t(text.hero.synchronized)}</strong></div><span className="telemetry-state">ONLINE</span></div>
           <a className="hero__scroll" href="#problem" aria-label={t(text.hero.scroll)}><span>{t(text.hero.scroll)}</span><ChevronDown size={16} /></a>
         </section>
@@ -314,7 +273,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
         <section id="bound-context" className="methodology section-shell"><div className="shell-content methodology__layout"><div className="methodology__content"><SignalTag>{t(text.methodology.tag)}</SignalTag><h2>{t(text.methodology.titleA)}<br /><em>{t(text.methodology.titleB)}</em></h2><p>{t(text.methodology.body)}</p><a className="methodology__link" href="https://bound-method.github.io/" target="_blank" rel="noreferrer">{t(text.methodology.link)}<ArrowUpLeft size={16} /></a></div><div className="methodology__system"><a className="bound-context" href="https://bound-method.github.io/" target="_blank" rel="noreferrer" aria-label={isRtl ? "وب‌سایت BOUND Method v3.0" : "BOUND Method v3.0 website"}><div className="bound-context__eyebrow">BOUND METHOD v3.0</div><div className="bound-context__title">Boundary-Oriented Unified Development</div><div className="bound-context__sequence"><span>Domain</span><i>→</i><span>Boundary</span><i>→</i><span>Contract</span><i>→</i><span>Execution</span><i>→</i><span>Verification</span></div></a><div className="methodology__layers"><div><span>ONYX</span><strong>{t(text.methodology.product)}</strong><small>{t(text.methodology.productCopy)}</small></div><div><span>BOUND</span><strong>{t(text.methodology.doctrine)}</strong><small>{t(text.methodology.doctrineCopy)}</small></div></div></div></div></section>
 
-        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="platform-language"><span className="mono-label">{t(text.platform.systemLanguageTag)}</span><p>{t(text.platform.systemLanguageBody)}</p><div>{text.platform.systemLanguageItems.map((item) => <span key={item.en}>{t(item)}</span>)}</div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
+        <section id="platform" className="platform section-shell"><div className="platform__backdrop" aria-hidden="true" /><div className="shell-content platform__intro"><div className="section-heading"><SignalTag>{t(text.platform.tag)}</SignalTag><h2>{t(text.platform.titleA)}<br /><em>{t(text.platform.titleB)}</em></h2></div><p>{t(text.platform.body)}</p></div><div className="authority-showcase shell-content"><div className="authority-showcase__image"><img src={assets.authority} alt="ONYX Mission Operations interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="image-corner image-corner--tl" /><div className="image-corner image-corner--br" /></div><div className="authority-showcase__copy"><span className="mono-label">{t(text.platform.label)}</span><h3>{t(text.platform.headline)}</h3><p>{t(text.platform.copy)}</p><ul className="check-list">{text.platform.checks.map((item) => <li key={item.en}><Check size={14} />{t(item)}</li>)}</ul></div></div><div className="platform-language"><span className="mono-label">{t(text.platform.systemLanguageTag)}</span><p>{t(text.platform.systemLanguageBody)}</p><div>{text.platform.systemLanguageItems.map((item) => <span key={item.en}>{t(item)}</span>)}</div></div></div><div className="capability-grid shell-content">{capabilityCards.map(({ number, icon: Icon, title, copy }) => <article className="capability-card" key={number}><div className="capability-card__head"><span>{number}</span><Icon size={20} /></div><h3>{t(title)}</h3><p>{t(copy)}</p><ArrowUpLeft size={16} /></article>)}</div></section>
 
         <section className="execution section-shell"><div className="execution__image-wrap"><img src={assets.execution} alt="ONYX Operational Overview interface" width="1440" height="1000" loading="lazy" decoding="async" /><div className="execution__image-fade" /></div><div className="shell-content execution__content"><div className="section-heading"><SignalTag>{t(text.execution.tag)}</SignalTag><h2>{t(text.execution.titleA)}<br /><em>{t(text.execution.titleB)}</em></h2><p>{t(text.execution.body)}</p></div><div className="execution-path">{text.execution.stages.map((stage, index) => <div className="execution-path__item" key={stage.en}><span>{String(index + 1).padStart(2, "0")}</span><strong>{t(stage)}</strong><i /></div>)}</div></div></section>
 
