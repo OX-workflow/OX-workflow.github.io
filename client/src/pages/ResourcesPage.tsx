@@ -27,8 +27,8 @@ const copy = {
         body:
           "Start with the product surface for the operating model, local-first execution, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
         items: [
-          ["PRODUCT", "The platform, operating model, capabilities, and deployment surface.", "Open product page", "/en/product/"],
-          ["SOLUTIONS", "Operational scenarios and environments where continuity, authority, and evidence matter.", "Open solutions", "/en/solutions/"],
+          ["محصول", "The platform, operating model, capabilities, and deployment surface.", "Open product page", "/en/product/"],
+          ["راهکارها", "Operational scenarios and environments where continuity, authority, and evidence matter.", "Open solutions", "/en/solutions/"],
           ["ROADMAP", "Current foundation, planned expansion, and research directions.", "Open roadmap", "/en/roadmap/"],
         ],
       },
@@ -38,8 +38,8 @@ const copy = {
         body:
           "The architecture material explains how local clients, synchronization, authority, durable state, and infrastructure fit together. It is the technical bridge between the product thesis and implementation.",
         items: [
-          ["ARCHITECTURE", "The ONYX system model from operational flow to technical implementation.", "Open architecture", "/en/architecture/"],
-          ["SECURITY", "Identity, authorization, synchronization boundaries, auditability, deployment, and assurance limits.", "Open security", "/en/security/"],
+          ["معماری", "The ONYX system model from operational flow to technical implementation.", "Open architecture", "/en/architecture/"],
+          ["امنیت", "Identity, authorization, synchronization boundaries, auditability, deployment, and assurance limits.", "Open security", "/en/security/"],
           ["PUBLIC REPOSITORY", "The current public engineering and documentation surface of the ONYX project.", "Open GitHub", "https://github.com/SMozaff/Onyx-Framework"],
         ],
       },
@@ -60,7 +60,7 @@ const copy = {
         body:
           "BOUND is presented as a related methodological and system-design layer behind ONYX, not as a separate ONYX product surface.",
         items: [
-          ["BOUND METHOD", "Boundary-oriented development methodology covering domains, responsibility boundaries, contracts, execution, and verification.", "Explore BOUND", "https://bound-method.github.io/"],
+          ["روش BOUND", "Boundary-oriented development methodology covering domains, responsibility boundaries, contracts, execution, and verification.", "Explore BOUND", "https://bound-method.github.io/"],
         ],
       },
     ],
@@ -85,7 +85,7 @@ const copy = {
     security: "امنیت",
     roadmap: "نقشه راه",
     contact: "تماس",
-    language: "English",
+    language: "فارسی",
     light: "حالت روشن",
     dark: "حالت تاریک",
     home: "بازگشت به خانه",
@@ -96,8 +96,8 @@ const copy = {
         body:
           "از سطح محصول برای مدل عملیاتی، اجرای محلی‌محور، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
         items: [
-          ["PRODUCT", "پلتفرم، مدل عملیاتی، قابلیت‌ها و سطح استقرار.", "مشاهده محصول", "/fa/product/"],
-          ["SOLUTIONS", "سناریوها و محیط‌های عملیاتی که تداوم، اختیار و شواهد در آن‌ها اهمیت دارد.", "مشاهده راهکارها", "/fa/solutions/"],
+          ["محصول", "پلتفرم، مدل عملیاتی، قابلیت‌ها و سطح استقرار.", "مشاهده محصول", "/fa/product/"],
+          ["راهکارها", "سناریوها و محیط‌های عملیاتی که تداوم، اختیار و شواهد در آن‌ها اهمیت دارد.", "مشاهده راهکارها", "/fa/solutions/"],
           ["ROADMAP", "بنیاد فعلی، توسعه برنامه‌ریزی‌شده و مسیرهای پژوهشی.", "مشاهده نقشه راه", "/fa/roadmap/"],
         ],
       },
@@ -107,8 +107,8 @@ const copy = {
         body:
           "مطالب معماری توضیح می‌دهند کلاینت‌های محلی، همگام‌سازی، اختیار، وضعیت پایدار و زیرساخت چگونه به هم متصل می‌شوند. این بخش پل میان محصول و پیاده‌سازی است.",
         items: [
-          ["ARCHITECTURE", "مدل سامانه ONYX از جریان عملیاتی تا پیاده‌سازی فنی.", "مشاهده معماری", "/fa/architecture/"],
-          ["SECURITY", "هویت، مجوزدهی، مرزهای همگام‌سازی، ممیزی، استقرار و حدود تضمین.", "مشاهده امنیت", "/fa/security/"],
+          ["معماری", "مدل سامانه ONYX از جریان عملیاتی تا پیاده‌سازی فنی.", "مشاهده معماری", "/fa/architecture/"],
+          ["امنیت", "هویت، مجوزدهی، مرزهای همگام‌سازی، ممیزی، استقرار و حدود تضمین.", "مشاهده امنیت", "/fa/security/"],
           ["PUBLIC REPOSITORY", "سطح عمومی مهندسی و مستندسازی فعلی پروژه ONYX.", "مشاهده GitHub", "https://github.com/SMozaff/Onyx-Framework"],
         ],
       },
@@ -129,7 +129,7 @@ const copy = {
         body:
           "BOUND به‌عنوان لایه روش‌شناختی و طراحی سیستم مرتبط با ONYX معرفی می‌شود، نه به‌عنوان یک سطح محصولی جداگانه از ONYX.",
         items: [
-          ["BOUND METHOD", "روش توسعه مرزگرا برای حوزه‌ها، مرزهای مسئولیت، قراردادها، اجرا و راستی‌آزمایی.", "مشاهده BOUND", "https://bound-method.github.io/"],
+          ["روش BOUND", "روش توسعه مرزگرا برای حوزه‌ها، مرزهای مسئولیت، قراردادها، اجرا و راستی‌آزمایی.", "مشاهده BOUND", "https://bound-method.github.io/"],
         ],
       },
     ],
