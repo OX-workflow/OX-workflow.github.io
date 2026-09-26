@@ -5,8 +5,8 @@ import SiteHeader, { getInitialTheme } from "./SiteHeader";
 type Locale="en"|"fa"; type Theme="light"|"dark";
 const copy={
  en:{
-  tag:"01 / Security",titleA:"SECURITY IS",titleB:"AN OPERATING MODEL.",body:"ONYX protects the operational boundary from identity through recovery. Security follows the lifecycle of an action: who is acting, what they are allowed to do, which state they may change, how changes synchronize, what evidence remains, and how the system recovers.",home:"Back to home",product:"Product model",contact:"Request a demo",language:"فارسی",light:"Light mode",dark:"Dark mode",
-  principlesTag:"02 / Operational security model",principlesTitleA:"Identity → Authority",principlesTitleB:"→ State → Synchronization → Evidence → Recovery.",principlesBody:"These are the security boundaries of a distributed operational system. Each stage constrains the next; synchronization does not create authority, local state does not erase accountability, and recovery must preserve the evidence needed to understand what happened.",
+  tag:"01 / Security",titleA:"SECURITY LIVES",titleB:"AT EVERY BOUNDARY.",body:"ONYX treats security as a property of the execution path: identity, authority, state, synchronization, evidence, and recovery. The repository contains concrete security mechanisms, while deployment-specific controls and assurance remain separate questions.",home:"Back to home",product:"Product model",contact:"Request a demo",language:"فارسی",light:"Light mode",dark:"Dark mode",
+  principlesTag:"02 / Security model",principlesTitleA:"Identity → Authority",principlesTitleB:"→ State → Sync → Evidence → Recovery.",principlesBody:"These are the security boundaries of a distributed operational system. Each stage constrains the next; synchronization does not create authority, local state does not erase accountability, and recovery must preserve the evidence needed to understand what happened.",
   principles:[
    ["IDENTITY","Know the actor","Authentication establishes the principal, organization, user class, client class, or service participating in an operation. The repository documents Argon2id password hashing, signed authority/session-token infrastructure, revocation, organization-scoped identity, and client-type classification."],
    ["AUTHORITY","Constrain the action","Authorization determines whether that principal and client may perform the requested operation. ONYX separates user authority from client capability; a powerful user does not gain unrestricted mutation rights simply by using a different client."],
@@ -26,14 +26,14 @@ const copy={
   ],
   controlsTag:"04 / Security boundaries",controlsTitleA:"Controls follow",controlsTitleB:"the operational lifecycle.",controlsBody:"These controls are the concrete security domains to evaluate for an ONYX deployment. They are not a certification statement and do not replace deployment-specific threat modeling or assurance work.",
   controls:[
-   ["01","IDENTITY","Authentication, session handling, signing keys, revocation, organization scope, and client-type classification."],
-   ["02","AUTHORITY","Roles, delegation, approval scope, policy decisions, administrative controls, and server-side capability enforcement."],
-   ["03","STATE","Durable persistence, local SQLite composition, server PostgreSQL requirements, integrity, retention, deletion, and access boundaries."],
-   ["04","SYNCHRONIZATION","Replica identity, protected transport, vector-clock causality, operation batches, acknowledgements, conflicts, relay-ticket scoping, replay and idempotency."],
-   ["05","EVIDENCE","Audit partitions, integrity verification, operational history, attribution, monitoring, and investigation workflows."],
-   ["06","RECOVERY","Retries, revocation, backup/restore, crash recovery, synchronization re-entry, incident procedures, update controls, and environment-specific continuity."]
+   ["01","AUTHENTICATION","Argon2id password hashing, signed session/authority-token infrastructure, organization-scoped identity, and token revocation are present in the security stack."],
+   ["02","AUTHORIZATION","Capability checks, client-type boundaries, organization scope, lifecycle/authority epochs, and server-side command enforcement constrain execution."],
+   ["03","TRANSPORT","Rustls-backed TLS dependencies, authenticated API paths, WebSocket event routes, and explicit CORS handling form the transport boundary."],
+   ["04","INTEGRITY & AUDIT","Ed25519 signing infrastructure, audit application components, durable event history, and integrity-oriented verification support traceability."],
+   ["05","SUPPLY CHAIN","SPDX SBOM generation, container signing with cosign, GPG-detached binary artifacts, and GitHub build attestations are part of the release model."],
+   ["06","DEPLOYMENT & RECOVERY","Docker, Helm, Terraform, backup/recovery documentation, monitoring, and deployment runbooks form the operational security surface."]
   ],
-  statusTag:"05 / Implementation status",statusTitleA:"Security mechanisms",statusTitleB:"have different maturity levels.",statusBody:"The public security page distinguishes repository-grounded mechanisms from deployment-dependent controls and future assurance work. It does not convert an implemented mechanism into a certification or universal security guarantee.",
+   statusTag:"05 / Implementation status",statusTitleA:"Security mechanisms",statusTitleB:"have different maturity levels.",statusBody:"A mechanism in the repository is not the same thing as a deployed security outcome. This page therefore separates implementation evidence, deployment controls, and assurance evidence.",
   status:[
    ["IMPLEMENTED / DOCUMENTED","Identity & authority foundation","The repository documents Argon2id password hashing, signed authority/session-token infrastructure, revocation, organization-scoped identity, client-type capability enforcement, role/authority checks, and one-time Admin bootstrap controls."],
    ["IMPLEMENTED / DOCUMENTED","Distributed security controls","The current application manifest documents vector-clock synchronization, explicit conflict review, replica acknowledgement, durable operation batches, short-lived single-use scoped relay tickets, and audit/integrity structures."],
