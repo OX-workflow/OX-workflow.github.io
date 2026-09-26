@@ -1,6 +1,5 @@
 import { ArrowLeft, ArrowRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
-import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -17,41 +16,41 @@ const copy = {
     language: "فارسی",
     light: "Light mode",
     dark: "Dark mode",
-    nowLabel: "01 / IMPLEMENTED",
-    nowTitle: "Implemented: the operational core",
-    nowBody: "This is the present ONYX foundation: documented and implemented product behavior around local-first execution, controlled synchronization, authority-aware workflows, durable operational state, evidence, auditability, and the application surfaces currently available. Roadmap items below are not part of this shipped baseline unless explicitly identified here as implemented.",
+    nowLabel: "01 / FOUNDATION",
+    nowTitle: "The operational core",
+    nowBody: "The current foundation centers on local-first execution, controlled synchronization, authority-aware workflows, durable operational state, evidence, auditability, and the application surfaces required to operate across disrupted connectivity.",
     nowItems: [
       ["LOCAL-FIRST", "Continue operating when connectivity is degraded or unavailable."],
       ["SYNCHRONIZATION", "Reconcile distributed state with explicit consistency and conflict rules."],
       ["AUTHORITY", "Keep identity, responsibility, and execution boundaries explicit."],
       ["OPERATIONAL STATE", "Maintain durable state, history, evidence, and verification."],
     ],
-    nextLabel: "02 / PLANNED",
-    nextTitle: "Planned: extend the deployment envelope",
-    nextBody: "These capabilities matter because larger deployments introduce new geographic, client, and operational constraints. They remain planned work: they describe product direction and engineering priorities, not generally shipped functionality.",
+    nextLabel: "02 / EXPANSION",
+    nextTitle: "Extend the deployment envelope",
+    nextBody: "The next product expansion is about where and how ONYX can operate, not about changing its core operating model.",
     nextItems: [
       ["MOBILE", "Extend operational access to mobile clients where the deployment model requires it."],
       ["MULTI-REGION", "Support broader geographic distribution and regional operational deployment."],
       ["ENTERPRISE DEPLOYMENT", "Harden deployment patterns for larger organizations, environments, and operational boundaries."],
     ],
-    horizonLabel: "03 / RESEARCH",
-    horizonTitle: "Research: connect operational domains",
-    horizonBody: "These areas matter for future scale and controlled automation, but their architecture, security model, deployment behavior, and operational evidence still require validation. They are research directions, not product commitments or shipped features.",
+    horizonLabel: "03 / FEDERATION",
+    horizonTitle: "Connect operational domains",
+    horizonBody: "Longer-horizon work explores federation between operational domains and governed interfaces for automation. These are directional areas, not claims of shipped functionality.",
     horizonItems: [
       ["FEDERATED OPERATIONS", "Explore controlled interoperability between independently governed operational domains."],
       ["AGENT & PLUGIN INTERFACES", "Research governed automation interfaces that inherit identity, authorization, state, and audit boundaries."],
       ["POLICY-AWARE AUTOMATION", "Extend automation without allowing automation to silently acquire authority."],
     ],
-    statusLabel: "04 / MATURITY GATE",
-    statusTitle: "Implemented / Planned / Research — read every item by maturity.",
+    statusLabel: "04 / STATUS",
+    statusTitle: "Read the roadmap by maturity.",
     statuses: [
       ["CURRENT", "Foundation capabilities and architecture that define the present ONYX operating model."],
-      ["PLANNED", "Capabilities selected for future product development. They explain where the system is going and why, but are not claims of current shipment."],
-      ["RESEARCH", "Exploratory directions where feasibility, security, deployment, or product boundaries still require deeper validation before they become commitments."],
+      ["PLANNED", "Expansion areas that are part of the product direction but should not be represented as generally shipped."],
+      ["RESEARCH", "Exploratory federation and automation directions requiring further architecture, security, and deployment validation."],
     ],
     ctaLabel: "05 / CONTINUE",
-    ctaTitle: "Future capability is useful only when it becomes validated product behavior.",
-    ctaBody: "Use the product, architecture, and security pages to distinguish current evidence from future direction before treating a roadmap item as part of an evaluation.",
+    ctaTitle: "Roadmap follows the operating model.",
+    ctaBody: "Inspect the product and architecture pages for the system that the roadmap is extending.",
     architecture: "View architecture",
     back: "Back to home",
   },
@@ -63,17 +62,17 @@ const copy = {
     home: "بازگشت به خانه",
     product: "محصول",
     contact: "تماس",
-    language: "فارسی",
+    language: "English",
     light: "حالت روشن",
     dark: "حالت تاریک",
     nowLabel: "۰۱ / بنیاد",
     nowTitle: "هسته عملیاتی",
     nowBody: "بنیاد فعلی بر اجرای محلی‌محور، همگام‌سازی کنترل‌شده، جریان‌های کاری آگاه از اختیار، وضعیت عملیاتی پایدار، شواهد، ممیزی و سطوح کاربردی لازم برای کار در شرایط اختلال اتصال متمرکز است.",
     nowItems: [
-      ["محلی‌محور", "ادامه عملیات هنگام کاهش کیفیت یا قطع اتصال."],
-      ["همگام‌سازی", "تلفیق وضعیت توزیع‌شده با قواعد صریح سازگاری و تعارض."],
-      ["اختیار", "حفظ مرزهای روشن میان هویت، مسئولیت و اجرا."],
-      ["وضعیت عملیاتی", "حفظ وضعیت، تاریخچه، شواهد و راستی‌آزمایی پایدار عملیاتی."],
+      ["LOCAL-FIRST", "ادامه عملیات هنگام کاهش کیفیت یا قطع اتصال."],
+      ["SYNCHRONIZATION", "تلفیق وضعیت توزیع‌شده با قواعد صریح سازگاری و تعارض."],
+      ["AUTHORITY", "حفظ مرزهای روشن میان هویت، مسئولیت و اجرا."],
+      ["OPERATIONAL STATE", "حفظ وضعیت، تاریخچه، شواهد و راستی‌آزمایی پایدار عملیاتی."],
     ],
     nextLabel: "۰۲ / گسترش",
     nextTitle: "گسترش دامنه استقرار",
@@ -87,16 +86,16 @@ const copy = {
     horizonTitle: "اتصال حوزه‌های عملیاتی",
     horizonBody: "کار بلندمدت‌تر فدراسیون میان حوزه‌های عملیاتی و رابط‌های حاکمیت‌شده برای خودکارسازی را بررسی می‌کند. این‌ها حوزه‌های جهت‌گیری هستند، نه ادعای قابلیت عرضه‌شده.",
     horizonItems: [
-      ["عملیات فدره", "بررسی تعامل کنترل‌شده میان حوزه‌های عملیاتی مستقل و دارای حاکمیت."],
-      ["رابط‌های عامل و افزونه", "تحقیق درباره رابط‌های خودکارسازی حاکمیت‌شده که هویت، مجوز، وضعیت و ممیزی را به ارث می‌برند."],
-      ["خودکارسازی آگاه از سیاست", "گسترش خودکارسازی بدون اینکه خودکارسازی به‌صورت ضمنی اختیار پیدا کند."],
+      ["FEDERATED OPERATIONS", "بررسی تعامل کنترل‌شده میان حوزه‌های عملیاتی مستقل و دارای حاکمیت."],
+      ["AGENT & PLUGIN INTERFACES", "تحقیق درباره رابط‌های خودکارسازی حاکمیت‌شده که هویت، مجوز، وضعیت و ممیزی را به ارث می‌برند."],
+      ["POLICY-AWARE AUTOMATION", "گسترش خودکارسازی بدون اینکه خودکارسازی به‌صورت ضمنی اختیار پیدا کند."],
     ],
     statusLabel: "۰۴ / وضعیت",
     statusTitle: "نقشه راه را بر اساس بلوغ بخوانید.",
     statuses: [
-      ["فعلی", "قابلیت‌ها و معماری بنیادی که مدل عملیاتی فعلی ONYX را تعریف می‌کنند."],
-      ["برنامه‌ریزی‌شده", "حوزه‌های توسعه‌ای که در جهت‌گیری محصول هستند اما نباید به‌عنوان قابلیت عمومی عرضه‌شده معرفی شوند."],
-      ["پژوهشی", "مسیرهای پژوهشی فدراسیون و خودکارسازی که به اعتبارسنجی بیشتر معماری، امنیت و استقرار نیاز دارند."],
+      ["CURRENT", "قابلیت‌ها و معماری بنیادی که مدل عملیاتی فعلی ONYX را تعریف می‌کنند."],
+      ["PLANNED", "حوزه‌های توسعه‌ای که در جهت‌گیری محصول هستند اما نباید به‌عنوان قابلیت عمومی عرضه‌شده معرفی شوند."],
+      ["RESEARCH", "مسیرهای پژوهشی فدراسیون و خودکارسازی که به اعتبارسنجی بیشتر معماری، امنیت و استقرار نیاز دارند."],
     ],
     ctaLabel: "۰۵ / ادامه",
     ctaTitle: "نقشه راه از مدل عملیاتی پیروی می‌کند.",
@@ -109,7 +108,7 @@ const copy = {
 export default function RoadmapPage({ locale }: { locale: Locale }) {
   const rtl = locale === "fa";
   const c = copy[locale];
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>("dark");
   const Arrow = rtl ? ArrowRight : ArrowLeft;
   const href = (page: string) => page ? `/${locale}/${page}/` : `/${locale}/`;
 
@@ -127,7 +126,25 @@ export default function RoadmapPage({ locale }: { locale: Locale }) {
 
   return (
     <main className={`roadmap-page roadmap-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="roadmap" />
+      <header className="roadmap-header">
+        <div className="shell-content roadmap-header__inner">
+          <a className="roadmap-logo" href={href("")} aria-label="ONYX">
+            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
+          </a>
+          <nav>
+            <a href={href("product")}>{c.product}</a>
+            <a href={href("architecture")}>{c.architecture}</a>
+          </nav>
+          <div className="roadmap-tools">
+            <a href={href("contact")}>{c.contact}</a>
+            <a href={href("roadmap")} aria-current="page">ROADMAP</a>
+            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
+              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            <a className="roadmap-language" href={href("")}>{c.language}</a>
+          </div>
+        </div>
+      </header>
 
       <section className="roadmap-hero">
         <div className="roadmap-hero__grid" aria-hidden="true" />
