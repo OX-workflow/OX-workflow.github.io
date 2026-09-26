@@ -205,7 +205,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      {locale === "en" && <section className="about-section about-section--lineage"><div className="shell-content"><div className="about-section__heading"><span className="about-label">{c.lineageLabel}</span><h2>{c.lineageTitle}</h2><p>{c.lineageBody}</p></div><div className="about-lineage">{c.lineageRows.map(([label,title,body]) => <article key={label}><span>{label}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>}
+      {locale === "en" && <section className="about-section about-section--lineage"><div className="shell-content"><div className="about-section__heading"><span className="about-label">{copy.en.lineageLabel}</span><h2>{copy.en.lineageTitle}</h2><p>{copy.en.lineageBody}</p></div><div className="about-lineage">{copy.en.lineageRows.map(([label,title,body]) => <article key={label}><span>{label}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>}
 
       <section className="about-section about-section--community">
         <div className="shell-content about-two-col">
