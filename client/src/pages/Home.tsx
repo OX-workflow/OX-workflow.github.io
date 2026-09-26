@@ -229,7 +229,6 @@ function LanguageControl({ locale, onSelect }: { locale: Locale; onSelect: (loca
 export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [theme, setTheme] = useState<"light" | "dark">(getInitialTheme);
   const [scrolled, setScrolled] = useState(false);
-  const [launching, setLaunching] = useState(false);
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -246,18 +245,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      setLaunching(false);
-      return;
-    }
-    setLaunching(true);
-    const timer = window.setTimeout(() => setLaunching(false), 1500);
-    return () => window.clearTimeout(timer);
-  }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("onyx-theme", theme);
@@ -272,7 +259,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <SiteHeader locale={locale} theme={theme} onToggleTheme={toggleTheme} />
 
       <main id="top">
-        <section className={"hero section-shell " + (launching ? "hero--launching" : "hero--ready")} aria-busy={launching}>
+        <section className="hero section-shell hero--ready">
           <div className="hero__veil" /><div className="hero__grid" aria-hidden="true" />
           <div className={"hero-launch " + (launching ? "hero-launch--active" : "hero-launch--complete")} aria-hidden={!launching}>
             <div className="hero-launch__ambient" />
