@@ -33,16 +33,20 @@ const copy = {
       ["Evidence", "Decisions and outcomes should remain connected to the history that explains them."],
       ["Resilience", "Synchronization and recovery are system properties, not afterthoughts."],
     ],
-    boundLabel: "05 / BOUND",
-    boundTitle: "A methodological layer behind the platform.",
+    boundLabel: "05 / BOUND / LINEAGE",
+    boundTitle: "BOUND informs the design. ONYX implements the system.",
     boundBody:
-      "The website plan connects the existing BOUND Method / BOUND Context work to ONYX as the methodological and system-design layer behind the platform. BOUND is therefore presented as related engineering methodology, not as a separate ONYX product surface.",
+      "BOUND is part of the intellectual lineage behind ONYX: it contributes a way of thinking about context, boundaries, authority, execution, and system structure. ONYX takes those design concerns into an implemented mission-operations system with concrete identities, missions, work, decisions, evidence, policy, synchronization, audit, and recovery. BOUND explains a way of structuring the problem; ONYX is the product that implements an operational model.",
     boundCta: "Explore BOUND Method",
-    communityLabel: "06 / OPEN-SOURCE & COMMUNITY",
+    lineageLabel: "06 / DESIGN LINEAGE",
+    lineageTitle: "The relationship is architectural, not product-level.",
+    lineageBody: "BOUND should be understood as an intellectual and methodological influence on how the system is structured. ONYX does not require users to learn BOUND in order to use the platform, and BOUND is not a hidden feature set inside the product.",
+    lineageRows: [["BOUND CONTRIBUTES","System-design thinking","A disciplined way to reason about context, boundaries, authority, and how operational concerns should be made explicit."],["ONYX IMPLEMENTS","Operational system","Concrete product behavior: organizations, authority, missions, work, decisions, evidence, policy, synchronization, audit, and recovery."],["THE BOUNDARY","Product reality","ONYX is evaluated as software: its contracts, state, commands, events, controls, interfaces, and operational behavior—not by methodology alone."]],
+    communityLabel: "07 / OPEN-SOURCE & COMMUNITY",
     communityTitle: "Public engineering surface. Proprietary core.",
     communityBody:
       "The public repository provides an engineering and documentation surface for the project. The commercialization plan states that ONYX source code and core intellectual property remain proprietary. External contributions therefore require an explicit legal mechanism rather than assuming that a pull request transfers rights.",
-    contactLabel: "07 / CONTACT",
+    contactLabel: "08 / CONTACT",
     contactTitle: "Talk to the team.",
     contactBody:
       "For product, engineering, enterprise, or collaboration enquiries, contact the project directly.",
@@ -200,6 +204,8 @@ export default function AboutPage({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      {locale === "en" && <section className="about-section about-section--lineage"><div className="shell-content"><div className="about-section__heading"><span className="about-label">{c.lineageLabel}</span><h2>{c.lineageTitle}</h2><p>{c.lineageBody}</p></div><div className="about-lineage">{c.lineageRows.map(([label,title,body]) => <article key={label}><span>{label}</span><div><h3>{title}</h3><p>{body}</p></div></article>)}</div></div></section>}
 
       <section className="about-section about-section--community">
         <div className="shell-content about-two-col">
