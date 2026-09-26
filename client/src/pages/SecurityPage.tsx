@@ -35,7 +35,7 @@ const copy={
 
 export default function SecurityPage({locale}:{locale:Locale}){
  const [theme,setTheme]=useState<Theme>(()=>typeof window!=="undefined"&&window.localStorage.getItem("onyx-theme")==="dark"?"dark":"light");
- const rtl=locale==="fa",t=copy[locale]; const link=(p:string)=>`/${locale}/${p}/`;
+ const rtl=locale==="fa",t=copy[locale]; const link=(p:string)=>p?`/${locale}/${p}/`:`/${locale}/`;
  useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.lang=locale;document.documentElement.dir=rtl?"rtl":"ltr";window.localStorage.setItem("onyx-theme",theme)},[theme,locale,rtl]);
  return <div className={`security-page security-page--${theme}`} dir={rtl?"rtl":"ltr"}>
   <header className="security-header"><a className="security-logo" href={link("")}><img src={theme==="dark"?"/assets/onyx-horizontal-dark.svg":"/assets/onyx-horizontal-light.svg"} alt="ONYX"/></a><nav><a href={link("product")}>{t.product}</a><a href={link("solutions")}>{locale==="fa"?"راهکارها":"Solutions"}</a><a href={link("architecture")}>{locale==="fa"?"معماری":"Architecture"}</a><a href={link("security")}>{locale==="fa"?"امنیت":"Security"}</a></nav><div className="security-tools"><a href={locale==="en"?"/fa/security/":"/en/security/"}>{t.language}</a><button type="button" onClick={()=>setTheme(x=>x==="dark"?"light":"dark")} aria-label={theme==="dark"?t.light:t.dark}>{theme==="dark"?<Sun size={16}/>:<Moon size={16}/>}</button><a className="security-contact" href={link("contact")}>{t.contact}<ChevronRight size={14}/></a></div></header>
