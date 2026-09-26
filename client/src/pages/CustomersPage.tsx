@@ -344,3 +344,7 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
           <a href={href("")}><Arrow size={15} />{c.home}</a>
           <span>ONYX / CUSTOMER FIT</span>
         </div>
+      </footer>
+    </main>
+  );
+}
