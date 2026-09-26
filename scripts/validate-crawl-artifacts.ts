@@ -54,6 +54,7 @@ for (const route of routes) {
   if (!html.includes(expectedLanguage)) throw new Error(`${route.url} has incorrect language/direction metadata.`);
   if (!html.includes(`<link rel="canonical" href="${route.canonical}" />`)) throw new Error(`${route.url} has incorrect canonical metadata.`);
 
+  const title = html.match(/<title>([^<]+)<\\/title>/)?.[1] ?? "";
   const title = html.match(/<title>([^<]+)<\/title>/)?.[1] ?? "";
   const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
   if (!title || !description) throw new Error(`${route.url} is missing title or description.`);
