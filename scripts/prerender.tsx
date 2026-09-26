@@ -11,6 +11,8 @@ import SolutionsPage from "../client/src/pages/SolutionsPage";
 import SecurityPage from "../client/src/pages/SecurityPage";
 import AboutPage from "../client/src/pages/AboutPage";
 import RoadmapPage from "../client/src/pages/RoadmapPage";
+import PricingLicensingPage from "../client/src/pages/PricingLicensingPage";
+import CustomersPage from "../client/src/pages/CustomersPage";
 
 type Locale = "en" | "fa";
 
@@ -41,8 +43,8 @@ const localeMetadata: Record<Locale, LocaleMetadata> = {
     url: `${SITE_URL}/en/`,
     title: "ONYX | The Architecture of Execution",
     description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that maps authority, coordinates execution, and verifies outcomes across complex organizations.",
-    socialTitle: "ONYX | The architecture of execution",
-    socialDescription: "A Mission Operations Platform and Operational Intelligence Infrastructure for visible execution, accountability, and organizational intelligence.",
+    socialTitle: "ONYX | The Architecture of Execution",
+    socialDescription: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that maps authority, coordinates execution, and verifies outcomes across complex organizations.",
     articleHeadline: "The architecture of execution",
     articleAlternativeHeadline: "ONYX Mission Operations Platform",
     articleDescription: "A Mission Operations Platform and Operational Intelligence Infrastructure for connecting authority, responsibility, execution, and verification across complex organizations.",
@@ -56,7 +58,7 @@ const localeMetadata: Record<Locale, LocaleMetadata> = {
     title: "ONYX | معماری اجرا",
     description: "ONYX یک پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی است که اختیار، اجرا و راستی‌آزمایی نتایج را در سازمان‌های پیچیده قابل مشاهده می‌کند.",
     socialTitle: "ONYX | معماری اجرا",
-    socialDescription: "پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی برای اجرای قابل مشاهده، پاسخ‌گویی و هوشمندی سازمانی.",
+    socialDescription: "ONYX یک پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی است که اختیار، اجرا و راستی‌آزمایی نتایج را در سازمان‌های پیچیده قابل مشاهده می‌کند.",
     articleHeadline: "معماری اجرا",
     articleAlternativeHeadline: "پلتفرم عملیات مأموریت‌محور ONYX",
     articleDescription: "پلتفرم عملیات مأموریت‌محور و زیرساخت هوشمندی عملیاتی برای اتصال اختیار، مسئولیت، اجرا و راستی‌آزمایی در عملیات پیچیده.",
@@ -79,6 +81,14 @@ function alternateLinks(): string {
     `    <link rel="alternate" hreflang="en" href="${localeMetadata.en.url}" />`,
     `    <link rel="alternate" hreflang="fa" href="${localeMetadata.fa.url}" />`,
     `    <link rel="alternate" hreflang="x-default" href="${SITE_URL}/" />`,
+  ].join("\n");
+}
+
+function pageAlternateLinks(page: PageKey): string {
+  return [
+    `    <link rel="alternate" hreflang="en" href="${SITE_URL}/en/${page}/" />`,
+    `    <link rel="alternate" hreflang="fa" href="${SITE_URL}/fa/${page}/" />`,
+    `    <link rel="alternate" hreflang="x-default" href="${SITE_URL}/en/${page}/" />`,
   ].join("\n");
 }
 
@@ -212,6 +222,8 @@ function pagesTitle(locale: Locale, page: PageKey) {
     resources: { en: "ONYX | Resources", fa: "ONYX | منابع" },
     contact: { en: "ONYX | Contact / Demo", fa: "ONYX | تماس / دمو" },
     investors: { en: "ONYX | Investors", fa: "ONYX | سرمایه‌گذاران" },
+    pricing: { en: "ONYX | Pricing & Licensing", fa: "ONYX | قیمت‌گذاری و مجوزدهی" },
+    customers: { en: "ONYX | Customers & Case Studies", fa: "ONYX | مشتریان و مطالعات موردی" },
   };
   return titles[page][locale];
 }
@@ -227,6 +239,8 @@ function pagesDescription(locale: Locale, page: PageKey) {
     resources: { en: "ONYX product, architecture, technical, and media resources.", fa: "منابع محصول، معماری، فنی و رسانه‌ای ONYX." },
     contact: { en: "Contact ONYX and request an enterprise demonstration.", fa: "تماس با ONYX و درخواست دمو سازمانی." },
     investors: { en: "ONYX product, technology, roadmap, and commercial information.", fa: "اطلاعات محصول، فناوری، نقشه راه و تجاری ONYX." },
+    pricing: { en: "ONYX commercial models, licensing principles, and enterprise deployment terms.", fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX." },
+    customers: { en: "Illustrative customer scenarios, operational fit, and an explicit boundary between reference scenarios and verified customer evidence.", fa: "سناریوهای نمونه مشتری، تناسب عملیاتی و مرز روشن میان سناریوهای مرجع و شواهد واقعی مشتری." },
   };
   return descriptions[page][locale];
 }
@@ -251,6 +265,8 @@ const sitePages: PageKey[] = [
   "resources",
   "contact",
   "investors",
+  "pricing",
+  "customers",
 ];
 
 for (const locale of ["en", "fa"] as const) {
@@ -265,13 +281,17 @@ for (const locale of ["en", "fa"] as const) {
           ? renderToStaticMarkup(<SolutionsPage locale={locale} />)
           : page === "security"
             ? renderToStaticMarkup(<SecurityPage locale={locale} />)
-            : page === "about"
-              ? renderToStaticMarkup(<AboutPage locale={locale} />)
+              : page === "about"
+                ? renderToStaticMarkup(<AboutPage locale={locale} />)
+                : page === "pricing"
+                  ? renderToStaticMarkup(<PricingLicensingPage locale={locale} />)
+                  : page === "customers"
+                    ? renderToStaticMarkup(<CustomersPage locale={locale} />)
               : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)
-      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `    <link rel="canonical" href="${pageUrl}" />`)
+      .replace(/<link rel="canonical" href="[^"]+"\s*\/>/, `${pageAlternateLinks(page)}\n    <link rel="canonical" href="${pageUrl}" />`)
       .replace(/<title>[^<]*<\/title>/, `<title>${pagesTitle(locale, page)}</title>`)
       .replace(/<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${pagesDescription(locale, page)}" />`)
       .replace(/<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${pagesTitle(locale, page)}" />`)
