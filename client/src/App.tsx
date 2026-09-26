@@ -4,6 +4,7 @@ import ProductPage from "./pages/ProductPage";
 import ArchitecturePage from "./pages/ArchitecturePage";
 import SolutionsPage from "./pages/SolutionsPage";
 import SecurityPage from "./pages/SecurityPage";
+import AboutPage from "./pages/AboutPage";
 
 type Locale = "en" | "fa";
 
@@ -50,6 +51,10 @@ export default function App() {
 
   if (page === "security") {
     return <SecurityPage locale={locale} />;
+  }
+
+  if (page === "about") {
+    return <AboutPage locale={locale} />;
   }
 
   if (page) {
