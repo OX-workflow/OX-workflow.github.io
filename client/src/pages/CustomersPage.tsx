@@ -1,5 +1,6 @@
 import { ArrowLeft, ArrowRight, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import SiteHeader, { getInitialTheme } from "./SiteHeader";
 
 type Locale = "en" | "fa";
 type Theme = "light" | "dark";
@@ -212,7 +213,7 @@ const copy = {
 export default function CustomersPage({ locale }: { locale: Locale }) {
   const rtl = locale === "fa";
   const c = copy[locale];
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const href = (page: string) => (page ? `/${locale}/${page}/` : `/${locale}/`);
   const Arrow = rtl ? ArrowRight : ArrowLeft;
 
@@ -229,26 +230,7 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
 
   return (
     <main className={`customers-page customers-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
-      <header className="customers-header">
-        <div className="shell-content customers-header__inner">
-          <a className="customers-logo" href={href("")} aria-label="ONYX">
-            <img src={theme === "dark" ? "/assets/onyx-horizontal-light.svg" : "/assets/onyx-horizontal-dark.svg"} alt="ONYX" />
-          </a>
-          <nav>
-            <a href={href("product")}>{c.product}</a>
-            <a href={href("solutions")}>{c.solutions}</a>
-            <a href={href("architecture")}>{c.architecture}</a>
-            <a href={href("security")}>{c.security}</a>
-          </nav>
-          <div className="customers-tools">
-            <a href={href("contact")}>{c.contact}</a>
-            <button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} aria-label={theme === "dark" ? c.light : c.dark}>
-              {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <a href={rtl ? "/en/customers/" : "/fa/customers/"}>{c.language}</a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="customers" />
 
       <section className="customers-hero">
         <div className="customers-grid" aria-hidden="true" />
