@@ -32,12 +32,12 @@ const copy = {
         label: "DEFENSE & GOVERNMENT",
         title: "Command with distributed execution.",
         body:
-          "A headquarters or operations center coordinates missions while authorized teams operate from field locations. Local execution can continue through connectivity disruption, with authority boundaries, mission state, evidence, and synchronization remaining part of the operating model.",
+          "A headquarters or operations center coordinates missions while authorized teams operate from field locations. The scenario tests how locally available operational state, authority boundaries, evidence, and synchronization behave when connectivity changes; it does not claim unrestricted offline command execution.",
         flow: ["Authority", "Mission", "Field execution", "Evidence", "Reconciliation"],
         value: [
           "Separate operational authority from broad awareness.",
           "Keep mission and task state tied to accountable actors.",
-          "Preserve an operational record across disconnected work.",
+          "Keep operational context explicit across changing connectivity, then validate the exact disconnected-command behavior in the target deployment.",
         ],
       },
       {
@@ -45,10 +45,10 @@ const copy = {
         label: "SPACE OPERATIONS",
         title: "Mission work across constrained links.",
         body:
-          "Mission teams may work across control environments where communication windows, link availability, and operational timing constrain collaboration. ONYX's local-first and synchronization model provides a reference architecture for maintaining local operational state and reconciling distributed changes when communication is available.",
+          "Mission teams may work across control environments where communication windows, link availability, and operational timing constrain collaboration. ONYX provides a reference model for maintaining local operational state and reconciling distributed changes when communication is available; the current desktop command path does not queue commands while disconnected.",
         flow: ["Local state", "Mission work", "Constrained link", "Sync", "Verified state"],
         value: [
-          "Continue locally composed work when a link is unavailable.",
+          "Validate which local workflows remain available when a link is unavailable.",
           "Make synchronization state explicit rather than implicit.",
           "Connect decisions, work, evidence, and resulting state.",
         ],
@@ -91,6 +91,9 @@ const copy = {
       ["EVIDENCE-DRIVEN", "Decisions, actions, approvals, files, reports, and operational history need to remain connected."],
       ["RECONSTRUCTABLE", "After the operation, the organization needs to understand who did what, under which authority, and what happened next."],
     ],
+    resilienceLabel: "06 / RESILIENCE BOUNDARY",
+    resilienceTitle: "Synchronization is implemented. Full offline command queuing is not.",
+    resilienceBody: "Current ONYX evidence supports local operational state and synchronization/conflict handling in trusted clients. The current desktop UI explicitly does not queue commands while disconnected; users must reconnect and retry. The browser surface is online-only and does not own a local domain replica. Full offline mutation, queued local actions, reconnection, and conflict-resolution behavior should therefore be validated as an implementation milestone rather than implied by the marketing scenario.",
     proofLabel: "06 / EVALUATION",
     proofTitle: "Turn the model into operational proof.",
     proofBody:
@@ -194,6 +197,9 @@ const copy = {
       ["شواهدمحور", "تصمیم‌ها، اقدامات، تأییدها، فایل‌ها، گزارش‌ها و تاریخچه عملیاتی باید به هم متصل بمانند."],
       ["قابل بازسازی", "پس از عملیات باید مشخص باشد چه کسی، تحت چه اختیاری، چه کاری انجام داده و سپس چه رخ داده است."],
     ],
+    resilienceLabel: "۰۶ / مرز تاب‌آوری",
+    resilienceTitle: "همگام‌سازی پیاده‌سازی شده است؛ صف‌کردن کامل فرمان‌های آفلاین هنوز وجود ندارد.",
+    resilienceBody: "شواهد فعلی ONYX وضعیت عملیاتی محلی و همگام‌سازی/مدیریت تعارض را در کلاینت‌های مورد اعتماد پشتیبانی می‌کند. رابط دسکتاپ فعلی هنگام قطع ارتباط فرمان‌ها را صف نمی‌کند و کاربر باید دوباره متصل شود و اقدام را تکرار کند. رابط مرورگر آنلاین است و کپی محلی دامنه عملیاتی ندارد. بنابراین اجرای تغییرات کاملاً آفلاین، صف محلی، اتصال مجدد و مدیریت تعارض باید به‌عنوان یک گام پیاده‌سازی اعتبارسنجی شوند، نه اینکه از سناریوی بازاریابی استنباط شوند.",
     proofLabel: "۰۶ / ارزیابی",
     proofTitle: "مدل را به شواهد عملیاتی تبدیل کنید.",
     proofBody:
@@ -277,6 +283,16 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="customers-boundary customers-resilience-boundary">
+        <div className="shell-content customers-two-col">
+          <div>
+            <span className="customers-label">{c.resilienceLabel}</span>
+            <h2>{c.resilienceTitle}</h2>
+          </div>
+          <p>{c.resilienceBody}</p>
         </div>
       </section>
 

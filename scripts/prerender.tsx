@@ -4,17 +4,34 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "../client/src/pages/Home";
-import SitePage, { type PageKey } from "../client/src/pages/SitePage";
+
 import ProductPage from "../client/src/pages/ProductPage";
 import ArchitecturePage from "../client/src/pages/ArchitecturePage";
 import SolutionsPage from "../client/src/pages/SolutionsPage";
 import SecurityPage from "../client/src/pages/SecurityPage";
 import AboutPage from "../client/src/pages/AboutPage";
-import RoadmapPage from "../client/src/pages/RoadmapPage";
 import PricingLicensingPage from "../client/src/pages/PricingLicensingPage";
 import CustomersPage from "../client/src/pages/CustomersPage";
+import RoadmapPage from "../client/src/pages/RoadmapPage";
+import InvestorsPage from "../client/src/pages/InvestorsPage";
+import ResourcesPage from "../client/src/pages/ResourcesPage";
+import ContactPage from "../client/src/pages/ContactPage";
 
 type Locale = "en" | "fa";
+
+type PageKey =
+  | "product"
+  | "solutions"
+  | "architecture"
+  | "security"
+  | "roadmap"
+  | "about"
+  | "resources"
+  | "contact"
+  | "investors"
+  | "pricing"
+  | "customers";
+
 
 type LocaleMetadata = {
   documentLanguage: string;
@@ -143,7 +160,7 @@ function schema(locale: Locale): string {
         url: `${SITE_URL}/en/`,
         logo: { "@type": "ImageObject", url: `${SITE_URL}/assets/onyx-symbol.svg`, caption: "ONYX Mission Operations Platform symbol" },
         description: "ONYX is a Mission Operations Platform and Operational Intelligence Infrastructure that gives organizational authority, responsibility, execution, and verification a living digital structure.",
-        codeRepository: "https://github.com/SMozaff/Onyx-Framwork",
+        codeRepository: "https://github.com/SMozaff/Onyx-Framework",
         programmingLanguage: ["Rust", "TypeScript"],
         author: { "@id": `${SITE_URL}/#soheil-mozaffari` },
         about: { "@id": "https://bound-method.github.io/#bound-method" },
@@ -213,7 +230,7 @@ function localizedDocument(locale: Locale): string {
 
 function pagesTitle(locale: Locale, page: PageKey) {
   const titles: Record<PageKey, { en: string; fa: string }> = {
-    product: { en: "ONYX | Product — Local-first mission operations", fa: "ONYX | محصول — عملیات مأموریت‌محور محلی‌محور" },
+    product: { en: "ONYX | Product — Mission operations", fa: "ONYX | محصول — عملیات مأموریت‌محور" },
     solutions: { en: "ONYX | Solutions", fa: "ONYX | راهکارها" },
     architecture: { en: "ONYX | Architecture", fa: "ONYX | معماری" },
     security: { en: "ONYX | Security", fa: "ONYX | امنیت" },
@@ -223,14 +240,14 @@ function pagesTitle(locale: Locale, page: PageKey) {
     contact: { en: "ONYX | Contact / Demo", fa: "ONYX | تماس / دمو" },
     investors: { en: "ONYX | Investors", fa: "ONYX | سرمایه‌گذاران" },
     pricing: { en: "ONYX | Pricing & Licensing", fa: "ONYX | قیمت‌گذاری و مجوزدهی" },
-    customers: { en: "ONYX | Customers & Case Studies", fa: "ONYX | مشتریان و مطالعات موردی" },
+    customers: { en: "ONYX | Customer Fit", fa: "ONYX | تناسب مشتری" },
   };
   return titles[page][locale];
 }
 
 function pagesDescription(locale: Locale, page: PageKey) {
   const descriptions: Record<PageKey, { en: string; fa: string }> = {
-    product: { en: "ONYX is a local-first mission operations platform for distributed teams, built around local execution, controlled synchronization, and explicit operational authority.", fa: "ONYX یک پلتفرم عملیات مأموریت‌محور و محلی‌محور برای تیم‌های توزیع‌شده است که بر اجرای محلی، همگام‌سازی کنترل‌شده و اختیار عملیاتی صریح بنا شده است." },
+    product: { en: "ONYX is a mission operations platform for distributed teams, built around local operational state, controlled synchronization, and explicit operational authority.", fa: "ONYX یک پلتفرم عملیات مأموریت‌محور برای تیم‌های توزیع‌شده است که بر وضعیت عملیاتی محلی، همگام‌سازی کنترل‌شده و اختیار عملیاتی صریح بنا شده است." },
     solutions: { en: "Operational scenarios and environments for ONYX.", fa: "سناریوها و محیط‌های عملیاتی ONYX." },
     architecture: { en: "The ONYX system and technical architecture.", fa: "معماری سامانه و فنی ONYX." },
     security: { en: "Security, authority, auditability, and deployment controls for ONYX.", fa: "امنیت، اختیار، ممیزی و کنترل‌های استقرار ONYX." },
@@ -240,7 +257,7 @@ function pagesDescription(locale: Locale, page: PageKey) {
     contact: { en: "Contact ONYX and request an enterprise demonstration.", fa: "تماس با ONYX و درخواست دمو سازمانی." },
     investors: { en: "ONYX product, technology, roadmap, and commercial information.", fa: "اطلاعات محصول، فناوری، نقشه راه و تجاری ONYX." },
     pricing: { en: "ONYX commercial models, licensing principles, and enterprise deployment terms.", fa: "مدل‌های تجاری، اصول مجوزدهی و شرایط استقرار سازمانی ONYX." },
-    customers: { en: "Illustrative customer scenarios, operational fit, and an explicit boundary between reference scenarios and verified customer evidence.", fa: "سناریوهای نمونه مشتری، تناسب عملیاتی و مرز روشن میان سناریوهای مرجع و شواهد واقعی مشتری." },
+    customers: { en: "Reference operating scenarios and customer-fit evaluation boundaries; no named customer deployment is implied without public evidence.", fa: "سناریوهای مرجع عملیاتی و مرزهای ارزیابی تناسب مشتری؛ بدون شواهد عمومی، هیچ استقرار مشتری نام‌برده‌شده‌ای ادعا نمی‌شود." },
   };
   return descriptions[page][locale];
 }
@@ -286,8 +303,14 @@ for (const locale of ["en", "fa"] as const) {
                 : page === "pricing"
                   ? renderToStaticMarkup(<PricingLicensingPage locale={locale} />)
                   : page === "customers"
-                    ? renderToStaticMarkup(<CustomersPage locale={locale} />)
-              : renderToStaticMarkup(<SitePage locale={locale} page={page} />);
+                ? renderToStaticMarkup(<CustomersPage locale={locale} />)
+                : page === "roadmap"
+                  ? renderToStaticMarkup(<RoadmapPage locale={locale} />)
+                  : page === "investors"
+                    ? renderToStaticMarkup(<InvestorsPage locale={locale} />)
+                    : page === "resources"
+                      ? renderToStaticMarkup(<ResourcesPage locale={locale} />)
+                      : renderToStaticMarkup(<ContactPage locale={locale} />);
     const pageDocument = sourceDocument
       .replace(/<html lang="en">/, `<html lang="${metadata.documentLanguage}" dir="${metadata.direction}">`)
       .replace('<div id="root"></div>', `<div id="root">${rootMarkup}</div>`)

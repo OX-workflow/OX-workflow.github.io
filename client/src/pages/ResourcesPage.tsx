@@ -25,7 +25,7 @@ const copy = {
         label: "01 / PRODUCT",
         title: "Start with the product and operating model.",
         body:
-          "Start with the product surface for the operating model, local-first execution, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
+          "Start with the product surface for the operating model, local operational state, synchronization, authority, deployment boundaries, and the distinction between documented capabilities and future direction.",
         items: [
           ["PRODUCT", "The platform, operating model, capabilities, and deployment surface.", "Open product page", "/en/product/"],
           ["SOLUTIONS", "Operational scenarios and environments where continuity, authority, and evidence matter.", "Open solutions", "/en/solutions/"],
@@ -94,7 +94,7 @@ const copy = {
         label: "۰۱ / محصول",
         title: "از محصول و مدل عملیاتی شروع کنید.",
         body:
-          "از سطح محصول برای مدل عملیاتی، اجرای محلی‌محور، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
+          "از سطح محصول برای مدل عملیاتی، وضعیت عملیاتی محلی، همگام‌سازی، اختیار، مرزهای استقرار و تفکیک قابلیت‌های مستندشده از جهت‌گیری آینده شروع کنید.",
         items: [
           ["PRODUCT", "پلتفرم، مدل عملیاتی، قابلیت‌ها و سطح استقرار.", "مشاهده محصول", "/fa/product/"],
           ["SOLUTIONS", "سناریوها و محیط‌های عملیاتی که تداوم، اختیار و شواهد در آن‌ها اهمیت دارد.", "مشاهده راهکارها", "/fa/solutions/"],

@@ -23,16 +23,16 @@ const copy = {
     cards: [
       ["01", "AUTHORITY", "Establish who can act.", "Identity, organizational boundaries, roles, delegation, and decision authority provide the control context for operational work."],
       ["02", "PLAN", "Turn objectives into controlled work.", "Missions, tasks, dependencies, timelines, capacity, and scenarios give an operation an explicit plan."],
-      ["03", "EXECUTE", "Act against the operational state.", "Trusted operational clients work with missions, tasks, approvals, files, communication, and other governed domain state."],
+      ["03", "EXECUTE", "Act against the operational state.", "Trusted operational clients work with missions, tasks, approvals, files, communication, and other governed domain state. The desktop client owns local operational state and synchronization composition, while its current disconnected command path requires reconnect-and-retry."],
       ["04", "COORDINATE", "Keep people and state aligned.", "Meetings, conversations, notifications, synchronization, and shared operational views connect distributed participants."],
       ["05", "VERIFY", "Make outcomes accountable.", "Approvals, verification, evidence, policy decisions, and review states distinguish completion from confirmed outcome."],
       ["06", "RECORD", "Preserve what happened.", "Operational history, evidence, audit, and durable state make decisions and changes reconstructable."],
-      ["07", "RECOVER", "Return to controlled operation.", "Synchronization, conflict handling, replay/idempotency safeguards, and recovery-oriented state management support continuity after disruption."],
+      ["07", "RECOVER", "Return to controlled operation.", "Synchronization, conflict handling, replay/idempotency safeguards, and recovery-oriented state management support continuity after disruption; full offline command queuing remains an implementation gap."],
     ],
     flowTag: "03 / Operational lifecycle",
     flowTitleA: "Authority to",
     flowTitleB: "recovery.",
-    flowBody: "The lifecycle is the product model. ONYX carries operational context from authorization through planning and execution to verification, durable record, and recovery.",
+    flowBody: "The lifecycle is the product model. ONYX carries operational context from authorization through planning and execution to verification, durable record, synchronization, and recovery.",
     languageTag: "04 / Brand operating language",
     languageTitleA: "Four visual forms.",
     languageTitleB: "One operational model.",
@@ -64,17 +64,21 @@ const copy = {
       ["WEB", "Remote operator", "An online browser surface for server-backed operational access; it does not currently provide local domain state or offline command execution.", "Implemented"],
       ["OBSERVER", "Constrained awareness", "A planned observer client class designed to provide awareness without silently granting operational authority.", "Planned"],
     ],
-    statusTag: "06 / Capability status",
+    resilienceTag: "06 / Resilience boundary",
+    resilienceTitleA: "Synchronization is current.",
+    resilienceTitleB: "Full offline command queuing is not.",
+    resilienceBody: "Current application evidence supports local operational state and synchronization/conflict handling in trusted clients. The desktop UI explicitly requires reconnect-and-retry when connectivity is lost rather than queuing commands. The browser surface is online-only and does not own a local domain replica. Treat queued offline mutations and end-to-end disconnected execution as validation work, not as a shipped marketing promise.",
+    statusTag: "07 / Capability status",
     statusTitleA: "Know what is",
     statusTitleB: "available today.",
     statusBody: "Product messaging must not collapse the current implementation, active development, and research direction into one promise. The labels below are deliberately conservative and follow the current application manifest and marketing handover.",
     status: [
       ["IMPLEMENTED", "Core operational model", "Organizational identity and authority, missions and work, approvals, communication, files, notifications, operational state, and governance-oriented controls are represented in the current application system."],
-      ["IMPLEMENTED", "Operational client surfaces", "The current desktop staff application provides local operational state and synchronization composition; the browser application provides an online server-backed operational surface."],
+      ["IMPLEMENTED", "Operational client surfaces", "The current desktop staff application provides local operational state and synchronization composition, but its user-facing command path does not queue disconnected commands; the browser application is an online server-backed surface without a local domain replica."],
       ["IN DEVELOPMENT", "Productization and hardening", "The broader platform continues to be translated into deployable, polished product components. Implementation details belong on the architecture and roadmap pages rather than being implied as finished product behavior."],
       ["PLANNED / RESEARCH", "Future observer and agent interfaces", "Observer-class access and future agent/plugin interaction are directions for the platform. They are not presented here as current autonomous or AI execution capabilities."],
     ],
-    ctaTag: "07 / Next",
+    ctaTag: "08 / Next",
     ctaTitleA: "Go deeper when",
     ctaTitleB: "you need to.",
     ctaBody: "Move from the product lifecycle into the architecture, operational scenarios, or a direct conversation with the team.",
@@ -138,12 +142,16 @@ const copy = {
       ["همگام‌سازی", "لایه هماهنگی", "انتقال و تلفیق کنترل‌شده وضعیت توزیع‌شده هنگام امکان ارتباط.", "معماری"],
       ["عملیات", "مرکز عملیات", "دید مشترک برای هماهنگی، راستی‌آزمایی و کنترل عملیاتی.", "مدل فعلی"],
     ],
-    statusTag: "۰۶ / وضعیت محصول",
+    resilienceTag: "۰۶ / مرز تاب‌آوری",
+    resilienceTitleA: "همگام‌سازی فعلی است.",
+    resilienceTitleB: "صف‌کردن کامل فرمان‌های آفلاین فعلاً نیست.",
+    resilienceBody: "شواهد فعلی، وضعیت عملیاتی محلی و همگام‌سازی/مدیریت تعارض را در کلاینت‌های مورد اعتماد پشتیبانی می‌کند. رابط دسکتاپ هنگام قطع ارتباط به‌جای صف‌کردن فرمان‌ها، اتصال مجدد و تکرار اقدام را می‌طلبد. رابط مرورگر آنلاین است و کپی محلی دامنه عملیاتی ندارد. تغییرات آفلاین صف‌شده و اجرای کامل در وضعیت قطع باید به‌عنوان کار اعتبارسنجی پیاده‌سازی در نظر گرفته شوند، نه قابلیت عرضه‌شده.",
+    statusTag: "۰۷ / وضعیت محصول",
     statusTitleA: "آنچه وجود دارد را",
     statusTitleB: "از برنامه آینده جدا کنید.",
     statusBody: "مستندات ONYX مدل عملیاتی را از تعهدات پیاده‌سازی جدا می‌کنند. این صفحه مدل محصول را توضیح می‌دهد؛ جزئیات فنی باید در معماری و نقشه راه بیایند.",
     status: [["فعلی", "مدل عملیاتی محصول", "تداوم محلی‌محور، همگام‌سازی کنترل‌شده، اختیار صریح و راستی‌آزمایی عملیاتی."], ["در حال توسعه", "پیاده‌سازی پلتفرم", "قابلیت‌هایی که به اجزای قابل استقرار محصول تبدیل می‌شوند."], ["برنامه‌ریزی‌شده", "رابط عامل آینده", "یک لایه هوش مصنوعی عامل‌محور / افزونه می‌تواند از مدل عملیاتی به‌عنوان رابطی تحت کنترل برای اجرا استفاده کند."]],
-    ctaTag: "۰۷ / گام بعد",
+    ctaTag: "۰۸ / گام بعد",
     ctaTitleA: "سامانه را ببینید؛",
     ctaTitleB: "نه فقط محصول را.",
     ctaBody: "از مدل محصول به معماری، سناریوهای عملیاتی یا گفت‌وگوی مستقیم با تیم بروید.",
@@ -274,6 +282,16 @@ export default function ProductPage({ locale }: { locale: Locale }) {
 
         <ProductVisuals locale={locale} variant="mobile" />
 
+        <section className="product-section product-section--resilience">
+          <div className="shell-content product-two-col">
+            <div>
+              <div className="product-kicker"><span />{t.resilienceTag}</div>
+              <h2>{t.resilienceTitleA}<br /><em>{t.resilienceTitleB}</em></h2>
+            </div>
+            <p>{t.resilienceBody}</p>
+          </div>
+        </section>
+
         <section className="product-section product-section--status">
           <div className="shell-content">
             <div className="product-status-heading"><div className="product-kicker"><span />{t.statusTag}</div><h2>{t.statusTitleA}<br /><em>{t.statusTitleB}</em></h2><p>{t.statusBody}</p></div>
@@ -295,7 +313,7 @@ export default function ProductPage({ locale }: { locale: Locale }) {
         </section>
       </main>
 
-      <footer className="product-footer"><div className="shell-content"><img src={theme === "dark" ? "/assets/onyx-horizontal-dark.svg" : "/assets/onyx-horizontal-light.svg"} alt="ONYX" /><span>© {new Date().getFullYear()} ONYX · <a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="https://bound-method.github.io/" target="_blank" rel="noreferrer">BOUND Method</a></span></div></footer>
+      <footer className="product-footer"><div className="shell-content"><img src={theme === "dark" ? "/assets/onyx-horizontal-dark.svg" : "/assets/onyx-horizontal-light.svg"} alt="ONYX" /><span>© {new Date().getFullYear()} ONYX · <a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a></span></div></footer>
     </div>
   );
 }
