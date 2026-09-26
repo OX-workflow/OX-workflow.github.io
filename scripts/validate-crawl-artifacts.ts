@@ -8,9 +8,9 @@ const robots = fs.readFileSync(path.join(outputDirectory, "robots.txt"), "utf8")
 const sitemap = fs.readFileSync(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const siteUrl = "https://ox-workflow.github.io";
 const routes = {
-  root: { file: path.join(outputDirectory, "index.html"), url: `${siteUrl}/`, canonical: `${siteUrl}/en/`, language: "en", phrase: "OPERATIONS THAT" },
-  en: { file: path.join(outputDirectory, "en", "index.html"), url: `${siteUrl}/en/`, canonical: `${siteUrl}/en/`, language: "en", phrase: "Operational intelligence" },
-  fa: { file: path.join(outputDirectory, "fa", "index.html"), url: `${siteUrl}/fa/`, canonical: `${siteUrl}/fa/`, language: "fa", phrase: "هوشمندی عملیاتی" },
+  root: { file: path.join(outputDirectory, "index.html"), url: `${siteUrl}/`, canonical: `${siteUrl}/en/`, language: "en", title: "ONYX | The Architecture of Execution" },
+  en: { file: path.join(outputDirectory, "en", "index.html"), url: `${siteUrl}/en/`, canonical: `${siteUrl}/en/`, language: "en", title: "ONYX | The Architecture of Execution" },
+  fa: { file: path.join(outputDirectory, "fa", "index.html"), url: `${siteUrl}/fa/`, canonical: `${siteUrl}/fa/`, language: "fa", title: "ONYX | معماری اجرا" },
 } as const;
 
 const alternateLinks = [
@@ -73,8 +73,8 @@ for (const [routeName, route] of Object.entries(routes)) {
     }
   }
 
-  if (!html.includes(route.phrase)) {
-    throw new Error(`${routeName} page does not contain its expected pre-rendered language content.`);
+  if (!html.includes(`<title>${route.title}</title>`)) {
+    throw new Error(`${routeName} page does not contain its expected pre-rendered title.`);
   }
 }
 
