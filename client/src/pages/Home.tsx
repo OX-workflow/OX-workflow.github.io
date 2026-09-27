@@ -539,7 +539,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
       <footer className="site-footer">
         <div className="shell-content site-footer__content">
           <div className="site-footer__brand"><img src={theme === "dark" ? assets.wideLogoDark : assets.wideLogoLight} alt="ONYX — Mission Operations Platform" className="site-footer__wide-logo" width="1320" height="360" loading="eager" decoding="async" /></div>
-          <div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com">Soheil.Mozaffari@gmail.com</a></span></div>
+          <div className="site-footer__right"><span>© {new Date().getFullYear()} ONYX</span><span><a href="https://smozaff.github.io/" target="_blank" rel="noreferrer">Soheil Mozaffari</a> · <a href="mailto:Soheil.Mozaffari@gmail.com">Soheil.Mozaffari@gmail.com</a></span><span className="site-footer__powered">Powered by BOUND</span></div>
         </div>
       </footer>
     </div>
