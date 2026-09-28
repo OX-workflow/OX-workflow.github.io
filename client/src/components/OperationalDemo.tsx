@@ -207,11 +207,34 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
                 className={`operational-demo__step ${index === active ? "operational-demo__step--active" : ""}`}
                 onClick={() => setActive(index)}
                 onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
                 onFocus={() => {
                   setActive(index);
                   setPaused(true);
                 }}
                 onBlur={() => setPaused(false)}
+                onKeyDown={(event) => {
+                  if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+                    event.preventDefault();
+                    const next = (index + 1) % items.length;
+                    setActive(next);
+                    document.getElementById(`operational-demo-tab-${next}`)?.focus();
+                  } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+                    event.preventDefault();
+                    const previous = (index - 1 + items.length) % items.length;
+                    setActive(previous);
+                    document.getElementById(`operational-demo-tab-${previous}`)?.focus();
+                  } else if (event.key === "Home") {
+                    event.preventDefault();
+                    setActive(0);
+                    document.getElementById("operational-demo-tab-0")?.focus();
+                  } else if (event.key === "End") {
+                    event.preventDefault();
+                    const last = items.length - 1;
+                    setActive(last);
+                    document.getElementById(`operational-demo-tab-${last}`)?.focus();
+                  }
+                }}
                 aria-label={item.step + " / " + item.label + ": " + item.title}
               >
                 <span>{item.step}</span>
