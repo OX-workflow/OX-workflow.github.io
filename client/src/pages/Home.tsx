@@ -87,7 +87,7 @@ const text = {
     ],
   },
   accountability: {
-    tag: { en: "09 / Accountability", fa: "۰۹ / پاسخ‌گویی" },
+    tag: { en: "08 / Accountability", fa: "۰۸ / پاسخ‌گویی" },
     title: { en: "Keep decisions attached to the work.", fa: "تصمیم‌ها را در کنار کاری که بر آن اثر می‌گذارند ثبت و پیگیری کنید." },
     body: {
       en: "ONYX preserves the context around an outcome: who acted, what changed, which decision governed the work, and what evidence supports the result.",
@@ -98,7 +98,7 @@ const text = {
     recorded: { en: "Operational history retained", fa: "تاریخچه عملیاتی حفظ شد" },
   },
   continuity: {
-    tag: { en: "10 / Continuity", fa: "۱۰ / تداوم" },
+    tag: { en: "09 / Continuity", fa: "۰۹ / تداوم" },
     title: { en: "When conditions change, the record stays.", fa: "وقتی شرایط عوض می‌شود، سابقه عملیات از بین نمی‌رود." },
     body: {
       en: "ONYX is designed for operations where connectivity, teams, and circumstances can change without losing the operational context.",
@@ -122,7 +122,7 @@ const text = {
   },
 
   commercialFrame: {
-    tag: { en: "08 / Commercial frame", fa: "۰۸ / چارچوب تجاری" },
+    tag: { en: "07 / Commercial frame", fa: "۰۷ / چارچوب تجاری" },
     title: { en: "Built around the operation behind the tools.", fa: "برای خودِ عملیات، نه فقط ابزارهای پیرامون آن." },
     body: {
       en: "Five questions make the product easier to understand: who it is for, why it exists, how it can be deployed, what makes the operating record trustworthy, and how it is commercialized.",
@@ -470,35 +470,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
               </div>
               <figcaption>{locale === "fa" ? "شاهد رابط کاربری برای همان سناریوی عملیاتی." : "Interface evidence for the same operational scenario."}</figcaption>
             </figure>
-          </div>
-        </section>
-
-        <section className="ui-surfaces section-shell" aria-labelledby="ui-surfaces-title">
-          <div className="shell-content">
-            <div className="ui-surfaces__intro">
-              <div>
-                <SignalTag>{locale === "fa" ? "۰۷ / سطوح رابط" : "07 / Interface surfaces"}</SignalTag>
-                <h2 id="ui-surfaces-title">
-                  {locale === "fa" ? "رابط، بخشی از عملیات است." : "The interface is part of the operation."}<br />
-                  <em>{locale === "fa" ? "نه یک تصویر تزئینی." : "Not decoration."}</em>
-                </h2>
-              </div>
-              <p>
-                {locale === "fa"
-                  ? "چند نمونه منتخب از رابط روشن ONYX را در کنار مدل عملیاتی ببینید؛ وضعیت، کار و اقدام در همان زبان بصری کنار هم قرار می‌گیرند."
-                  : "Selected ONYX light-mode interface surfaces sit alongside the operating model: state, work, and action remain legible in the same visual language."}
-              </p>
-            </div>
-            <div className="ui-surfaces__grid">
-              {[1, 3, 5].map((index) => (
-                <figure className="ui-surfaces__item" key={index}>
-                  <div className="ui-surfaces__frame">
-                    <img src={`/assets/UI/UI%20lightmode${index}.webp`} alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${index}` : `ONYX light-mode interface sample ${index}`} loading="lazy" decoding="async" />
-                    <span>{String(index).padStart(2, "0")} / ONYX UI</span>
-                  </div>
-                </figure>
-              ))}
-            </div>
           </div>
         </section>
 
