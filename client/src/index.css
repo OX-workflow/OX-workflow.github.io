@@ -2543,7 +2543,7 @@ html[data-theme="dark"] .commercial-frame__card:focus-visible{
   object-position:center;
   filter:saturate(.8) contrast(.92);
 }
-.hero__system--active + .hero__ui-sample{opacity:.075}
+.hero:has(.hero__system--active) .hero__ui-sample{opacity:.075}
 
 .ui-surfaces{
   position:relative;
