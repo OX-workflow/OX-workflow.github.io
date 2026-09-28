@@ -189,7 +189,7 @@ export default function ProductPage({ locale }: { locale: Locale }) {
   const toggle = () => setTheme((current) => current === "dark" ? "light" : "dark");
 
   return (
-    <div className={`product-page product-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
+    <div className={`product-page onyx-system product-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
       <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="product" />
 
       <main>
