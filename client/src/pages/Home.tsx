@@ -32,7 +32,7 @@ const text = {
   hero: {
     supporting: {
       en: "One place to plan the operation, coordinate the people, execute the work, and keep the record.",
-      fa: "یک مکان برای برنامه‌ریزی عملیات، هماهنگی افراد، اجرای کار و حفظ سابقه.",
+      fa: "یک محیط یکپارچه برای برنامه‌ریزی عملیات، هماهنگی افراد، پیشبرد کار و ثبت سوابق.",
     },
     primary: { en: "See the operating model", fa: "مدل عملیاتی را ببینید" },
     secondary: { en: "Explore the product", fa: "محصول را ببینید" },
@@ -42,12 +42,12 @@ const text = {
   },
   problem: {
     tag: { en: "01 / The problem", fa: "۰۱ / مسئله" },
-    title: { en: "The operation is bigger than the tools around it.", fa: "عملیات از ابزارهایی که پیرامون آن هستند بزرگ‌تر است." },
+    title: { en: "The operation is bigger than the tools around it.", fa: "خودِ عملیات از ابزارهایی که برای مدیریت آن به کار می‌روند، پیچیده‌تر است." },
     body: {
       en: "Plans live in one place. Conversations in another. Decisions, files, approvals, and evidence become separate trails. The operation becomes harder to see, coordinate, and explain.",
       fa: "برنامه‌ها یک‌جا هستند، گفت‌وگوها جای دیگر و تصمیم‌ها، فایل‌ها، تأییدها و شواهد به ردپاهای جداگانه تبدیل می‌شوند. در نتیجه دیدن، هماهنگ کردن و توضیح دادن عملیات دشوارتر می‌شود.",
     },
-    result: { en: "One operational record.", fa: "یک سابقه عملیاتی واحد." },
+    result: { en: "One operational record.", fa: "یک سابقه یکپارچه از عملیات." },
   },
   model: {
     tag: { en: "02 / The operating model", fa: "۰۲ / مدل عملیاتی" },
@@ -59,7 +59,7 @@ const text = {
   },
   experience: {
     tag: { en: "03 / The product", fa: "۰۳ / محصول" },
-    title: { en: "See the whole operation.", fa: "کل عملیات را ببینید." },
+    title: { en: "See the whole operation.", fa: "کل عملیات را یک‌جا ببینید." },
     body: {
       en: "Bring objectives, people, work, decisions, and evidence into the same operational view.",
       fa: "هدف‌ها، افراد، کار، تصمیم‌ها و شواهد را در یک نمای عملیاتی واحد کنار هم قرار دهید.",
@@ -72,10 +72,10 @@ const text = {
   },
   lifecycle: {
     tag: { en: "04 / The lifecycle", fa: "۰۴ / چرخه عملیات" },
-    title: { en: "From intent to record.", fa: "از نیت تا سابقه." },
+    title: { en: "From intent to record.", fa: "از هدف تا سابقه." },
     body: {
       en: "The operation stays connected as it moves from objective to plan, execution, decision, verification, and history.",
-      fa: "با حرکت عملیات از هدف به برنامه، اجرا، تصمیم، راستی‌آزمایی و سابقه، ارتباط میان اجزای آن حفظ می‌شود.",
+      fa: "از تعیین هدف و برنامه‌ریزی تا اجرا، تصمیم‌گیری، راستی‌آزمایی و ثبت سوابق، همه اجزای عملیات در یک جریان به هم متصل می‌مانند.",
     },
     steps: [
       { en: "Objective", fa: "هدف" },
@@ -89,7 +89,7 @@ const text = {
   },
   accountability: {
     tag: { en: "05 / Accountability", fa: "۰۵ / پاسخ‌گویی" },
-    title: { en: "Keep decisions attached to the work.", fa: "تصمیم‌ها را به کار متصل نگه دارید." },
+    title: { en: "Keep decisions attached to the work.", fa: "تصمیم‌ها را در متنِ کاری که بر آن اثر می‌گذارند ثبت و دنبال کنید." },
     body: {
       en: "ONYX preserves the context around an outcome: who acted, what changed, which decision governed the work, and what evidence supports the result.",
       fa: "ONYX زمینه پیرامون یک نتیجه را حفظ می‌کند: چه کسی اقدام کرد، چه چیزی تغییر کرد، کدام تصمیم بر کار حاکم بود و چه شواهدی نتیجه را پشتیبانی می‌کند.",
@@ -100,20 +100,20 @@ const text = {
   },
   continuity: {
     tag: { en: "06 / Continuity", fa: "۰۶ / تداوم" },
-    title: { en: "When conditions change, the record stays.", fa: "وقتی شرایط تغییر می‌کند، سابقه باقی می‌ماند." },
+    title: { en: "When conditions change, the record stays.", fa: "وقتی شرایط عوض می‌شود، سابقه عملیات از بین نمی‌رود." },
     body: {
       en: "ONYX is designed for operations where connectivity, teams, and circumstances can change without losing the operational context.",
-      fa: "ONYX برای عملیات‌هایی طراحی شده است که در آن اتصال، تیم‌ها و شرایط می‌توانند تغییر کنند بدون آنکه زمینه عملیاتی از بین برود.",
+      fa: "ONYX برای عملیاتی طراحی شده است که در آن تیم‌ها، شرایط و کیفیت ارتباط مدام تغییر می‌کنند، اما نباید زمینه و سابقه کار از دست برود.",
     },
     points: [
-      { en: "Local operational state", fa: "وضعیت عملیاتی محلی" },
-      { en: "Controlled synchronization", fa: "همگام‌سازی کنترل‌شده" },
+      { en: "Local operational state", fa: "وضعیت عملیاتی روی دستگاه" },
+      { en: "Controlled synchronization", fa: "همگام‌سازی مدیریت‌شده" },
       { en: "Deployment flexibility", fa: "انعطاف در استقرار" },
     ],
   },
   cta: {
     tag: { en: "Mission Operations Platform", fa: "پلتفرم عملیات مأموریتی" },
-    title: { en: "Make the operation the system.", fa: "خود عملیات را به سامانه تبدیل کنید." },
+    title: { en: "Make the operation the system.", fa: "خودِ عملیات را به سیستم اصلی کار تبدیل کنید." },
     body: {
       en: "Explore ONYX as a product. When you need the engineering underneath it, go deeper into Technology.",
       fa: "ONYX را به‌عنوان محصول بررسی کنید. هر زمان به مهندسی زیرساخت آن نیاز داشتید، وارد بخش فناوری شوید.",
@@ -127,7 +127,7 @@ const text = {
     title: { en: "Built around the operation behind the tools.", fa: "برای خودِ عملیات، نه فقط ابزارهای پیرامون آن." },
     body: {
       en: "Five questions make the product easier to understand: who it is for, why it exists, how it can be deployed, what makes the operating record trustworthy, and how it is commercialized.",
-      fa: "پنج پرسش، درک محصول را ساده‌تر می‌کند: برای چه کسی است، چرا وجود دارد، چگونه مستقر می‌شود، چه چیزی سابقه عملیاتی را قابل اعتماد می‌کند و مدل تجاری آن چیست.",
+      fa: "پنج سؤال، تصویر روشن‌تری از محصول می‌دهند: برای چه کسانی ساخته شده، چرا وجود دارد، چگونه مستقر می‌شود، چه چیزی سابقه عملیات را قابل اتکا می‌کند و مدل تجاری آن چیست.",
     },
     cards: [
       {
@@ -135,9 +135,9 @@ const text = {
         title: { en: "Who ONYX is for", fa: "ONYX برای چه کسانی است" },
         body: {
           en: "Teams responsible for complex, high-accountability operations where authority, evidence, continuity, and reconstruction matter.",
-          fa: "تیم‌هایی که مسئول عملیات پیچیده و پاسخ‌گو هستند؛ جایی که اختیار، شواهد، تداوم و بازسازی سابقه اهمیت دارد.",
+          fa: "تیم‌هایی که مسئول عملیات پیچیده و حساس‌اند؛ جایی که اختیار، شواهد، تداوم و امکان بازسازی رویدادها اهمیت دارد.",
         },
-        link: { en: "See representative operating patterns", fa: "سناریوهای عملیاتی را ببینید" },
+        link: { en: "See representative operating patterns", fa: "سناریوهای واقعیِ کاربرد را ببینید" },
         href: "solutions",
       },
       {
@@ -145,9 +145,9 @@ const text = {
         title: { en: "Why ONYX", fa: "چرا ONYX" },
         body: {
           en: "Execution is not enough. ONYX connects authority, work, decisions, evidence, and history so the operation stays understandable while it runs and explainable afterward.",
-          fa: "اجرا به‌تنهایی کافی نیست. ONYX اختیار، کار، تصمیم‌ها، شواهد و سابقه را به هم متصل می‌کند تا عملیات هنگام اجرا قابل فهم و پس از آن قابل توضیح باشد.",
+          fa: "فقط انجام دادن کار کافی نیست. ONYX اختیار، کار، تصمیم‌ها، شواهد و سوابق را به هم وصل می‌کند تا روند عملیات هم حین اجرا روشن باشد و هم بعداً بتوان آن را توضیح داد.",
         },
-        link: { en: "Explore the product model", fa: "مدل محصول را ببینید" },
+        link: { en: "Explore the product model", fa: "مدل محصول را بررسی کنید" },
         href: "product",
       },
       {
@@ -155,7 +155,7 @@ const text = {
         title: { en: "Deployment", fa: "استقرار" },
         body: {
           en: "Commercial paths include hosted subscription, enterprise self-hosted / on-premise deployment, and customized enterprise editions.",
-          fa: "مسیرهای تجاری شامل اشتراک میزبانی‌شده، استقرار سازمانی خودمیزبان / درون‌سازمانی و نسخه‌های سفارشی سازمانی است.",
+          fa: "مدل‌های تجاری شامل اشتراک ابری، استقرار اختصاصی در زیرساخت سازمان و نسخه‌های سفارشی سازمانی است.",
         },
         link: { en: "See licensing and deployment", fa: "مجوز و استقرار را ببینید" },
         href: "pricing",
@@ -165,9 +165,9 @@ const text = {
         title: { en: "Trust", fa: "اعتماد" },
         body: {
           en: "Explicit authority, controlled approvals, evidence, synchronization, and audit keep actions connected to the context that governs them.",
-          fa: "اختیار صریح، تأییدهای کنترل‌شده، شواهد، همگام‌سازی و ممیزی، اقدامات را به زمینه‌ای که بر آن‌ها حاکم است متصل نگه می‌دارند.",
+          fa: "اختیار مشخص، فرایند تأیید، شواهد، همگام‌سازی و ممیزی کمک می‌کنند هر اقدام در همان زمینه‌ای ثبت شود که آن را مجاز و هدایت کرده است.",
         },
-        link: { en: "Inspect the trust layer", fa: "لایه اعتماد را بررسی کنید" },
+        link: { en: "Inspect the trust layer", fa: "سازوکارهای اعتماد را بررسی کنید" },
         href: "security",
       },
       {
@@ -177,7 +177,7 @@ const text = {
           en: "ONYX is commercialized through subscriptions, enterprise licensing, and customized enterprise editions. Core ONYX IP remains proprietary.",
           fa: "ONYX از طریق اشتراک، مجوز سازمانی و نسخه‌های سفارشی سازمانی تجاری‌سازی می‌شود. مالکیت فکری هسته ONYX اختصاصی باقی می‌ماند.",
         },
-        link: { en: "Explore enterprise options", fa: "گزینه‌های سازمانی را ببینید" },
+        link: { en: "Explore enterprise options", fa: "گزینه‌های سازمانی را بررسی کنید" },
         href: "pricing",
       },
     ],
@@ -187,13 +187,13 @@ const text = {
 const modelIcons = [Target, Network, ShieldCheck, History];
 
 const lifecycleDescriptions: Localized[] = [
-  { en: "Define what needs to happen.", fa: "مشخص کنید چه چیزی باید انجام شود." },
-  { en: "Turn intent into an operational plan.", fa: "نیت را به برنامه عملیاتی تبدیل کنید." },
-  { en: "Keep people and responsibilities aligned.", fa: "افراد و مسئولیت‌ها را هم‌راستا نگه دارید." },
-  { en: "Move the work forward.", fa: "کار را به پیش ببرید." },
-  { en: "Record decisions where they matter.", fa: "تصمیم‌ها را در جای درست ثبت کنید." },
+  { en: "Define what needs to happen.", fa: "اول مشخص کنید چه کاری باید انجام شود." },
+  { en: "Turn intent into an operational plan.", fa: "هدف را به یک برنامه عملیاتی تبدیل کنید." },
+  { en: "Keep people and responsibilities aligned.", fa: "افراد و مسئولیت‌ها را هماهنگ نگه دارید." },
+  { en: "Move the work forward.", fa: "کار را جلو ببرید." },
+  { en: "Record decisions where they matter.", fa: "تصمیم‌ها را همان‌جا که گرفته می‌شوند ثبت کنید." },
   { en: "Confirm the evidence and outcome.", fa: "شواهد و نتیجه را تأیید کنید." },
-  { en: "Keep the history for what comes next.", fa: "سابقه را برای ادامه کار حفظ کنید." },
+  { en: "Keep the history for what comes next.", fa: "سوابق را برای ادامه مسیر حفظ کنید." },
 ];
 
 function resolveBrowserLocale(): Locale {
