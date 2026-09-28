@@ -471,3 +471,17 @@ html[data-theme="light"] {
 @media (prefers-reduced-motion:reduce){
  .product-button,.solutions-button,.architecture-button,.security-button,.roadmap-action,.resources-action,.investors-action,.pricing-action,.customers-action,.arrow-action,.contact-primary,.about-email{transition:none}
 }
+
+
+/* Root surfaces are semantic, not page-owned. */
+.product-page,.solutions-page,.architecture-page,.security-page,.roadmap-page,.resources-page,.contact-page,.investors-page,.pricing-page,.customers-page,.about-page{
+  background:var(--onyx-bg)!important;
+  color:var(--onyx-text)!important;
+}
+
+/* Legacy hero literals resolve through canonical surfaces. */
+.about-hero{
+  background:
+    radial-gradient(circle at 72% 28%, rgba(11,96,250,.16), transparent 30%),
+    var(--onyx-bg);
+}
