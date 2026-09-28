@@ -88,7 +88,7 @@ const text = {
     ],
   },
   accountability: {
-    tag: { en: "05 / Accountability", fa: "۰۵ / پاسخ‌گویی" },
+    tag: { en: "09 / Accountability", fa: "۰۹ / پاسخ‌گویی" },
     title: { en: "Keep decisions attached to the work.", fa: "تصمیم‌ها را در کنار کاری که بر آن اثر می‌گذارند ثبت و پیگیری کنید." },
     body: {
       en: "ONYX preserves the context around an outcome: who acted, what changed, which decision governed the work, and what evidence supports the result.",
@@ -196,6 +196,39 @@ const lifecycleDescriptions: Localized[] = [
   { en: "Keep the history for what comes next.", fa: "سوابق را برای ادامه مسیر حفظ کنید." },
 ];
 
+const accountabilitySteps: Array<{ key: string; title: Localized; body: Localized; signal: Localized }> = [
+  {
+    key: "action",
+    title: { en: "Action", fa: "اقدام" },
+    body: { en: "The record identifies who acted and what work was performed.", fa: "سابقه مشخص می‌کند چه کسی اقدام کرده و چه کاری انجام شده است." },
+    signal: { en: "Actor identified", fa: "عامل اقدام مشخص است" },
+  },
+  {
+    key: "authority",
+    title: { en: "Authority", fa: "اختیار" },
+    body: { en: "The decision or authority governing the work stays attached to the action.", fa: "تصمیم یا اختیاری که کار را هدایت کرده، به همان اقدام متصل می‌ماند." },
+    signal: { en: "Decision context retained", fa: "زمینه تصمیم حفظ شده است" },
+  },
+  {
+    key: "change",
+    title: { en: "Change", fa: "تغییر" },
+    body: { en: "The operational record makes the resulting change explicit instead of leaving it as an unexplained outcome.", fa: "سابقه عملیاتی تغییر حاصل را صریح ثبت می‌کند تا نتیجه بدون زمینه باقی نماند." },
+    signal: { en: "State change visible", fa: "تغییر وضعیت قابل مشاهده است" },
+  },
+  {
+    key: "evidence",
+    title: { en: "Evidence", fa: "شواهد" },
+    body: { en: "Supporting evidence remains connected to the outcome so the result can be checked in context.", fa: "شواهد پشتیبان به نتیجه متصل می‌مانند تا نتیجه در همان زمینه قابل بررسی باشد." },
+    signal: { en: "Evidence linked", fa: "شواهد متصل است" },
+  },
+  {
+    key: "record",
+    title: { en: "Record", fa: "سابقه" },
+    body: { en: "The completed chain remains available as an operational history that can be reconstructed later.", fa: "زنجیره تکمیل‌شده به‌عنوان سابقه عملیاتی حفظ می‌شود تا بعداً بتوان آن را بازسازی کرد." },
+    signal: { en: "History retained", fa: "سابقه حفظ شده است" },
+  },
+];
+
 function resolveBrowserLocale(): Locale {
   if (typeof navigator === "undefined") return "en";
   const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
@@ -217,6 +250,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
   const [locale, setLocale] = useState<Locale>(initialLocale ?? "en");
   const [activeModel, setActiveModel] = useState(0);
   const [activeLifecycle, setActiveLifecycle] = useState(0);
+  const [activeAccountability, setActiveAccountability] = useState(0);
   const [heroActive, setHeroActive] = useState(false);
   const isRtl = locale === "fa";
   const t = (value: Localized) => value[locale];
@@ -494,21 +528,53 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
           </div>
         </section>
 
-        <section className="accountability section-shell">
+        <section className="accountability section-shell" aria-labelledby="accountability-title">
           <div className="shell-content accountability__layout">
             <div className="accountability__statement">
               <SignalTag>{t(text.accountability.tag)}</SignalTag>
-              <h2>{t(text.accountability.title)}</h2>
+              <h2 id="accountability-title">{t(text.accountability.title)}</h2>
               <p>{t(text.accountability.body)}</p>
+              <div className="accountability__chain" role="tablist" aria-label={locale === "fa" ? "زنجیره پاسخ‌گویی" : "Accountability chain"}>
+                {accountabilitySteps.map((step, index) => {
+                  const active = index === activeAccountability;
+                  return (
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={active}
+                      aria-controls="accountability-detail"
+                      className={`accountability__step ${active ? "accountability__step--active" : ""}`}
+                      key={step.key}
+                      onClick={() => setActiveAccountability(index)}
+                      onMouseEnter={() => setActiveAccountability(index)}
+                      onFocus={() => setActiveAccountability(index)}
+                    >
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <i aria-hidden="true" />
+                      <strong>{t(step.title)}</strong>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <div className="verification-card">
-              <div className="verification-card__meta"><span>ONYX / 042</span><span>{t(text.accountability.tag)}</span></div>
-              <div className="verification-card__route">
-                <div className="route-node route-node--done"><Check size={14} /><span>{t(text.accountability.completed)}</span></div>
-                <span className="route-link" />
-                <div className="route-node route-node--done"><ShieldCheck size={14} /><span>{t(text.accountability.verified)}</span></div>
-                <span className="route-link" />
-                <div className="route-node route-node--active"><BadgeCheck size={14} /><span>{t(text.accountability.recorded)}</span></div>
+            <div className="accountability__signal" id="accountability-detail" role="tabpanel" aria-live="polite">
+              <div className="accountability__signal-head">
+                <div>
+                  <span className="mono-label">{String(activeAccountability + 1).padStart(2, "0")} / {t(accountabilitySteps[activeAccountability].title)}</span>
+                  <h3>{t(accountabilitySteps[activeAccountability].body)}</h3>
+                </div>
+                <div className="accountability__ring" aria-hidden="true">
+                  <span>{String(activeAccountability + 1).padStart(2, "0")}</span>
+                </div>
+              </div>
+              <div className="accountability__evidence">
+                <ShieldCheck size={15} />
+                <span>{t(accountabilitySteps[activeAccountability].signal)}</span>
+              </div>
+              <div className="accountability__trail" aria-hidden="true">
+                {accountabilitySteps.map((step, index) => (
+                  <span key={step.key} className={index <= activeAccountability ? "is-reached" : ""} />
+                ))}
               </div>
             </div>
           </div>
