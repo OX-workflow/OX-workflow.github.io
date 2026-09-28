@@ -42,7 +42,7 @@ const text = {
   },
   problem: {
     tag: { en: "01 / The problem", fa: "۰۱ / مسئله" },
-    title: { en: "The operation is bigger than the tools around it.", fa: "خودِ عملیات از ابزارهایی که برای مدیریت آن به کار می‌روند، پیچیده‌تر است." },
+    title: { en: "The operation is bigger than the tools around it.", fa: "خودِ عملیات از ابزارهای پیرامونش فراتر است." },
     body: {
       en: "Plans live in one place. Conversations in another. Decisions, files, approvals, and evidence become separate trails. The operation becomes harder to see, coordinate, and explain.",
       fa: "برنامه‌ها یک‌جا هستند، گفت‌وگوها جای دیگر و تصمیم‌ها، فایل‌ها، تأییدها و شواهد به ردپاهای جداگانه تبدیل می‌شوند. در نتیجه دیدن، هماهنگ کردن و توضیح دادن عملیات دشوارتر می‌شود.",
@@ -89,7 +89,7 @@ const text = {
   },
   accountability: {
     tag: { en: "05 / Accountability", fa: "۰۵ / پاسخ‌گویی" },
-    title: { en: "Keep decisions attached to the work.", fa: "تصمیم‌ها را در متنِ کاری که بر آن اثر می‌گذارند ثبت و دنبال کنید." },
+    title: { en: "Keep decisions attached to the work.", fa: "تصمیم‌ها را در کنار کاری که بر آن اثر می‌گذارند ثبت و پیگیری کنید." },
     body: {
       en: "ONYX preserves the context around an outcome: who acted, what changed, which decision governed the work, and what evidence supports the result.",
       fa: "ONYX زمینه پیرامون یک نتیجه را حفظ می‌کند: چه کسی اقدام کرد، چه چیزی تغییر کرد، کدام تصمیم بر کار حاکم بود و چه شواهدی نتیجه را پشتیبانی می‌کند.",
@@ -113,7 +113,7 @@ const text = {
   },
   cta: {
     tag: { en: "Mission Operations Platform", fa: "پلتفرم عملیات مأموریتی" },
-    title: { en: "Make the operation the system.", fa: "خودِ عملیات را به سیستم اصلی کار تبدیل کنید." },
+    title: { en: "Make the operation the system.", fa: "عملیات را به محور اصلی کار تبدیل کنید." },
     body: {
       en: "Explore ONYX as a product. When you need the engineering underneath it, go deeper into Technology.",
       fa: "ONYX را به‌عنوان محصول بررسی کنید. هر زمان به مهندسی زیرساخت آن نیاز داشتید، وارد بخش فناوری شوید.",
