@@ -63,7 +63,7 @@ export default function PricingLicensingPage({locale}:{locale:Locale}){
  const href=(p:string)=>p?"/"+locale+"/"+p+"/":"/"+locale+"/";
  useEffect(()=>{const s=window.localStorage.getItem("onyx-theme") as Theme|null;const p=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";setTheme(s==="dark"||s==="light"?s:p)},[]);
  useEffect(()=>{document.documentElement.dataset.theme=theme;window.localStorage.setItem("onyx-theme",theme)},[theme]);
- return <main className={"pricing-page pricing-page--"+theme} dir={rtl?"rtl":"ltr"}>
+ return <main className={"pricing-page onyx-system pricing-page--"+theme} dir={rtl?"rtl":"ltr"}>
   <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="pricing" />
   <section className="pricing-hero"><div className="pricing-grid" aria-hidden="true"/><div className="shell-content pricing-hero__inner"><div className="pricing-kicker"><span/>{c.tag}</div><p className="pricing-eyebrow">{c.eyebrow}</p><h1>{c.title}</h1><p className="pricing-intro">{c.intro}</p></div></section>
   <section className="pricing-notice"><div className="shell-content pricing-notice__inner"><span className="pricing-label">{c.notice}</span><p>{c.noticeBody}</p></div></section>
