@@ -1,0 +1,432 @@
+/* 
+ * ONYX CANONICAL DESIGN SYSTEM
+ * Phase 2 — single source of truth for tokens, primitives, components,
+ * motion, and light/dark themes.
+ *
+ * Migration rule:
+ * - Page compositions may remain page-specific.
+ * - Visual primitives must consume these tokens.
+ * - Do not introduce page-specific color/spacing/button primitives.
+ * - Ring / Orbit / Grid / Signal are compositional patterns, not separate themes.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Color — light */
+  --onyx-light-void: #F2F5FC;
+  --onyx-light-deep: #E8EDF6;
+  --onyx-light-midnight: #FFFFFF;
+  --onyx-light-surface: #FFFFFF;
+  --onyx-light-surface-raised: #F7F9FD;
+  --onyx-light-text: #07152D;
+  --onyx-light-text-secondary: #34415A;
+  --onyx-light-text-muted: #59657A;
+  --onyx-light-border: #D8DEEA;
+  --onyx-light-border-strong: #BFC9DA;
+
+  /* Color — canonical signals */
+  --onyx-signal-blue: #0B60FA;
+  --onyx-field-blue: #1747FF;
+  --onyx-plasma-violet: #6330FF;
+  --onyx-ion-violet: #923FFF;
+  --onyx-cyan-edge: #39D9FF;
+  --onyx-signal-white: #F2F5FC;
+  --onyx-ice: #E0E5F5;
+  --onyx-graphite: #59657A;
+
+  /* Color — dark surfaces */
+  --onyx-void: #010314;
+  --onyx-deep: #020728;
+  --onyx-midnight: #061250;
+  --onyx-level-3: #0B1740;
+  --onyx-dark-border: rgba(193, 215, 255, .12);
+  --onyx-active-border: rgba(57, 217, 255, .42);
+  --onyx-dark-overlay: rgba(2, 7, 40, .68);
+
+  /* Semantic aliases — light default */
+  --onyx-bg: var(--onyx-light-void);
+  --onyx-surface: var(--onyx-light-surface);
+  --onyx-surface-raised: var(--onyx-light-surface-raised);
+  --onyx-text: var(--onyx-light-text);
+  --onyx-text-secondary: var(--onyx-light-text-secondary);
+  --onyx-text-muted: var(--onyx-light-text-muted);
+  --onyx-border: var(--onyx-light-border);
+  --onyx-border-strong: var(--onyx-light-border-strong);
+  --onyx-primary: var(--onyx-field-blue);
+  --onyx-accent: var(--onyx-signal-blue);
+  --onyx-focus: var(--onyx-cyan-edge);
+
+  /* Brand gradient */
+  --onyx-energy-gradient: linear-gradient(
+    90deg,
+    var(--onyx-plasma-violet) 0%,
+    var(--onyx-ion-violet) 35%,
+    var(--onyx-field-blue) 72%,
+    var(--onyx-cyan-edge) 100%
+  );
+
+  /* Typography */
+  --onyx-font-display: "ONYX Manrope", Arial, sans-serif;
+  --onyx-font-body: "ONYX Manrope", Arial, sans-serif;
+  --onyx-font-persian-display: "ONYX Vazirmatn", "ONYX Manrope", Arial, sans-serif;
+  --onyx-font-persian-body: "ONYX Estedad", "ONYX Vazirmatn", Arial, sans-serif;
+  --onyx-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --onyx-type-hero: clamp(4rem, 8vw, 8.75rem);
+  --onyx-type-display: clamp(3rem, 5.8vw, 5.7rem);
+  --onyx-type-section: clamp(2.25rem, 4.5vw, 4.25rem);
+  --onyx-type-title: clamp(1.65rem, 2.4vw, 2.35rem);
+  --onyx-type-body: 1rem;
+  --onyx-type-small: .78rem;
+  --onyx-type-micro: .67rem;
+  --onyx-leading-display: .94;
+  --onyx-leading-body: 1.72;
+  --onyx-tracking-display: -.075em;
+  --onyx-tracking-label: .14em;
+
+  /* Layout */
+  --onyx-content-max: 1240px;
+  --onyx-content-gutter: clamp(20px, 5vw, 74px);
+  --onyx-section-y: clamp(88px, 10vw, 150px);
+  --onyx-section-gap: clamp(40px, 6vw, 88px);
+  --onyx-grid-gap: clamp(16px, 2vw, 28px);
+  --onyx-control-height: 48px;
+
+  /* Shape */
+  --onyx-radius-sm: 2px;
+  --onyx-radius-md: 6px;
+  --onyx-radius-lg: 12px;
+  --onyx-radius-pill: 999px;
+
+  /* Borders / effects */
+  --onyx-line-width: 1px;
+  --onyx-interactive-glow: 0 0 30px rgba(57, 217, 255, .26);
+  --onyx-primary-glow: 0 12px 40px rgba(23, 71, 255, .28);
+  --onyx-surface-shadow: 0 18px 60px rgba(1, 3, 20, .12);
+
+  /* Motion */
+  --onyx-ease-out: cubic-bezier(.23, 1, .32, 1);
+  --onyx-ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --onyx-duration-fast: 160ms;
+  --onyx-duration-ui: 220ms;
+  --onyx-duration-medium: 420ms;
+  --onyx-duration-slow: 700ms;
+  --onyx-duration-signal: 4.8s;
+  --onyx-duration-orbit: 18s;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --onyx-bg: var(--onyx-void);
+  --onyx-surface: var(--onyx-deep);
+  --onyx-surface-raised: var(--onyx-midnight);
+  --onyx-text: var(--onyx-signal-white);
+  --onyx-text-secondary: var(--onyx-ice);
+  --onyx-text-muted: var(--onyx-graphite);
+  --onyx-border: var(--onyx-dark-border);
+  --onyx-border-strong: var(--onyx-active-border);
+  --onyx-primary: var(--onyx-field-blue);
+  --onyx-accent: var(--onyx-signal-blue);
+  --onyx-focus: var(--onyx-cyan-edge);
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --onyx-bg: var(--onyx-light-void);
+  --onyx-surface: var(--onyx-light-surface);
+  --onyx-surface-raised: var(--onyx-light-surface-raised);
+  --onyx-text: var(--onyx-light-text);
+  --onyx-text-secondary: var(--onyx-light-text-secondary);
+  --onyx-text-muted: var(--onyx-light-text-muted);
+  --onyx-border: var(--onyx-light-border);
+  --onyx-border-strong: var(--onyx-light-border-strong);
+  --onyx-primary: var(--onyx-field-blue);
+  --onyx-accent: var(--onyx-signal-blue);
+  --onyx-focus: var(--onyx-cyan-edge);
+}
+
+/* =========================
+   ONYX primitives
+   ========================= */
+
+.onyx-system {
+  background: var(--onyx-bg);
+  color: var(--onyx-text);
+  font-family: var(--onyx-font-body);
+}
+
+.onyx-shell {
+  width: min(var(--onyx-content-max), calc(100% - 2 * var(--onyx-content-gutter)));
+  margin-inline: auto;
+}
+
+.onyx-section {
+  position: relative;
+  padding-block: var(--onyx-section-y);
+}
+
+.onyx-kicker,
+.onyx-signal-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--onyx-accent);
+  font-family: var(--onyx-font-body);
+  font-size: var(--onyx-type-micro);
+  font-weight: 600;
+  letter-spacing: var(--onyx-tracking-label);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.onyx-signal-tag::before {
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--onyx-cyan-edge);
+  background: var(--onyx-signal-blue);
+  box-shadow: 0 0 0 4px rgba(57, 217, 255, .10), 0 0 14px rgba(57, 217, 255, .55);
+  content: "";
+}
+
+.onyx-section-heading {
+  max-width: 780px;
+}
+
+.onyx-section-heading--wide {
+  max-width: 1000px;
+}
+
+.onyx-section-heading h1,
+.onyx-section-heading h2 {
+  margin: 22px 0 21px;
+  font-family: var(--onyx-font-display);
+  font-size: var(--onyx-type-display);
+  font-weight: 600;
+  letter-spacing: var(--onyx-tracking-display);
+  line-height: var(--onyx-leading-display);
+}
+
+.onyx-section-heading p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--onyx-text-secondary);
+  font-size: var(--onyx-type-body);
+  line-height: var(--onyx-leading-body);
+}
+
+.onyx-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--onyx-border);
+}
+
+.onyx-rule--energy {
+  overflow: hidden;
+}
+
+.onyx-rule--energy::after {
+  display: block;
+  width: 35%;
+  height: 100%;
+  background: var(--onyx-energy-gradient);
+  content: "";
+}
+
+.onyx-card,
+.onyx-panel {
+  position: relative;
+  border: var(--onyx-line-width) solid var(--onyx-border);
+  background: var(--onyx-surface);
+}
+
+.onyx-card {
+  padding: clamp(20px, 2.5vw, 32px);
+}
+
+.onyx-panel {
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.onyx-card:hover,
+.onyx-panel[data-interactive="true"]:hover {
+  border-color: var(--onyx-border-strong);
+}
+
+.onyx-data-row {
+  display: grid;
+  grid-template-columns: minmax(100px, .32fr) 1fr;
+  gap: 24px;
+  padding-block: 18px;
+  border-top: var(--onyx-line-width) solid var(--onyx-border);
+}
+
+.onyx-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--onyx-text-secondary);
+  font-size: var(--onyx-type-small);
+}
+
+.onyx-status::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--onyx-cyan-edge);
+  box-shadow: 0 0 12px rgba(57, 217, 255, .65);
+  content: "";
+}
+
+.onyx-button {
+  display: inline-flex;
+  min-height: var(--onyx-control-height);
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  border: 1px solid var(--onyx-border-strong);
+  border-radius: var(--onyx-radius-sm);
+  background: transparent;
+  color: var(--onyx-text);
+  cursor: pointer;
+  font-size: var(--onyx-type-small);
+  font-weight: 600;
+  letter-spacing: .07em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    color var(--onyx-duration-fast) var(--onyx-ease-out),
+    background var(--onyx-duration-ui) var(--onyx-ease-out),
+    border-color var(--onyx-duration-ui) var(--onyx-ease-out),
+    box-shadow var(--onyx-duration-ui) var(--onyx-ease-out),
+    transform var(--onyx-duration-fast) var(--onyx-ease-out);
+}
+
+.onyx-button:hover,
+.onyx-button:focus-visible {
+  border-color: var(--onyx-cyan-edge);
+  background: rgba(57, 217, 255, .08);
+  box-shadow: var(--onyx-interactive-glow);
+}
+
+.onyx-button:active {
+  transform: translateY(1px);
+}
+
+.onyx-button--primary {
+  border-color: var(--onyx-field-blue);
+  background: var(--onyx-field-blue);
+  color: #fff;
+  box-shadow: var(--onyx-primary-glow);
+}
+
+.onyx-button--primary:hover,
+.onyx-button--primary:focus-visible {
+  border-color: var(--onyx-cyan-edge);
+  background: var(--onyx-signal-blue);
+  color: #fff;
+}
+
+.onyx-button--quiet {
+  min-height: 40px;
+  padding-inline: 12px;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.onyx-button--quiet:hover,
+.onyx-button--quiet:focus-visible {
+  background: rgba(57, 217, 255, .06);
+  box-shadow: none;
+}
+
+.onyx-button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  box-shadow: none;
+}
+
+.onyx-footer {
+  padding-block: 48px 32px;
+  border-top: var(--onyx-line-width) solid var(--onyx-border);
+  background: var(--onyx-bg);
+  color: var(--onyx-text-secondary);
+}
+
+.onyx-energy {
+  background: var(--onyx-energy-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.onyx-focus-ring:focus-visible,
+.onyx-button:focus-visible {
+  outline: 2px solid var(--onyx-focus);
+  outline-offset: 4px;
+}
+
+/* =========================
+   ONYX compositional language
+   ========================= */
+
+.onyx-ring {
+  border: 1px solid rgba(57, 217, 255, .22);
+  border-radius: 50%;
+}
+
+.onyx-orbit {
+  border: 1px solid rgba(99, 48, 255, .22);
+  border-radius: 50%;
+}
+
+.onyx-grid {
+  background-image:
+    linear-gradient(rgba(73, 127, 255, .12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(73, 127, 255, .12) 1px, transparent 1px);
+  background-size: 88px 88px;
+}
+
+.onyx-signal {
+  background: var(--onyx-energy-gradient);
+}
+
+@media (max-width: 920px) {
+  :root {
+    --onyx-content-gutter: 28px;
+    --onyx-section-y: clamp(76px, 11vw, 112px);
+    --onyx-type-hero: clamp(3.25rem, 11vw, 6rem);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --onyx-content-gutter: 20px;
+    --onyx-section-y: 72px;
+    --onyx-grid-gap: 16px;
+    --onyx-control-height: 46px;
+    --onyx-type-display: clamp(2.25rem, 12vw, 3.5rem);
+  }
+
+  .onyx-data-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .onyx-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .onyx-button {
+    transition: none;
+  }
+}
