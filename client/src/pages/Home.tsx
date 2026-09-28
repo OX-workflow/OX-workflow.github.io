@@ -3,7 +3,6 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUp,
-  BadgeCheck,
   Check,
   ChevronDown,
   ChevronLeft,
