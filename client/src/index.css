@@ -2654,3 +2654,366 @@ html[data-theme="dark"] .commercial-frame__card:focus-visible{
 @media(prefers-reduced-motion:reduce){
   .operational-demo__pause{transition:none}
 }
+
+
+/* ============================================================
+   ONYX DARK BRAND SYSTEM — canonical visual layer
+   Ring · Orbit · Grid · Signal
+   ============================================================ */
+:root {
+  --onyx-void: #010314;
+  --onyx-deep: #020728;
+  --onyx-midnight: #061250;
+  --onyx-level-3: #0B1740;
+  --onyx-signal-blue: #0B60FA;
+  --onyx-field-blue: #1747FF;
+  --onyx-plasma-violet: #6330FF;
+  --onyx-ion-violet: #923FFF;
+  --onyx-cyan-edge: #39D9FF;
+  --onyx-signal-white: #F2F5FC;
+  --onyx-ice: #E0E5F5;
+  --onyx-graphite: #59657A;
+  --onyx-dark-border: rgba(193,215,255,.12);
+  --onyx-active-border: rgba(57,217,255,.42);
+  --onyx-energy-gradient: linear-gradient(90deg, #6330FF 0%, #923FFF 35%, #1747FF 72%, #39D9FF 100%);
+  --onyx-ambient-glow: 0 0 18px rgba(57,217,255,.16);
+  --onyx-interactive-glow: 0 0 30px rgba(57,217,255,.26);
+  --onyx-hero-glow: 0 0 80px rgba(57,217,255,.22);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  background: var(--onyx-void);
+  --background: var(--onyx-void);
+  --foreground: var(--onyx-signal-white);
+  --card: var(--onyx-deep);
+  --card-foreground: var(--onyx-signal-white);
+  --popover: var(--onyx-deep);
+  --popover-foreground: var(--onyx-signal-white);
+  --primary: var(--onyx-signal-blue);
+  --primary-foreground: #fff;
+  --secondary: var(--onyx-level-3);
+  --secondary-foreground: var(--onyx-ice);
+  --muted: #07102F;
+  --muted-foreground: var(--onyx-graphite);
+  --accent: var(--onyx-cyan-edge);
+  --accent-foreground: var(--onyx-signal-white);
+  --border: var(--onyx-dark-border);
+  --input: rgba(193,215,255,.18);
+  --ring: var(--onyx-cyan-edge);
+  --ink: var(--onyx-signal-white);
+  --ink-soft: var(--onyx-ice);
+  --line: var(--onyx-dark-border);
+  --signal: var(--onyx-signal-blue);
+  --signal-bright: var(--onyx-cyan-edge);
+  --obsidian: var(--onyx-void);
+  --surface: var(--onyx-deep);
+  --surface-alt: var(--onyx-level-3);
+  --text-secondary: var(--onyx-ice);
+  --text-muted: var(--onyx-graphite);
+}
+
+html[data-theme="dark"] body,
+html[data-theme="dark"] .onyx-site {
+  background: var(--onyx-void);
+  color: var(--onyx-signal-white);
+}
+html[data-theme="dark"] .problem,
+html[data-theme="dark"] .philosophy,
+html[data-theme="dark"] .why-onyx { background: var(--onyx-deep); }
+html[data-theme="dark"] .contrast,
+html[data-theme="dark"] .platform,
+html[data-theme="dark"] .industries,
+html[data-theme="dark"] .outcomes,
+html[data-theme="dark"] .accountability { background: var(--onyx-level-3); }
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] strong { color: var(--onyx-signal-white); }
+html[data-theme="dark"] h1 em,
+html[data-theme="dark"] h2 em,
+html[data-theme="dark"] .mono-label,
+html[data-theme="dark"] .signal-tag,
+html[data-theme="dark"] .product-kicker,
+html[data-theme="dark"] .product-visuals__kicker { color: var(--onyx-cyan-edge); }
+html[data-theme="dark"] p,
+html[data-theme="dark"] .section-intro > p,
+html[data-theme="dark"] .section-heading > p,
+html[data-theme="dark"] .authority-showcase__copy p,
+html[data-theme="dark"] .product-proof-strip p { color: var(--onyx-ice); }
+html[data-theme="dark"] :focus-visible {
+  outline-color: var(--onyx-cyan-edge);
+  box-shadow: 0 0 0 3px rgba(23,71,255,.28), 0 0 18px rgba(57,217,255,.18);
+}
+
+html[data-theme="dark"] .hero__system { filter: drop-shadow(0 0 60px rgba(99,48,255,.14)); }
+html[data-theme="dark"] .hero__orbit--outer { border-color: rgba(57,217,255,.38); }
+html[data-theme="dark"] .hero__orbit--middle { border-color: rgba(99,48,255,.52); }
+html[data-theme="dark"] .hero__orbit--inner { border-color: rgba(23,71,255,.72); }
+html[data-theme="dark"] .hero__core { filter: drop-shadow(0 0 50px rgba(57,217,255,.78)); }
+html[data-theme="dark"] .hero__signal {
+  background: linear-gradient(90deg, transparent, var(--onyx-cyan-edge), var(--onyx-ion-violet), transparent);
+  box-shadow: 0 0 18px rgba(57,217,255,.42);
+}
+html[data-theme="dark"] .hero__grid,
+html[data-theme="dark"] .platform__backdrop {
+  background-image:
+    linear-gradient(rgba(57,217,255,.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,48,255,.10) 1px, transparent 1px);
+}
+html[data-theme="dark"] .signal-tag__node {
+  border-color: var(--onyx-cyan-edge);
+  background: var(--onyx-signal-blue);
+  box-shadow: 0 0 0 4px rgba(57,217,255,.12), 0 0 18px var(--onyx-cyan-edge);
+}
+html[data-theme="dark"] .signal-rule { background: var(--onyx-dark-border); }
+html[data-theme="dark"] .signal-rule span { background: var(--onyx-energy-gradient); }
+
+html[data-theme="dark"] .arrow-action,
+html[data-theme="dark"] .architecture-button,
+html[data-theme="dark"] .roadmap-action,
+html[data-theme="dark"] .investors-action,
+html[data-theme="dark"] .customers-action {
+  border-color: var(--onyx-dark-border);
+  background: rgba(2,7,40,.68);
+  color: var(--onyx-signal-white);
+}
+html[data-theme="dark"] .arrow-action:hover,
+html[data-theme="dark"] .arrow-action:focus-visible,
+html[data-theme="dark"] .architecture-button:hover,
+html[data-theme="dark"] .architecture-button:focus-visible,
+html[data-theme="dark"] .roadmap-action:hover,
+html[data-theme="dark"] .investors-action:hover,
+html[data-theme="dark"] .customers-action:hover {
+  border-color: var(--onyx-active-border);
+  background: rgba(23,71,255,.14);
+  box-shadow: var(--onyx-interactive-glow);
+}
+html[data-theme="dark"] .arrow-action--solid,
+html[data-theme="dark"] .architecture-button--primary,
+html[data-theme="dark"] .roadmap-action--primary,
+html[data-theme="dark"] .investors-action--primary,
+html[data-theme="dark"] .customers-action--primary {
+  border-color: var(--onyx-field-blue);
+  background: var(--onyx-field-blue);
+  color: #fff;
+  box-shadow: 0 12px 40px rgba(23,71,255,.28);
+}
+
+html[data-theme="dark"] .onyx-global-header,
+html[data-theme="dark"] .site-header {
+  background: rgba(1,3,20,.88);
+  border-color: var(--onyx-dark-border);
+  box-shadow: 0 14px 50px rgba(1,3,20,.34);
+}
+html[data-theme="dark"] .onyx-global-header__nav a,
+html[data-theme="dark"] .onyx-global-header__contact,
+html[data-theme="dark"] .onyx-floating-controls__theme,
+html[data-theme="dark"] .onyx-floating-controls__language { color: var(--onyx-ice); }
+html[data-theme="dark"] .onyx-global-header__nav a:hover,
+html[data-theme="dark"] .onyx-global-header__contact:hover,
+html[data-theme="dark"] .onyx-floating-controls__theme:hover { color: var(--onyx-cyan-edge); }
+html[data-theme="dark"] .onyx-floating-controls__language.is-active {
+  background: var(--onyx-field-blue);
+  color: #fff;
+}
+html[data-theme="dark"] .onyx-floating-controls__theme {
+  border-color: var(--onyx-dark-border);
+  background: var(--onyx-deep);
+}
+html[data-theme="dark"] .site-footer,
+html[data-theme="dark"] .roadmap-footer,
+html[data-theme="dark"] .architecture-footer,
+html[data-theme="dark"] .investors-footer,
+html[data-theme="dark"] .customers-footer {
+  background: var(--onyx-void);
+  border-top-color: var(--onyx-dark-border);
+  color: var(--onyx-ice);
+}
+
+html[data-theme="dark"] .product-page {
+  --product-bg: var(--onyx-void);
+  --product-surface: var(--onyx-deep);
+  --product-surface-2: var(--onyx-level-3);
+  --product-ink: var(--onyx-signal-white);
+  --product-muted: var(--onyx-graphite);
+  --product-line: var(--onyx-dark-border);
+  --product-blue: var(--onyx-field-blue);
+  background: var(--onyx-void);
+  color: var(--onyx-signal-white);
+}
+html[data-theme="dark"] .product-header,
+html[data-theme="dark"] .product-footer { background: rgba(1,3,20,.92); border-color: var(--onyx-dark-border); }
+html[data-theme="dark"] .product-hero {
+  background:
+    radial-gradient(circle at 78% 42%, rgba(57,217,255,.10), transparent 28%),
+    radial-gradient(circle at 62% 62%, rgba(99,48,255,.10), transparent 34%),
+    var(--onyx-void);
+}
+html[data-theme="dark"] .product-hero__grid {
+  background-image:
+    linear-gradient(var(--onyx-dark-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--onyx-dark-border) 1px, transparent 1px);
+}
+html[data-theme="dark"] .product-visuals {
+  --product-bg: var(--onyx-deep);
+  --product-surface: var(--onyx-level-3);
+  --product-surface-2: #0a1647;
+  --product-ink: var(--onyx-signal-white);
+  --product-muted: var(--onyx-ice);
+  --product-line: var(--onyx-dark-border);
+  --product-blue: var(--onyx-cyan-edge);
+  background: var(--onyx-deep);
+  border-color: var(--onyx-dark-border);
+}
+html[data-theme="dark"] .product-visuals__hero-frame,
+html[data-theme="dark"] .product-visuals__gallery figure,
+html[data-theme="dark"] .product-visuals__mobile-grid figure {
+  background: var(--onyx-void);
+  border-color: var(--onyx-dark-border);
+  box-shadow: 0 28px 80px rgba(1,3,20,.58);
+}
+html[data-theme="dark"] .product-visuals__caption {
+  background: var(--onyx-deep);
+  border-color: var(--onyx-dark-border);
+  color: var(--onyx-ice);
+}
+html[data-theme="dark"] .product-visuals__caption strong { color: var(--onyx-signal-white); }
+html[data-theme="dark"] .product-visuals__scan {
+  background: linear-gradient(90deg, transparent, rgba(57,217,255,.10), rgba(99,48,255,.12), transparent);
+}
+
+html[data-theme="dark"] .execution-path__item,
+html[data-theme="dark"] .product-flow__item { border-color: var(--onyx-dark-border); }
+html[data-theme="dark"] .execution-path__item span,
+html[data-theme="dark"] .product-flow__item i { color: var(--onyx-graphite); }
+html[data-theme="dark"] .execution-path__item strong,
+html[data-theme="dark"] .product-flow__item strong { color: var(--onyx-ice); }
+html[data-theme="dark"] .execution-path__item:hover,
+html[data-theme="dark"] .execution-path__item:focus-visible,
+html[data-theme="dark"] .execution-path__item--active,
+html[data-theme="dark"] .product-flow__item:hover,
+html[data-theme="dark"] .product-flow__item:focus-visible,
+html[data-theme="dark"] .product-flow__item--active {
+  border-color: var(--onyx-active-border);
+  background: linear-gradient(90deg, rgba(23,71,255,.10), rgba(99,48,255,.06));
+}
+html[data-theme="dark"] .execution-path__item--active i,
+html[data-theme="dark"] .product-flow__item--active i {
+  background: var(--onyx-cyan-edge);
+  box-shadow: 0 0 16px rgba(57,217,255,.5);
+}
+
+html[data-theme="dark"] .operational-demo {
+  background:
+    radial-gradient(circle at 82% 28%, rgba(57,217,255,.09), transparent 25%),
+    radial-gradient(circle at 18% 72%, rgba(99,48,255,.08), transparent 28%),
+    linear-gradient(180deg, var(--onyx-deep), var(--onyx-void));
+  color: var(--onyx-signal-white);
+}
+html[data-theme="dark"] .operational-demo::before {
+  background-image:
+    linear-gradient(rgba(57,217,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,48,255,.07) 1px, transparent 1px);
+}
+html[data-theme="dark"] .operational-demo__stage,
+html[data-theme="dark"] .operational-demo__panel,
+html[data-theme="dark"] .operational-demo__state-visual { border-color: var(--onyx-dark-border); }
+html[data-theme="dark"] .operational-demo__stage--active,
+html[data-theme="dark"] .operational-demo__stage:focus-visible {
+  border-color: var(--onyx-active-border);
+  background: linear-gradient(180deg, rgba(23,71,255,.14), rgba(99,48,255,.06));
+}
+html[data-theme="dark"] .operational-demo__stage--active::after {
+  background: var(--onyx-energy-gradient);
+  box-shadow: 0 0 16px rgba(57,217,255,.35);
+}
+html[data-theme="dark"] .operational-demo__ring {
+  border-color: var(--onyx-cyan-edge);
+  box-shadow: 0 0 0 1px rgba(99,48,255,.24), 0 0 45px rgba(57,217,255,.22);
+}
+html[data-theme="dark"] .operational-demo__ring::before,
+html[data-theme="dark"] .operational-demo__ring::after { border-color: rgba(99,48,255,.48); }
+html[data-theme="dark"] .operational-demo__ring b { color: var(--onyx-signal-white); }
+html[data-theme="dark"] .operational-demo__state-kicker { color: var(--onyx-cyan-edge); }
+html[data-theme="dark"] .operational-demo__state-visual--approval,
+html[data-theme="dark"] .operational-demo__state-visual--evidence,
+html[data-theme="dark"] .operational-demo__state-visual--forecast,
+html[data-theme="dark"] .operational-demo__state-visual--automation,
+html[data-theme="dark"] .operational-demo__state-visual--conflict,
+html[data-theme="dark"] .operational-demo__state-visual--history {
+  background: linear-gradient(145deg, rgba(6,18,80,.92), rgba(2,7,40,.96));
+  border-color: var(--onyx-active-border);
+  box-shadow: var(--onyx-ambient-glow);
+}
+html[data-theme="dark"] .operational-demo__capacity i { background: var(--onyx-energy-gradient); }
+html[data-theme="dark"] .operational-demo__forecast-chart span { background: linear-gradient(180deg, var(--onyx-cyan-edge), var(--onyx-field-blue)); }
+html[data-theme="dark"] .operational-demo__automation-path i {
+  background: var(--onyx-energy-gradient);
+  box-shadow: 0 0 12px rgba(57,217,255,.35);
+}
+html[data-theme="dark"] .operational-demo__conflict-mark {
+  border-color: var(--onyx-ion-violet);
+  color: var(--onyx-signal-white);
+  background: rgba(99,48,255,.18);
+  box-shadow: 0 0 24px rgba(146,63,255,.28);
+}
+html[data-theme="dark"] .operational-demo__resolution { color: var(--onyx-cyan-edge); }
+html[data-theme="dark"] .operational-demo__history-line i {
+  border-color: var(--onyx-cyan-edge);
+  background: var(--onyx-field-blue);
+  box-shadow: 0 0 12px rgba(57,217,255,.3);
+}
+
+/* Commercial + technical page surfaces */
+html[data-theme="dark"] .roadmap-hero,
+html[data-theme="dark"] .investors-hero,
+html[data-theme="dark"] .customers-hero,
+html[data-theme="dark"] .architecture-hero,
+html[data-theme="dark"] .security-hero,
+html[data-theme="dark"] .resources-hero,
+html[data-theme="dark"] .contact-hero,
+html[data-theme="dark"] .solutions-hero {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(57,217,255,.08), transparent 25%),
+    linear-gradient(135deg, var(--onyx-deep), var(--onyx-void));
+  color: var(--onyx-signal-white);
+}
+html[data-theme="dark"] .roadmap-stage,
+html[data-theme="dark"] .investors-section,
+html[data-theme="dark"] .customers-scenario,
+html[data-theme="dark"] .customers-boundary,
+html[data-theme="dark"] .architecture-section,
+html[data-theme="dark"] .security-section,
+html[data-theme="dark"] .resources-section,
+html[data-theme="dark"] .contact-section,
+html[data-theme="dark"] .solutions-section {
+  background: var(--onyx-deep);
+  border-color: var(--onyx-dark-border);
+}
+html[data-theme="dark"] .roadmap-cards > *,
+html[data-theme="dark"] .investors-diligence > *,
+html[data-theme="dark"] .customers-fit,
+html[data-theme="dark"] .customers-proof,
+html[data-theme="dark"] .architecture-layers > *,
+html[data-theme="dark"] .architecture-states > *,
+html[data-theme="dark"] .security-grid > *,
+html[data-theme="dark"] .resources-grid > *,
+html[data-theme="dark"] .solutions-grid > * {
+  border-color: var(--onyx-dark-border);
+  background: rgba(6,18,80,.36);
+}
+html[data-theme="dark"] .roadmap-kicker,
+html[data-theme="dark"] .investors-kicker,
+html[data-theme="dark"] .customers-kicker,
+html[data-theme="dark"] .architecture-kicker,
+html[data-theme="dark"] .security-kicker,
+html[data-theme="dark"] .resources-kicker,
+html[data-theme="dark"] .contact-kicker,
+html[data-theme="dark"] .solutions-kicker { color: var(--onyx-cyan-edge); }
+
+@media (max-width: 760px) {
+  html[data-theme="dark"] .hero__system { filter: drop-shadow(0 0 34px rgba(57,217,255,.16)); }
+  html[data-theme="dark"] .operational-demo__state-visual { box-shadow: 0 0 18px rgba(57,217,255,.14); }
+}

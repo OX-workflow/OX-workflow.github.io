@@ -15,7 +15,7 @@ export function getInitialTheme(): Theme {
     const stored = window.localStorage.getItem("onyx-theme");
     if (stored === "dark" || stored === "light") return stored;
   } catch {}
-  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark";
 }
 
 export default function SiteHeader({
@@ -40,6 +40,14 @@ export default function SiteHeader({
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+    try {
+      window.localStorage.setItem("onyx-theme", theme);
+    } catch {}
+  }, [theme]);
 
   useEffect(() => {
     if (!menuOpen) return;
