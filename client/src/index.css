@@ -875,7 +875,6 @@ body { min-height: 100vh; overflow-x: hidden; }
 
 /* Phase 3 — Product page */
 .product-page { min-height: 100vh; background: var(--product-bg); color: var(--product-ink); --product-bg: #f5f8fc; --product-surface: #ffffff; --product-surface-2: #edf3fa; --product-ink: #102b4b; --product-muted: #526a88; --product-line: rgba(24,58,104,.14); --product-blue: #0b63f6; }
-.product-page--dark { --product-bg: #05070b; --product-surface: #0b1018; --product-surface-2: #111927; --product-ink: #eef5ff; --product-muted: #9eacc0; --product-line: rgba(195,215,245,.14); --product-blue: #4f8cff; }
 .product-header { position: sticky; top: 0; z-index: 30; height: 76px; display: flex; align-items: center; gap: 32px; padding: 0 clamp(20px,5vw,72px); border-bottom: 1px solid var(--product-line); background: color-mix(in srgb, var(--product-bg) 88%, transparent); backdrop-filter: blur(18px); }
 .product-header__logo { width: 126px; flex: 0 0 auto; }.product-header__logo img { display:block; width:100%; height:auto; }
 .product-header nav { display:flex; gap:24px; margin-inline:auto; }.product-header nav a,.product-header__lang { color:var(--product-muted,#526a88); font-size:.68rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; }.product-header nav a:hover,.product-header__lang:hover { color:var(--product-blue); }
