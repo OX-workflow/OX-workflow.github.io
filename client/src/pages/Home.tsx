@@ -123,7 +123,7 @@ const text = {
   },
 
   commercialFrame: {
-    tag: { en: "07 / Commercial frame", fa: "۰۷ / چارچوب تجاری" },
+    tag: { en: "08 / Commercial frame", fa: "۰۸ / چارچوب تجاری" },
     title: { en: "Built around the operation behind the tools.", fa: "برای خودِ عملیات، نه فقط ابزارهای پیرامون آن." },
     body: {
       en: "Five questions make the product easier to understand: who it is for, why it exists, how it can be deployed, what makes the operating record trustworthy, and how it is commercialized.",
