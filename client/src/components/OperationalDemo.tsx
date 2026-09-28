@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Check, CircleDot, ShieldCheck, Wifi } from "lucide-react";
+import { ArrowRight, Check, CircleDot, Pause, Play, ShieldCheck, Wifi } from "lucide-react";
 
 type Locale = "en" | "fa";
 
@@ -174,6 +174,14 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
     return () => window.clearInterval(timer);
   }, [items.length, paused]);
 
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncMotionPreference = () => setPaused(media.matches);
+    syncMotionPreference();
+    media.addEventListener?.("change", syncMotionPreference);
+    return () => media.removeEventListener?.("change", syncMotionPreference);
+  }, []);
+
   return (
     <section className="operational-demo section-shell" id="operational-demo">
       <div className="shell-content">
@@ -186,14 +194,24 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
         </div>
 
         <div className="operational-demo__stage">
-          <div className="operational-demo__rail" aria-label={locale === "fa" ? "مراحل عملیات" : "Operational stages"}>
+          <div className="operational-demo__rail" role="tablist" aria-label={locale === "fa" ? "مراحل عملیات" : "Operational stages"}>
             {items.map((item, index) => (
               <button
                 type="button"
                 key={item.step}
+                id={`operational-demo-tab-${index}`}
+                role="tab"
+                aria-selected={index === active}
+                aria-controls="operational-demo-panel"
+                tabIndex={index === active ? 0 : -1}
                 className={`operational-demo__step ${index === active ? "operational-demo__step--active" : ""}`}
                 onClick={() => setActive(index)}
-                aria-current={index === active ? "step" : undefined}
+                onMouseEnter={() => setPaused(true)}
+                onFocus={() => {
+                  setActive(index);
+                  setPaused(true);
+                }}
+                onBlur={() => setPaused(false)}
                 aria-label={item.step + " / " + item.label + ": " + item.title}
               >
                 <span>{item.step}</span>
@@ -203,10 +221,37 @@ export default function OperationalDemo({ locale = "en" }: { locale?: Locale }) 
             ))}
           </div>
 
-          <div className={`operational-demo__panel operational-demo__panel--${stateKind}`} data-state={stateKind} aria-live="polite">
+          <div
+            id="operational-demo-panel"
+            role="tabpanel"
+            aria-labelledby={`operational-demo-tab-${active}`}
+            className={`operational-demo__panel operational-demo__panel--${stateKind}`}
+            data-state={stateKind}
+            aria-live="polite"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPaused(false);
+            }}
+          >
             <div className="operational-demo__panel-head">
               <span className="mono-label">{current.step} / {current.label}</span>
-              <span className="operational-demo__status"><CircleDot size={12} /> {locale === "fa" ? "وضعیت عملیاتی" : "Operational state"}</span>
+              <div className="operational-demo__panel-controls">
+                <span className="operational-demo__status"><CircleDot size={12} /> {locale === "fa" ? "وضعیت عملیاتی" : "Operational state"}</span>
+                <button
+                  type="button"
+                  className="operational-demo__pause"
+                  onClick={() => setPaused((value) => !value)}
+                  aria-pressed={paused}
+                  aria-label={paused
+                    ? (locale === "fa" ? "ادامه پخش خودکار مراحل" : "Resume automatic stage progression")
+                    : (locale === "fa" ? "توقف پخش خودکار مراحل" : "Pause automatic stage progression")}
+                >
+                  {paused ? <Play size={12} /> : <Pause size={12} />}
+                  <span>{paused ? (locale === "fa" ? "ادامه" : "Resume") : (locale === "fa" ? "توقف" : "Pause")}</span>
+                </button>
+              </div>
             </div>
             <div className="operational-demo__signal">
               <OperationalState kind={stateKind} locale={locale} step={current.step} />
