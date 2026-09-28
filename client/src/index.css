@@ -5,10 +5,10 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "ONYX Estedad";
-  src: url("https://cdn.jsdelivr.net/gh/aminabedi68/Estedad@0dbe689787b8c2ea302373cb601d0f352f9f98e5/fonts/webfonts/Estedad%5Bwght%5D.woff2") format("woff2");
+  font-family: "ONYX Kufi Arabic";
+  src: url("/assets/fonts/onyx-persian-body.woff2") format("woff2");
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 400;
   font-display: swap;
 }
 

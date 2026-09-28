@@ -81,7 +81,7 @@ export default function SiteHeader({
         </div>
       </div>}
 
-    <header className="onyx-global-header" dir="ltr">
+    <header className={`onyx-global-header ${rtl ? "onyx-global-header--fa" : ""}`} dir="ltr">
       <div className="onyx-global-header__inner">
         <a className="onyx-global-header__logo" href={home} aria-label={rtl ? "صفحه اصلی ONYX" : "ONYX home"}>
           <img

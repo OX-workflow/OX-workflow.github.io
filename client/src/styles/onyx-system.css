@@ -70,7 +70,7 @@
   --onyx-font-display: "ONYX Manrope", Arial, sans-serif;
   --onyx-font-body: "ONYX Manrope", Arial, sans-serif;
   --onyx-font-persian-display: "ONYX Vazirmatn", "ONYX Manrope", Arial, sans-serif;
-  --onyx-font-persian-body: "ONYX Estedad", "ONYX Vazirmatn", Arial, sans-serif;
+  --onyx-font-persian-body: "ONYX Kufi Arabic", "ONYX Vazirmatn", Arial, sans-serif;
   --onyx-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --onyx-type-hero: clamp(4rem, 8vw, 8.75rem);
@@ -432,3 +432,61 @@ html[data-theme="light"] {
 }
 
 
+
+
+/* Persian typography — title/display and body are intentionally distinct. */
+.onyx-site[dir="rtl"],
+.onyx-system[dir="rtl"] {
+  font-family: var(--onyx-font-persian-body);
+}
+
+.onyx-site[dir="rtl"] h1,
+.onyx-site[dir="rtl"] h2,
+.onyx-site[dir="rtl"] h3,
+.onyx-system[dir="rtl"] h1,
+.onyx-system[dir="rtl"] h2,
+.onyx-system[dir="rtl"] h3,
+.onyx-global-header--fa {
+  font-family: var(--onyx-font-persian-display);
+}
+
+.onyx-site[dir="rtl"] p,
+.onyx-site[dir="rtl"] li,
+.onyx-site[dir="rtl"] label,
+.onyx-site[dir="rtl"] input,
+.onyx-site[dir="rtl"] textarea,
+.onyx-site[dir="rtl"] select,
+.onyx-system[dir="rtl"] p,
+.onyx-system[dir="rtl"] li,
+.onyx-system[dir="rtl"] label,
+.onyx-system[dir="rtl"] input,
+.onyx-system[dir="rtl"] textarea,
+.onyx-system[dir="rtl"] select {
+  font-family: var(--onyx-font-persian-body);
+}
+
+.onyx-site[dir="rtl"] button,
+.onyx-system[dir="rtl"] button,
+.onyx-site[dir="rtl"] a,
+.onyx-system[dir="rtl"] a {
+  font-family: var(--onyx-font-persian-body);
+}
+
+.onyx-site[dir="rtl"] .hero h1,
+.onyx-site[dir="rtl"] .section-heading h2,
+.onyx-site[dir="rtl"] .section-intro h2,
+.onyx-site[dir="rtl"] .philosophy h2,
+.onyx-site[dir="rtl"] .why-onyx h2,
+.onyx-site[dir="rtl"] .industries h2,
+.onyx-site[dir="rtl"] .accountability h2 {
+  font-family: var(--onyx-font-persian-display);
+  letter-spacing: 0;
+  line-height: 1.08;
+}
+
+.onyx-system[dir="rtl"] .onyx-section-heading h1,
+.onyx-system[dir="rtl"] .onyx-section-heading h2 {
+  font-family: var(--onyx-font-persian-display);
+  letter-spacing: 0;
+  line-height: 1.12;
+}
