@@ -118,7 +118,7 @@ const text = {
       en: "Explore ONYX as a product. When you need the engineering underneath it, go deeper into Technology.",
       fa: "ONYX را به‌عنوان محصول بررسی کنید. هر زمان به مهندسی زیرساخت آن نیاز داشتید، وارد بخش فناوری شوید.",
     },
-    demo: { en: "Request a demo", fa: "درخواست دمو" },
+    demo: { en: "Request a demo", fa: "درخواست جلسه دمو" },
     technology: { en: "Explore technology", fa: "بررسی فناوری" },
   },
 
