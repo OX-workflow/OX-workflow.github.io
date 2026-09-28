@@ -23,11 +23,13 @@ export default function SiteHeader({
   theme,
   onToggleTheme,
   activePage,
+  showIntro = false,
 }: {
   locale: Locale;
   theme: Theme;
   onToggleTheme: () => void;
   activePage?: string;
+  showIntro?: boolean;
 }) {
   const rtl = locale === "fa";
   const home = `/${locale}/`;
@@ -68,7 +70,7 @@ export default function SiteHeader({
 
   return (
     <>
-      <div className="onyx-intro" aria-hidden="true">
+      {showIntro && <div className="onyx-intro" aria-hidden="true">
         <div className="onyx-intro__field">
           <div className="onyx-intro__halo" />
           <div className="onyx-intro__ring">
@@ -77,7 +79,7 @@ export default function SiteHeader({
           <div className="onyx-intro__wordmark">ONYX</div>
           <div className="onyx-intro__signal" />
         </div>
-      </div>
+      </div>}
 
     <header className="onyx-global-header" dir="ltr">
       <div className="onyx-global-header__inner">
