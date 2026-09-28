@@ -305,7 +305,7 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
 
   return (
     <div className="onyx-site" dir={isRtl ? "rtl" : "ltr"}>
-      <SiteHeader locale={locale} theme={theme} onToggleTheme={toggleTheme} />
+      <SiteHeader locale={locale} theme={theme} onToggleTheme={toggleTheme} showIntro />
 
       <main id="top">
         <section className="hero section-shell hero--ready">
