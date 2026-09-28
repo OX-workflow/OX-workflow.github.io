@@ -219,6 +219,8 @@ export default function ProductPage({ locale }: { locale: Locale }) {
           </div>
         </section>
 
+        <ProductVisuals locale={locale} variant="light" />
+
         <section className="product-section product-section--model">
           <div className="shell-content">
             <div className="product-heading"><div className="product-kicker"><span />{t.modelTag}</div><h2>{t.modelTitleA} <em>{t.modelTitleB}</em></h2><p>{t.modelBody}</p></div>

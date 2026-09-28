@@ -1,7 +1,7 @@
 import React from "react";
 
 type Locale = "en" | "fa";
-type Variant = "hero" | "gallery" | "mobile";
+type Variant = "hero" | "gallery" | "mobile" | "light";
 
 const PRODUCT_ASSET_VERSION = "2026-09-26-2";
 
@@ -90,6 +90,19 @@ const mobileAssets: ProductSurface[] = [
   },
 ];
 
+const lightCopy = {
+  en: {
+    tag: "PRODUCT / LIGHT INTERFACE",
+    title: "The same operating model, in a lighter field.",
+    body: "These light-mode surfaces show the product language without changing the underlying operating model: state, authority, work, and evidence remain connected.",
+  },
+  fa: {
+    tag: "محصول / رابط روشن",
+    title: "همان مدل عملیاتی، در یک سطح روشن‌تر.",
+    body: "این نماهای روشن، زبان محصول را نشان می‌دهند بدون اینکه مدل عملیاتی تغییر کند؛ وضعیت، اختیار، کار و شواهد همچنان به هم متصل‌اند.",
+  },
+} as const;
+
 const copy = {
   en: {
     heroTag: "PRODUCT / LIVE SURFACE",
@@ -148,6 +161,31 @@ export default function ProductVisuals({ locale, variant = "gallery" }: { locale
             <div className="product-visuals__scan" aria-hidden="true" />
             <SurfaceCaption surface={surface} locale={locale} />
           </figure>
+        </div>
+      </section>
+    );
+  }
+
+  if (variant === "light") {
+    const copyText = lightCopy[locale];
+    return (
+      <section className="product-visuals product-visuals--light" dir={rtl ? "rtl" : "ltr"}>
+        <div className="shell-content">
+          <div className="product-visuals__heading">
+            <Kicker>{copyText.tag}</Kicker>
+            <h2>{copyText.title}</h2>
+            <p>{copyText.body}</p>
+          </div>
+          <div className="product-visuals__light-grid">
+            {[1, 2, 3, 4, 5, 6].map((index) => (
+              <figure key={index}>
+                <div className="product-visuals__image">
+                  <img src={`/assets/UI/UI%20lightmode${index}.webp`} alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${index}` : `ONYX light-mode interface sample ${index}`} loading="lazy" decoding="async" />
+                  <span>{String(index).padStart(2, "0")} / ONYX UI</span>
+                </div>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
     );
