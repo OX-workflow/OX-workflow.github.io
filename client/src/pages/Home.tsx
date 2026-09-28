@@ -84,7 +84,7 @@ const text = {
       { en: "Execute", fa: "اجرا" },
       { en: "Decide", fa: "تصمیم" },
       { en: "Verify", fa: "راستی‌آزمایی" },
-      { en: "Remember", fa: "ثبت" },
+      { en: "Remember", fa: "ثبت سوابق" },
     ],
   },
   accountability: {
