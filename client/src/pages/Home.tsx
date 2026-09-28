@@ -278,9 +278,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
         <section className="hero section-shell hero--ready">
           <div className="hero__veil" />
           <div className="hero__grid" aria-hidden="true" />
-          <div className="hero__ui-sample" aria-hidden="true">
-            <img src="/assets/UI/UI%20lightmode1.webp" alt="" width="1600" height="1000" decoding="async" />
-          </div>
           <div className={"hero__system " + (heroActive ? "hero__system--active" : "")} aria-hidden="true">
             <div className="hero__orbit hero__orbit--outer" />
             <div className="hero__orbit hero__orbit--middle" />
@@ -449,26 +446,21 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
               <div>
                 <SignalTag>{locale === "fa" ? "۰۷ / سطوح رابط" : "07 / Interface surfaces"}</SignalTag>
                 <h2 id="ui-surfaces-title">
-                  {locale === "fa" ? "همان مدل عملیاتی." : "The same operating model."}<br />
-                  <em>{locale === "fa" ? "در سطح رابط." : "At the interface."}</em>
+                  {locale === "fa" ? "رابط، بخشی از عملیات است." : "The interface is part of the operation."}<br />
+                  <em>{locale === "fa" ? "نه یک تصویر تزئینی." : "Not decoration."}</em>
                 </h2>
               </div>
               <p>
                 {locale === "fa"
-                  ? "نمونه‌های رابط روشن ONYX را به‌عنوان بخشی از زبان محصول ببینید؛ لایه‌های اطلاعاتی، وضعیت و اقدام در یک سیستم واحد کنار هم قرار می‌گیرند."
-                  : "The light-mode ONYX surfaces are part of the product language: information, state, and action stay legible within one operational system."}
+                  ? "نمونه‌های واقعی رابط روشن ONYX را در کنار مدل عملیاتی ببینید؛ وضعیت، کار و اقدام در همان زبان بصری کنار هم قرار می‌گیرند."
+                  : "Real ONYX light-mode interface surfaces sit alongside the operating model: state, work, and action remain legible in the same visual language."}
               </p>
             </div>
             <div className="ui-surfaces__grid">
               {[1, 2, 3, 4, 5, 6].map((index) => (
                 <figure className="ui-surfaces__item" key={index}>
                   <div className="ui-surfaces__frame">
-                    <img
-                      src={`/assets/UI/UI%20lightmode${index}.webp`}
-                      alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${index}` : `ONYX light-mode interface sample ${index}`}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <img src={`/assets/UI/UI%20lightmode${index}.webp`} alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${index}` : `ONYX light-mode interface sample ${index}`} loading="lazy" decoding="async" />
                     <span>{String(index).padStart(2, "0")} / ONYX UI</span>
                   </div>
                 </figure>
@@ -476,7 +468,6 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
             </div>
           </div>
         </section>
-
 
         <section className="commercial-frame section-shell" aria-labelledby="commercial-frame-title">
           <div className="shell-content">
