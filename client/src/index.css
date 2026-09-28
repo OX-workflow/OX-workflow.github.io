@@ -1,6 +1,6 @@
 /**
- * ONYX design reminder: light-only enterprise system — white and titanium-silver surfaces,
- * graphite typography, electric-blue signal accents, precise geometry, restrained shadows.
+ * ONYX design system: dual-mode mission-control interface — canonical dark navy environment
+ * with an illuminated light-mode counterpart, precise geometry, restrained signal energy.
  */
 @import "tailwindcss";
 
@@ -57,36 +57,37 @@
 :root {
   color-scheme: light;
   --radius: 0.25rem;
-  --background: #f5f8fc;
-  --foreground: #0c1a2f;
-  --card: #ffffff;
-  --card-foreground: #0c1a2f;
-  --popover: #ffffff;
-  --popover-foreground: #0c1a2f;
-  --primary: #0b63f6;
-  --primary-foreground: #ffffff;
-  --secondary: #eaf1fb;
-  --secondary-foreground: #17365f;
-  --muted: #edf2f8;
-  --muted-foreground: #53627a;
-  --accent: #e7f0ff;
-  --accent-foreground: #0b4fc4;
-  --destructive: #ef5b5b;
-  --destructive-foreground: #fff;
-  --border: rgba(24, 58, 104, 0.14);
-  --input: rgba(24, 58, 104, 0.18);
-  --ring: #0b63f6;
-  --obsidian: #f5f8fc;
-  --graphite: #ffffff;
-  --graphite-2: #edf3fa;
-  --titanium: #233b5d;
-  --signal: #0b63f6;
-  --signal-bright: #1769e8;
-  --ink: #0c1a2f;
-  --ink-soft: #53627a;
-  --surface: #ffffff;
-  --surface-alt: #edf3fa;
-  --line: rgba(24, 58, 104, 0.14);
+  /* Canonical ONYX light system */
+  --background: #F2F5FC;
+  --foreground: #07152D;
+  --card: #FFFFFF;
+  --card-foreground: #07152D;
+  --popover: #FFFFFF;
+  --popover-foreground: #07152D;
+  --primary: #1747FF;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E8EDF6;
+  --secondary-foreground: #07152D;
+  --muted: #E8EDF6;
+  --muted-foreground: #34415A;
+  --accent: #EAF0FF;
+  --accent-foreground: #1747FF;
+  --destructive: #C83F4B;
+  --destructive-foreground: #FFFFFF;
+  --border: #D8DEEA;
+  --input: #D8DEEA;
+  --ring: #0B9FEA;
+  --obsidian: #F2F5FC;
+  --graphite: #FFFFFF;
+  --graphite-2: #E8EDF6;
+  --titanium: #34415A;
+  --signal: #1747FF;
+  --signal-bright: #0B9FEA;
+  --ink: #07152D;
+  --ink-soft: #34415A;
+  --surface: #FFFFFF;
+  --surface-alt: #F2F5FC;
+  --line: #D8DEEA;
   --teal: #0d8f7d;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -3002,4 +3003,223 @@ html[data-theme="dark"] .solutions-kicker { color: var(--onyx-cyan-edge); }
 @media (max-width: 760px) {
   html[data-theme="dark"] .hero__system { filter: drop-shadow(0 0 34px rgba(57,217,255,.16)); }
   html[data-theme="dark"] .operational-demo__state-visual { box-shadow: 0 0 18px rgba(57,217,255,.14); }
+}
+
+
+/* ========================================================================== */
+/* Canonical ONYX LIGHT SYSTEM                                                */
+/* Light mode is the illuminated counterpart of the same Ring / Orbit / Grid  */
+/* / Signal language — never a generic SaaS-white theme.                     */
+/* ========================================================================== */
+html[data-theme="light"] {
+  color-scheme: light;
+  --onyx-light-bg: #F2F5FC;
+  --onyx-light-surface: #FFFFFF;
+  --onyx-light-surface-alt: #F2F5FC;
+  --onyx-light-ink: #07152D;
+  --onyx-light-secondary: #34415A;
+  --onyx-light-border: #D8DEEA;
+  --onyx-light-blue: #1747FF;
+  --onyx-light-violet: #6330FF;
+  --onyx-light-cyan: #0B9FEA;
+  --onyx-light-energy: linear-gradient(135deg, #D04DFF 0%, #6330FF 25%, #1747FF 55%, #0B60FA 75%, #0B9FEA 100%);
+  --onyx-header-bg: #F2F5FC;
+  --onyx-header-ink: #07152D;
+  --onyx-header-muted: #34415A;
+  --onyx-header-line: #D8DEEA;
+  --onyx-header-accent: #1747FF;
+}
+html[data-theme="light"] body,
+html[data-theme="light"] .onyx-site { background: var(--onyx-light-bg); color: var(--onyx-light-ink); }
+html[data-theme="light"] .onyx-site { --signal: var(--onyx-light-blue); --signal-bright: var(--onyx-light-cyan); --ink: var(--onyx-light-ink); --ink-soft: var(--onyx-light-secondary); --line: var(--onyx-light-border); --surface: var(--onyx-light-surface); --surface-alt: var(--onyx-light-surface-alt); }
+
+/* Surfaces: Void is translated to a clean titanium field; white is elevation. */
+html[data-theme="light"] .problem,
+html[data-theme="light"] .philosophy,
+html[data-theme="light"] .why-onyx,
+html[data-theme="light"] .solutions-section,
+html[data-theme="light"] .architecture-section,
+html[data-theme="light"] .security-section,
+html[data-theme="light"] .resources-section,
+html[data-theme="light"] .contact-section { background: var(--onyx-light-bg); color: var(--onyx-light-ink); }
+html[data-theme="light"] .contrast,
+html[data-theme="light"] .platform,
+html[data-theme="light"] .industries,
+html[data-theme="light"] .outcomes,
+html[data-theme="light"] .accountability,
+html[data-theme="light"] .roadmap-stage,
+html[data-theme="light"] .investors-section,
+html[data-theme="light"] .customers-scenario { background: #EAF0F8; color: var(--onyx-light-ink); }
+html[data-theme="light"] .methodology,
+html[data-theme="light"] .execution { background: #E8EDF6; color: var(--onyx-light-ink); }
+
+/* Typography and metadata. */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] strong { color: var(--onyx-light-ink); }
+html[data-theme="light"] h1 em,
+html[data-theme="light"] h2 em,
+html[data-theme="light"] .mono-label,
+html[data-theme="light"] .product-kicker,
+html[data-theme="light"] .product-visuals__kicker,
+html[data-theme="light"] .roadmap-kicker,
+html[data-theme="light"] .investors-kicker,
+html[data-theme="light"] .customers-kicker,
+html[data-theme="light"] .architecture-kicker,
+html[data-theme="light"] .security-kicker,
+html[data-theme="light"] .resources-kicker,
+html[data-theme="light"] .contact-kicker,
+html[data-theme="light"] .solutions-kicker { color: var(--onyx-light-blue); }
+html[data-theme="light"] p,
+html[data-theme="light"] .section-heading > p,
+html[data-theme="light"] .section-intro > p,
+html[data-theme="light"] .philosophy__top p,
+html[data-theme="light"] .industries__heading > p,
+html[data-theme="light"] .authority-showcase__copy p,
+html[data-theme="light"] .methodology__content > p,
+html[data-theme="light"] .product-proof-strip p { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .signal-tag { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .signal-tag__node { border-color: var(--onyx-light-blue); background: var(--onyx-light-blue); box-shadow: 0 0 0 4px rgba(23,71,255,.10), 0 0 14px rgba(23,71,255,.22); }
+
+/* Ring / Orbit / Grid / Signal. The ring remains the highest-luminance object. */
+html[data-theme="light"] .hero__system { filter: drop-shadow(0 0 50px rgba(99,48,255,.12)); }
+html[data-theme="light"] .hero__orbit { border-color: rgba(11,159,234,.26); }
+html[data-theme="light"] .hero__orbit--middle { border-color: rgba(99,48,255,.24); }
+html[data-theme="light"] .hero__orbit--inner { border-color: rgba(23,71,255,.42); }
+html[data-theme="light"] .hero__core { filter: drop-shadow(0 0 38px rgba(23,71,255,.32)); }
+html[data-theme="light"] .hero__system--active .hero__core { filter: drop-shadow(0 0 48px rgba(11,159,234,.45)); }
+html[data-theme="light"] .hero__node { background: #FFFFFF; box-shadow: 0 0 0 4px rgba(11,159,234,.10), 0 0 18px rgba(11,159,234,.55); }
+html[data-theme="light"] .hero__signal { background: linear-gradient(90deg, transparent, rgba(11,159,234,.9), transparent); box-shadow: 0 0 12px rgba(11,159,234,.24); }
+html[data-theme="light"] .hero__grid { opacity: .18; background-image: linear-gradient(rgba(23,71,255,.11) 1px, transparent 1px), linear-gradient(90deg, rgba(23,71,255,.11) 1px, transparent 1px); }
+html[data-theme="light"] .signal-rule { background: var(--onyx-light-border); }
+html[data-theme="light"] .signal-rule span { background: var(--onyx-light-energy); }
+
+/* Hero: same energy system, illuminated instead of inverted. */
+html[data-theme="light"] .hero { background: radial-gradient(circle at 80% 30%, rgba(23,71,255,.10), transparent 25%), radial-gradient(circle at 65% 68%, rgba(99,48,255,.07), transparent 28%), linear-gradient(112deg, #FFFFFF 0%, #F2F5FC 58%, #EAF0F8 100%); }
+html[data-theme="light"] .hero__veil,
+html[data-theme="light"] .onyx-site[dir="rtl"] .hero__veil { background: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(247,249,253,.90) 38%, rgba(242,245,252,.32) 74%, transparent 100%), linear-gradient(0deg, #F2F5FC 0%, transparent 32%); }
+html[data-theme="light"] .onyx-site[dir="rtl"] .hero__veil { background: linear-gradient(270deg, rgba(255,255,255,.97) 0%, rgba(247,249,253,.90) 38%, rgba(242,245,252,.32) 74%, transparent 100%), linear-gradient(0deg, #F2F5FC 0%, transparent 32%); }
+html[data-theme="light"] .hero__lede { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .hero__scroll,
+html[data-theme="light"] .telemetry-label { color: #52627B; }
+html[data-theme="light"] .hero__telemetry strong { color: var(--onyx-light-ink); }
+html[data-theme="light"] .telemetry-orbit { border-color: rgba(23,71,255,.45); }
+html[data-theme="light"] .telemetry-orbit span { background: #FFFFFF; box-shadow: 0 0 12px 4px var(--onyx-light-blue); }
+
+/* Actions: blue for operation, violet/cyan only for energy and emphasis. */
+html[data-theme="light"] .arrow-action,
+html[data-theme="light"] .architecture-button,
+html[data-theme="light"] .roadmap-action,
+html[data-theme="light"] .investors-action,
+html[data-theme="light"] .customers-action { border-color: var(--onyx-light-border); color: var(--onyx-light-ink); background: rgba(255,255,255,.62); }
+html[data-theme="light"] .arrow-action:hover,
+html[data-theme="light"] .arrow-action:focus-visible,
+html[data-theme="light"] .architecture-button:hover,
+html[data-theme="light"] .architecture-button:focus-visible,
+html[data-theme="light"] .roadmap-action:hover,
+html[data-theme="light"] .investors-action:hover,
+html[data-theme="light"] .customers-action:hover { border-color: var(--onyx-light-cyan); background: rgba(11,159,234,.08); box-shadow: 0 0 0 2px rgba(23,71,255,.10), 0 0 24px rgba(11,159,234,.12); }
+html[data-theme="light"] .arrow-action--solid { border-color: var(--onyx-light-blue); background: var(--onyx-light-energy); color: #FFFFFF; box-shadow: 0 12px 35px rgba(23,71,255,.20); }
+html[data-theme="light"] .arrow-action--solid:hover { border-color: var(--onyx-light-cyan); background: var(--onyx-light-energy); color: #FFFFFF; box-shadow: 0 16px 40px rgba(23,71,255,.24); }
+html[data-theme="light"] :focus-visible { outline-color: var(--onyx-light-cyan); box-shadow: 0 0 0 3px rgba(23,71,255,.16), 0 0 18px rgba(11,159,234,.12); }
+
+/* Header / footer / controls. */
+html[data-theme="light"] .onyx-site > .onyx-global-header,
+html[data-theme="light"] .onyx-global-header { background: color-mix(in srgb, #F2F5FC 90%, transparent); border-bottom-color: var(--onyx-light-border); }
+html[data-theme="light"] .onyx-global-header__nav a,
+html[data-theme="light"] .onyx-global-header__tools a,
+html[data-theme="light"] .onyx-global-header__theme { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .onyx-global-header__nav a:hover,
+html[data-theme="light"] .onyx-global-header__nav a[aria-current="page"],
+html[data-theme="light"] .onyx-global-header__tools a:hover { color: var(--onyx-light-ink); }
+html[data-theme="light"] .onyx-global-header__contact { border-color: var(--onyx-light-blue); color: var(--onyx-light-ink) !important; background: transparent; }
+html[data-theme="light"] .onyx-global-header__theme { border-color: var(--onyx-light-border); color: var(--onyx-light-ink); }
+html[data-theme="light"] .onyx-global-header__theme:hover { border-color: var(--onyx-light-cyan); }
+html[data-theme="light"] .onyx-global-mobile-nav { background: rgba(242,245,252,.98); border-color: var(--onyx-light-border); box-shadow: 0 28px 70px rgba(7,21,45,.14); }
+html[data-theme="light"] .onyx-global-mobile-nav a { color: var(--onyx-light-ink); }
+html[data-theme="light"] .onyx-global-mobile-nav__contact { background: var(--onyx-light-energy); color: #FFFFFF !important; }
+html[data-theme="light"] .onyx-floating-controls { border-color: var(--onyx-light-border); background: rgba(255,255,255,.88); box-shadow: 0 18px 50px rgba(7,21,45,.12); }
+html[data-theme="light"] .onyx-floating-controls__theme,
+html[data-theme="light"] .onyx-floating-controls__language { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .onyx-floating-controls__language.is-active { background: var(--onyx-light-blue); color: #FFFFFF; }
+html[data-theme="light"] .site-footer,
+html[data-theme="light"] .roadmap-footer,
+html[data-theme="light"] .architecture-footer,
+html[data-theme="light"] .investors-footer,
+html[data-theme="light"] .customers-footer { background: #FFFFFF; border-top-color: var(--onyx-light-border); color: var(--onyx-light-secondary); }
+
+/* Product imagery: the screenshot is framed by ONYX surfaces, never a random gray box. */
+html[data-theme="light"] .product-visuals,
+html[data-theme="light"] .product-visuals--hero,
+html[data-theme="light"] .product-visuals--gallery,
+html[data-theme="light"] .product-visuals--mobile { background: var(--onyx-light-bg); }
+html[data-theme="light"] .product-visuals__hero-frame,
+html[data-theme="light"] .product-visuals__gallery figure,
+html[data-theme="light"] .product-visuals__mobile-grid figure,
+html[data-theme="light"] .product-visuals__image { border-color: var(--onyx-light-border); background: #FFFFFF; box-shadow: 0 24px 70px rgba(7,21,45,.10); }
+html[data-theme="light"] .product-visuals__caption { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .product-visuals__caption strong { color: var(--onyx-light-ink); }
+html[data-theme="light"] .product-visuals__hero-frame > span,
+html[data-theme="light"] .product-visuals__image span { background: rgba(7,21,45,.88); color: #FFFFFF; }
+
+/* Operational demo / lifecycle: state is geometric; signal colors carry meaning. */
+html[data-theme="light"] .operational-demo { background: #EAF0F8; color: var(--onyx-light-ink); }
+html[data-theme="light"] .operational-demo::before { background-image: linear-gradient(rgba(23,71,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(23,71,255,.07) 1px, transparent 1px); }
+html[data-theme="light"] .operational-demo__stage,
+html[data-theme="light"] .operational-demo__panel,
+html[data-theme="light"] .execution-path__item,
+html[data-theme="light"] .product-flow__item { border-color: var(--onyx-light-border); }
+html[data-theme="light"] .operational-demo__panel { background: rgba(255,255,255,.82); box-shadow: 0 30px 80px rgba(7,21,45,.10); }
+html[data-theme="light"] .operational-demo__step { color: var(--onyx-light-secondary); }
+html[data-theme="light"] .operational-demo__step--active,
+html[data-theme="light"] .operational-demo__step:hover,
+html[data-theme="light"] .operational-demo__step:focus-visible,
+html[data-theme="light"] .execution-path__item--active,
+html[data-theme="light"] .execution-path__item:hover,
+html[data-theme="light"] .execution-path__item:focus-visible,
+html[data-theme="light"] .product-flow__item--active,
+html[data-theme="light"] .product-flow__item:hover,
+html[data-theme="light"] .product-flow__item:focus-visible { color: var(--onyx-light-ink); border-color: var(--onyx-light-cyan); background: rgba(11,159,234,.06); }
+html[data-theme="light"] .operational-demo__ring { color: var(--onyx-light-blue); border-color: var(--onyx-light-blue); box-shadow: 0 0 30px rgba(23,71,255,.18); }
+html[data-theme="light"] .operational-demo__ring::before { border-color: var(--onyx-light-violet); }
+html[data-theme="light"] .operational-demo__ring::after { border-color: var(--onyx-light-cyan); }
+html[data-theme="light"] .operational-demo__state-visual { border-color: var(--onyx-light-border); background: rgba(242,245,252,.76); box-shadow: 0 0 22px rgba(11,159,234,.08); }
+html[data-theme="light"] .operational-demo__state-kicker { color: var(--onyx-light-blue); }
+html[data-theme="light"] .operational-demo__evidence-row,
+html[data-theme="light"] .operational-demo__history-line > div { border-color: var(--onyx-light-border); }
+html[data-theme="light"] .operational-demo__progress span { background: var(--onyx-light-energy); }
+
+/* Commercial + technical page cards share one illuminated system. */
+html[data-theme="light"] .roadmap-cards > *,
+html[data-theme="light"] .investors-diligence > *,
+html[data-theme="light"] .customers-fit,
+html[data-theme="light"] .customers-proof,
+html[data-theme="light"] .architecture-layers > *,
+html[data-theme="light"] .architecture-states > *,
+html[data-theme="light"] .security-grid > *,
+html[data-theme="light"] .resources-grid > *,
+html[data-theme="light"] .solutions-grid > * { background: #FFFFFF; border-color: var(--onyx-light-border); box-shadow: 0 18px 55px rgba(7,21,45,.07); }
+html[data-theme="light"] .customers-resilience-boundary { background: #EAF0F8; border-color: var(--onyx-light-border); }
+html[data-theme="light"] .product-page { background: var(--onyx-light-bg); color: var(--onyx-light-ink); }
+html[data-theme="light"] .product-hero,
+html[data-theme="light"] .roadmap-hero,
+html[data-theme="light"] .investors-hero,
+html[data-theme="light"] .customers-hero,
+html[data-theme="light"] .architecture-hero,
+html[data-theme="light"] .security-hero,
+html[data-theme="light"] .resources-hero,
+html[data-theme="light"] .contact-hero,
+html[data-theme="light"] .solutions-hero { background: linear-gradient(135deg, #FFFFFF 0%, #F2F5FC 58%, #EAF0F8 100%); color: var(--onyx-light-ink); }
+
+/* RTL inherits the same palette; direction changes geometry, not color semantics. */
+html[data-theme="light"] [dir="rtl"] .arrow-action:hover,
+html[data-theme="light"] [dir="rtl"] .product-flow__item:hover,
+html[data-theme="light"] [dir="rtl"] .execution-path__item:hover { border-color: var(--onyx-light-cyan); }
+
+@media (max-width: 760px) {
+  html[data-theme="light"] .hero__system { filter: drop-shadow(0 0 34px rgba(99,48,255,.10)); }
+  html[data-theme="light"] .operational-demo__state-visual { box-shadow: 0 0 16px rgba(11,159,234,.07); }
+  html[data-theme="light"] .onyx-floating-controls { box-shadow: 0 12px 34px rgba(7,21,45,.10); }
 }
