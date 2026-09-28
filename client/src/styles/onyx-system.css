@@ -69,7 +69,7 @@
   /* Typography */
   --onyx-font-display: "ONYX Manrope", Arial, sans-serif;
   --onyx-font-body: "ONYX Manrope", Arial, sans-serif;
-  --onyx-font-persian-display: "ONYX Vazirmatn", "ONYX Manrope", Arial, sans-serif;
+  --onyx-font-persian-display: "ONYX Titr", Titr, "ONYX Vazirmatn", Arial, sans-serif;
   --onyx-font-persian-body: "ONYX Kufi Arabic", "ONYX Vazirmatn", Arial, sans-serif;
   --onyx-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
@@ -448,6 +448,8 @@ html[data-theme="light"] {
 .onyx-system[dir="rtl"] h3,
 .onyx-global-header--fa {
   font-family: var(--onyx-font-persian-display);
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .onyx-site[dir="rtl"] p,
