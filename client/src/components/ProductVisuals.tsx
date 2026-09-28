@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type Locale = "en" | "fa";
 type Variant = "hero" | "gallery" | "mobile" | "light";
@@ -13,82 +13,32 @@ type ProductSurface = {
 };
 
 const desktopAssets: ProductSurface[] = [
-  {
-    src: `/assets/product/Desktop1.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "01",
-    title: { en: "Secure access", fa: "دسترسی امن" },
-    description: { en: "Sign-in gateway for the ONYX mission operations environment.", fa: "درگاه ورود به محیط عملیات مأموریتی ONYX." },
-  },
-  {
-    src: `/assets/product/Desktop2.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "02",
-    title: { en: "Policy & settings", fa: "سیاست و تنظیمات" },
-    description: { en: "Mission activation policy, approval thresholds, escalation, and connection controls.", fa: "سیاست فعال‌سازی مأموریت، آستانه‌های تأیید، تشدید و کنترل‌های اتصال." },
-  },
-  {
-    src: `/assets/product/Desktop3.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "03",
-    title: { en: "Staff & organization", fa: "افراد و سازمان" },
-    description: { en: "Staff profiles, reporting structure, approval authority, and verification status.", fa: "پروفایل افراد، ساختار گزارش‌دهی، اختیار تأیید و وضعیت راستی‌آزمایی." },
-  },
-  {
-    src: `/assets/product/Desktop4.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "04",
-    title: { en: "Users & permissions", fa: "کاربران و مجوزها" },
-    description: { en: "Platform users, roles, access status, and operational permissions.", fa: "کاربران سامانه، نقش‌ها، وضعیت دسترسی و مجوزهای عملیاتی." },
-  },
-  {
-    src: `/assets/product/Desktop5.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "05",
-    title: { en: "Authority workflow", fa: "گردش‌کار اختیار" },
-    description: { en: "Pending decisions with approval, rejection, lifecycle, and authority context.", fa: "تصمیم‌های در انتظار با زمینه تأیید، رد، چرخه عمر و اختیار." },
-  },
-  {
-    src: `/assets/product/Desktop6.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "06",
-    title: { en: "Mission operations queue", fa: "صف عملیات مأموریت" },
-    description: { en: "Tasks with owners, priority, dependencies, due dates, status, and attachments.", fa: "کارها با مالک، اولویت، وابستگی، مهلت، وضعیت و پیوست‌ها." },
-  },
-  {
-    src: `/assets/product/Desktop7.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "07",
-    title: { en: "Mission detail & authority timeline", fa: "جزئیات مأموریت و خط زمانی اختیار" },
-    description: { en: "Mission objectives, authority state, outcomes, and a visible operational timeline.", fa: "اهداف مأموریت، وضعیت اختیار، نتایج و خط زمانی قابل مشاهده عملیات." },
-  },
-  {
-    src: `/assets/product/Desktop8.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "08",
-    title: { en: "Mission portfolio", fa: "پرتفوی مأموریت‌ها" },
-    description: { en: "Plan, execute, monitor, and deliver across active and planned missions.", fa: "برنامه‌ریزی، اجرا، پایش و تحویل در میان مأموریت‌های فعال و برنامه‌ریزی‌شده." },
-  },
-  {
-    src: `/assets/product/Desktop9.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "09",
-    title: { en: "Operational dashboard", fa: "داشبورد عملیاتی" },
-    description: { en: "Mission activity, recent events, team presence, system status, and synchronization conflicts.", fa: "فعالیت مأموریت، رویدادهای اخیر، حضور تیم، وضعیت سامانه و تعارض‌های همگام‌سازی." },
-  },
-];
+  ["1","Secure access","دسترسی امن","Sign-in gateway for the ONYX mission operations environment.","درگاه ورود به محیط عملیات مأموریتی ONYX."],
+  ["2","Policy & settings","سیاست و تنظیمات","Mission activation policy, approval thresholds, escalation, and connection controls.","سیاست فعال‌سازی مأموریت، آستانه‌های تأیید، تشدید و کنترل‌های اتصال."],
+  ["3","Staff & organization","افراد و سازمان","Staff profiles, reporting structure, approval authority, and verification status.","پروفایل افراد، ساختار گزارش‌دهی، اختیار تأیید و وضعیت راستی‌آزمایی."],
+  ["4","Users & permissions","کاربران و مجوزها","Platform users, roles, access status, and operational permissions.","کاربران سامانه، نقش‌ها، وضعیت دسترسی و مجوزهای عملیاتی."],
+  ["5","Authority workflow","گردش‌کار اختیار","Pending decisions with approval, rejection, lifecycle, and authority context.","تصمیم‌های در انتظار با زمینه تأیید، رد، چرخه عمر و اختیار."],
+  ["6","Mission operations queue","صف عملیات مأموریت","Tasks with owners, priority, dependencies, due dates, status, and attachments.","کارها با مالک، اولویت، وابستگی، مهلت، وضعیت و پیوست‌ها."],
+  ["7","Mission detail & authority timeline","جزئیات مأموریت و خط زمانی اختیار","Mission objectives, authority state, outcomes, and a visible operational timeline.","اهداف مأموریت، وضعیت اختیار، نتایج و خط زمانی قابل مشاهده عملیات."],
+  ["8","Mission portfolio","پرتفوی مأموریت‌ها","Plan, execute, monitor, and deliver across active and planned missions.","برنامه‌ریزی، اجرا، پایش و تحویل در میان مأموریت‌های فعال و برنامه‌ریزی‌شده."],
+  ["9","Operational dashboard","داشبورد عملیاتی","Mission activity, recent events, team presence, system status, and synchronization conflicts.","فعالیت مأموریت، رویدادهای اخیر، حضور تیم، وضعیت سامانه و تعارض‌های همگام‌سازی."],
+].map(([label,enTitle,faTitle,enDescription,faDescription]) => ({
+  src: `/assets/product/Desktop${label}.webp?v=${PRODUCT_ASSET_VERSION}`,
+  label,
+  title: { en: enTitle, fa: faTitle },
+  description: { en: enDescription, fa: faDescription },
+}));
 
 const mobileAssets: ProductSurface[] = [
-  {
-    src: `/assets/product/Mobile1.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "01",
-    title: { en: "Mobile overview & sync conflict", fa: "نمای موبایل و تعارض همگام‌سازی" },
-    description: { en: "Operational overview with resource utilization and an explicit synchronization conflict.", fa: "نمای عملیاتی با استفاده از منابع و یک تعارض صریح همگام‌سازی." },
-  },
-  {
-    src: `/assets/product/Mobile2.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "02",
-    title: { en: "Mobile mission authority", fa: "اختیار مأموریت در موبایل" },
-    description: { en: "Mission progress, authority state, description, and approval actions.", fa: "پیشرفت مأموریت، وضعیت اختیار، توضیحات و اقدامات تأیید." },
-  },
-  {
-    src: `/assets/product/Mobile3.webp?v=${PRODUCT_ASSET_VERSION}`,
-    label: "03",
-    title: { en: "Mobile operational overview", fa: "نمای عملیاتی موبایل" },
-    description: { en: "Active mission status, conflicts, pending items, and recent operational activity.", fa: "وضعیت مأموریت فعال، تعارض‌ها، موارد در انتظار و فعالیت عملیاتی اخیر." },
-  },
-];
+  ["1","Mobile overview & sync conflict","نمای موبایل و تعارض همگام‌سازی","Operational overview with resource utilization and an explicit synchronization conflict.","نمای عملیاتی با استفاده از منابع و یک تعارض صریح همگام‌سازی."],
+  ["2","Mobile mission authority","اختیار مأموریت در موبایل","Mission progress, authority state, description, and approval actions.","پیشرفت مأموریت، وضعیت اختیار، توضیحات و اقدامات تأیید."],
+  ["3","Mobile operational overview","نمای عملیاتی موبایل","Active mission status, conflicts, pending items, and recent operational activity.","وضعیت مأموریت فعال، تعارض‌ها، موارد در انتظار و فعالیت عملیاتی اخیر."],
+].map(([label,enTitle,faTitle,enDescription,faDescription]) => ({
+  src: `/assets/product/Mobile${label}.webp?v=${PRODUCT_ASSET_VERSION}`,
+  label,
+  title: { en: enTitle, fa: faTitle },
+  description: { en: enDescription, fa: faDescription },
+}));
 
 const lightCopy = {
   en: {
@@ -110,10 +60,10 @@ const copy = {
     heroBody: "The interface keeps the operating model visible: work, state, people, decisions, and evidence in one visual field.",
     galleryTag: "PRODUCT / INTERFACE",
     galleryTitle: "The system, not a mockup.",
-    galleryBody: "Each view is labeled by the operational surface it demonstrates, so the screenshots function as product evidence rather than decorative tiles.",
+    galleryBody: "Browse the product surfaces one at a time. Each view is labeled by the operational surface it demonstrates, so the interface remains evidence rather than a wall of screenshots.",
     mobileTag: "PRODUCT / FIELD SURFACE",
     mobileTitle: "The operation travels with the team.",
-    mobileBody: "Mobile views extend the same operational model into a compact surface for work away from the primary desktop environment.",
+    mobileBody: "Browse compact mobile surfaces that extend the same operational model away from the primary desktop environment.",
   },
   fa: {
     heroTag: "محصول / سطح زنده",
@@ -121,10 +71,10 @@ const copy = {
     heroBody: "رابط کاربری مدل عملیاتی را قابل مشاهده نگه می‌دارد: کار، وضعیت، افراد، تصمیم‌ها و شواهد در یک میدان بصری.",
     galleryTag: "محصول / رابط کاربری",
     galleryTitle: "خود سامانه، نه یک ماکاپ.",
-    galleryBody: "هر نما بر اساس سطح عملیاتی که نشان می‌دهد برچسب‌گذاری شده است تا تصاویر به‌عنوان شواهد محصول عمل کنند، نه کاشی‌های تزئینی.",
+    galleryBody: "نماهای محصول را یکی‌یکی مرور کنید. هر نما بر اساس سطح عملیاتی که نشان می‌دهد برچسب‌گذاری شده است تا رابط، شواهد محصول باشد نه دیواری از تصاویر.",
     mobileTag: "محصول / سطح میدانی",
     mobileTitle: "عملیات همراه تیم حرکت می‌کند.",
-    mobileBody: "نماهای موبایل همان مدل عملیاتی را به سطحی فشرده برای کار خارج از محیط اصلی دسکتاپ می‌آورند.",
+    mobileBody: "نماهای فشرده موبایل را مرور کنید؛ همان مدل عملیاتی، خارج از محیط اصلی دسکتاپ.",
   },
 } as const;
 
@@ -132,13 +82,108 @@ function Kicker({ children }: { children: React.ReactNode }) {
   return <div className="product-visuals__kicker"><span />{children}</div>;
 }
 
-function SurfaceCaption({ surface, locale }: { surface: ProductSurface; locale: Locale }) {
+function SurfaceCaption({ surface, locale, mobile = false }: { surface: ProductSurface; locale: Locale; mobile?: boolean }) {
   return (
     <figcaption className="product-visuals__caption">
-      <span>{locale === "fa" ? `دسکتاپ / ${surface.label}` : `DESKTOP / ${surface.label}`}</span>
+      <span>{locale === "fa" ? `${mobile ? "موبایل" : "دسکتاپ"} / ${surface.label}` : `${mobile ? "MOBILE" : "DESKTOP"} / ${surface.label}`}</span>
       <strong>{surface.title[locale]}</strong>
       <p>{surface.description[locale]}</p>
     </figcaption>
+  );
+}
+
+function SurfaceSlider({
+  surfaces,
+  locale,
+  mobile = false,
+  label,
+}: {
+  surfaces: ProductSurface[];
+  locale: Locale;
+  mobile?: boolean;
+  label: string;
+}) {
+  const [active, setActive] = useState(0);
+  const total = surfaces.length;
+  const surface = surfaces[active];
+
+  useEffect(() => {
+    setActive(0);
+  }, [total]);
+
+  const move = (direction: number) => {
+    setActive((current) => (current + direction + total) % total);
+  };
+
+  return (
+    <div className={`product-visuals__slider ${mobile ? "product-visuals__slider--mobile" : ""}`}>
+      <div className="product-visuals__slider-top">
+        <span className="product-visuals__slider-count">{String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
+        <div className="product-visuals__slider-controls" aria-label={label}>
+          <button type="button" onClick={() => move(-1)} aria-label={locale === "fa" ? "تصویر قبلی" : "Previous image"}>←</button>
+          <button type="button" onClick={() => move(1)} aria-label={locale === "fa" ? "تصویر بعدی" : "Next image"}>→</button>
+        </div>
+      </div>
+      <figure className="product-visuals__slider-frame">
+        <img
+          key={surface.src}
+          src={surface.src}
+          alt={surface.title[locale] + " — " + surface.description[locale]}
+          loading="eager"
+          decoding="async"
+        />
+        <SurfaceCaption surface={surface} locale={locale} mobile={mobile} />
+      </figure>
+      <div className="product-visuals__slider-dots" role="tablist" aria-label={label}>
+        {surfaces.map((item, index) => (
+          <button
+            key={item.src}
+            type="button"
+            role="tab"
+            aria-selected={index === active}
+            aria-label={`${index + 1}: ${item.title[locale]}`}
+            onClick={() => setActive(index)}
+          >
+            <span />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LightSlider({ locale }: { locale: Locale }) {
+  const [active, setActive] = useState(0);
+  const total = 6;
+  const move = (direction: number) => setActive((current) => (current + direction + total) % total);
+  return (
+    <div className="product-visuals__slider product-visuals__slider--light">
+      <div className="product-visuals__slider-top">
+        <span className="product-visuals__slider-count">{String(active + 1).padStart(2, "0")} / 06</span>
+        <div className="product-visuals__slider-controls" aria-label={locale === "fa" ? "نمونه‌های رابط روشن" : "Light interface samples"}>
+          <button type="button" onClick={() => move(-1)} aria-label={locale === "fa" ? "نمونه قبلی" : "Previous sample"}>←</button>
+          <button type="button" onClick={() => move(1)} aria-label={locale === "fa" ? "نمونه بعدی" : "Next sample"}>→</button>
+        </div>
+      </div>
+      <figure className="product-visuals__slider-frame">
+        <img
+          key={active}
+          src={`/assets/UI/UI%20lightmode${active + 1}.webp`}
+          alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${active + 1}` : `ONYX light-mode interface sample ${active + 1}`}
+          loading="eager"
+          decoding="async"
+        />
+        <figcaption className="product-visuals__caption">
+          <span>{locale === "fa" ? `رابط روشن / ${String(active + 1).padStart(2, "0")}` : `LIGHT UI / ${String(active + 1).padStart(2, "0")}`}</span>
+          <strong>{locale === "fa" ? "سطح رابط روشن ONYX" : "ONYX light interface surface"}</strong>
+        </figcaption>
+      </figure>
+      <div className="product-visuals__slider-dots" role="tablist" aria-label={locale === "fa" ? "نمونه‌های رابط روشن" : "Light interface samples"}>
+        {Array.from({ length: total }, (_, index) => (
+          <button key={index} type="button" role="tab" aria-selected={index === active} aria-label={`${index + 1}`} onClick={() => setActive(index)}><span /></button>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -176,16 +221,7 @@ export default function ProductVisuals({ locale, variant = "gallery" }: { locale
             <h2>{copyText.title}</h2>
             <p>{copyText.body}</p>
           </div>
-          <div className="product-visuals__light-grid">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-              <figure key={index}>
-                <div className="product-visuals__image">
-                  <img src={`/assets/UI/UI%20lightmode${index}.webp`} alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${index}` : `ONYX light-mode interface sample ${index}`} loading="lazy" decoding="async" />
-                  <span>{String(index).padStart(2, "0")} / ONYX UI</span>
-                </div>
-              </figure>
-            ))}
-          </div>
+          <LightSlider locale={locale} />
         </div>
       </section>
     );
@@ -200,41 +236,21 @@ export default function ProductVisuals({ locale, variant = "gallery" }: { locale
             <h2>{t.mobileTitle}</h2>
             <p>{t.mobileBody}</p>
           </div>
-          <div className="product-visuals__mobile-grid">
-            {mobileAssets.map((surface) => (
-              <figure key={surface.src}>
-                <img src={surface.src} alt={surface.title[locale] + " — " + surface.description[locale]} loading="lazy" decoding="async" />
-                <figcaption className="product-visuals__caption">
-                  <span>{locale === "fa" ? `موبایل / ${surface.label}` : `MOBILE / ${surface.label}`}</span>
-                  <strong>{surface.title[locale]}</strong>
-                  <p>{surface.description[locale]}</p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <SurfaceSlider surfaces={mobileAssets} locale={locale} mobile label={t.mobileTitle} />
         </div>
       </section>
     );
   }
 
   return (
-    <section className="product-visuals product-visuals--gallery" dir={rtl ? "rtl" : "ltr"}>
+    <section className="product-visuals product-visuals--gallery" dir={rtl ? "rtl" : "ltr"} id="product-gallery">
       <div className="shell-content">
         <div className="product-visuals__heading">
           <Kicker>{t.galleryTag}</Kicker>
           <h2>{t.galleryTitle}</h2>
           <p>{t.galleryBody}</p>
         </div>
-        <div className="product-visuals__gallery">
-          {desktopAssets.map((surface) => (
-            <figure key={surface.src}>
-              <div className="product-visuals__image">
-                <img src={surface.src} alt={surface.title[locale] + " — " + surface.description[locale]} loading="lazy" decoding="async" />
-              </div>
-              <SurfaceCaption surface={surface} locale={locale} />
-            </figure>
-          ))}
-        </div>
+        <SurfaceSlider surfaces={desktopAssets} locale={locale} label={t.galleryTitle} />
       </div>
     </section>
   );
