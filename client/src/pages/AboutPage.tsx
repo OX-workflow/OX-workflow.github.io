@@ -107,7 +107,7 @@ export default function AboutPage({ locale }: { locale: Locale }) {
   const href = (page: string) => `/${locale}/${page}/`;
 
   return (
-    <main className={`about-page about-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
+    <main className={`about-page onyx-system about-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
       <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="about" />
 
       <section className="about-hero">
