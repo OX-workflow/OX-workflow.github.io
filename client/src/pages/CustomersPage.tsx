@@ -238,7 +238,7 @@ export default function CustomersPage({ locale }: { locale: Locale }) {
   }, [theme]);
 
   return (
-    <main className={`customers-page customers-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
+    <main className={`customers-page onyx-system onyx-system customers-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
       <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="customers" />
 
       <section className="customers-hero">
