@@ -17,7 +17,7 @@ export const primaryNavigation: NavigationItem[] = [
 export const secondaryNavigation: NavigationItem[] = [
   { page: "security", href: "security", label: { en: "Security", fa: "امنیت" } },
   { page: "roadmap", href: "roadmap", label: { en: "Roadmap", fa: "نقشه راه" } },
-  { page: "customers", href: "customers", label: { en: "Customer Fit", fa: "تناسب مشتری" } },
-  { page: "about", href: "about", label: { en: "About", fa: "درباره" } },
+  { page: "customers", href: "customers", label: { en: "Customer Fit", fa: "کاربرد و تناسب" } },
+  { page: "about", href: "about", label: { en: "About", fa: "درباره ONYX" } },
   { page: "investors", href: "investors", label: { en: "Investors", fa: "سرمایه‌گذاران" } },
 ];
