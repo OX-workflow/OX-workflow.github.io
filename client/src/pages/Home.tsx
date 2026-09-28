@@ -98,7 +98,7 @@ const text = {
     recorded: { en: "Operational history retained", fa: "تاریخچه عملیاتی حفظ شد" },
   },
   continuity: {
-    tag: { en: "06 / Continuity", fa: "۰۶ / تداوم" },
+    tag: { en: "10 / Continuity", fa: "۱۰ / تداوم" },
     title: { en: "When conditions change, the record stays.", fa: "وقتی شرایط عوض می‌شود، سابقه عملیات از بین نمی‌رود." },
     body: {
       en: "ONYX is designed for operations where connectivity, teams, and circumstances can change without losing the operational context.",
@@ -485,12 +485,12 @@ export default function Home({ initialLocale }: { initialLocale?: Locale }) {
               </div>
               <p>
                 {locale === "fa"
-                  ? "نمونه‌های واقعی رابط روشن ONYX را در کنار مدل عملیاتی ببینید؛ وضعیت، کار و اقدام در همان زبان بصری کنار هم قرار می‌گیرند."
-                  : "Real ONYX light-mode interface surfaces sit alongside the operating model: state, work, and action remain legible in the same visual language."}
+                  ? "چند نمونه منتخب از رابط روشن ONYX را در کنار مدل عملیاتی ببینید؛ وضعیت، کار و اقدام در همان زبان بصری کنار هم قرار می‌گیرند."
+                  : "Selected ONYX light-mode interface surfaces sit alongside the operating model: state, work, and action remain legible in the same visual language."}
               </p>
             </div>
             <div className="ui-surfaces__grid">
-              {[1, 2, 3, 4, 5, 6].map((index) => (
+              {[1, 3, 5].map((index) => (
                 <figure className="ui-surfaces__item" key={index}>
                   <div className="ui-surfaces__frame">
                     <img src={`/assets/UI/UI%20lightmode${index}.webp`} alt={locale === "fa" ? `نمونه رابط روشن ONYX شماره ${index}` : `ONYX light-mode interface sample ${index}`} loading="lazy" decoding="async" />
