@@ -430,3 +430,44 @@ html[data-theme="light"] {
     transition: none;
   }
 }
+
+
+/* =========================
+   PHASE 3 — page migration
+   ========================= */
+
+.product-page,.solutions-page,.architecture-page,.security-page,.roadmap-page,.resources-page,.contact-page,.investors-page,.pricing-page,.customers-page {
+  --product-bg:var(--onyx-bg); --product-surface:var(--onyx-surface); --product-surface-2:var(--onyx-surface-raised); --product-ink:var(--onyx-text); --product-muted:var(--onyx-text-muted); --product-line:var(--onyx-border); --product-blue:var(--onyx-primary);
+  --sol-bg:var(--onyx-bg); --sol-surface:var(--onyx-surface); --sol-surface2:var(--onyx-surface-raised); --sol-ink:var(--onyx-text); --sol-muted:var(--onyx-text-muted); --sol-line:var(--onyx-border); --sol-blue:var(--onyx-primary);
+  --arch-bg:var(--onyx-bg); --arch-surface:var(--onyx-surface); --arch-surface2:var(--onyx-surface-raised); --arch-ink:var(--onyx-text); --arch-muted:var(--onyx-text-muted); --arch-line:var(--onyx-border); --arch-blue:var(--onyx-primary);
+  --sec-bg:var(--onyx-bg); --sec-surface:var(--onyx-surface); --sec-surface2:var(--onyx-surface-raised); --sec-ink:var(--onyx-text); --sec-muted:var(--onyx-text-muted); --sec-line:var(--onyx-border); --sec-blue:var(--onyx-primary);
+  --rm-bg:var(--onyx-bg); --rm-surface:var(--onyx-surface); --rm-surface2:var(--onyx-surface-raised); --rm-ink:var(--onyx-text); --rm-muted:var(--onyx-text-muted); --rm-line:var(--onyx-border); --rm-blue:var(--onyx-primary);
+  --rs-bg:var(--onyx-bg); --rs-surface:var(--onyx-surface); --rs-surface2:var(--onyx-surface-raised); --rs-ink:var(--onyx-text); --rs-muted:var(--onyx-text-muted); --rs-line:var(--onyx-border); --rs-blue:var(--onyx-primary);
+  --ct-bg:var(--onyx-bg); --ct-surface:var(--onyx-surface); --ct-surface2:var(--onyx-surface-raised); --ct-ink:var(--onyx-text); --ct-muted:var(--onyx-text-muted); --ct-line:var(--onyx-border); --ct-blue:var(--onyx-primary);
+  --iv-bg:var(--onyx-bg); --iv-surface:var(--onyx-surface); --iv-surface2:var(--onyx-surface-raised); --iv-ink:var(--onyx-text); --iv-muted:var(--onyx-text-muted); --iv-line:var(--onyx-border); --iv-blue:var(--onyx-primary);
+  --pr-bg:var(--onyx-bg); --pr-surface:var(--onyx-surface); --pr-surface2:var(--onyx-surface-raised); --pr-ink:var(--onyx-text); --pr-muted:var(--onyx-text-muted); --pr-line:var(--onyx-border); --pr-blue:var(--onyx-primary);
+  --cu-bg:var(--onyx-bg); --cu-surface:var(--onyx-surface); --cu-surface2:var(--onyx-surface-raised); --cu-ink:var(--onyx-text); --cu-muted:var(--onyx-text-muted); --cu-line:var(--onyx-border); --cu-blue:var(--onyx-primary);
+}
+.about-page{background:var(--onyx-bg);color:var(--onyx-text)}
+.about-page *{--about-bg:var(--onyx-bg);--about-surface:var(--onyx-surface);--about-ink:var(--onyx-text);--about-muted:var(--onyx-text-muted);--about-line:var(--onyx-border);--about-blue:var(--onyx-primary)}
+
+.product-button,.product-button--primary,.solutions-button,.solutions-button--primary,.architecture-button,.architecture-button--primary,.security-button,.security-button--primary,.roadmap-action,.resources-action,.investors-action,.pricing-action,.customers-action,.arrow-action,.contact-primary,.about-email{
+  min-height:var(--onyx-control-height);display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:var(--onyx-radius-sm);font-family:var(--onyx-font-body);font-size:var(--onyx-type-small);font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  transition:color var(--onyx-duration-fast) var(--onyx-ease-out),background var(--onyx-duration-ui) var(--onyx-ease-out),border-color var(--onyx-duration-ui) var(--onyx-ease-out),box-shadow var(--onyx-duration-ui) var(--onyx-ease-out),transform var(--onyx-duration-fast) var(--onyx-ease-out);
+}
+.product-button--primary,.solutions-button--primary,.architecture-button--primary,.security-button--primary,.roadmap-action,.resources-action,.investors-action,.pricing-action,.customers-action,.contact-primary{border-color:var(--onyx-primary);background:var(--onyx-primary);color:#fff;box-shadow:var(--onyx-primary-glow)}
+.product-button--primary:hover,.solutions-button--primary:hover,.architecture-button--primary:hover,.security-button--primary:hover,.roadmap-action:hover,.resources-action:hover,.investors-action:hover,.pricing-action:hover,.customers-action:hover,.contact-primary:hover{border-color:var(--onyx-focus);background:var(--onyx-accent);color:#fff;box-shadow:var(--onyx-interactive-glow)}
+.product-button:not(.product-button--primary),.solutions-button:not(.solutions-button--primary),.architecture-button:not(.architecture-button--primary),.security-button:not(.security-button--primary),.arrow-action,.about-email{border-color:var(--onyx-border-strong);background:transparent;color:var(--onyx-text)}
+.product-button:not(.product-button--primary):hover,.solutions-button:not(.solutions-button--primary):hover,.architecture-button:not(.architecture-button--primary):hover,.security-button:not(.security-button--primary):hover,.arrow-action:hover,.about-email:hover{border-color:var(--onyx-focus);background:rgba(57,217,255,.08);color:var(--onyx-text);box-shadow:var(--onyx-interactive-glow)}
+
+.product-model-card,.solutions-conditions article,.solutions-values article,.architecture-states article,.architecture-agent-grid article,.security-principles article,.security-controls article,.pricing-card,.customers-value,.customers-scenario,.about-team-card,.product-surface,.product-proof-strip,.pricing-notice,.contact-context-grid > *,.customers-proof-list > *{border-color:var(--onyx-border);background:var(--onyx-surface)}
+.product-model-card:hover,.solutions-conditions article:hover,.solutions-values article:hover,.architecture-states article:hover,.architecture-agent-grid article:hover,.security-principles article:hover,.security-controls article:hover,.pricing-card:hover,.customers-value:hover,.customers-scenario:hover,.about-team-card:hover{border-color:var(--onyx-border-strong)}
+
+.product-footer,.solutions-footer,.architecture-footer,.security-footer,.roadmap-footer,.about-footer,.resources-footer,.contact-footer,.investors-footer,.pricing-footer,.customers-footer{border-top-color:var(--onyx-border);background:var(--onyx-bg);color:var(--onyx-text-secondary)}
+
+.product-heading,.solutions-heading,.architecture-heading,.security-heading,.roadmap-heading,.about-section__heading,.contact-heading{color:var(--onyx-text)}
+.product-kicker,.solutions-kicker,.architecture-kicker,.security-kicker,.roadmap-kicker,.about-kicker,.resources-kicker,.contact-kicker,.investors-kicker,.pricing-kicker,.customers-kicker,.roadmap-label,.resources-label,.contact-label,.investors-label,.pricing-label,.customers-label{color:var(--onyx-accent)}
+
+@media (prefers-reduced-motion:reduce){
+ .product-button,.solutions-button,.architecture-button,.security-button,.roadmap-action,.resources-action,.investors-action,.pricing-action,.customers-action,.arrow-action,.contact-primary,.about-email{transition:none}
+}
