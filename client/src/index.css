@@ -5,6 +5,14 @@
 @import "tailwindcss";
 
 @font-face {
+  font-family: "ONYX Titr";
+  src: url("/assets/fonts/titr.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "ONYX Kufi Arabic";
   src: url("/assets/fonts/onyx-persian-body.woff2") format("woff2");
   font-style: normal;
@@ -695,30 +703,27 @@ body { min-height: 100vh; overflow-x: hidden; }
   .site-footer { padding:34px 0; }
 }
 
-/* Farsi typography: bundled fonts are assigned by role. Vazirmatn handles Persian display copy; Manrope remains the companion UI/body face for Latin, numerals and mixed strings. */
+/* Farsi typography: Titr is the dedicated display face; Kufi is the body/UI face. */
 .onyx-site[dir="rtl"] {
-  --farsi-title-font: "ONYX Vazirmatn", sans-serif;
-  --farsi-body-font: "ONYX Estedad", "ONYX Manrope", sans-serif;
+  --farsi-title-font: "ONYX Titr", Titr, sans-serif;
+  --farsi-body-font: "ONYX Kufi Arabic", "ONYX Manrope", sans-serif;
 }
 .onyx-site[dir="rtl"] h1,
 .onyx-site[dir="rtl"] h2,
 .onyx-site[dir="rtl"] h3,
 .onyx-site[dir="rtl"] h4,
 .onyx-site[dir="rtl"] h5,
-.onyx-site[dir="rtl"] h6,
-.onyx-site[dir="rtl"] .signal-tag,
-.onyx-site[dir="rtl"] .mono-label,
-.onyx-site[dir="rtl"] .hero-launch__status { font-family: var(--farsi-title-font); font-weight: 700; }
+.onyx-site[dir="rtl"] h6 { font-family: var(--farsi-title-font); font-weight: 700; letter-spacing: 0; }
 .onyx-site[dir="rtl"] p,
 .onyx-site[dir="rtl"] li,
 .onyx-site[dir="rtl"] a,
 .onyx-site[dir="rtl"] button,
 .onyx-site[dir="rtl"] span,
 .onyx-site[dir="rtl"] small,
-.onyx-site[dir="rtl"] strong { font-family: var(--farsi-body-font); }
-.onyx-site[dir="rtl"] h1,
-.onyx-site[dir="rtl"] h2,
-.onyx-site[dir="rtl"] h3 { letter-spacing: 0; }
+.onyx-site[dir="rtl"] strong,
+.onyx-site[dir="rtl"] .signal-tag,
+.onyx-site[dir="rtl"] .mono-label,
+.onyx-site[dir="rtl"] .hero-launch__status { font-family: var(--farsi-body-font); }
 
 /* App-launch hero: symbol-only system boot sequence. */
 .hero { min-height: 100svh; }
@@ -3413,4 +3418,100 @@ html[data-theme="light"] .accountability__trail span { background: rgba(83,101,1
 }
 @media (prefers-reduced-motion:reduce){
   .product-visuals__slider-controls button,.product-visuals__slider-dots button span{transition:none}
+}
+
+
+/* Farsi display scale: Titr has a much larger visual footprint than Latin display faces. */
+.onyx-site[dir="rtl"] h1,
+.onyx-site[dir="rtl"] .product-hero h1,
+.onyx-site[dir="rtl"] .architecture-hero h1,
+.onyx-site[dir="rtl"] .security-hero h1,
+.onyx-site[dir="rtl"] .roadmap-hero h1,
+.onyx-site[dir="rtl"] .about-hero h1,
+.onyx-site[dir="rtl"] .resources-hero h1,
+.onyx-site[dir="rtl"] .contact-hero h1,
+.onyx-site[dir="rtl"] .solutions-hero h1,
+.onyx-site[dir="rtl"] .investors-hero h1,
+.onyx-site[dir="rtl"] .pricing-hero h1,
+.onyx-site[dir="rtl"] .customers-hero h1 {
+  font-family: var(--farsi-title-font);
+  font-size: clamp(3.15rem, 6.9vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.08;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.onyx-site[dir="rtl"] h2,
+.onyx-site[dir="rtl"] .section-heading h2,
+.onyx-site[dir="rtl"] .section-intro h2,
+.onyx-site[dir="rtl"] .philosophy h2,
+.onyx-site[dir="rtl"] .methodology h2,
+.onyx-site[dir="rtl"] .why-onyx h2,
+.onyx-site[dir="rtl"] .industries h2,
+.onyx-site[dir="rtl"] .accountability h2,
+.onyx-site[dir="rtl"] .product-heading h2,
+.onyx-site[dir="rtl"] .product-flow-intro h2,
+.onyx-site[dir="rtl"] .product-status-heading h2,
+.onyx-site[dir="rtl"] .product-final h2,
+.onyx-site[dir="rtl"] .architecture-heading h2,
+.onyx-site[dir="rtl"] .architecture-two-col h2,
+.onyx-site[dir="rtl"] .architecture-final h2,
+.onyx-site[dir="rtl"] .investors-section h2,
+.onyx-site[dir="rtl"] .investors-diligence h2,
+.onyx-site[dir="rtl"] .investors-final h2,
+.onyx-site[dir="rtl"] .pricing-two-col h2,
+.onyx-site[dir="rtl"] .pricing-final h2,
+.onyx-site[dir="rtl"] .customers-two-col h2,
+.onyx-site[dir="rtl"] .customers-final h2 {
+  font-family: var(--farsi-title-font);
+  font-size: clamp(2.25rem, 4.9vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.14;
+}
+
+.onyx-site[dir="rtl"] p,
+.onyx-site[dir="rtl"] li,
+.onyx-site[dir="rtl"] .hero__lede,
+.onyx-site[dir="rtl"] .section-intro > p,
+.onyx-site[dir="rtl"] .section-heading p,
+.onyx-site[dir="rtl"] .philosophy__top p,
+.onyx-site[dir="rtl"] .industries__heading > p,
+.onyx-site[dir="rtl"] .platform__intro > p,
+.onyx-site[dir="rtl"] .methodology__content > p,
+.onyx-site[dir="rtl"] .final-cta p {
+  font-family: var(--farsi-body-font);
+  font-size: 1rem;
+  line-height: 1.95;
+}
+
+@media (max-width: 640px) {
+  .onyx-site[dir="rtl"] h1,
+  .onyx-site[dir="rtl"] .product-hero h1,
+  .onyx-site[dir="rtl"] .architecture-hero h1,
+  .onyx-site[dir="rtl"] .security-hero h1,
+  .onyx-site[dir="rtl"] .roadmap-hero h1,
+  .onyx-site[dir="rtl"] .about-hero h1,
+  .onyx-site[dir="rtl"] .resources-hero h1,
+  .onyx-site[dir="rtl"] .contact-hero h1,
+  .onyx-site[dir="rtl"] .solutions-hero h1,
+  .onyx-site[dir="rtl"] .investors-hero h1,
+  .onyx-site[dir="rtl"] .pricing-hero h1,
+  .onyx-site[dir="rtl"] .customers-hero h1 {
+    font-size: clamp(2.65rem, 13vw, 4.6rem);
+    line-height: 1.12;
+  }
+  .onyx-site[dir="rtl"] h2,
+  .onyx-site[dir="rtl"] .section-heading h2,
+  .onyx-site[dir="rtl"] .section-intro h2,
+  .onyx-site[dir="rtl"] .philosophy h2,
+  .onyx-site[dir="rtl"] .methodology h2,
+  .onyx-site[dir="rtl"] .why-onyx h2,
+  .onyx-site[dir="rtl"] .industries h2,
+  .onyx-site[dir="rtl"] .accountability h2 {
+    font-size: clamp(2.05rem, 10vw, 3.25rem);
+    line-height: 1.16;
+  }
 }

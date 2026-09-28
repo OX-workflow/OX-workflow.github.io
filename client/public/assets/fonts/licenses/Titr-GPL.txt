@@ -1,0 +1,8 @@
+Titr font licensing
+
+Font: Titr (FarsiWeb Fonts Collection)
+Source: https://github.com/behnam/fonts-farsiweb
+
+The Titr font is distributed under the GNU General Public License (GPL), as documented by the upstream FarsiWeb Fonts collection. The complete license text is preserved in the upstream repository's COPYING.txt file.
+
+Upstream copyright and licensing notices are retained by distributing this font alongside this notice.
