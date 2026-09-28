@@ -8,7 +8,7 @@
     <meta name="author" content="Soheil Mozaffari" />
     <meta name="contact" content="Soheil.Mozaffari@gmail.com" />
     <meta name="application-name" content="ONYX Mission Operations Platform" />
-    <meta name="theme-color" content="#F5F8FC" />
+    <meta name="theme-color" content="#010314" />
     <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
@@ -16,12 +16,12 @@
           var stored = window.localStorage.getItem("onyx-theme");
           var theme = stored === "dark" || stored === "light"
             ? stored
-            : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+            : "dark";
           document.documentElement.dataset.theme = theme;
           document.documentElement.style.colorScheme = theme;
         } catch (_) {
-          document.documentElement.dataset.theme = "light";
-          document.documentElement.style.colorScheme = "light";
+          document.documentElement.dataset.theme = "dark";
+          document.documentElement.style.colorScheme = "dark";
         }
       })();
     </script>
