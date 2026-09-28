@@ -125,7 +125,7 @@ export default function RoadmapPage({ locale }: { locale: Locale }) {
   }, [theme]);
 
   return (
-    <main className={`roadmap-page roadmap-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
+    <main className={`roadmap-page onyx-system roadmap-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
       <header className="roadmap-header">
         <div className="shell-content roadmap-header__inner">
           <a className="roadmap-logo" href={href("")} aria-label="ONYX">

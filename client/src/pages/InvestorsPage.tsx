@@ -86,7 +86,7 @@ export default function InvestorsPage({ locale }: { locale: Locale }) {
     window.localStorage.setItem("onyx-theme", theme);
   }, [theme]);
   return (
-    <main className={"investors-page investors-page--" + theme} dir={rtl ? "rtl" : "ltr"}>
+    <main className={"investors-page onyx-system investors-page--" + theme} dir={rtl ? "rtl" : "ltr"}>
       <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="investors" />
       <section className="investors-hero"><div className="investors-grid" aria-hidden="true" /><div className="shell-content investors-hero__inner"><div className="investors-kicker"><span />{c.tag}</div><p className="investors-eyebrow">{c.eyebrow}</p><h1>{c.title}</h1><p className="investors-intro">{c.intro}</p></div></section>
       {c.sections.map((section) => <section className="investors-section" key={section.label}><div className="shell-content investors-two-col"><div><span className="investors-label">{section.label}</span><h2>{section.title}</h2><p className="investors-lead">{section.body}</p></div><div className="investors-list">{section.items.map(([label, body]) => <article key={label}><span>{label}</span><p>{body}</p></article>)}</div></div></section>)}

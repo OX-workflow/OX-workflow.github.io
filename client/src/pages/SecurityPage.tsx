@@ -64,7 +64,7 @@ export default function SecurityPage({locale}:{locale:Locale}){
  const [theme,setTheme]=useState<Theme>(()=>typeof window!=="undefined"&&window.localStorage.getItem("onyx-theme")==="dark"?"dark":"light");
  const rtl=locale==="fa",t=copy[locale]; const link=(p:string)=>p?`/${locale}/${p}/`:`/${locale}/`;
  useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.lang=locale;document.documentElement.dir=rtl?"rtl":"ltr";window.localStorage.setItem("onyx-theme",theme)},[theme,locale,rtl]);
- return <div className={`security-page security-page--${theme}`} dir={rtl?"rtl":"ltr"}>
+ return <div className={`security-page onyx-system security-page--${theme}`} dir={rtl?"rtl":"ltr"}>
   <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="security" />
   <main>
    <section className="security-hero"><div className="security-hero__grid"/><div className="shell-content"><div className="security-kicker"><ShieldCheck size={15}/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="security-actions"><a className="security-button security-button--primary" href={link("architecture")}>{t.product}<ArrowRight size={15}/></a><a className="security-button" href={link("contact")}>{t.contact}</a></div><a className="security-home" href={link("")}><ArrowLeft size={15}/>{t.home}</a></div></section>

@@ -12,7 +12,7 @@ export default function ContactPage({locale}:{locale:Locale}) {
  useEffect(()=>{const s=window.localStorage.getItem("onyx-theme") as Theme|null; const p=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"; const n=s==="dark"||s==="light"?s:p; setTheme(n); document.documentElement.dataset.theme=n;},[]);
  useEffect(()=>{document.documentElement.dataset.theme=theme; window.localStorage.setItem("onyx-theme",theme);},[theme]);
  const mail=`mailto:${c.emailAddress}?subject=${encodeURIComponent(c.emailSubject)}`;
- return <main className={`contact-page contact-page--${theme}`} dir={rtl?"rtl":"ltr"}>
+ return <main className={`contact-page onyx-system contact-page--${theme}`} dir={rtl?"rtl":"ltr"}>
  <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="contact" />
  <section className="contact-hero"><div className="contact-grid" aria-hidden="true"/><div className="shell-content contact-hero__inner"><div className="contact-kicker"><span/>{c.tag}</div><p className="contact-eyebrow">{c.kicker}</p><h1>{c.title}</h1><p className="contact-intro">{c.intro}</p><a className="contact-primary" href={mail}><Mail size={17}/>{c.email}</a></div></section>
  <section className="contact-section contact-section--demo"><div className="shell-content contact-two-col"><div><span className="contact-label">01 / {rtl?"دمو":"DEMO"}</span><h2>{c.demoTitle}</h2></div><div><p className="contact-lead">{c.demoBody}</p><a className="contact-email" href={mail}>{c.emailAddress}<ExternalLink size={15}/></a></div></div></section>

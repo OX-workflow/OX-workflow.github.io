@@ -100,7 +100,7 @@ export default function SolutionsPage({locale}:{locale:Locale}) {
   const rtl=locale==="fa"; const t=copy[locale];
   useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.lang=locale;document.documentElement.dir=rtl?"rtl":"ltr";window.localStorage.setItem("onyx-theme",theme)},[theme,locale,rtl]);
   const link=(p:string)=>`/${locale}/${p}/`; const home=`/${locale}/`;
-  return <div className={`solutions-page solutions-page--${theme}`} dir={rtl?"rtl":"ltr"}>
+  return <div className={`solutions-page onyx-system solutions-page--${theme}`} dir={rtl?"rtl":"ltr"}>
     <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="solutions" />
     <main>
       <section className="solutions-hero"><div className="solutions-hero__grid" aria-hidden="true"/><div className="shell-content"><div className="solutions-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="solutions-actions"><a className="solutions-button solutions-button--primary" href={link("product")}>{t.primary}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="solutions-button" href={link("contact")}>{t.secondary}</a></div><a className="solutions-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>

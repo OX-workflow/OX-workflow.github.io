@@ -170,7 +170,7 @@ export default function ResourcesPage({ locale }: { locale: Locale }) {
   }, [theme]);
 
   return (
-    <main className={`resources-page resources-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
+    <main className={`resources-page onyx-system resources-page--${theme}`} dir={rtl ? "rtl" : "ltr"}>
       <header className="resources-header">
         <div className="shell-content resources-header__inner">
           <a className="resources-logo" href={href("")} aria-label="ONYX">

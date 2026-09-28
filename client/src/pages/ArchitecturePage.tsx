@@ -75,7 +75,7 @@ export default function ArchitecturePage({locale}:{locale:Locale}) {
   const t=copy[locale]; const rtl=locale==="fa";
   useEffect(()=>{document.documentElement.dataset.theme=theme;document.documentElement.lang=locale;document.documentElement.dir=rtl?"rtl":"ltr";window.localStorage.setItem("onyx-theme",theme)},[theme,locale,rtl]);
   const home=`/${locale}/`; const link=(p:string)=>`/${locale}/${p}/`;
-  return <div className={`architecture-page architecture-page--${theme}`} dir={rtl?"rtl":"ltr"}>
+  return <div className={`architecture-page onyx-system architecture-page--${theme}`} dir={rtl?"rtl":"ltr"}>
     <SiteHeader locale={locale} theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} activePage="architecture" />
     <main>
       <section className="architecture-hero"><div className="architecture-grid" aria-hidden="true"/><div className="shell-content"><div className="architecture-kicker"><span/>{t.tag}</div><h1>{t.titleA}<br/><em>{t.titleB}</em></h1><p>{t.body}</p><div className="architecture-actions"><a className="architecture-button architecture-button--primary" href={link("product")}>{t.explore}{rtl?<ArrowLeft size={15}/>:<ArrowRight size={15}/>}</a><a className="architecture-button" href={link("contact")}>{t.contact}</a></div><a className="architecture-home" href={home}>{rtl?<ArrowRight size={15}/>:<ArrowLeft size={15}/>} {t.home}</a></div></section>
